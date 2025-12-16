@@ -28,7 +28,7 @@
             :class="[
               (isHome && !isScrolled)
                 ? ($route.path === item.href ? 'text-white' : 'text-[#737373] hover:text-white')
-                : ($route.path === item.href ? 'text-primary-600 dark:text-primary-400' : 'text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400')
+                : ($route.path === item.href ? 'text-blue-600 dark:text-blue-400' : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400')
             ]"
           >
             {{ item.name }}
