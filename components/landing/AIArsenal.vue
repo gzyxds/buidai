@@ -13,7 +13,7 @@
           <div class="flex flex-wrap items-center gap-4">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
               <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-              <span class="text-sm font-medium text-white/90">BuildingAI</span>
+              <span class="text-sm font-medium text-white/90">BuidAI</span>
             </div>
             <div class="text-sm font-medium text-white/90">
               一次部署,无限想象, 你的专属A!“军火库!

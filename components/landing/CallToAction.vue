@@ -33,7 +33,7 @@
     <div class="container mx-auto px-4 text-center relative z-10">
       <!-- Main Headline -->
       <h2 class="text-2xl md:text-4xl font-medium text-gray-900 mb-2 tracking-tight">
-        BuildingAI - Building Your Own AI Apps , Fast & Simple.
+        BuidAI - Building Your Own AI Apps , Fast & Simple.
       </h2>
 
       <!-- Gradient Subheadline -->

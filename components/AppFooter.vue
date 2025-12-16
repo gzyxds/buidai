@@ -1,16 +1,13 @@
 <template>
   <footer class="bg-white border-t border-gray-100 pt-16 pb-8">
     <div class="container mx-auto px-4">
-      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-8 mb-12">
         <div class="col-span-2 lg:col-span-2">
           <NuxtLink to="/" class="flex items-center space-x-3 mb-6">
-            <div class="w-8 h-8 bg-gradient-to-r from-primary-600 to-accent-500 rounded-lg flex items-center justify-center shadow-lg">
-              <span class="text-white font-bold text-lg">B</span>
-            </div>
-            <span class="font-bold text-xl text-gray-900">BuildingAI</span>
+            <img src="/AppFooter.svg" alt="BuidAI" class="h-6 w-auto" />
           </NuxtLink>
           <p class="text-gray-500 text-sm leading-relaxed max-w-xs mb-6">
-            BuildingAI 致力于降低企业 AI 应用开发门槛，赋能每一个团队构建智能未来。
+            BuidAI 致力于降低企业 AI 应用开发门槛，赋能每一个团队构建智能未来。
           </p>
           <div class="flex space-x-4">
             <a href="#" class="text-gray-400 hover:text-primary-600 transition-colors">
@@ -35,6 +32,16 @@
         </div>
 
         <div>
+          <h4 class="font-bold text-gray-900 mb-4">应用市场</h4>
+          <ul class="space-y-3 text-sm text-gray-500">
+            <li><a href="#" class="hover:text-primary-600 transition-colors">独立应用</a></li>
+            <li><a href="#" class="hover:text-primary-600 transition-colors">扩展应用</a></li>
+            <li><a href="#" class="hover:text-primary-600 transition-colors">图像视频</a></li>
+            <li><a href="#" class="hover:text-primary-600 transition-colors">智能写作</a></li>
+          </ul>
+        </div>
+
+        <div>
           <h4 class="font-bold text-gray-900 mb-4">资源</h4>
           <ul class="space-y-3 text-sm text-gray-500">
             <li><a href="#" class="hover:text-primary-600 transition-colors">文档中心</a></li>
@@ -53,11 +60,37 @@
             <li><a href="#" class="hover:text-primary-600 transition-colors">隐私政策</a></li>
           </ul>
         </div>
+
+        <div>
+          <h4 class="font-bold text-gray-900 mb-4">关注我们</h4>
+          <ul class="space-y-3 text-sm text-gray-500">
+            <li class="flex items-center space-x-2">
+              <span class="font-medium">QQ:</span>
+              <span>236749035</span>
+            </li>
+            <li class="flex flex-col space-y-2">
+              <div class="flex items-center space-x-2">
+                <span class="font-medium">微信:</span>
+                <span>userhlc</span>
+              </div>
+              <div class="flex space-x-2 pt-2">
+                <div class="flex flex-col items-center space-y-1">
+                  <img src="/qrcode.png" alt="QQ QR Code" class="w-20 h-20 object-contain bg-gray-50 p-1 rounded border border-gray-100" />
+                  <span class="text-xs text-gray-400">QQ群</span>
+                </div>
+                <div class="flex flex-col items-center space-y-1">
+                  <img src="/wechat.png" alt="WeChat QR Code" class="w-20 h-20 object-contain bg-gray-50 p-1 rounded border border-gray-100" />
+                  <span class="text-xs text-gray-400">微信客服</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
         <p class="text-gray-400 text-sm">
-          © 2024 BuildingAI. All rights reserved.
+          © 2024 BuidAI. All rights reserved.
         </p>
         <div class="flex space-x-6 text-sm text-gray-400">
           <a href="#" class="hover:text-primary-600 transition-colors">服务条款</a>

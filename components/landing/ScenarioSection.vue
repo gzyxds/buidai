@@ -3,7 +3,7 @@
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
-          BuildingAI 灵活适配多场景
+          BuidAI 灵活适配多场景
         </h2>
         <p class="text-gray-500 text-lg">
           从内部提效到外部服务，全面覆盖企业智能化需求
@@ -49,12 +49,12 @@
 const scenarios = [
   {
     title: '全开源 & DIY 装修',
-    desc: 'BuildingAI 项目代码完全公开，可私有化部署到企业服务器之中，有效保障数据隐私。同时支持自定义首页、登录界面、加载动画的 Logo。',
+    desc: 'BuidAI 项目代码完全公开，可私有化部署到企业服务器之中，有效保障数据隐私。同时支持自定义首页、登录界面、加载动画的 Logo。',
     image: '/ScenarioSection-1.png'
   },
   {
     title: '导入 Dify & 扣子 工作流',
-    desc: 'BuildingAI 支持导入 Dify、扣子（Coze）等第三方工作流，打破平台局限，让你的能力得到充分施展。',
+    desc: 'BuidAI 支持导入 Dify、扣子（Coze）等第三方工作流，打破平台局限，让你的能力得到充分施展。',
     image: '/ScenarioSection-2.png'
   },
   {

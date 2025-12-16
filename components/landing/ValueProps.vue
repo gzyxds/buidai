@@ -3,7 +3,7 @@
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
-          BuildingAI 助力企业构建 AI 应用
+          BuidAI 助力企业构建 AI 应用
         </h2>
         <p class="text-gray-500 text-lg">
           全栈式 AI 开发平台，让创意落地为现实

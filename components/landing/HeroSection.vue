@@ -15,7 +15,7 @@
           <div class="flex justify-center lg:justify-start">
             <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
               <span class="px-1.5 py-0.5 rounded bg-primary-600 text-[10px] font-bold text-white tracking-wider">NEW</span>
-              <span class="text-sm text-gray-300">BuildingAI 应用市场上线，探索无限可能</span>
+              <span class="text-sm text-gray-300">BuidAI 应用市场上线，探索无限可能</span>
             </div>
           </div>
 
@@ -94,7 +94,7 @@
          <div class="absolute top-8 right-8 w-full h-full opacity-40 transform scale-95 translate-x-4 translate-y-4 -z-10">
            <img
              src="/home-right-bg.png"
-             alt="BuildingAI Dashboard Background"
+             alt="BuidAI Dashboard Background"
              class="w-full h-auto object-contain rounded-lg"
            />
          </div>
@@ -102,7 +102,7 @@
          <!-- Main Front Layer -->
          <img
            src="/home-right-bg.png"
-           alt="BuildingAI Dashboard"
+           alt="BuidAI Dashboard"
            class="relative w-[90%] h-auto object-contain transform hover:scale-[1.02] transition-transform duration-700 shadow-2xl rounded-lg z-10"
          />
 

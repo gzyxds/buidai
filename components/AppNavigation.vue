@@ -4,7 +4,7 @@
       <div class="flex items-center justify-between h-14">
         <!-- Logo -->
         <NuxtLink to="/" class="flex items-center gap-2.5">
-          <img src="/logo.svg" alt="BuildingAI" class="h-8 w-auto" />
+          <img src="/logo.svg" alt="BuidAI" class="h-8 w-auto" />
         </NuxtLink>
 
         <!-- Desktop Navigation -->
