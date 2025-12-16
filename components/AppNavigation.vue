@@ -47,7 +47,7 @@
           >
             登录
           </button>
-          <button class="text-sm bg-white text-primary-600 px-4 py-2 rounded-full font-medium hover:bg-gray-100 transition-colors shadow-lg">
+          <button class="justify-center whitespace-nowrap rounded-md ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 flex items-center gap-3 px-6 py-4 shadow-lg start-btn">
             免费使用
           </button>
         </div>
@@ -155,3 +155,13 @@ watch(() => useRoute().path, () => {
   mobileMenuOpen.value = false
 })
 </script>
+
+<style scoped>
+.start-btn {
+  background: linear-gradient(180deg, #f9bdfd, #80b8ff);
+  color: #122f6d;
+  width: 6rem;
+  font-size: 0.85em;
+  height: 2.2rem;
+}
+</style>
