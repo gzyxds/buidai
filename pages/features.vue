@@ -33,30 +33,43 @@
       </div>
     </section>
 
-    <!-- Demo Video Section -->
-    <section class="py-10">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-lg font-medium text-gray-500 mb-6 flex items-center justify-center gap-2">
-          观看演示 <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-        </h2>
-
-        <div class="relative rounded-xl overflow-hidden border border-gray-200 bg-gray-50 shadow-2xl aspect-video group cursor-pointer">
-          <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/5"></div>
-
-          <!-- Mock UI for Video Placeholder -->
-          <div class="absolute inset-0 p-4 flex flex-col">
-            <div class="flex items-center gap-2 mb-4 border-b border-gray-200 pb-2">
-              <div class="flex gap-1.5">
-                <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
-                <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-                <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
-              </div>
+    <!-- Demo Video Section (Replaced with Feature Cards) -->
+    <section class="py-16 bg-white">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div v-for="(item, index) in featureCards" :key="index" class="flex flex-col gap-4">
+            <!-- Category Header Pill -->
+            <div class="bg-indigo-50/80 backdrop-blur-sm rounded-lg py-3 text-center text-indigo-900 font-medium text-sm">
+              {{ item.category }}
             </div>
-            <div class="flex-1 flex items-center justify-center">
-              <div class="w-20 h-20 rounded-full bg-white shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <svg class="w-8 h-8 text-gray-900 ml-1" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
+
+            <!-- Card Body -->
+            <div class="bg-white rounded-[20px] p-6 shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-gray-100 flex-1 flex flex-col items-center text-center hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-all duration-300 h-full">
+              <!-- Tag -->
+              <div class="self-start mb-4">
+                <span class="bg-indigo-50 text-indigo-600 text-[10px] sm:text-xs px-2.5 py-1 rounded-md font-bold">
+                  {{ item.tag }}
+                </span>
+              </div>
+
+              <!-- Title -->
+              <h3 class="text-lg font-bold text-gray-900 mb-3 px-2">{{ item.title }}</h3>
+
+              <!-- Description -->
+              <p class="text-xs text-gray-500 leading-relaxed mb-6 line-clamp-4 px-1">
+                {{ item.desc }}
+              </p>
+
+              <!-- Image Area -->
+              <div class="mt-auto w-full aspect-[4/3] bg-gray-50 rounded-lg overflow-hidden relative group">
+                <div class="absolute inset-0 bg-gradient-to-br from-gray-50 to-indigo-50/30 flex items-center justify-center">
+                   <!-- Fallback visuals since we don't have real images -->
+                   <div class="w-16 h-16 bg-white rounded-full shadow-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                      <SparklesIcon class="w-8 h-8 text-indigo-300" />
+                   </div>
+                </div>
+                <!-- Placeholder for actual image -->
+                <!-- <img :src="item.image" class="w-full h-full object-cover" /> -->
               </div>
             </div>
           </div>
@@ -196,6 +209,40 @@ useHead({
     { name: 'description', content: 'BuidAI 是一个基于 LLM 大语言模型的知识库问答系统，提供开箱即用的数据处理、模型调用等能力。' }
   ]
 })
+
+/**
+ * Feature data for the cards
+ */
+const featureCards = [
+  {
+    category: 'AI 写作',
+    tag: '研究报告',
+    title: '中国潮玩调研报告',
+    desc: '写一份关于中国潮玩市场的详细的调研报告，并生成精美的网页',
+    image: ''
+  },
+  {
+    category: 'AI PPT',
+    tag: '行业调研',
+    title: '二奢行业调研PPT',
+    desc: '围绕 “二手奢侈品交易市场的发展现状” 制作调研 PPT，分析消费者对二手奢侈品的接受度、购买渠道偏好（线上平台、线下门店）及顾虑（真伪鉴定、价格评估等），现有交易平台的运营模式及优缺点，附市场规范发展建议。',
+    image: ''
+  },
+  {
+    category: 'AI 设计',
+    tag: '海报创作',
+    title: '主题活动海报设计',
+    desc: '做一个活动海报，内容： 元气发电站市集 上班暂停，来元气发电站撒野啦 创意宇宙大爆发，美味能量补给站 手作DIY，塔罗占卜，香薰手作，视听盛宴 在这里都将有一场前所未有的体验 这个夏天，让我们一起在市集吃下元气释放无限可能！ 7.30-8.1 16:00-22:00 商业空间 B2北广场 12号线出口处',
+    image: ''
+  },
+  {
+    category: 'AI 网站开发',
+    tag: '提效工具',
+    title: '图片主色提取工具',
+    desc: '开发一个在线图片颜色提取工具，用户可以上传图片，工具能自动分析并提取图片中最主要的5-6种颜色，生成可视化调色盘，每个颜色块下方显示其HEX色号，并提供一键复制功能。',
+    image: ''
+  }
+]
 
 /**
  * 优势列表数据

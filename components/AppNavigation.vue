@@ -4,52 +4,65 @@
     :class="[
       (isHome && !isScrolled)
         ? 'bg-transparent border-b border-transparent'
-        : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800 shadow-sm'
+        : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg'
     ]"
+    :style="isScrolled ? 'border-bottom: 0.5px solid rgba(0, 0, 0, 0.1)' : ''"
   >
-    <div class="w-full px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-14">
-        <!-- Logo -->
-        <NuxtLink to="/" class="flex items-center gap-2.5">
-          <img
-            :src="(isHome && !isScrolled) ? '/logo.svg' : '/logo-full.svg'"
-            alt="BuidAI"
-            class="h-8 w-auto"
-          />
-        </NuxtLink>
-
-        <!-- Desktop Navigation -->
-        <div class="hidden md:flex items-center space-x-8 mr-auto ml-12">
-          <NuxtLink
-            v-for="item in navigation"
-            :key="item.href"
-            :to="item.href"
-            class="text-sm font-medium transition-colors duration-200"
-            :class="[
-              (isHome && !isScrolled)
-                ? ($route.path === item.href ? 'text-white' : 'text-[#737373] hover:text-white')
-                : ($route.path === item.href ? 'text-blue-600 dark:text-blue-400' : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400')
-            ]"
-          >
-            {{ item.name }}
+    <div class="w-full px-6">
+      <div class="flex items-center justify-between h-[72px]">
+        <!-- Left Section: Logo + Nav -->
+        <div class="flex items-center gap-10">
+          <!-- Logo -->
+          <NuxtLink to="/" class="flex items-center gap-2 shrink-0">
+            <img
+              :src="(isHome && !isScrolled) ? '/logo.svg' : '/logo-full.svg'"
+              alt="BuidAI"
+              class="h-8 w-auto"
+            />
           </NuxtLink>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex items-center gap-1">
+            <NuxtLink
+              v-for="item in navigation"
+              :key="item.href"
+              :to="item.href"
+              class="h-9 px-4 rounded-lg text-[15px] font-medium flex items-center justify-center transition-all duration-200"
+              :class="[
+                (isHome && !isScrolled)
+                  ? ($route.path === item.href ? 'text-white font-semibold' : 'text-white/80 hover:text-white hover:bg-white/10')
+                  : ($route.path === item.href ? 'text-[#080d1ee6] font-semibold' : 'text-gray-600 hover:text-[#080d1ee6] hover:bg-indigo-50')
+              ]"
+            >
+              {{ item.name }}
+            </NuxtLink>
+          </div>
         </div>
 
         <!-- Right side buttons -->
-        <div class="hidden md:flex items-center space-x-4">
+        <div class="hidden md:flex items-center gap-3">
           <button
-            class="text-sm font-medium px-4 py-2 transition-colors duration-200"
+            class="h-9 px-6 rounded-lg text-[14px] font-medium transition-colors duration-200 outline-none flex items-center justify-center"
             :class="[
               (isHome && !isScrolled)
-                ? 'text-[#737373] hover:text-white'
-                : 'text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400'
+                ? 'bg-white/10 text-white hover:bg-white/20'
+                : 'bg-indigo-50 text-indigo-900 hover:bg-indigo-100'
             ]"
           >
-            登录
+            文档中心
           </button>
-          <button class="justify-center whitespace-nowrap rounded-md ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 flex items-center gap-3 px-6 py-4 shadow-lg start-btn">
-            免费使用
-          </button>
+          <div>
+            <button
+              class="h-9 px-6 rounded-lg text-[14px] font-medium leading-none pt-[2px] transition-all duration-200 outline-none flex items-center justify-center"
+              :class="[
+                (isHome && !isScrolled)
+                  ? 'bg-white text-gray-900 hover:bg-gray-50'
+                  : 'bg-[#1e2129] text-white hover:bg-[#2c2f3a]'
+              ]"
+            >
+              登录必定
+            </button>
+          </div>
         </div>
 
         <!-- Mobile menu button -->
@@ -143,6 +156,7 @@ onUnmounted(() => {
 })
 
 const navigation = [
+  { name: '首页', href: '/' },
   { name: '应用市场', href: '/plugin' },
   { name: '产品', href: '/features' },
   { name: '解决方案', href: '/solutions' },
