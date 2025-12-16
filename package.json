@@ -1,0 +1,25 @@
+{
+  "name": "esa-pages-template",
+  "version": "1.0.0",
+  "description": "Modern ESA Pages template built with Nuxt.js",
+  "private": true,
+  "scripts": {
+    "build": "nuxt generate",
+    "dev": "nuxt dev",
+    "preview": "nuxt preview",
+    "typecheck": "nuxt typecheck"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "^1.0.8",
+    "@nuxtjs/tailwindcss": "^6.12.0",
+    "nuxt": "^3.12.4",
+    "typescript": "^5.5.4",
+    "@headlessui/vue": "^1.7.22",
+    "@heroicons/vue": "^2.1.5"
+  },
+  "dependencies": {
+    "@nuxtjs/color-mode": "^3.4.2",
+    "vue": "^3.4.31",
+    "vue-router": "^4.4.0"
+  }
+}
