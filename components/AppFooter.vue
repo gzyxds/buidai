@@ -54,7 +54,7 @@
         <div>
           <h4 class="font-bold text-gray-900 mb-4">公司</h4>
           <ul class="space-y-3 text-sm text-gray-500">
-            <li><a href="#" class="hover:text-primary-600 transition-colors">关于我们</a></li>
+            <li><NuxtLink to="/about" class="hover:text-primary-600 transition-colors">关于我们</NuxtLink></li>
             <li><a href="#" class="hover:text-primary-600 transition-colors">加入我们</a></li>
             <li><a href="#" class="hover:text-primary-600 transition-colors">联系方式</a></li>
             <li><a href="#" class="hover:text-primary-600 transition-colors">隐私政策</a></li>
