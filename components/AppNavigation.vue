@@ -47,7 +47,7 @@
           >
             登录
           </button>
-          <button class="text-sm bg-primary-600 text-white px-4 py-2 rounded-full font-medium hover:bg-primary-700 transition-colors shadow-lg shadow-primary-500/30">
+          <button class="text-sm bg-white text-primary-600 px-4 py-2 rounded-full font-medium hover:bg-gray-100 transition-colors shadow-lg">
             免费使用
           </button>
         </div>
