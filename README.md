@@ -1,105 +1,139 @@
-# ESA Pages Template
+# Vibe Coding - ESA Pages 模版
 
-A modern frontend template for ESA Pages, built with Nuxt.js to provide an elegant user interface for static website hosting services.
+基于 Nuxt 3 构建的现代化前端模版，专为 ESA Pages 设计，提供优雅的用户界面和静态网站托管支持。
 
-## Features
+## ✨ 特性
 
-- ✅ **Nuxt.js 3** - The latest Vue.js full-stack framework
-- ✅ **TypeScript** - Type-safe JavaScript development
-- ✅ **Tailwind CSS** - Utility-first CSS framework
-- ✅ **Dark Mode** - Automatic dark/light theme switching
-- ✅ **Responsive Design** - Perfect adaptation to all devices
-- ✅ **Modern UI Components** - Beautiful user interface components
-- ✅ **SEO Optimized** - Built-in SEO best practices
-- ✅ **Performance Optimized** - Fast loading and smooth animations
+- ⚡️ **Nuxt.js 3** - 最新的 Vue.js 全栈框架
+- 📘 **TypeScript** - 提供类型安全的开发体验
+- 🎨 **Tailwind CSS** - 实用优先的 CSS 框架，包含自定义主题和动画
+- 🌙 **深色模式** - 自动/手动切换深色/浅色主题 (`@nuxtjs/color-mode`)
+- 🧩 **UI 组件库** - 集成 Headless UI 和 Heroicons
+- 📱 **响应式设计** - 完美适配各种设备尺寸
+- 🔍 **SEO 优化** - 内置 SEO 最佳实践配置
+- 🚀 **性能优化** - 快速加载和流畅的交互动画
 
-## Page Structure
+## 📂 目录结构
 
-- **Home** (`/`) - Product introduction and core feature showcase
-- **Features** (`/features`) - Detailed feature descriptions
-- **About** (`/about`) - Company introduction and team showcase
+```text
+e:\待开发\nuxtlittle/
+├── assets/             # 静态资源（CSS, 图片等）
+│   └── css/
+│       └── main.css    # 全局样式文件
+├── components/         # Vue 组件
+│   ├── AppFooter.vue   # 页脚组件
+│   ├── AppNavigation.vue # 导航栏组件
+│   └── ...             # 其他功能组件
+├── layouts/            # 布局文件
+│   └── default.vue     # 默认布局
+├── pages/              # 页面路由
+│   ├── index.vue       # 首页
+│   ├── features.vue    # 特性页
+│   └── about.vue       # 关于页
+├── public/             # 公共静态文件
+├── app.vue             # 应用根组件
+├── nuxt.config.ts      # Nuxt 配置文件
+├── tailwind.config.js  # Tailwind CSS 配置文件
+└── package.json        # 项目依赖和脚本
+```
 
-## Quick Start
+## 🚀 快速开始
 
-### Install Dependencies
+### 环境要求
+
+- Node.js (推荐 v16 或更高版本)
+- npm 或 yarn
+
+### 安装依赖
 
 ```bash
 npm install
 ```
 
-### Development Mode
+### 开发模式
+
+启动本地开发服务器，支持热更新：
 
 ```bash
 npm run dev
 ```
 
-Visit [http://localhost:3000](http://localhost:3000) to view the website.
+启动后访问 [http://localhost:3000](http://localhost:3000) 查看网站。
 
-### Build for Production
+### 构建生产版本
+
+生成静态文件（适用于 ESA Pages 部署）：
 
 ```bash
 npm run build
 ```
 
-### Generate Static Files
+该命令会执行 `nuxt generate`，生成的文件位于 `.output/public` 目录。
 
-```bash
-npm run generate
-```
+### 预览生产构建
 
-### Preview Production Build
+在本地预览构建后的生产版本：
 
 ```bash
 npm run preview
 ```
 
-## Tech Stack
+### 类型检查
 
-- **Framework**: Nuxt.js 3
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Icons**: Heroicons
-- **Font**: Inter (Google Fonts)
+运行 TypeScript 类型检查：
 
-## Customization
+```bash
+npm run typecheck
+```
 
-### Color Theme
+## 🛠 技术栈
 
-Modify theme colors in `tailwind.config.js`:
+- **框架**: [Nuxt 3](https://nuxt.com/)
+- **语言**: [TypeScript](https://www.typescriptlang.org/)
+- **样式**: [Tailwind CSS](https://tailwindcss.com/)
+- **图标**: [Heroicons](https://heroicons.com/)
+- **组件逻辑**: [Headless UI](https://headlessui.com/)
+- **字体**: Inter (Google Fonts)
+
+## ⚙️ 定制化
+
+### 颜色主题
+
+在 `tailwind.config.js` 中修改主题颜色。项目预设了以下色系：
+- `primary`: 主色调
+- `accent`: 强调色
+- `secondary`: 次要/中性色
 
 ```javascript
-colors: {
-  primary: {
-    // Modify primary colors
-  },
+// tailwind.config.js
+export default {
+  theme: {
+    extend: {
+      colors: {
+        primary: { ... }, // 修改此处
+      }
+    }
+  }
 }
 ```
 
-### Content Modification
+### SEO 配置
 
-- Modify page files in the `pages/` directory to update content
-- Modify component files in the `components/` directory to customize UI
-- Modify `assets/css/main.css` to adjust styles
+在 `nuxt.config.ts` 中的 `app.head` 部分修改全局 Meta 信息，如标题、描述和 Open Graph 标签。
 
-### Configuration
+## 📦 部署
 
-- `nuxt.config.ts` - Nuxt.js configuration
-- `tailwind.config.js` - Tailwind CSS configuration
-- `tsconfig.json` - TypeScript configuration
+本项目配置为静态站点生成 (SSG) 模式，非常适合部署在各类静态托管服务上。
 
-## Deployment
+### ESA Pages / 静态托管
 
-This template can be easily deployed to various platforms:
+1. 执行 `npm run build`
+2. 将生成的 `.output/public` 目录内容部署到服务器
 
-- **ESA Pages** - Recommended choice
-- **Vercel** - Zero-configuration deployment
-- **Netlify** - Static website hosting
-- **GitHub Pages** - Free static hosting
+## 🤝 贡献
 
-## Contributing
+欢迎提交 Issues 和 Pull Requests 来改进这个模版。
 
-Welcome to submit Issues and Pull Requests to improve this template.
-
-## License
+## 📄 许可证
 
 MIT License

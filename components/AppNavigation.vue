@@ -4,18 +4,18 @@
       <div class="flex items-center justify-between h-16">
         <!-- Logo -->
         <NuxtLink to="/" class="flex items-center space-x-3">
-          <div class="w-8 h-8 bg-gradient-to-r from-primary-500 to-accent-500 rounded-xl flex items-center justify-center shadow-lg">
-            <span class="text-white font-bold text-lg">V</span>
+          <div class="w-8 h-8 bg-gradient-to-r from-primary-600 to-accent-500 rounded-lg flex items-center justify-center shadow-lg">
+            <span class="text-white font-bold text-lg">B</span>
           </div>
-          <span class="font-bold text-xl bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">Vibe Coding</span>
+          <span class="font-bold text-xl text-gray-900 dark:text-white">BuildingAI</span>
         </NuxtLink>
 
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-8">
-          <NuxtLink 
-            v-for="item in navigation" 
+          <NuxtLink
+            v-for="item in navigation"
             :key="item.href"
-            :to="item.href" 
+            :to="item.href"
             class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-colors duration-200"
             :class="{ 'text-primary-600 dark:text-primary-400': $route.path === item.href }"
           >
@@ -26,18 +26,18 @@
         <!-- Right side buttons -->
         <div class="hidden md:flex items-center space-x-4">
           <ColorModeButton />
-          <button class="btn-secondary">
-            Log In
+          <button class="text-gray-600 dark:text-gray-300 hover:text-primary-600 font-medium px-4 py-2">
+            登录
           </button>
-          <button class="btn-primary">
-            Start Vibing
+          <button class="bg-primary-600 text-white px-5 py-2 rounded-full font-medium hover:bg-primary-700 transition-colors shadow-lg shadow-primary-500/30">
+            免费使用
           </button>
         </div>
 
         <!-- Mobile menu button -->
         <div class="md:hidden flex items-center space-x-2">
           <ColorModeButton />
-          <button 
+          <button
             @click="mobileMenuOpen = !mobileMenuOpen"
             class="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
           >
@@ -58,10 +58,10 @@
       >
         <div v-if="mobileMenuOpen" class="md:hidden border-t border-gray-200 dark:border-gray-700 py-4">
           <div class="flex flex-col space-y-4">
-            <NuxtLink 
-              v-for="item in navigation" 
+            <NuxtLink
+              v-for="item in navigation"
               :key="item.href"
-              :to="item.href" 
+              :to="item.href"
               @click="mobileMenuOpen = false"
               class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium py-2 transition-colors duration-200"
               :class="{ 'text-primary-600 dark:text-primary-400': $route.path === item.href }"
@@ -89,9 +89,10 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
 const mobileMenuOpen = ref(false)
 
 const navigation = [
-  { name: 'Home', href: '/' },
-  { name: 'Features', href: '/features' },
-  { name: 'About', href: '/about' },
+  { name: '产品', href: '/features' },
+  { name: '解决方案', href: '/solutions' },
+  { name: '定价', href: '/pricing' },
+  { name: '资源', href: '/resources' },
 ]
 
 // Close mobile menu when route changes
