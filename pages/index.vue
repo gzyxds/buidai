@@ -7,6 +7,7 @@
     <LandingProductFeatures />
     <LandingProductDesign />
     <LandingCallToAction />
+    <LandingAIArsenal />
   </div>
 </template>
 

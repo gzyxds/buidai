@@ -19,20 +19,23 @@
             </div>
           </div>
 
-          <!-- Headline -->
-          <div class="space-y-2">
-            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight text-white/90">
-              面向 <span class="text-white">AI开发者</span> · <span class="text-white">AI创业者</span> · <span class="text-white">先进组织</span> 打造的
-            </h1>
-            <h2 class="text-2xl sm:text-3xl lg:text-4xl text-white bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-400">
-              企业级开源智能体搭建平台 ✨
-            </h2>
-          </div>
-
-          <!-- Subheadline -->
-          <p class="text-xl text-gray-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+        <!-- Headline -->
+        <div class="space-y-6 lg:space-y-8">
+          <p class="text-sm sm:text-base lg:text-lg text-white/60 leading-relaxed tracking-wide">
+            面向 <span class="text-white font-semibold">AI开发者</span> · <span class="text-white font-semibold">AI创业者</span> · <span class="text-white font-semibold">先进组织</span> 打造的
+          </p>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight tracking-tight text-white">
+            <span class="relative inline-block">
+              <span class="text-[#6A28F9]">企业级开源智能体</span> 搭建平台
+              <svg class="absolute -bottom-2 left-0 w-full h-2 text-[#6A28F9]/40" viewBox="0 0 100 10" preserveAspectRatio="none">
+                <path d="M0 6 Q 25 2 50 6 T 100 6" stroke="currentColor" stroke-width="2" fill="none" />
+              </svg>
+            </span>
+          </h1>
+          <p class="text-base sm:text-lg lg:text-xl text-gray-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
             它 <span class="text-white font-medium">正在</span> 努力成为AI应用落地的首选方案
           </p>
+        </div>
 
           <!-- Buttons -->
           <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">

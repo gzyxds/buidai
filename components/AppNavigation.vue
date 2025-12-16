@@ -1,9 +1,9 @@
 <template>
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-md border-b border-white/5 transition-all duration-200">
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-lg border-b border-transparent transition-colors duration-200">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
+      <div class="flex items-center justify-between h-14">
         <!-- Logo -->
-        <NuxtLink to="/" class="flex items-center gap-2">
+        <NuxtLink to="/" class="flex items-center gap-2.5">
           <img src="/logo.svg" alt="BuildingAI" class="h-8 w-auto" />
         </NuxtLink>
 
@@ -13,7 +13,7 @@
             v-for="item in navigation"
             :key="item.href"
             :to="item.href"
-            class="text-white/80 hover:text-white font-medium transition-colors duration-200"
+            class="text-sm text-[#737373] hover:text-white font-medium transition-colors duration-200"
             :class="{ 'text-white': $route.path === item.href }"
           >
             {{ item.name }}
@@ -22,10 +22,10 @@
 
         <!-- Right side buttons -->
         <div class="hidden md:flex items-center space-x-4">
-          <button class="text-white/80 hover:text-white font-medium px-4 py-2">
+          <button class="text-sm text-[#737373] hover:text-white font-medium px-4 py-2">
             登录
           </button>
-          <button class="bg-primary-600 text-white px-5 py-2 rounded-full font-medium hover:bg-primary-700 transition-colors shadow-lg shadow-primary-500/30">
+          <button class="text-sm bg-primary-600 text-white px-4 py-2 rounded-full font-medium hover:bg-primary-700 transition-colors shadow-lg shadow-primary-500/30">
             免费使用
           </button>
         </div>
@@ -58,8 +58,8 @@
               :key="item.href"
               :to="item.href"
               @click="mobileMenuOpen = false"
-              class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium py-2 transition-colors duration-200"
-              :class="{ 'text-primary-600 dark:text-primary-400': $route.path === item.href }"
+              class="text-sm text-[#737373] hover:text-white font-medium py-2 transition-colors duration-200"
+              :class="{ 'text-white': $route.path === item.href }"
             >
               {{ item.name }}
             </NuxtLink>
