@@ -143,6 +143,7 @@ onUnmounted(() => {
 })
 
 const navigation = [
+  { name: '应用市场', href: '/plugin' },
   { name: '产品', href: '/features' },
   { name: '解决方案', href: '/solutions' },
   { name: '定价', href: '/pricing' },

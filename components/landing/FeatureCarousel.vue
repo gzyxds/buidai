@@ -12,7 +12,7 @@
     <!-- 3D 轮播容器 -->
     <div class="relative w-full">
       <div
-        class="flex gap-8 overflow-x-auto pb-20 pt-10 px-[50vw] scrollbar-hide perspective-container select-none"
+        class="flex gap-4 sm:gap-8 overflow-x-auto pb-20 pt-10 px-4 sm:px-[50vw] scrollbar-hide perspective-container select-none"
         :class="{ 'cursor-grab': !isDragging, 'cursor-grabbing': isDragging }"
         ref="scrollContainer"
         @scroll="handleScroll"
@@ -20,11 +20,12 @@
         @mousemove="onDrag"
         @mouseup="stopDrag"
         @mouseleave="stopDrag"
+        @touchstart="stopDrag" 
       >
         <div
           v-for="(card, index) in cards"
           :key="index"
-          class="flex-shrink-0 w-[360px] perspective-item will-change-transform"
+          class="flex-shrink-0 w-[85vw] sm:w-[360px] perspective-item will-change-transform"
           :ref="(el) => { if(el) cardRefs[index] = el as HTMLElement }"
         >
           <div
@@ -234,11 +235,18 @@ onMounted(() => {
     // Center the scroll initially
     if (scrollContainer.value) {
       const container = scrollContainer.value
-      // Calculate total width of items
-      // Simple approximation: first item width * count
-      // Better: Scroll to index 3 (middle)
-      const cardWidth = 360 + 32 // width + gap
-      container.scrollLeft = (cardWidth * cards.length) / 2 - window.innerWidth / 2 + cardWidth / 2
+      
+      // Check if mobile (using simple width check)
+      const isMobile = window.innerWidth < 640
+      
+      if (!isMobile) {
+        const cardWidth = 360 + 32 // width + gap
+        container.scrollLeft = (cardWidth * cards.length) / 2 - window.innerWidth / 2 + cardWidth / 2
+      } else {
+        // On mobile, maybe start at the beginning or slightly offset?
+        // Let's just scroll to the second item to show there's more
+        // container.scrollLeft = 0 
+      }
 
       updateTransforms()
     }
