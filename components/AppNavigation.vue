@@ -158,7 +158,7 @@ onUnmounted(() => {
 const navigation = [
   { name: '首页', href: '/' },
   { name: '应用中心', href: '/plugin' },
-  { name: 'BuidAI', href: '/features' },
+  { name: 'BuidAI', href: '/agent' },
   { name: '必定空间', href: '/solutions' },
   { name: '产品定价', href: '/pricing' },
   { name: '资源中心', href: '/resources' },
