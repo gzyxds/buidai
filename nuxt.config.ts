@@ -8,6 +8,14 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@nuxt/content'
   ],
+  content: {
+    database: {
+      type: 'sqlite'
+    }
+  },
+  nitro: {
+    preset: 'vercel'
+  },
   colorMode: {
     classSuffix: ''
   },
