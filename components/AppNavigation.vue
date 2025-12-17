@@ -43,7 +43,7 @@
               文档中心
             </NuxtLink>
             <NuxtLink
-              to="https://dashboard.buidai.com/login"
+              to="https://cloud.buidai.com/login"
               target="_blank"
               class="h-10 px-6 rounded-full text-[15px] font-medium transition-all duration-200 flex items-center justify-center"
               :class="isTransparent ? 'bg-white text-gray-900 hover:bg-gray-50' : 'bg-[#1e2129] text-white hover:bg-[#2c2f3a]'"
