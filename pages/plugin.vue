@@ -17,15 +17,15 @@
           </div>
 
           <!-- 分类列表 -->
-          <nav class="space-y-1">
+          <nav class="flex lg:flex-col gap-3 lg:gap-1 overflow-x-auto pb-1 lg:pb-0 -mx-4 px-4 lg:mx-0 lg:px-0 no-scrollbar">
             <button
               v-for="category in categories"
               :key="category.id"
               @click="activeCategory = category.id"
-              class="w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-colors duration-200 flex items-center justify-between group"
+              class="flex-shrink-0 lg:flex-shrink w-auto lg:w-full text-left px-5 py-2 lg:px-4 lg:py-3 rounded-full lg:rounded-lg text-sm font-medium transition-colors duration-200 flex items-center justify-center lg:justify-between group border lg:border-0"
               :class="activeCategory === category.id
-                ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400'
-                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'"
+                ? 'bg-gray-900 text-white border-gray-900 lg:bg-blue-50 lg:text-blue-600 lg:dark:bg-blue-900/20 lg:dark:text-blue-400 lg:border-transparent'
+                : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 lg:bg-transparent lg:text-gray-600 lg:dark:text-gray-400 lg:hover:bg-gray-100 lg:dark:hover:bg-gray-800 lg:border-transparent dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300'"
             >
               {{ category.name }}
             </button>
@@ -186,6 +186,15 @@ const filteredApps = computed(() => {
 </script>
 
 <style scoped>
+/* 隐藏滚动条但保留功能 */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* 侧边栏自定义滚动条 */
 aside::-webkit-scrollbar {
   width: 4px;

@@ -1,18 +1,18 @@
 <template>
   <div class="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
-    <!-- Navigation -->
+    <!-- 导航 -->
     <AppNavigation />
-    
-    <!-- Main Content -->
+
+    <!-- 主要内容 -->
     <main>
       <slot />
     </main>
-    
+
     <!-- Footer -->
     <AppFooter />
   </div>
 </template>
 
 <script setup lang="ts">
-// No additional setup needed for this layout
+// 此布局不需要额外的设置
 </script>

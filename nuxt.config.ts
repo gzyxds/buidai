@@ -12,14 +12,14 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: 'BuidAI - 降低企业 AI 应用开发门槛',
+      title: '必定AI,BuidAI - 降低企业 AI 应用开发门槛',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'BuidAI 致力于降低企业 AI 应用开发门槛，赋能每一个团队构建智能未来。' },
+        { name: 'description', content: '必定AI,BuidAI 致力于降低企业 AI 应用开发门槛，赋能每一个团队构建智能未来。' },
         { name: 'keywords', content: 'AI智能体,AI对话,MCP模型,AI绘画,AI视频,语音播报,智能对话,文件处理,内容生成,图像识别,文档解析,AI工具集成,多模态AI,创意生成,工作效率,智能助手' },
-        { property: 'og:title', content: 'BuidAI - 降低企业 AI 应用开发门槛' },
-        { property: 'og:description', content: 'BuidAI 致力于降低企业 AI 应用开发门槛，赋能每一个团队构建智能未来。' },
+        { property: 'og:title', content: '必定AI,BuidAI - 降低企业 AI 应用开发门槛' },
+        { property: 'og:description', content: '必定AI,BuidAI 致力于降低企业 AI 应用开发门槛，赋能每一个团队构建智能未来。' },
         { property: 'og:type', content: 'website' }
       ],
       link: [

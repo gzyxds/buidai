@@ -101,7 +101,7 @@
 
               <!-- 右侧图像 -->
               <div class="w-full lg:w-2/3">
-                <div class="relative rounded-xl overflow-hidden border border-gray-200 shadow-xl bg-gray-50">
+                <div class="relative rounded-xl overflow-hidden bg-gray-50">
                    <img :src="feature.image" :alt="feature.title" class="w-full h-auto" />
                    <!-- Overlay Gradient -->
                    <div class="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent pointer-events-none"></div>

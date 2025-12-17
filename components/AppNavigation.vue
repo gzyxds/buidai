@@ -21,17 +21,17 @@
             />
           </NuxtLink>
 
-          <!-- Desktop Navigation -->
+          <!-- 桌面导航 -->
           <div class="hidden md:flex items-center gap-1">
             <NuxtLink
               v-for="item in navigation"
               :key="item.href"
               :to="item.href"
-              class="h-9 px-4 rounded-lg text-[18px] font-medium flex items-center justify-center transition-all duration-200"
+              class="h-9 px-4 rounded-full text-[16px] font-normal flex items-center justify-center transition-all duration-200"
               :class="[
                 (isHome && !isScrolled)
-                  ? ($route.path === item.href ? 'text-white font-semibold' : 'text-white/80 hover:text-white hover:bg-white/10')
-                  : ($route.path === item.href ? 'text-[#080d1ee6] font-semibold' : 'text-gray-600 hover:text-[#080d1ee6] hover:bg-indigo-50')
+                  ? ($route.path === item.href ? 'text-white font-medium' : 'text-white/80 hover:text-white hover:bg-white/10')
+                  : ($route.path === item.href ? 'text-[#080d1ee6] font-medium' : 'text-gray-600 hover:text-[#080d1ee6] hover:bg-indigo-50')
               ]"
             >
               {{ item.name }}
@@ -39,10 +39,10 @@
           </div>
         </div>
 
-        <!-- Right side buttons -->
+        <!-- 右侧按钮 -->
         <div class="hidden md:flex items-center gap-3">
           <button
-            class="h-9 px-6 rounded-lg text-[16px] font-medium transition-colors duration-200 outline-none flex items-center justify-center"
+            class="h-10 px-6 rounded-full text-[15px] font-normal transition-colors duration-200 outline-none flex items-center justify-center"
             :class="[
               (isHome && !isScrolled)
                 ? 'bg-white/10 text-white hover:bg-white/20'
@@ -53,7 +53,7 @@
           </button>
           <div>
             <button
-              class="h-9 px-6 rounded-lg text-[16px] font-medium leading-none pt-[2px] transition-all duration-200 outline-none flex items-center justify-center"
+              class="h-10 px-6 rounded-full text-[15px] font-normal leading-none pt-[2px] transition-all duration-200 outline-none flex items-center justify-center"
               :class="[
                 (isHome && !isScrolled)
                   ? 'bg-white text-gray-900 hover:bg-gray-50'
@@ -65,7 +65,7 @@
           </div>
         </div>
 
-        <!-- Mobile menu button -->
+        <!-- 移动菜单按钮 -->
         <div class="md:hidden flex items-center space-x-2">
           <button
             @click="mobileMenuOpen = !mobileMenuOpen"
@@ -82,7 +82,7 @@
         </div>
       </div>
 
-      <!-- Mobile Navigation Menu -->
+      <!-- 移动导航菜单 -->
       <Transition
         enter-active-class="transition-all duration-300 ease-out"
         enter-from-class="opacity-0 -translate-y-4"
@@ -157,11 +157,11 @@ onUnmounted(() => {
 
 const navigation = [
   { name: '首页', href: '/' },
-  { name: '应用', href: '/plugin' },
+  { name: '应用中心', href: '/plugin' },
   { name: '必定', href: '/features' },
-  { name: '空间', href: '/solutions' },
-  { name: '定价', href: '/pricing' },
-  { name: '资源', href: '/resources' },
+  { name: '必定空间', href: '/solutions' },
+  { name: '产品定价', href: '/pricing' },
+  { name: '资源中心', href: '/resources' },
 ]
 
 // Close mobile menu when route changes
