@@ -14,14 +14,14 @@ const { data: navigation } = await useAsyncData('docs-nav-root', () => {
 onMounted(() => {
   if (navigation.value && navigation.value.length > 0) {
     const firstItem = navigation.value[0]
-    // If first item has children, go to first child
+    // 如果第一个项目有子项，导航到第一个子项
     if (firstItem.children && firstItem.children.length > 0) {
       navigateTo(firstItem.children[0].path)
     } else {
       navigateTo(firstItem.path)
     }
   } else {
-    // Fallback if no docs
+    // Fallback if no docs found
     navigateTo('/')
   }
 })

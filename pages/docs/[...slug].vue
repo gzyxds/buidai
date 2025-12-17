@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen bg-white">
-    <!-- Header Spacing -->
+    <!-- 页眉间距 -->
     <div class="h-[72px]"></div>
 
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-2xl">
