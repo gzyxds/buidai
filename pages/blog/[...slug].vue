@@ -210,30 +210,30 @@ const formatDate = (dateString: string | Date) => {
 }
 </script>
 
-<style>
+<style scoped lang="postcss">
 /* Custom Prose Styles for better readability */
-.prose h2 {
+:deep(.prose h2) {
   @apply text-2xl font-bold text-gray-900 mt-12 mb-6;
 }
-.prose h3 {
+:deep(.prose h3) {
   @apply text-xl font-bold text-gray-900 mt-8 mb-4;
 }
-.prose p {
+:deep(.prose p) {
   @apply text-gray-600 leading-8 mb-6;
 }
-.prose ul {
+:deep(.prose ul) {
   @apply list-disc list-outside ml-6 mb-6 text-gray-600;
 }
-.prose pre {
+:deep(.prose pre) {
   @apply bg-gray-900 text-gray-100 p-6 rounded-xl overflow-x-auto mb-8;
 }
-.prose code {
+:deep(.prose code) {
   @apply text-[#6541f8] bg-[#6541f8]/5 px-1.5 py-0.5 rounded text-sm font-mono;
 }
-.prose pre code {
+:deep(.prose pre code) {
   @apply text-inherit bg-transparent p-0;
 }
-.prose blockquote {
+:deep(.prose blockquote) {
   @apply border-l-4 border-[#6541f8] pl-6 italic text-gray-700 my-8 bg-gray-50 py-4 pr-4 rounded-r-lg;
 }
 </style>
