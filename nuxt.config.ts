@@ -56,7 +56,10 @@ export default defineNuxtConfig({
     }
   },
   nitro: {
-    preset: 'vercel-static',
+    // preset: 'vercel-static',
+    output: {
+      publicDir: 'dist'
+    },
     prerender: {
       failOnError: false,
       routes: getDocsRoutes()
