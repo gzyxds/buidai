@@ -1,45 +1,67 @@
 <script setup lang="ts">
-const features = ref([
+const cards = ref([
   {
-    title: 'One developer',
-    icon: 'i-lucide-user'
+    title: 'Theme',
+    description: 'Learn how to customize Nuxt UI components using Tailwind CSS v4.',
+    icon: 'i-lucide-swatch-book',
+    to: '/docs/getting-started/theme/design-system',
+    class: 'lg:col-span-2',
+    image: {
+      path: 'https://ui2.nuxt.com/illustrations/color-palette',
+      width: 363,
+      height: 152
+    },
+    orientation: 'horizontal' as const
   },
   {
-    title: 'Unlimited projects',
-    icon: 'i-lucide-infinity'
+    title: 'Fonts',
+    description: 'Nuxt UI integrates with Nuxt Fonts to provide plug-and-play font optimization.',
+    icon: 'i-lucide-a-large-small',
+    to: '/docs/getting-started/integrations/fonts',
+    variant: 'soft' as const
   },
   {
-    title: 'Access to GitHub repository',
-    icon: 'i-lucide-github'
+    title: 'Color Mode',
+    description: 'Nuxt UI integrates with Nuxt Color Mode to switch between light and dark.',
+    icon: 'i-lucide-sun-moon',
+    to: '/docs/getting-started/integrations/color-mode',
+    variant: 'soft' as const
   },
   {
-    title: 'Unlimited patch & minor updates',
-    icon: 'i-lucide-refresh-cw'
-  },
-  {
-    title: 'Lifetime access',
-    icon: 'i-lucide-clock'
+    title: 'Icons',
+    description: 'Nuxt UI integrates with Nuxt Icon to access over 200,000+ icons from Iconify.',
+    icon: 'i-lucide-smile',
+    to: '/docs/getting-started/integrations/icons',
+    image: {
+      path: 'https://ui2.nuxt.com/illustrations/icon-library',
+      width: 362,
+      height: 184
+    },
+    class: 'lg:col-span-2',
+    orientation: 'horizontal' as const,
+    reverse: true
   }
 ])
 </script>
 
 <template>
-  <UPricingPlan
-    title="Solo"
-    description="For bootstrappers and indie hackers."
-    price="$249"
-    :features="features"
-  />
+  <UPageGrid>
+    <UPageCard
+      v-for="(card, index) in cards"
+      :key="index"
+      v-bind="card"
+    >
+      <UColorModeImage
+        v-if="card.image"
+        :light="`${card.image.path}-light.svg`"
+        :dark="`${card.image.path}-dark.svg`"
+        :width="card.image.width"
+        :height="card.image.height"
+        :alt="card.title"
+        loading="lazy"
+        class="w-full"
+      />
+    </UPageCard>
+  </UPageGrid>
 </template>
 
-
-<template>
-  <UMarquee :overlay="false">
-    <UIcon name="i-simple-icons-github" class="size-10 shrink-0" />
-    <UIcon name="i-simple-icons-discord" class="size-10 shrink-0" />
-    <UIcon name="i-simple-icons-x" class="size-10 shrink-0" />
-    <UIcon name="i-simple-icons-instagram" class="size-10 shrink-0" />
-    <UIcon name="i-simple-icons-linkedin" class="size-10 shrink-0" />
-    <UIcon name="i-simple-icons-facebook" class="size-10 shrink-0" />
-  </UMarquee>
-</template>

@@ -21,24 +21,40 @@
           <button @click="() => refresh()" class="text-primary-600 hover:underline">重试</button>
         </div>
 
-        <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div v-for="section in navigation" :key="section.title" class="bg-gray-50 rounded-2xl p-8 hover:bg-white hover:shadow-lg transition-all border border-gray-100">
-            <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
-              {{ section.title }}
-            </h2>
+        <UPageGrid v-else>
+          <UPageCard
+            v-for="section in navigation"
+            :key="section.title"
+            class="relative group border border-gray-200 dark:border-gray-800"
+            :ui="{
+              body: 'flex-1'
+            }"
+          >
+            <div class="absolute top-6 right-6 z-10">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-50 dark:bg-primary-400/10 text-primary-500 dark:text-primary-400">
+                {{ section.children.length }} 篇
+              </span>
+            </div>
+
+            <div class="mb-4">
+              <h2 class="text-xl font-bold text-gray-900 dark:text-white flex items-center">
+                {{ section.title }}
+              </h2>
+            </div>
+
             <ul class="space-y-3">
               <li v-for="item in section.children" :key="item.path">
                 <NuxtLink
                   :to="item.path"
-                  class="group flex items-center text-gray-600 hover:text-primary-600 transition-colors"
+                  class="group/link flex items-center text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
                 >
-                  <span class="w-1.5 h-1.5 rounded-full bg-gray-300 mr-3 group-hover:bg-primary-500 transition-colors"></span>
+                  <span class="w-1.5 h-1.5 rounded-full bg-gray-300 dark:bg-gray-600 mr-3 group-hover/link:bg-primary-500 transition-colors"></span>
                   {{ item.title }}
                 </NuxtLink>
               </li>
             </ul>
-          </div>
-        </div>
+          </UPageCard>
+        </UPageGrid>
       </div>
     </div>
   </div>

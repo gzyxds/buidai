@@ -200,11 +200,11 @@ const faqItems = [
 
 <template>
   <div class="py-20 sm:py-28 lg:py-36 bg-white dark:bg-gray-950 min-h-screen relative overflow-hidden font-sans">
-    <!-- 背景装饰：更具现代感的渐变 -->
-    <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-      <div class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-ui-primary/5 rounded-full blur-[120px] animate-pulse"></div>
-      <div class="absolute top-[20%] -right-[10%] w-[30%] h-[50%] bg-blue-500/5 rounded-full blur-[120px]"></div>
-      <div class="absolute -bottom-[10%] left-[20%] w-[50%] h-[30%] bg-purple-500/5 rounded-full blur-[120px]"></div>
+    <!-- 背景装饰：图片背景 -->
+    <div class="absolute inset-x-0 top-0 h-[600px] md:h-[800px] z-0 pointer-events-none select-none">
+      <img src="/pricing.png" alt="" class="w-full h-full object-cover object-top" />
+      <!-- 底部渐变遮罩，使背景图平滑过渡到页面背景 -->
+      <div class="absolute inset-0 bg-linear-to-b from-transparent via-white/20 to-white dark:via-gray-950/20 dark:to-gray-950"></div>
     </div>
 
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -277,8 +277,8 @@ const faqItems = [
             class="flex flex-col rounded-3xl transition-all duration-500 relative group"
             :class="[
               plan.highlight
-                ? 'bg-white dark:bg-gray-900 ring-2 ring-ui-primary shadow-[0_32px_64px_-12px_rgba(0,0,0,0.1)] dark:shadow-[0_32px_64px_-12px_rgba(0,0,0,0.5)] z-10 xl:-mt-6 xl:mb-6'
-                : 'bg-white/50 dark:bg-gray-900/50 ring-1 ring-gray-200 dark:ring-gray-800 shadow-sm hover:shadow-2xl hover:ring-ui-primary/30 dark:hover:ring-ui-primary/30 backdrop-blur-sm'
+                ? 'bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 z-10 xl:-mt-6 xl:mb-6'
+                : 'bg-white/50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 backdrop-blur-sm'
             ]"
           >
             <!-- 顶部装饰 -->

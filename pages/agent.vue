@@ -5,9 +5,6 @@
 
     <!-- Hero Section -->
     <section class="pt-32 pb-12 md:pt-48 md:pb-20 relative overflow-hidden z-10">
-      <!-- Background Glow -->
-      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] md:w-[1000px] h-[300px] md:h-[500px] bg-blue-500/5 blur-[80px] md:blur-[120px] rounded-full pointer-events-none"></div>
-
       <div class="container mx-auto px-4 text-center relative z-10">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-50 border border-gray-200 text-xs text-gray-600 mb-8">
           <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
@@ -15,7 +12,7 @@
         </div>
 
         <h1 class="text-3xl sm:text-5xl lg:text-7xl font-bold tracking-tight mb-6 text-gray-900 leading-tight">
-          BuidAI企业级 <span class="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-purple-600 block sm:inline">AIAgent</span>构建平台
+          BuidAI企业级 <span class="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-purple-600 block sm:inline">Agent</span>构建平台
         </h1>
 
         <p class="text-base sm:text-xl text-gray-500 mb-8 md:mb-10 max-w-3xl mx-auto px-2">
@@ -225,6 +222,38 @@ import {
   ArrowRightIcon
 } from '@heroicons/vue/24/outline'
 
+// 类型定义：功能卡片
+interface FeatureCard {
+  category: string
+  tag: string
+  title: string
+  desc: string
+  image: string
+}
+
+// 类型定义：核心特性
+interface Feature {
+  title: string
+  desc: string
+  icon: any // HeroIcon component type
+  iconColor: string
+  iconBg: string
+  image: string
+}
+
+// 类型定义：优势
+interface Advantage {
+  title: string
+  desc: string
+  icon: any // HeroIcon component type
+}
+
+// 类型定义：常见问题
+interface Faq {
+  question: string
+  answer: string
+}
+
 // SEO Meta
 useSeoMeta({
   title: 'BuidAI - 企业级 AI Agent 构建平台',
@@ -232,9 +261,10 @@ useSeoMeta({
 })
 
 /**
- * Feature data for the cards
+ * 功能卡片数据列表
+ * 展示不同场景下的 AI 应用案例
  */
-const featureCards = [
+const featureCards: FeatureCard[] = [
   {
     category: 'AI 写作',
     tag: '研究报告',
@@ -266,9 +296,10 @@ const featureCards = [
 ]
 
 /**
- * 优势列表数据
+ * 核心特性数据列表
+ * 介绍平台的核心功能模块
  */
-const features = [
+const features: Feature[] = [
   {
     title: '必定开发平台',
     desc: '零基础开启 Agent 专业开发。必定开发平台是一站式 Al Agent 开发工具。提供各类最新大模型和工具、多种开发模式和框架，从开发到部署，为你提供最便捷的 Agent 开发环境。上万家企业、数百万开发者正在使用必定开发平台。',
@@ -296,9 +327,10 @@ const features = [
 ]
 
 /**
- * 优势列表数据
+ * 平台优势数据列表
+ * 突出产品核心竞争力
  */
-const advantages = [
+const advantages: Advantage[] = [
   {
     title: '开源优势',
     desc: '坚持开源，代码透明，社区活跃。支持私有化部署，数据更安全。',
@@ -332,9 +364,9 @@ const advantages = [
 ]
 
 /**
- * 常见问题列表数据
+ * 常见问题数据列表
  */
-const faqs = [
+const faqs: Faq[] = [
   {
     question: '开源版和商业版有什么区别？',
     answer: '开源版遵循 Apache 2.0 协议，您可以免费用于商业项目。商业版提供更专业的技术支持和企业级特性。'
@@ -358,6 +390,7 @@ const activeFaq = ref<number | null>(null)
 
 /**
  * 切换 FAQ 展开状态
+ * 使用索引控制当前展开的项，再次点击则收起
  * @param idx - 点击的 FAQ 索引
  */
 const toggleFaq = (idx: number) => {

@@ -1,6 +1,16 @@
 <template>
   <section class="py-16 md:py-24 bg-white overflow-hidden relative">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 mb-12 md:mb-20 text-center">
+    <!-- 背景参考 (Coze 风格 - 仅网格) -->
+    <div class="absolute inset-x-0 top-0 h-[500px] pointer-events-none select-none overflow-hidden z-0">
+        <div class="relative w-full h-full flex flex-col items-center pt-[27px] md:pt-[70px]">
+            <!-- 网格背景 (复用 agent.vue 风格) -->
+            <div class="absolute inset-0 bg-[url('/agent.svg')] mask-[linear-gradient(to_bottom,white,transparent)] opacity-70"></div>
+            <!-- 渐变背景覆盖 -->
+            <div class="absolute inset-0 bg-linear-to-b from-blue-50/50 via-white/80 to-white -z-10"></div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 mb-12 md:mb-20 text-center relative z-10">
       <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 mb-4 md:mb-6 tracking-tight">
         BuidAI 可以帮你做什么
       </h2>
