@@ -18,7 +18,7 @@
         3. touch-pan-x: 明确声明允许横向触控滚动
       -->
       <div
-        class="flex gap-4 sm:gap-8 overflow-x-auto pb-12 pt-8 md:pb-20 md:pt-10 px-[7.5vw] sm:px-[50vw] scrollbar-hide perspective-container select-none touch-pan-x"
+        class="flex gap-4 sm:gap-8 overflow-x-auto pb-12 pt-8 md:pb-20 md:pt-10 px-[7.5vw] sm:px-[50vw] scrollbar-hide perspective-container select-none touch-pan-x scroll-auto"
         :class="{ 'cursor-grab': !isDragging, 'cursor-grabbing': isDragging }"
         ref="scrollContainer"
         @scroll="handleScroll"
@@ -28,16 +28,17 @@
         @mouseleave="stopDrag"
         @touchstart="handleTouchStart"
         @touchend="handleTouchEnd"
+        @touchcancel="handleTouchEnd"
       >
         <div
           v-for="(card, index) in cards"
           :key="index"
-          class="flex-shrink-0 w-[85vw] sm:w-[360px] perspective-item will-change-transform"
+          class="shrink-0 w-[85vw] sm:w-[360px] perspective-item will-change-transform"
           :ref="(el) => { if(el) cardRefs[index] = el as HTMLElement }"
         >
           <div
             class="group relative h-auto min-h-[320px] sm:min-h-[400px] rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]"
-            :class="`bg-gradient-to-b ${card.gradient}`"
+            :class="`bg-linear-to-b ${card.gradient}`"
           >
 
             <!-- Content -->
@@ -50,7 +51,7 @@
               </p>
 
               <!-- 图片容器：移动端高度自适应，保持比例 -->
-              <div class="mt-auto rounded-lg overflow-hidden h-32 sm:h-40 relative shadow-inner flex-shrink-0 bg-white/30">
+              <div class="mt-auto rounded-lg overflow-hidden h-32 sm:h-40 relative shadow-inner shrink-0 bg-white/30">
                  <img
                    :src="card.image"
                    :alt="card.title"
@@ -65,8 +66,8 @@
       </div>
 
       <!-- 淡入边缘（亮）- 移动端减小遮罩宽度以免遮挡内容 -->
-      <div class="absolute inset-y-0 left-0 w-8 md:w-64 bg-gradient-to-r from-white via-white/80 to-transparent pointer-events-none z-10"></div>
-      <div class="absolute inset-y-0 right-0 w-8 md:w-64 bg-gradient-to-l from-white via-white/80 to-transparent pointer-events-none z-10"></div>
+      <div class="absolute inset-y-0 left-0 w-8 md:w-64 bg-linear-to-r from-white via-white/80 to-transparent pointer-events-none z-10"></div>
+      <div class="absolute inset-y-0 right-0 w-8 md:w-64 bg-linear-to-l from-white via-white/80 to-transparent pointer-events-none z-10"></div>
     </div>
   </section>
 </template>
@@ -217,10 +218,18 @@ const updateTransforms = () => {
 // Auto Play (Continuous Scroll) Logic
 let autoScrollFrameId: number | null = null
 const autoScrollSpeed = 0.5 // 像素/帧，调整此值改变速度
+let scrollAccumulator = 0 // 累加器，用于解决部分浏览器下小数滚动不生效的问题
 
 const autoScrollLoop = () => {
   if (scrollContainer.value && !isDragging.value) {
-    scrollContainer.value.scrollLeft += autoScrollSpeed
+    scrollAccumulator += autoScrollSpeed
+    // 累积滚动量，仅在整数像素变化时更新 DOM
+    // 解决部分浏览器（如 Chrome 部分版本或高分屏）忽略 sub-pixel scrollLeft 变化导致不滚动的问题
+    if (Math.abs(scrollAccumulator) >= 1) {
+      const step = Math.trunc(scrollAccumulator)
+      scrollContainer.value.scrollLeft += step
+      scrollAccumulator -= step
+    }
   }
   autoScrollFrameId = requestAnimationFrame(autoScrollLoop)
 }
@@ -237,7 +246,16 @@ const stopAutoPlay = () => {
   }
 }
 
+const handleVisibilityChange = () => {
+  if (document.hidden) {
+    stopAutoPlay()
+  } else {
+    startAutoPlay()
+  }
+}
+
 onMounted(() => {
+  document.addEventListener('visibilitychange', handleVisibilityChange)
   nextTick(() => {
     if (scrollContainer.value) {
       const container = scrollContainer.value
@@ -270,6 +288,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
+  document.removeEventListener('visibilitychange', handleVisibilityChange)
   window.removeEventListener('resize', handleScroll)
   if (animationFrameId) {
     cancelAnimationFrame(animationFrameId)

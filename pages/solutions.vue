@@ -250,7 +250,7 @@
             </div>
 
             <!-- 卡片 4: Excel -->
-            <div class="group relative w-full md:flex-1 h-[240px] md:h-[320px] rounded-2xl overflow-hidden cursor-pointer border border-black/5 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 bg-gradient-to-r from-[#E0E7FF] to-[#Dbeafe]">
+            <div class="group relative w-full md:flex-1 h-[240px] md:h-[320px] rounded-2xl overflow-hidden cursor-pointer border border-black/5 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 bg-linear-to-r from-[#E0E7FF] to-[#Dbeafe]">
                <div class="absolute inset-0 p-6 md:p-8 flex flex-col justify-between">
                   <div>
                      <h3 class="text-xl md:text-2xl font-medium text-[#6E58FF] mb-2">告别公式，<br/>智能数据分析处理</h3>
@@ -393,7 +393,7 @@
                  </div>
               </div>
               <div class="lg:w-1/2 relative order-1 lg:order-2 w-full">
-                 <div class="absolute -inset-4 bg-gradient-to-r from-purple-100 to-blue-50 rounded-3xl -z-10 blur-xl opacity-60"></div>
+                 <div class="absolute -inset-4 bg-linear-to-r from-purple-100 to-blue-50 rounded-3xl -z-10 blur-xl opacity-60"></div>
                  <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-2 overflow-hidden">
                     <img src="/sell-point-1.png" alt="AI Writing" loading="lazy" class="rounded-xl w-full h-auto" />
                  </div>
