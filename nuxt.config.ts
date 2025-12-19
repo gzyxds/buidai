@@ -28,6 +28,7 @@ const getDocsRoutes = () => {
   }
 
   traverse(docsDir, '/docs')
+  routes.push('/docs') // 确保索引页面被预渲染
   return routes
 }
 

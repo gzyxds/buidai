@@ -183,7 +183,35 @@ const { data: navigation } = await useAsyncData('docs-navigation', () => queryCo
 
 const [{ data: page }, { data: surround }] = await Promise.all([
   // @ts-ignore: Nuxt Content v3 Alpha type mismatch
-  useAsyncData(`docs-${currentPath.value}`, () => queryCollection('docs').path(currentPath.value).first()),
+  useAsyncData(`docs-${currentPath.value}`, async () => {
+    // Try exact match first
+    const exact = await queryCollection('docs').where('path', '=', currentPath.value).first()
+    if (exact) return exact
+
+    // Fallback: fetch all paths and match by cleaning them
+    // This handles cases where file system has numbers (1.introduce) but URL is clean (introduce)
+    const allDocs = await queryCollection('docs').select('path').all()
+    const found = allDocs.find(doc => {
+      // Clean the doc path: remove numbers from segments, remove .md, remove /index
+      // e.g. /docs/1.introduce/1.index -> /docs/introduce
+      const cleanPath = doc.path
+        .split('/')
+        .map(p => p.replace(/^\d+\./, ''))
+        .join('/')
+        .replace(/\/index$/, '')
+
+      // Also clean the current path just in case, though it should be clean
+      const cleanCurrent = currentPath.value.replace(/\/$/, '')
+
+      return cleanPath === cleanCurrent
+    })
+
+    if (found) {
+      return queryCollection('docs').where('path', '=', found.path).first()
+    }
+
+    return null
+  }),
   // @ts-ignore: Nuxt Content v3 Alpha type mismatch
   useAsyncData(`docs-surround-${currentPath.value}`, () => queryCollectionItemSurroundings('docs', currentPath.value, {
     fields: ['title', 'path']

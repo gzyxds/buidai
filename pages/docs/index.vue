@@ -18,6 +18,7 @@
 
         <div v-else-if="error" class="text-center py-12">
           <div class="text-red-500 mb-4">加载文档导航失败</div>
+          <div class="text-xs text-gray-400 mb-4">{{ error }}</div>
           <button @click="() => refresh()" class="text-primary-600 hover:underline">重试</button>
         </div>
 
@@ -84,13 +85,23 @@ const navigation = computed(() => {
 
   docs.value.forEach(doc => {
     // Extract section from path (e.g., /docs/section/page -> section)
-    const parts = doc.path.split('/').filter(Boolean)
+    // Clean path first: remove numbers from segments
+    const cleanPath = doc.path.split('/').map(p => p.replace(/^\d+\./, '')).join('/')
+    const parts = cleanPath.split('/').filter(Boolean)
     const section = parts.length > 1 && parts[1] ? parts[1] : 'General'
 
     if (!groups[section]) {
       groups[section] = []
     }
-    groups[section].push(doc)
+
+    // Add clean path to doc object for linking
+    // Ensure we don't link to /docs/1.introduce/1.index but /docs/introduce
+    const linkPath = cleanPath.replace(/\/index$/, '')
+
+    groups[section].push({
+      ...doc,
+      path: linkPath
+    })
   })
 
   return Object.entries(groups).map(([title, items]) => ({
