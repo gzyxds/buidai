@@ -25,6 +25,5 @@ lerna-debug.log*
 # Local env files
 .env
 .env.*
-!.env.example
-.参考PostPage.vue
-文案.txt
+.env.example
+.备份目录

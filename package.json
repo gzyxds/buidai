@@ -22,6 +22,7 @@
     "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^25.0.2",
     "@vue/test-utils": "^2.4.6",
+    "better-sqlite3": "^12.5.0",
     "happy-dom": "^20.0.11",
     "jsdom": "^27.3.0",
     "nuxt": "^4.2.2",
