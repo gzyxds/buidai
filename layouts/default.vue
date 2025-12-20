@@ -1,15 +1,7 @@
 <template>
   <div class="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
     <!-- 顶部横幅 -->
-    <UBanner
-      id="sora2-banner"
-      color="neutral"
-      icon="i-ph-video"
-      title="Sora2短剧创作-25秒高质量视频."
-      to="https://chat.buidai.com"
-      target="_blank"
-      :close="true"
-    />
+    <AppBanner />
 
     <!-- 导航 -->
     <AppNavigation />
