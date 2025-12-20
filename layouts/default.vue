@@ -10,6 +10,9 @@
 
     <!-- Footer -->
     <AppFooter />
+    
+    <!-- 返回顶部按钮 -->
+    <BackToTop />
   </div>
 </template>
 
