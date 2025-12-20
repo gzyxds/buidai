@@ -6,6 +6,8 @@
       color="neutral"
       icon="i-ph-video"
       title="Sora2短剧创作-25秒高质量视频."
+      to="https://chat.buidai.com"
+      target="_blank"
       :close="true"
     />
 
