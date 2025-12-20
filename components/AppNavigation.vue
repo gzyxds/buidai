@@ -164,6 +164,7 @@ const items = computed<NavigationMenuItem[][]>(() => [
   [
     { label: '首页', to: '/', icon: 'i-lucide-house' },
     { label: 'BuidAI', to: '/agent', icon: 'i-lucide-bot' },
+    { label: '私有部署', to: '/buidai', icon: 'i-lucide-server' },
     {
       label: '必定空间',
       icon: 'i-lucide-box',
@@ -182,7 +183,7 @@ const items = computed<NavigationMenuItem[][]>(() => [
         }
       ]
     },
-    { label: '产品定价', to: '/pricing', icon: 'i-lucide-tag' },
+    { label: '定价方案', to: '/pricing', icon: 'i-lucide-tag' },
     {
       label: '资源中心',
       icon: 'i-lucide-library',
