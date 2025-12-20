@@ -937,7 +937,7 @@ const testimonials = [
       description: '全栈工程师 @智慧政务SaaS团队',
       avatar: { src: 'https://api.dicebear.com/7.x/avataaars/svg?seed=张悦', alt: '张悦' }
     },
-    quote: '工作流编排API无缝嵌入省公积金平台，Tinyflow引擎承压每日20万笔审批流，异常自愈机制减少运维告警80%'
+    quote: '工作流编排API无缝嵌入省公积金平台，BuidAI引擎承压每日20万笔审批流，异常自愈机制减少运维告警80%'
   },
   {
     user: {
