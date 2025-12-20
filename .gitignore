@@ -1,5 +1,6 @@
 # Nuxt dev/build outputs
 .output
+.vercel/output
 .data
 .nuxt
 .nitro
@@ -28,3 +29,4 @@ lerna-debug.log*
 .env.example
 .备份目录
 备份目录/
+.output
