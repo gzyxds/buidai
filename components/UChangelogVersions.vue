@@ -1,48 +1,36 @@
 <script setup lang="ts">
-interface Author {
-  name: string
-  avatar: {
-    src: string
-    alt: string
-  }
-}
-
-interface Version {
-  title: string
-  description: string
-  date: string
-  image?: string
-  to?: string
-  target?: string
-  isMajor?: boolean
-  authors?: Author[]
-}
-
 defineProps<{
-  versions: Version[]
+  versions: any[]
 }>()
 </script>
 
 <template>
-  <div class="space-y-12">
-    <div v-for="version in versions" :key="version.title" class="relative pl-8 sm:pl-32 py-6 group">
+  <div class="">
+    <div
+      v-for="version in versions"
+      :key="version.title"
+      class="relative pl-0 sm:pl-40 py-8 group"
+    >
       <!-- Timeline Line -->
-      <div class="absolute left-8 sm:left-32 top-0 bottom-0 w-px bg-gray-200 group-last:bottom-auto group-last:h-6"></div>
+      <div class="hidden sm:block absolute left-4 sm:left-32 top-0 bottom-0 w-px bg-gray-200 group-last:bottom-auto group-last:h-8"></div>
 
       <!-- Date Badge (Desktop) -->
-      <div class="hidden sm:flex absolute left-0 top-6 w-24 justify-end">
+      <div class="hidden sm:flex absolute left-0 top-8 w-28 justify-end">
         <span class="text-sm font-medium text-gray-500">{{ version.date }}</span>
       </div>
 
       <!-- Timeline Dot -->
-      <div class="absolute left-8 md:left-1/2 top-8 md:top-1/2 w-4 h-4 rounded-full border-2 border-white shadow-sm -translate-x-1/2 -translate-y-1/2 z-10"
+      <div class="hidden sm:block absolute left-4 sm:left-32 top-8 w-4 h-4 rounded-full border-2 border-white shadow-sm -translate-x-1/2 z-10"
            :class="version.isMajor ? 'bg-primary-600 ring-4 ring-primary-600/10' : 'bg-gray-300'">
       </div>
 
       <!-- Content Card -->
-      <div class="ml-16 md:ml-0 w-full relative bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+      <div class="w-full relative bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
         <!-- Mobile Date -->
-        <div class="md:hidden text-sm text-gray-500 mb-2">{{ version.date }}</div>
+        <div class="sm:hidden flex items-center gap-2 mb-3">
+          <span class="text-sm font-medium text-gray-500">{{ version.date }}</span>
+          <span v-if="version.isMajor" class="h-1.5 w-1.5 rounded-full bg-primary-600"></span>
+        </div>
 
         <div class="flex flex-col gap-4 mb-4">
           <div class="grow">
@@ -55,7 +43,7 @@ defineProps<{
           </div>
 
           <NuxtLink
-            v-if="version.to"
+            v-if="version.to && version.to !== '#'"
             :to="version.to"
             :target="version.target || '_blank'"
             class="inline-flex items-center text-sm font-medium text-primary-600 hover:text-primary-700 shrink-0"
@@ -67,7 +55,10 @@ defineProps<{
           </NuxtLink>
         </div>
 
-        <p class="text-gray-600 leading-relaxed mb-6">{{ version.description }}</p>
+        <!-- Body Content -->
+        <div class="text-gray-600 leading-relaxed mb-6 prose prose-sm max-w-none prose-primary">
+          <ContentRenderer :value="version" />
+        </div>
 
         <div v-if="version.image" class="rounded-xl overflow-hidden border border-gray-100 mb-6">
           <img :src="version.image" :alt="version.title" class="w-full h-auto object-cover" loading="lazy" />
@@ -84,7 +75,7 @@ defineProps<{
             />
           </div>
           <div class="text-sm text-gray-500">
-            发布者: <span class="font-medium text-gray-900">{{ version.authors.map(a => a.name).join(', ') }}</span>
+            发布者: <span class="font-medium text-gray-900">{{ version.authors.map((a: any) => a.name).join(', ') }}</span>
           </div>
         </div>
       </div>
