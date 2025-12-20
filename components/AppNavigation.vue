@@ -1,6 +1,6 @@
 <template>
   <header
-    class="fixed top-0 inset-x-0 z-50 transition-all duration-300 border-b"
+    class="sticky top-0 inset-x-0 z-50 transition-all duration-300 border-b"
     :class="headerClasses"
   >
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
