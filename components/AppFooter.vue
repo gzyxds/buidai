@@ -7,7 +7,7 @@
             <img src="/AppFooter.svg" alt="BuidAI" class="h-6 w-auto" />
           </NuxtLink>
           <p class="text-gray-500 text-sm leading-relaxed max-w-xs mb-6">
-            BuidAI 致力于降低企业 AI 应用开发门槛，赋能每一个团队构建智能未来。
+            必定AI 致力于降低企业 AI 应用开发门槛，赋能每一个团队构建智能未来。
           </p>
           <div class="flex space-x-4">
             <a href="#" class="text-gray-400 hover:text-primary-600 transition-colors">

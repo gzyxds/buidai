@@ -12,10 +12,10 @@
 
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 mb-12 md:mb-20 text-center relative z-10">
       <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 mb-4 md:mb-6 tracking-tight">
-        BuidAI 可以帮你做什么
+       必定AI - BuidAI可以帮你做什么
       </h2>
       <p class="text-gray-500 text-sm sm:text-lg tracking-wide max-w-xl mx-auto">
-        部署 BuidAI 无限拓展应用场景
+        必定AI BuidAI 无限拓展应用场景
       </p>
     </div>
 

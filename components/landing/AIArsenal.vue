@@ -13,10 +13,10 @@
           <div class="flex flex-wrap items-center gap-4">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
               <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-              <span class="text-sm font-medium text-white/90">BuidAI</span>
+              <span class="text-sm font-medium text-white/90">必定AI</span>
             </div>
             <div class="text-sm font-medium text-white/90">
-              一次部署,无限想象, 你的专属A!“军火库!
+              专为企业打造的大模型服务与应用开发平台
             </div>
           </div>
 
@@ -27,7 +27,7 @@
              <img src="/AIArsenal.svg" alt="" class="inline-block w-16 h-16 ml-2 -mt-2" />
               <br />
               <span class="text-white text-2xl md:text-3xl lg:text-4xl">
-               旅程永久免费
+               旅程从这里开始...
                   <img src="/AIArsenal-1.svg" alt="" class="inline-block w-10 h-10 ml-2 -mt-1" />
               </span>
             </h2>

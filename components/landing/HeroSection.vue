@@ -19,14 +19,14 @@
           <div class="flex justify-center lg:justify-start">
             <div class="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 rounded-full bg-black/5 border border-black/10">
               <span class="px-1.5 py-0.5 rounded bg-ui-primary text-[11px] md:text-xs font-bold text-white tracking-wider">NEW</span>
-              <span class="text-xs md:text-sm text-gray-600">BuidAI 应用市场上线</span>
+              <span class="text-xs md:text-sm text-gray-600">Nanobanana视频生成全新升级</span>
             </div>
           </div>
 
           <slot name="title">
             <div class="space-y-3 md:space-y-5" :class="props.ui.title">
               <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight text-black">
-                <span class="text-ui-primary">企业级开源智能体</span> 搭建平台
+                <span class="text-ui-primary">企业级一体化</span> 生成创作平台
               </h1>
               <p class="text-sm sm:text-base lg:text-lg text-black/60 leading-relaxed">
                 面向 <span class="text-ui-primary font-semibold">AI开发者</span> · <span class="text-ui-primary font-semibold">AI创业者</span> · <span class="text-ui-primary font-semibold">先进组织</span>
@@ -52,7 +52,7 @@
                 size="xl"
                 variant="solid"
                 color="neutral"
-                label="查看 Demo"
+                label="立即创造"
                 class="w-full sm:w-auto rounded-full px-8 py-3.5 text-lg justify-center"
               />
             </div>
@@ -70,11 +70,11 @@
                 </span>
                 <span class="flex items-center gap-1.5">
                   <UIcon name="i-heroicons-code-bracket-square" class="w-5 h-5 text-ui-primary shrink-0" />
-                  <span class="whitespace-nowrap">二次开发</span>
+                  <span class="whitespace-nowrap">多模态问答</span>
                 </span>
                 <span class="flex items-center gap-1.5">
                   <UIcon name="i-heroicons-paint-brush" class="w-5 h-5 text-ui-primary shrink-0" />
-                  <span class="whitespace-nowrap">自定义LOGO</span>
+                  <span class="whitespace-nowrap">企业知识库</span>
                 </span>
               </div>
 
@@ -86,11 +86,11 @@
                 </span>
                 <span class="flex items-center gap-1.5">
                   <UIcon name="i-heroicons-puzzle-piece" class="w-5 h-5 text-ui-primary shrink-0" />
-                  <span class="whitespace-nowrap">插件扩展无限可能</span>
+                  <span class="whitespace-nowrap">图像视频创作</span>
                 </span>
                 <span class="flex items-center gap-1.5">
                   <UIcon name="i-heroicons-check-badge" class="w-5 h-5 text-ui-primary shrink-0" />
-                  <span class="whitespace-nowrap">开源所有代码</span>
+                  <span class="whitespace-nowrap">深度研究</span>
                 </span>
               </div>
             </div>

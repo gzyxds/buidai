@@ -309,16 +309,16 @@ const features: Feature[] = [
     image: '/agent-1.png'
   },
   {
-    title: '必定罗盘',
-    desc: '让 Agent 开发调优不再迷航。必定罗盘是一个面向开发者，专注于 Al Agent 开发与运维的平台级解决方案。它可以解决 AlAgent 开发过程中面临的各种挑战，提供从开发、调试、评估、到监控的全生命周期管理能力。',
+    title: '多模式推理服务',
+    desc: '高性能、稳定可靠的模型 API 服务，提供在线与批量的模型调用模式，支持多种灵活售卖，满足不同时效性和成本要求。',
     icon: WrenchScrewdriverIcon,
     iconColor: 'text-purple-500',
     iconBg: 'bg-purple-50',
     image: '/agent-2.gif'
   },
   {
-    title: 'Eino 框架',
-    desc: '让 Agent 开发从未如此简单。Eino 是基于Go 语言的 Al Agent 开源开发框架，提供了丰富的辅助 Al Agent 开发的原子组件、集成组件、组件编排、切面扩展等能力，可以帮助开发者更加简单便捷地开发出架构清晰、易维护、高可用的 Al Agent 和各类AI 应用。',
+    title: '高效全链路开发',
+    desc: '原生支持通义模型、数据和训练框架，覆盖从数据准备、训练微调、模型评测到部署上线的全流程，降低大模型定制门槛。',
     icon: PuzzlePieceIcon,
     iconColor: 'text-yellow-500',
     iconBg: 'bg-yellow-50',

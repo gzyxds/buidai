@@ -2,7 +2,7 @@
   <section class="py-24 bg-gray-50 overflow-hidden">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 mb-16 text-center">
       <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
-        BuidAI 产品功能
+        必定AI - BuidAI 产品功能
       </h2>
       <p class="text-gray-500 text-lg">
         让每个人都能自由构建智能应用，加速想法的落地与迭代
@@ -11,8 +11,8 @@
 
     <div class="relative w-full max-w-[1920px] mx-auto space-y-8">
       <!-- Gradient Masks -->
-      <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none"></div>
-      <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none"></div>
+      <div class="absolute inset-y-0 left-0 w-32 bg-linear-to-r from-gray-50 to-transparent z-10 pointer-events-none"></div>
+      <div class="absolute inset-y-0 right-0 w-32 bg-linear-to-l from-gray-50 to-transparent z-10 pointer-events-none"></div>
 
       <!-- Row 1 -->
       <UMarquee

@@ -1,9 +1,9 @@
 <template>
-  <section class="py-24 overflow-hidden bg-gradient-to-br from-[#5b2df5] via-[#8b5cf6] to-[#c4b5fd]">
+  <section class="py-24 overflow-hidden bg-linear-to-br from-[#5b2df5] via-[#8b5cf6] to-[#c4b5fd]">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">
-          BuidAI 的产品设计目标
+          必定AI - BuidAI 的产品设计目标
         </h2>
         <p class="text-white/80 text-lg max-w-2xl mx-auto">
           以开源为核心驱动力（Open-Source Powered!），设定了三个长期目标且在快速迭代
