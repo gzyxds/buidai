@@ -613,8 +613,8 @@ onMounted(() => {
   // 生成流星数据
   meteors.value = Array.from({ length: 30 }).map((_, i) => ({
     id: i,
-    left: `${Math.random() * 120 + 20}%`, // 20% 到 140% (右侧区域)
-    top: `${Math.random() * 100 - 50}%`, // -50% 到 50% (上方区域)
+    left: `${Math.random() * 120 - 10}%`, // -10% 到 110% (覆盖更宽的顶部区域)
+    top: `${Math.random() * 100 - 100}%`, // -100% 到 0% (从屏幕上方开始)
     length: `${Math.random() * 30 + 15}px`, // 短雨滴
     delay: `${Math.random() * 5}s`,
     duration: `${Math.random() * 5 + 8}s` // 极慢速 (8-13s)
@@ -1146,14 +1146,14 @@ const toggleFaq = (idx: number) => {
 
 @keyframes meteor {
   0% {
-    transform: translate(0, 0) rotate(45deg);
+    transform: translate(0, 0) rotate(20deg);
     opacity: 0;
   }
   15% {
     opacity: 1;
   }
   100% {
-    transform: translate(-50vw, 50vh) rotate(45deg);
+    transform: translate(-20vw, 120vh) rotate(20deg);
     opacity: 0;
   }
 }
