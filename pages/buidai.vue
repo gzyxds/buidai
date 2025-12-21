@@ -1,7 +1,23 @@
 <template>
   <div class="min-h-screen bg-white text-neutral-900 font-sans selection:bg-neutral-100 relative">
     <!-- 背景装饰：左上角网格 -->
-    <div class="absolute top-0 left-0 w-full h-[400px] md:h-[600px] bg-[url('/agent.svg')] pointer-events-none mask-[linear-gradient(to_bottom,white,transparent)] z-0"></div>
+    <div class="absolute top-0 left-0 w-full h-[400px] md:h-[600px] bg-[url('/images/buidai.png')] pointer-events-none mask-[linear-gradient(to_bottom,white,transparent)] z-0"></div>
+
+    <!-- 动态流星雨背景 -->
+    <div class="absolute inset-0 h-[600px] overflow-hidden pointer-events-none z-0">
+      <div
+        v-for="meteor in meteors"
+        :key="meteor.id"
+        class="absolute w-[2px] bg-linear-to-b from-transparent to-blue-400/80 opacity-0 meteor-animation rounded-full"
+        :style="{
+          left: meteor.left,
+          top: meteor.top,
+          height: meteor.length,
+          animationDelay: meteor.delay,
+          animationDuration: meteor.duration
+        }"
+      ></div>
+    </div>
 
     <!-- 英雄区域 -->
     <section class="pt-32 pb-12 md:pt-48 md:pb-20 relative overflow-hidden z-10">
@@ -11,8 +27,8 @@
           <span>BuidAI V4.6.8 strong release</span>
         </div>
 
-        <h1 class="text-3xl sm:text-5xl lg:text-7xl font-bold tracking-tight mb-6 text-neutral-900 leading-tight">
-          一站式AI <span class="text-transparent bg-clip-text bg-linear-to-r from-blue-500 to-blue-700 block sm:inline">企业级AI </span>轻松构建
+        <h1 class="text-3xl sm:text-5xl lg:text-7xl font-bold tracking-tight mb-6 text-neutral-900 leading-tight min-h-[1.2em]">
+          {{ displayedText.part1 }}<span v-if="(typingStatus === 'part1' || typingStatus === 'idle') && showCursor" class="inline-block align-baseline w-[3px] h-[0.8em] bg-neutral-900 animate-pulse ml-1"></span><span class="text-transparent bg-clip-text bg-linear-to-r from-blue-500 to-blue-700 block sm:inline">{{ displayedText.part2 }}<span v-if="typingStatus === 'part2' && showCursor" class="inline-block align-baseline w-[3px] h-[0.8em] bg-blue-600 animate-pulse ml-1"></span></span>{{ displayedText.part3 }}<span v-if="(typingStatus === 'part3' || typingStatus === 'done') && showCursor" class="inline-block align-baseline w-[3px] h-[0.8em] bg-neutral-900 animate-pulse ml-1"></span>
         </h1>
 
         <p class="text-base sm:text-xl text-neutral-500 mb-8 md:mb-10 max-w-3xl mx-auto px-2">
@@ -547,7 +563,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch, reactive } from 'vue'
 import type { Component } from 'vue'
 import {
   CheckCircleIcon,
@@ -571,7 +587,39 @@ import {
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
+// 打字机效果状态
+const typewriterText = {
+  part1: '一站式',
+  part2: '企业级AI ',
+  part3: '轻松构建'
+}
+
+const displayedText = reactive({
+  part1: '一站式',
+  part2: '',
+  part3: ''
+})
+
+const typingStatus = ref<'idle' | 'part1' | 'part2' | 'part3' | 'done'>('idle')
+const showCursor = ref(true)
+
+// 流星雨数据
+const meteors = ref<{ id: number; left: string; top: string; length: string; delay: string; duration: string }[]>([])
+
+// 光标闪烁
+let cursorInterval: any
+
 onMounted(() => {
+  // 生成流星数据
+  meteors.value = Array.from({ length: 30 }).map((_, i) => ({
+    id: i,
+    left: `${Math.random() * 120 + 20}%`, // 20% 到 140% (右侧区域)
+    top: `${Math.random() * 100 - 50}%`, // -50% 到 50% (上方区域)
+    length: `${Math.random() * 30 + 15}px`, // 短雨滴
+    delay: `${Math.random() * 5}s`,
+    duration: `${Math.random() * 5 + 8}s` // 极慢速 (8-13s)
+  }))
+
   AOS.init({
     duration: 600,
     once: true,
@@ -579,6 +627,40 @@ onMounted(() => {
     offset: 5,
     anchorPlacement: 'top-bottom'
   })
+
+  cursorInterval = setInterval(() => {
+    if (typingStatus.value !== 'done') {
+      showCursor.value = !showCursor.value
+    }
+  }, 500)
+
+  startTypewriter()
+})
+
+const startTypewriter = async () => {
+  // 初始延迟
+  await new Promise(resolve => setTimeout(resolve, 500))
+
+  typingStatus.value = 'part2'
+  // Part 2
+  for (let i = 1; i <= typewriterText.part2.length; i++) {
+    displayedText.part2 = typewriterText.part2.slice(0, i)
+    await new Promise(resolve => setTimeout(resolve, 150))
+  }
+
+  typingStatus.value = 'part3'
+  // Part 3
+  for (let i = 1; i <= typewriterText.part3.length; i++) {
+    displayedText.part3 = typewriterText.part3.slice(0, i)
+    await new Promise(resolve => setTimeout(resolve, 150))
+  }
+
+  typingStatus.value = 'done'
+  showCursor.value = false
+}
+
+onBeforeUnmount(() => {
+  if (cursorInterval) clearInterval(cursorInterval)
 })
 
 // 类型定义：功能特性
@@ -1060,5 +1142,25 @@ const toggleFaq = (idx: number) => {
 
 .stroke-gray-400\/30 {
   stroke: color-mix(in oklab, var(--color-gray-400) 30%, transparent);
+}
+
+@keyframes meteor {
+  0% {
+    transform: translate(0, 0) rotate(45deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50vw, 50vh) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+.meteor-animation {
+  animation-name: meteor;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 </style>
