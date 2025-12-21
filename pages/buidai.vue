@@ -624,8 +624,14 @@ interface Faq {
 
 // SEO 元数据配置
 useSeoMeta({
-  title: '必定AI - BuidAI新一代AI一站式创意生产力平台',
-  description: '探索AI创作的无限可能！必定AI平台提供Sora2视频、香蕉绘画Nanobanana、AI PPT、艺术二维码等前沿创意工具，结合智能体、知识库与AI对话，实现文档问答、文件管理及一键发布至微信生态。无论是AI绘画、视频生成，还是爆款文章创作与内容总结，我们都能助您高效实现创意构想，让灵感轻松落地'
+  title: '必定AI - 企业级开源AI系统源码 | 私有化部署AI Agent平台',
+  description: 'BuidAI(必定AI)提供全套开源AI系统源码，集成智能体Agent、RAG知识库、多模型管理(LLM)与工作流编排。基于Nuxt 3 + Vue 3开发，支持一键私有化部署，免费下载源代码，是企业构建专属AI中台的最佳选择。'
+})
+
+useHead({
+  meta: [
+    { name: 'keywords', content: '开源AI系统源码,AI系统源代码下载,企业级AI源码,AI Agent开发平台,私有化部署AI,RAG知识库源码,LLM大模型管理系统,Nuxt3 AI项目,Vue3 AI后台模板' }
+  ]
 })
 
 /**
