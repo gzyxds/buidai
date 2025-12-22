@@ -1,5 +1,5 @@
 ---
-category: 进阶教程
+category: 入门指南
 title: 迁移指南
 navigation:
   title: 迁移

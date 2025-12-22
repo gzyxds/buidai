@@ -1,5 +1,5 @@
 ---
-category: 框架
+category: 进阶教程
 title: 模式验证器
 navigation:
   title: 验证器

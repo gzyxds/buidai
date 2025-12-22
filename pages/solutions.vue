@@ -427,7 +427,10 @@
                 <button class="w-full sm:w-auto px-8 py-4 rounded-full bg-[#6E58FF] text-white font-bold text-[16px] hover:bg-[#5A43FF] active:scale-95 transition-all shadow-xl">
                    立即体验
                 </button>
-                <button class="w-full sm:w-auto px-8 py-4 rounded-full bg-white text-[#1D2129] font-medium text-[16px] hover:bg-gray-100 active:scale-95 transition-all">
+                <button 
+                  class="w-full sm:w-auto px-8 py-4 rounded-full bg-white text-[#1D2129] font-medium text-[16px] hover:bg-gray-100 active:scale-95 transition-all"
+                  @click="navigateTo('/download')"
+                >
                    下载客户端
                 </button>
              </div>

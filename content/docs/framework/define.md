@@ -1,5 +1,5 @@
 ---
-category: 框架
+category: 进阶教程
 title: 定义内容集合
 navigation:
   title: 定义

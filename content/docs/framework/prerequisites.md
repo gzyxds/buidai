@@ -1,5 +1,5 @@
 ---
-category: 框架
+category: 进阶教程
 title: 前置准备
 description: 本地运行 BuildingAI 之前的环境准备指南，包括 Docker、NodeJS 和 pnpm 的安装。
 navigation:

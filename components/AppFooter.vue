@@ -157,20 +157,20 @@ const footerLinks: FooterGroup[] = [
     ]
   },
   {
-    title: '资源',
+    title: '资源中心',
     links: [
-      { text: '文档中心', href: '#' },
+      { text: '文档中心', href: '/docs' },
       { text: 'API 参考', href: '#' },
-      { text: '社区论坛', href: '#' },
-      { text: '博客文章', href: '#' }
+      { text: 'APP下载', href: '/download' },
+      { text: '博客文章', href: '/blog' }
     ]
   },
   {
-    title: '公司',
+    title: '公司介绍',
     links: [
       { text: '关于我们', to: '/about' },
       { text: '加入我们', href: '#' },
-      { text: '联系方式', href: '#' },
+      { text: '联系方式', href: '/contact' },
       { text: '隐私政策', href: '#' }
     ]
   },

@@ -18,12 +18,12 @@
         >
           <button
             class="w-10 h-20 sm:w-12 sm:h-28 bg-linear-to-b from-blue-500 to-blue-400 text-white shadow-lg flex flex-col items-center justify-center transition-all hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 cursor-pointer"
-            aria-label="售前咨询"
+            aria-label="在线咨询"
             @click="handleClickQRCode"
           >
             <HeadphonesIcon class="h-4 w-4 sm:h-6 sm:w-6 mb-1 sm:mb-2" />
             <div class="text-xs font-medium leading-tight">
-              <div>售前</div>
+              <div>在线</div>
               <div>咨询</div>
             </div>
           </button>

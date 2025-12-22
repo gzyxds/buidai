@@ -1,5 +1,5 @@
 ---
-category: 框架
+category: 进阶教程
 title: 集合类型
 navigation:
   title: 类型
