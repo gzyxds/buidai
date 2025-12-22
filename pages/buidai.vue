@@ -706,7 +706,7 @@ interface Faq {
 
 // SEO 元数据配置
 useSeoMeta({
-  title: '必定AI - 企业级开源AI系统源码 | 私有化部署AI Agent平台',
+  title: '必定AI - AI系统源码|企业级开源AI系统源码|私有化部署AI Agent平台',
   description: 'BuidAI(必定AI)提供全套开源AI系统源码，集成智能体Agent、RAG知识库、多模型管理(LLM)与工作流编排。基于Nuxt 3 + Vue 3开发，支持一键私有化部署，免费下载源代码，是企业构建专属AI中台的最佳选择。',
   keywords: '开源AI系统源码,AI系统源代码下载,企业级AI源码,AI Agent开发平台,私有化部署AI,RAG知识库源码,LLM大模型管理系统,Nuxt3 AI项目,Vue3 AI后台模板',
   ogTitle: '必定AI - 企业级开源AI系统源码 | 私有化部署AI Agent平台',
