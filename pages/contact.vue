@@ -73,29 +73,33 @@
     <!-- 4. FAQ Section -->
     <section class="py-24 bg-neutral-50">
       <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-neutral-900 mb-4">常见问题</h2>
-          <p class="text-neutral-500">关于联系与合作的常见疑问</p>
-        </div>
+        <div class="flex flex-col lg:flex-row gap-8 lg:gap-24 items-start">
+          <!-- Left: Title -->
+          <div class="lg:w-1/3 w-full text-center lg:text-left">
+            <h2 class="text-3xl font-bold text-neutral-900 mb-4">常见问题</h2>
+            <p class="text-neutral-500">关于联系与合作的常见疑问</p>
+          </div>
 
-        <div class="max-w-3xl mx-auto space-y-4">
-          <div v-for="(faq, index) in faqs" :key="index" class="bg-white rounded-xl border border-neutral-200 overflow-hidden">
-            <button
-              @click="faq.isOpen = !faq.isOpen"
-              class="w-full flex items-center justify-between p-5 text-left hover:bg-neutral-50 transition-colors"
-            >
-              <span class="font-medium text-neutral-900">{{ faq.question }}</span>
-              <UIcon
-                name="i-heroicons-chevron-down"
-                class="w-5 h-5 text-neutral-400 transition-transform duration-300"
-                :class="faq.isOpen ? 'rotate-180' : ''"
-              />
-            </button>
-            <div
-              v-show="faq.isOpen"
-              class="px-5 pb-5 pt-0 text-sm text-neutral-500 leading-relaxed border-t border-neutral-100/50"
-            >
-              <div class="pt-3">{{ faq.answer }}</div>
+          <!-- Right: FAQ List -->
+          <div class="lg:w-2/3 w-full space-y-4">
+            <div v-for="(faq, index) in faqs" :key="index" class="bg-white rounded-xl border border-neutral-200 overflow-hidden">
+              <button
+                @click="faq.isOpen = !faq.isOpen"
+                class="w-full flex items-center justify-between p-5 text-left hover:bg-neutral-50 transition-colors"
+              >
+                <span class="font-medium text-neutral-900">{{ faq.question }}</span>
+                <UIcon
+                  name="i-heroicons-chevron-down"
+                  class="w-5 h-5 text-neutral-400 transition-transform duration-300"
+                  :class="faq.isOpen ? 'rotate-180' : ''"
+                />
+              </button>
+              <div
+                v-show="faq.isOpen"
+                class="px-5 pb-5 pt-0 text-sm text-neutral-500 leading-relaxed border-t border-neutral-100/50"
+              >
+                <div class="pt-3">{{ faq.answer }}</div>
+              </div>
             </div>
           </div>
         </div>

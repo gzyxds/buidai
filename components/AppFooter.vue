@@ -21,23 +21,27 @@
           </div>
         </div>
 
-        <!-- 移动端风琴菜单 / 桌面端列表 -->
-        <div class="col-span-2 md:col-span-4 lg:col-span-4 xl:col-span-5 grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-8">
-          <div v-for="(group, index) in footerLinks" :key="index" class="border-b md:border-none border-gray-100 last:border-none">
+        <!-- 移动端/桌面端统一列表布局 -->
+        <div class="col-span-2 md:col-span-4 lg:col-span-4 xl:col-span-5 grid grid-cols-2 md:grid-cols-5 gap-x-4 gap-y-4 md:gap-8 items-start">
+          <div v-for="(group, index) in footerLinks" :key="index" :class="group.customContent ? 'col-span-2 md:col-span-1' : ''">
+            <!-- 标题区域：移动端可点击折叠 -->
             <button
               @click="toggleGroup(index)"
-              class="w-full flex items-center justify-between py-4 md:py-0 text-left group outline-none md:cursor-default"
+              class="w-full flex items-center justify-between text-left group outline-none md:cursor-default"
             >
-              <h4 class="font-bold text-gray-900 md:mb-4">{{ group.title }}</h4>
+              <h4 class="font-bold text-gray-900 mb-2 md:mb-4">{{ group.title }}</h4>
+              <!-- 移动端折叠图标 -->
               <span class="md:hidden transform transition-transform duration-200" :class="activeGroups.includes(index) ? 'rotate-180' : ''">
                 <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                 </svg>
               </span>
             </button>
+
+            <!-- 列表区域：移动端受控折叠 -->
             <div
-              class="overflow-hidden transition-all duration-300 md:h-auto"
-              :class="activeGroups.includes(index) ? 'max-h-96 pb-4' : 'max-h-0 md:max-h-full'"
+              class="overflow-hidden transition-all duration-300 md:h-auto md:max-h-full"
+              :class="activeGroups.includes(index) ? 'max-h-96 pb-2' : 'max-h-0'"
             >
               <ul class="space-y-3 text-sm text-gray-500">
                 <li v-for="(link, lIndex) in group.links" :key="lIndex">
@@ -48,16 +52,16 @@
                       <span>{{ link.text }}</span>
                     </div>
                     <div v-else-if="link.type === 'social'" class="flex flex-col space-y-2">
-                       <div class="flex items-center space-x-2">
+                        <div class="flex items-center space-x-2">
                         <span class="font-medium">微信:</span>
                         <span>{{ link.text }}</span>
                       </div>
-                      <div class="flex space-x-2 pt-2">
-                        <div class="flex flex-col items-center space-y-1">
+                      <div class="flex flex-row flex-nowrap space-x-2 pt-2 overflow-x-auto">
+                        <div class="flex flex-col items-center space-y-1 shrink-0">
                           <img src="/qrcode.png" alt="QQ QR Code" class="w-20 h-20 object-contain bg-gray-50 p-1 rounded border border-gray-100" />
                           <span class="text-xs text-gray-400">QQ群</span>
                         </div>
-                        <div class="flex flex-col items-center space-y-1">
+                        <div class="flex flex-col items-center space-y-1 shrink-0">
                           <img src="/wechat.png" alt="WeChat QR Code" class="w-20 h-20 object-contain bg-gray-50 p-1 rounded border border-gray-100" />
                           <span class="text-xs text-gray-400">微信客服</span>
                         </div>
@@ -70,14 +74,14 @@
                     <NuxtLink
                       v-if="link.to"
                       :to="link.to"
-                      class="hover:text-primary-600 transition-colors block py-1 md:py-0"
+                      class="hover:text-primary-600 transition-colors block"
                     >
                       {{ link.text }}
                     </NuxtLink>
                     <a
                       v-else
                       :href="link.href || '#'"
-                      class="hover:text-primary-600 transition-colors block py-1 md:py-0"
+                      class="hover:text-primary-600 transition-colors block"
                     >
                       {{ link.text }}
                     </a>
@@ -89,6 +93,18 @@
         </div>
       </div>
 
+      <!-- 友情链接 (新增) -->
+      <div class="mb-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-400">
+        <span class="text-gray-300 select-none">友情链接:</span>
+        <a href="#" class="hover:text-primary-600 transition-colors">艺创AI</a>
+        <a href="#" class="hover:text-primary-600 transition-colors">优刻云</a>
+        <a href="#" class="hover:text-primary-600 transition-colors">AI数字人</a>
+        <a href="#" class="hover:text-primary-600 transition-colors">AI绘画</a>
+        <a href="#" class="hover:text-primary-600 transition-colors">企业知识库</a>
+        <a href="#" class="hover:text-primary-600 transition-colors">PaYphp</a>
+        <a href="#" class="hover:text-primary-600 transition-colors">172号卡</a>
+      </div>
+
       <div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
         <div class="flex flex-col md:flex-row items-center gap-2 md:gap-6">
           <p class="text-gray-400 text-sm">
@@ -98,7 +114,8 @@
            赣ICP备2023002309号
           </a>
         </div>
-        <div class="flex space-x-6 text-sm text-gray-400">
+
+        <div class="flex space-x-6 text-sm text-gray-400 hidden md:flex">
           <a href="#" class="hover:text-primary-600 transition-colors">服务条款</a>
           <a href="#" class="hover:text-primary-600 transition-colors">隐私政策</a>
           <a href="#" class="hover:text-primary-600 transition-colors">Cookie 设置</a>
@@ -111,10 +128,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const activeGroups = ref<number[]>([4]) // 默认展开第5个（索引4）即“关注我们”
+// 移动端折叠状态管理
+// 默认展开最后一个（关注我们），索引为4
+const activeGroups = ref<number[]>([4])
 
 const toggleGroup = (index: number) => {
-  if (window.innerWidth >= 768) return // Disable toggle on desktop
+  if (window.innerWidth >= 768) return // Desktop: disable toggle logic
 
   const idx = activeGroups.value.indexOf(index)
   if (idx === -1) {
@@ -139,7 +158,7 @@ interface FooterGroup {
 
 const footerLinks: FooterGroup[] = [
   {
-    title: '产品',
+    title: '产品中心',
     links: [
       { text: '功能特性', href: '#' },
       { text: '解决方案', href: '#' },
