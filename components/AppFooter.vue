@@ -59,11 +59,11 @@
                       <div class="flex flex-row flex-nowrap space-x-2 pt-2 overflow-x-auto">
                         <div class="flex flex-col items-center space-y-1 shrink-0">
                           <img src="/qrcode.png" alt="QQ QR Code" class="w-20 h-20 object-contain bg-gray-50 p-1 rounded border border-gray-100" />
-                          <span class="text-xs text-gray-400">QQ群</span>
+                          <span class="text-xs text-gray-400">在线咨询</span>
                         </div>
                         <div class="flex flex-col items-center space-y-1 shrink-0">
                           <img src="/wechat.png" alt="WeChat QR Code" class="w-20 h-20 object-contain bg-gray-50 p-1 rounded border border-gray-100" />
-                          <span class="text-xs text-gray-400">微信客服</span>
+                          <span class="text-xs text-gray-400">关注我们</span>
                         </div>
                       </div>
                     </div>
@@ -97,10 +97,11 @@
       <div class="mb-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-400">
         <span class="text-gray-300 select-none">友情链接:</span>
         <a href="#" class="hover:text-primary-600 transition-colors">艺创AI</a>
+        <a href="#" class="hover:text-primary-600 transition-colors">企业知识库</a>
         <a href="#" class="hover:text-primary-600 transition-colors">优刻云</a>
         <a href="#" class="hover:text-primary-600 transition-colors">AI数字人</a>
         <a href="#" class="hover:text-primary-600 transition-colors">AI绘画</a>
-        <a href="#" class="hover:text-primary-600 transition-colors">企业知识库</a>
+        <a href="#" class="hover:text-primary-600 transition-colors">论文创作</a>
         <a href="#" class="hover:text-primary-600 transition-colors">PaYphp</a>
         <a href="#" class="hover:text-primary-600 transition-colors">172号卡</a>
       </div>
