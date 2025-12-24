@@ -174,7 +174,7 @@
 
     <!-- 新增卡片网格区域 -->
     <section class="py-12 bg-white">
-      <div class="container mx-auto px-4 max-w-[1440px]">
+      <div class="container mx-auto px-4">
         <div class="flex flex-col gap-4">
           <div v-for="(row, rowIndex) in solutionRows" :key="rowIndex" class="flex flex-col md:flex-row gap-4 w-full">
             <div
