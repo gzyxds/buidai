@@ -1,130 +1,42 @@
-import fs from 'node:fs'
-import path from 'node:path'
+import { getDocsRoutes } from './getDocsRoutes'
 
 /**
- * 生成所有路由用于网站地图
+ * 生成网站地图路由列表
  * 
  * @description
- * 扫描所有静态页面、文档和博客内容，生成完整的路由列表用于 sitemap 生成
+ * 汇总所有需要生成 sitemap 的路由路径，包括：
+ * - 静态页面路由
+ * - 动态文档路由（通过 getDocsRoutes 获取）
  * 
- * @returns {string[]} 返回包含所有页面路径的字符串数组
+ * @returns {string[]} 返回包含所有路由路径的字符串数组
  * 
  * @example
- * // 返回: ['/', '/about', '/pricing', '/docs/start', '/blog/vue3-guide', ...]
+ * // 返回示例:
+ * // ['/', '/agent', '/docs', '/docs/introduction', '/blog', ...]
  */
 export const getSitemapRoutes = (): string[] => {
-  const routes: string[] = []
-  
-  // 1. 静态页面路由
-  const staticRoutes = [
-    '/',
-    '/about',
-    '/agent',
-    '/buidai',
-    '/changelog',
-    '/contact',
-    '/demo',
-    '/download',
-    '/plugin',
-    '/pricing',
-    '/resources',
-    '/solutions',
-    '/blog',
-    '/docs'
+  // 定义静态路由列表
+  const staticRoutes: string[] = [
+    '/',              // 首页
+    '/agent',         // AI智能体页面
+    '/buidai',        // 私有部署页面
+    '/solutions',     // 解决方案页面
+    '/plugin',        // 应用中心页面
+    '/pricing',       // 定价方案页面
+    '/changelog',     // 更新日志页面
+    '/blog',          // 博客列表页面
+    '/resources',     // 资源下载页面
+    '/contact',       // 联系我们页面
+    '/about',         // 关于我们页面
+    '/download'       // 下载页面
   ]
-  routes.push(...staticRoutes)
   
-  // 2. 文档路由
+  // 获取动态文档路由
   const docsRoutes = getDocsRoutes()
-  routes.push(...docsRoutes)
   
-  // 3. 博客路由
-  const blogRoutes = getBlogRoutes()
-  routes.push(...blogRoutes)
-  
-  // 4. 更新日志路由
-  const updateRoutes = getUpdateRoutes()
-  routes.push(...updateRoutes)
+  // 合并所有路由
+  const allRoutes = [...staticRoutes, ...docsRoutes]
   
   // 去重并排序
-  return [...new Set(routes)].sort()
-}
-
-/**
- * 获取文档路由列表
- */
-const getDocsRoutes = (): string[] => {
-  const routes: string[] = []
-  const docsDir = path.resolve(process.cwd(), 'content/docs')
-  
-  if (!fs.existsSync(docsDir)) return routes
-  
-  const traverse = (dir: string, urlPrefix: string) => {
-    const entries = fs.readdirSync(dir, { withFileTypes: true })
-    
-    for (const entry of entries) {
-      // 跳过 .navigation.yml 文件
-      if (entry.name === '.navigation.yml') continue
-      
-      if (entry.isDirectory()) {
-        // 去除目录名前的数字前缀
-        const cleanName = entry.name.replace(/^\d+\./, '')
-        traverse(path.join(dir, entry.name), `${urlPrefix}/${cleanName}`)
-      } else if (entry.name.endsWith('.md')) {
-        // 处理 Markdown 文件
-        const cleanName = entry.name.replace(/^\d+\./, '').replace(/\.md$/, '')
-        
-        if (cleanName === 'index') {
-          routes.push(urlPrefix)
-        } else {
-          routes.push(`${urlPrefix}/${cleanName}`)
-        }
-      }
-    }
-  }
-  
-  traverse(docsDir, '/docs')
-  return routes
-}
-
-/**
- * 获取博客路由列表
- */
-const getBlogRoutes = (): string[] => {
-  const routes: string[] = []
-  const blogDir = path.resolve(process.cwd(), 'content/blog')
-  
-  if (!fs.existsSync(blogDir)) return routes
-  
-  const entries = fs.readdirSync(blogDir, { withFileTypes: true })
-  
-  for (const entry of entries) {
-    if (entry.name.endsWith('.md')) {
-      const slug = entry.name.replace(/\.md$/, '')
-      routes.push(`/blog/${slug}`)
-    }
-  }
-  
-  return routes
-}
-
-/**
- * 获取更新日志路由列表
- */
-const getUpdateRoutes = (): string[] => {
-  const routes: string[] = []
-  const updateDir = path.resolve(process.cwd(), 'content/update')
-  
-  if (!fs.existsSync(updateDir)) return routes
-  
-  const entries = fs.readdirSync(updateDir, { withFileTypes: true })
-  
-  for (const entry of entries) {
-    if (entry.name.endsWith('.md')) {
-      const slug = entry.name.replace(/\.md$/, '')
-      routes.push(`/changelog/${slug}`)
-    }
-  }
-  
-  return routes
+  return Array.from(new Set(allRoutes)).sort()
 }

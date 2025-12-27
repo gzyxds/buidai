@@ -142,6 +142,7 @@ import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { Bars3Icon, XMarkIcon, BookOpenIcon, ArrowRightOnRectangleIcon } from '@heroicons/vue/24/outline'
 import type { NavigationMenuItem } from '@nuxt/ui'
+import { SCROLL } from '~/utils/ui'
 
 /**
  * AppNavigation Component
@@ -273,7 +274,7 @@ let ticking = false
 const onScroll = () => {
   if (!ticking) {
     window.requestAnimationFrame(() => {
-      const scrolled = window.scrollY > 10
+      const scrolled = window.scrollY > SCROLL.THRESHOLD
       if (isScrolled.value !== scrolled) {
         isScrolled.value = scrolled
       }

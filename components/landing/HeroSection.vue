@@ -193,6 +193,7 @@
 import { ref, onMounted, onUnmounted, computed } from 'vue'
 // 导入应用数据：从 utils/scene.ts 中获取应用列表，用于提取图片生成跑马灯背景
 import { sceneApps as apps } from '~/utils/scene'
+import { LAYOUT, ANIMATION, MARQUEE } from '~/utils/ui'
 
 /**
  * Hero Section Logic
@@ -277,15 +278,15 @@ const typeWriter = () => {
     charIndex++
   }
 
-  let typeSpeed = isDeleting ? 30 : 100
+  let typeSpeed = isDeleting ? ANIMATION.TYPEWRITER_DELETING_SPEED : ANIMATION.TYPEWRITER_TYPING_SPEED
 
   if (!isDeleting && charIndex === currentSentence.length) {
-    typeSpeed = 2000 // 句子打完后暂停2秒
+    typeSpeed = ANIMATION.TYPEWRITER_PAUSE_AFTER_COMPLETE // 句子打完后暂停
     isDeleting = true
   } else if (isDeleting && charIndex === 0) {
     isDeleting = false
     sentenceIndex = (sentenceIndex + 1) % sentences.length
-    typeSpeed = 500 // 开始新句子前暂停0.5秒
+    typeSpeed = ANIMATION.TYPEWRITER_PAUSE_BEFORE_NEW // 开始新句子前暂停
   }
 
   typeTimeout = setTimeout(typeWriter, typeSpeed)
@@ -318,7 +319,7 @@ const shuffleArray = (array: string[]) => {
  */
 const marqueeImageGroups = computed(() => {
   const base = shuffleArray(allPluginImages.value)
-  const total = isMobile.value ? 10 : 16
+  const total = isMobile.value ? MARQUEE.MOBILE_IMAGE_COUNT : MARQUEE.DESKTOP_IMAGE_COUNT
   const selected = base.slice(0, total)
   const half = Math.ceil(selected.length / 2)
   return {
@@ -335,7 +336,7 @@ const marqueeImageGroups = computed(() => {
 const checkDevice = () => {
   if (typeof window !== 'undefined') {
     const prev = isMobile.value
-    isMobile.value = window.innerWidth < 768
+    isMobile.value = window.innerWidth < LAYOUT.MOBILE_BREAKPOINT
     if (prev !== isMobile.value) {
       /* 依赖 isMobile 的计算属性会自动刷新 */
     }

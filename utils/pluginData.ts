@@ -137,7 +137,7 @@ export const apps: AppData[] = [
     name: 'AI PPT',
     description: '智能生成PPT，一键排版，海量模板，让演示更出彩。告别繁琐的排版工作，专注于内容创作。',
     icon: PresentationIcon,
-    image: '/plugin/AIPPT.png',
+    image: '/plugin/aippt.png',
     category: 'efficiency',
     originalPrice: 1299.00,
     discountPrice: 599.00,

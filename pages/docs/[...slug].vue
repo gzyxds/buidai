@@ -166,6 +166,7 @@
 
 <script setup lang="ts">
 import { ChevronDownIcon, ChevronRightIcon, PencilIcon, ArrowLeftIcon, ArrowRightIcon } from '@heroicons/vue/24/outline'
+import { SCROLL } from '~/utils/ui'
 
 const route = useRoute()
 const currentPath = computed(() => {
@@ -236,11 +237,10 @@ let observer: IntersectionObserver | null = null
 const scrollToHeading = (id: string) => {
   const element = document.getElementById(id)
   if (element) {
-    const offset = 100
     const bodyRect = document.body.getBoundingClientRect().top
     const elementRect = element.getBoundingClientRect().top
     const elementPosition = elementRect - bodyRect
-    const offsetPosition = elementPosition - offset
+    const offsetPosition = elementPosition - SCROLL.HEADING_OFFSET
 
     window.scrollTo({
       top: offsetPosition,
@@ -262,7 +262,7 @@ onMounted(() => {
         }
       })
     },
-    { rootMargin: '-100px 0px -66% 0px' }
+    { rootMargin: `${SCROLL.TOC_OBSERVER_TOP_MARGIN} 0px ${SCROLL.TOC_OBSERVER_BOTTOM_MARGIN} 0px` }
   )
 
   document.querySelectorAll('h2, h3').forEach((section) => {
