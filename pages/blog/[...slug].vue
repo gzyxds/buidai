@@ -179,18 +179,31 @@
                 暂无目录
               </div>
 
-              <!-- 右侧底部链接 -->
+              <!-- 右侧底部二维码 -->
               <div class="mt-8 pt-6 border-t border-gray-200/60">
                 <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">关注我们</div>
-                <div class="space-y-3">
-                  <a href="#" class="flex items-center text-sm text-gray-600 hover:text-primary-600 transition-colors">
-                    <span class="w-8 flex justify-center"><i class="i-lucide-github w-4 h-4"></i></span> <!-- 假定有图标类名，或者用文字 -->
-                    <span class="font-medium">Github</span>
-                  </a>
-                   <a href="#" class="flex items-center text-sm text-gray-600 hover:text-primary-600 transition-colors">
-                    <span class="w-8 flex justify-center">𝕏</span>
-                    <span class="font-medium">Twitter</span>
-                  </a>
+                <div class="grid grid-cols-3 gap-3">
+                  <!-- 微信公众号二维码 -->
+                  <div class="flex flex-col items-center">
+                    <div class="w-20 h-20 bg-white rounded-lg border border-gray-200 overflow-hidden mb-2">
+                      <img src="/qrcode.png" alt="微信公众号" class="w-full h-full object-cover" />
+                    </div>
+                    <span class="text-xs text-gray-500 text-center leading-tight">微信公众号</span>
+                  </div>
+                  <!-- 微信客服二维码 -->
+                  <div class="flex flex-col items-center">
+                    <div class="w-20 h-20 bg-white rounded-lg border border-gray-200 overflow-hidden mb-2">
+                      <img src="/qrcode.png" alt="微信客服" class="w-full h-full object-cover" />
+                    </div>
+                    <span class="text-xs text-gray-500 text-center leading-tight">微信客服</span>
+                  </div>
+                  <!-- 微信交流群二维码 -->
+                  <div class="flex flex-col items-center">
+                    <div class="w-20 h-20 bg-white rounded-lg border border-gray-200 overflow-hidden mb-2">
+                      <img src="/qrcode.png" alt="微信交流群" class="w-full h-full object-cover" />
+                    </div>
+                    <span class="text-xs text-gray-500 text-center leading-tight">微信交流群</span>
+                  </div>
                 </div>
               </div>
             </div>
