@@ -1,0 +1,50 @@
+# robots.txt for BuidAI (www.buidai.com)
+# 最后更新: 2025-12-27
+
+# 全局规则 - 允许所有搜索引擎爬虫
+User-agent: *
+Allow: /
+
+# 禁止爬取的路径
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_nuxt/
+
+# 允许爬取重要页面
+Allow: /docs
+Allow: /blog
+Allow: /changelog
+Allow: /pricing
+Allow: /download
+Allow: /contact
+Allow: /about
+Allow: /solutions
+Allow: /resources
+
+# Sitemap 位置
+Sitemap: https://www.buidai.com/sitemap.xml
+
+# Google 爬虫特殊规则
+User-agent: Googlebot
+Allow: /
+
+# Bing 爬虫特殊规则
+User-agent: Bingbot
+Allow: /
+
+# 百度爬虫特殊规则
+User-agent: Baiduspider
+Allow: /
+
+# 爬取频率限制（针对 Google）
+# Crawl-delay: 0
+
+# 禁止恶意爬虫
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /

@@ -114,6 +114,11 @@ export const sceneApps: SceneAppData[] = [
     image: '/plugin/影视作品生成.jpg'
   },
   {
+    name: 'AI音乐',
+    description: 'AI音乐是一款以文本/歌词/哼唱/乐谱为输入，快速生成完整歌曲、伴奏、人声或纯音乐的创作与生产工具，旨在降低门槛、提升效率，支持个人娱乐与商用配乐的“人机协同”',
+    image: '/plugin/AI音乐.png'
+  },
+  {
     name: '爆款文章自动配图',
     description: '根据文章内容自动匹配高质量图片，提升阅读体验。图文并茂，让您的文章更具吸引力。',
     image: '/plugin/爆款文章自动配图.png'

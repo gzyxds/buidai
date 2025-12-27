@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-white text-neutral-900 font-sans selection:bg-neutral-100 relative">
     <!-- 背景装饰：左上角网格 -->
-    <div class="absolute top-0 left-0 w-full h-[400px] md:h-[600px] bg-[url('/images/必定AI.png')] pointer-events-none mask-[linear-gradient(to_bottom,white,transparent)] z-0"></div>
+    <div class="absolute top-0 left-0 w-full h-[400px] md:h-[600px] bg-[url('/images/buidai.png')] pointer-events-none mask-[linear-gradient(to_bottom,white,transparent)] z-0"></div>
 
     <!-- 动态流星雨背景 -->
     <div class="absolute inset-0 h-[600px] overflow-hidden pointer-events-none z-0">
@@ -154,7 +154,7 @@
               </div>
               <!-- 模拟地址栏 -->
                <div class="ml-4 flex-1 max-w-md h-8 bg-neutral-50 rounded-lg border border-neutral-100 flex items-center px-4 text-xs text-neutral-400 font-mono">
-                  https://必定AI.com/preview/{{ currentFeature?.title ? encodeURIComponent(currentFeature.title) : '' }}
+                  https://buidiai.com/preview/{{ currentFeature?.title ? encodeURIComponent(currentFeature.title) : '' }}
                 </div>
             </div>
 
@@ -580,7 +580,8 @@ import {
   ChatBubbleLeftRightIcon,
   XMarkIcon,
   CpuChipIcon,
-  CreditCardIcon
+  CreditCardIcon,
+  ChevronRightIcon
 } from '@heroicons/vue/24/outline'
 
 // AOS

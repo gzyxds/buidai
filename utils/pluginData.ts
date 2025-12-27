@@ -277,6 +277,17 @@ export const apps: AppData[] = [
   },
   {
     id: 20,
+    name: 'AI音乐',
+    description: 'AI音乐是一款以文本/歌词/哼唱/乐谱为输入，快速生成完整歌曲、伴奏、人声或纯音乐的创作与生产工具，旨在降低门槛、提升效率，支持个人娱乐与商用配乐的“人机协同”',
+    icon: PaletteIcon,
+    image: '/plugin/AI音乐.png',
+    category: 'video',
+    originalPrice: 1399.00,
+    discountPrice: 699.00,
+    date: '2025/12/27'
+  },
+  {
+    id: 50,
     name: '企业全能AI知识库「PHP源码版」',
     description: '全能AI知识库系统PHP版，基于前后端分离架构以及Vue3、uni-app、SpringBoot2.5技术栈',
     icon: BookOpenIcon,
@@ -287,7 +298,7 @@ export const apps: AppData[] = [
     date: '2025/12/20'
   },
   {
-    id: 21,
+    id: 51,
     name: '超级IP数字人SaaS系统「PHP源码版」',
     description: '为企业主、个人博主打造短视频IP的数字人源码系统，支持真人声音+形象克隆，一键合成',
     icon: TvIcon,
@@ -298,7 +309,7 @@ export const apps: AppData[] = [
     date: '2025/12/20'
   },
   {
-    id: 22,
+    id: 52,
     name: '艺创AI聊天绘画系统「PHP源码版」',
     description: '实现了AI对话+AI绘画的融合使用。系统功能包括：AI智能对话、AI创作模型、AI绘画、分销推广',
     icon: PaletteIcon,
@@ -309,7 +320,7 @@ export const apps: AppData[] = [
     date: '2025/12/20'
   },
   {
-    id: 23,
+    id: 53,
     name: '艺创AI论文写作系统「PHP源码版」',
     description: '10分钟可生成几万字长文的系统。只需要输入主题关键词，AI即可快速为您生成主题大纲',
     icon: PenToolIcon,
