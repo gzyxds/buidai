@@ -11,7 +11,14 @@
 - [utils/scene.ts](file://utils/scene.ts)
 - [components/landing/FeatureCarousel.vue](file://components/landing/FeatureCarousel.vue)
 - [components/AppFooter.vue](file://components/AppFooter.vue)
+- [utils/ui.ts](file://utils/ui.ts)
 </cite>
+
+## 更新摘要
+**已做更改**
+- 更新了HeroSection.vue和AppNavigation.vue组件的实现细节，以反映其现在使用来自`utils/ui.ts`的集中化常量（如ANIMATION, SCROLL, MARQUEE）。
+- 在“组件详解”部分中，更新了“HeroSection.vue”和“AppNavigation.vue”的相关描述，以包含对`utils/ui.ts`中常量的引用。
+- 更新了“依赖关系分析”部分，以包含`utils/ui.ts`作为新的依赖项。
 
 ## 目录
 1. [简介](#简介)
@@ -53,6 +60,7 @@ end
 subgraph "运行时配置"
 H["nuxt.config.ts<br/>模块/字体/颜色模式/CSS注入"]
 I["utils/scene.ts<br/>插件图片数据源"]
+J["utils/ui.ts<br/>UI常量定义"]
 end
 A --> D
 A --> E
@@ -68,6 +76,8 @@ H --> B
 H --> C
 I --> D
 I --> F
+J --> D
+J --> E
 ```
 
 **图表来源**
@@ -76,6 +86,7 @@ I --> F
 - [app.config.ts](file://app.config.ts#L1-L83)
 - [nuxt.config.ts](file://nuxt.config.ts#L1-L91)
 - [utils/scene.ts](file://utils/scene.ts#L1-L122)
+- [utils/ui.ts](file://utils/ui.ts#L1-L61)
 - [components/landing/HeroSection.vue](file://components/landing/HeroSection.vue#L1-L392)
 - [components/AppNavigation.vue](file://components/AppNavigation.vue#L1-L309)
 - [components/landing/FeatureCarousel.vue](file://components/landing/FeatureCarousel.vue#L1-L328)
@@ -95,7 +106,7 @@ I --> F
 - [components/AppNavigation.vue](file://components/AppNavigation.vue#L1-L309)
 
 ## 架构总览
-整体样式架构由“全局CSS层”和“Tailwind配置层”组成，组件通过props与UI配置对象实现样式复用；@nuxt/ui提供统一的组件语义与主题变量，nuxt.config.ts负责注入全局CSS与模块配置。
+整体样式架构由“全局样式”和“Tailwind配置层”组成，组件通过props与UI配置对象实现样式复用；@nuxt/ui提供统一的组件语义与主题变量，nuxt.config.ts负责注入全局CSS与模块配置。
 
 ```mermaid
 graph TB
@@ -143,6 +154,8 @@ U --> N
 - 性能优化
   - 使用懒加载与异步解码，减少首屏阻塞。
   - 在移动端禁用复杂悬停效果，降低重绘与GPU压力。
+- 集中式常量管理
+  - 引入`utils/ui.ts`中的`ANIMATION`和`MARQUEE`常量，用于管理打字机效果的动画速度和跑马灯的图片数量，避免魔法数字，提高代码可维护性。
 
 ```mermaid
 flowchart TD
@@ -158,11 +171,13 @@ Animate --> End(["完成渲染"])
 - [components/landing/HeroSection.vue](file://components/landing/HeroSection.vue#L1-L392)
 - [assets/css/main.css](file://assets/css/main.css#L112-L144)
 - [utils/scene.ts](file://utils/scene.ts#L1-L122)
+- [utils/ui.ts](file://utils/ui.ts#L38-L61)
 
 **章节来源**
 - [components/landing/HeroSection.vue](file://components/landing/HeroSection.vue#L1-L392)
 - [assets/css/main.css](file://assets/css/main.css#L1-L145)
 - [utils/scene.ts](file://utils/scene.ts#L1-L122)
+- [utils/ui.ts](file://utils/ui.ts#L38-L61)
 
 ### AppNavigation.vue：响应式导航栏
 - 响应式断点与透明/固态状态
@@ -178,6 +193,8 @@ Animate --> End(["完成渲染"])
 - 性能优化
   - 使用requestAnimationFrame优化滚动事件处理，避免频繁重绘。
   - 在移动端打开菜单时锁定body滚动，改善交互体验。
+- 集中式常量管理
+  - 引入`utils/ui.ts`中的`SCROLL`常量，用于定义触发导航栏样式变化的滚动阈值，确保整个项目中滚动行为的一致性。
 
 ```mermaid
 sequenceDiagram
@@ -199,9 +216,11 @@ N->>N : requestAnimationFrame更新isScrolled
 
 **图表来源**
 - [components/AppNavigation.vue](file://components/AppNavigation.vue#L1-L309)
+- [utils/ui.ts](file://utils/ui.ts#L10-L21)
 
 **章节来源**
 - [components/AppNavigation.vue](file://components/AppNavigation.vue#L1-L309)
+- [utils/ui.ts](file://utils/ui.ts#L10-L21)
 
 ### 与main.css的动画类集成
 - 自定义动画类
@@ -271,6 +290,8 @@ D["app.config.ts<br/>@nuxt/ui 颜色/图标"] --> B
   - nuxt.config.ts注入全局CSS并启用@nuxt/ui与@nuxt/content模块；app.config.ts定义@nuxt/ui的颜色与图标映射。
 - 数据依赖
   - HeroSection依赖utils/scene.ts提供的插件图片数据，驱动跑马灯与打字机效果。
+- 新增依赖
+  - HeroSection和AppNavigation现在依赖`utils/ui.ts`中的集中化常量（ANIMATION, SCROLL, MARQUEE），用于管理动画速度、滚动阈值和跑马灯图片数量。
 
 ```mermaid
 graph TB
@@ -278,9 +299,11 @@ H["HeroSection.vue"] --> M["main.css"]
 H --> T["tailwind.config.js"]
 H --> U["@nuxt/ui app.config.ts"]
 H --> S["utils/scene.ts"]
+H --> UI["utils/ui.ts"]
 N["AppNavigation.vue"] --> M
 N --> T
 N --> U
+N --> UI
 CFG["nuxt.config.ts"] --> M
 CFG --> T
 CFG --> U
@@ -294,6 +317,7 @@ CFG --> U
 - [app.config.ts](file://app.config.ts#L1-L83)
 - [nuxt.config.ts](file://nuxt.config.ts#L1-L91)
 - [utils/scene.ts](file://utils/scene.ts#L1-L122)
+- [utils/ui.ts](file://utils/ui.ts#L1-L61)
 
 **章节来源**
 - [nuxt.config.ts](file://nuxt.config.ts#L1-L91)
@@ -301,6 +325,7 @@ CFG --> U
 - [tailwind.config.js](file://tailwind.config.js#L1-L86)
 - [app.config.ts](file://app.config.ts#L1-L83)
 - [utils/scene.ts](file://utils/scene.ts#L1-L122)
+- [utils/ui.ts](file://utils/ui.ts#L1-L61)
 
 ## 性能考量
 - 减少重绘与重排
@@ -336,7 +361,7 @@ CFG --> U
 [本节为通用指导，无需特定文件引用]
 
 ## 结论
-本项目通过“全局CSS + Tailwind配置 + @nuxt/ui”的组合，实现了高度一致且可复用的UI样式体系。HeroSection与AppNavigation分别展示了响应式主视觉区域与导航栏的完整实现路径：从背景渐变与网格布局，到文本排版与交互动画；从移动优先断点控制，到暗色模式与无障碍支持。通过props配置与UI对象，组件实现了灵活的样式复用与主题一致性；借助性能优化策略，兼顾了用户体验与渲染效率。
+本项目通过“全局CSS + Tailwind配置 + @nuxt/ui”的组合，实现了高度一致且可复用的UI样式体系。HeroSection与AppNavigation分别展示了响应式主视觉区域与导航栏的完整实现路径：从背景渐变与网格布局，到文本排版与交互动画；从移动优先断点控制，到暗色模式与无障碍支持。通过props配置与UI对象，组件实现了灵活的样式复用与主题一致性；借助性能优化策略，兼顾了用户体验与渲染效率。此外，通过引入`utils/ui.ts`中的集中化常量，进一步提升了代码的可维护性和一致性。
 
 [本节为总结性内容，无需特定文件引用]
 

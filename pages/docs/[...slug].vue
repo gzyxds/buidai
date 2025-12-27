@@ -34,7 +34,7 @@
                     @click="isTocOpen = !isTocOpen"
                     class="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-medium text-gray-900 focus:outline-none"
                   >
-                    <span>On this page</span>
+                    <span>本页目录</span>
                     <ChevronDownIcon
                       :class="[isTocOpen ? 'rotate-180' : '', 'h-5 w-5 text-gray-500 transition-transform duration-200']"
                     />
@@ -73,15 +73,8 @@
                 <ContentRenderer :value="page" />
               </div>
 
-              <!-- Footer: Edit Link & Navigation -->
+              <!-- Footer: Navigation -->
               <div class="mt-16 pt-8 border-t border-gray-100 not-prose">
-                <div class="mb-8 flex justify-end">
-                  <a href="#" class="text-sm text-gray-500 hover:text-primary-600 flex items-center transition-colors font-medium">
-                    <PencilIcon class="h-4 w-4 mr-1.5" />
-                    在 GitHub 上编辑此页面
-                  </a>
-                </div>
-
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <!-- Prev -->
                   <NuxtLink
@@ -132,7 +125,7 @@
         <!-- Right Sidebar (TOC) -->
         <aside class="hidden xl:block xl:col-span-2 sticky top-[72px] h-[calc(100vh-72px)] overflow-y-auto py-8 pl-4 border-l border-gray-100/50 scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent">
           <div v-if="page?.body?.toc?.links?.length">
-            <h3 class="text-xs font-bold text-gray-900 mb-4 uppercase tracking-wider">On this page</h3>
+            <h3 class="text-xs font-bold text-gray-900 mb-4 uppercase tracking-wider">本页目录</h3>
             <nav class="space-y-1 relative">
               <div v-for="link in page.body.toc.links" :key="link.id">
                 <a
@@ -165,7 +158,7 @@
 </template>
 
 <script setup lang="ts">
-import { ChevronDownIcon, ChevronRightIcon, PencilIcon, ArrowLeftIcon, ArrowRightIcon } from '@heroicons/vue/24/outline'
+import { ChevronDownIcon, ChevronRightIcon, ArrowLeftIcon, ArrowRightIcon } from '@heroicons/vue/24/outline'
 import { SCROLL } from '~/utils/ui'
 
 const route = useRoute()
