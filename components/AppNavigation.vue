@@ -3,7 +3,7 @@
     class="sticky top-0 inset-x-0 z-50 transition-all duration-300 border-b"
     :class="headerClasses"
   >
-    <div class="w-full px-6 sm:px-8 lg:px-12 xl:px-16">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-[72px]">
         <!-- Left: Logo -->
         <div class="flex items-center gap-10 flex-1">
