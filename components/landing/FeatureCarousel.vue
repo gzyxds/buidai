@@ -47,9 +47,10 @@
           :ref="(el) => { if(el) cardRefs[index] = el as HTMLElement }"
         >
           <div
-            class="group relative h-auto min-h-[320px] sm:min-h-[400px] rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]"
-            :class="`bg-linear-to-b ${card.gradient}`"
+            class="group relative h-auto min-h-[320px] sm:min-h-[400px] rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] bg-white/60 backdrop-blur-xl border border-white/60"
           >
+            <!-- 动态渐变背景层 -->
+            <div class="absolute inset-0 -z-10 opacity-30 group-hover:opacity-50 transition-opacity duration-500" :class="`bg-linear-to-b ${card.gradient}`"></div>
 
             <!-- Content -->
             <div class="p-6 sm:p-8 h-full flex flex-col relative z-10">
@@ -61,7 +62,7 @@
               </p>
 
               <!-- 图片容器：移动端高度自适应，保持比例 -->
-              <div class="mt-auto rounded-lg overflow-hidden h-32 sm:h-40 relative shadow-inner shrink-0 bg-white/30">
+              <div class="mt-auto rounded-xl overflow-hidden h-32 sm:h-40 relative shadow-sm shrink-0 bg-white/50 border border-white/30">
                  <img
                    :src="card.image"
                    :alt="card.title"

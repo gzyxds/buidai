@@ -97,13 +97,13 @@
           </slot>
         </div>
 
-          <div class="relative w-full z-10 mt-8 lg:mt-0" :class="props.ui.imageSection">
+          <div class="relative w-full z-10 mt-8 lg:mt-0 lg:absolute lg:left-1/2 lg:top-0 lg:bottom-0 lg:w-[50vw] lg:h-auto flex flex-col justify-center" :class="props.ui.imageSection">
             <div class="absolute inset-0 -z-10 pointer-events-none">
               <div class="mx-auto w-[90%] md:w-[85%] h-[60%] rounded-[40px] bg-linear-to-br from-black/5 via-black/2 to-black/5 blur-2xl"></div>
             </div>
 
             <!-- Desktop: Vertical Marquee -->
-            <div class="hidden lg:grid grid-cols-2 gap-6 w-[140%] -ml-[20%]">
+            <div class="hidden lg:grid grid-cols-2 gap-6 w-full pl-12 pr-4">
               <UMarquee
                 orientation="vertical"
                 :overlay="false"
