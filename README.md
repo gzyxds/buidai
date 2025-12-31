@@ -4,11 +4,27 @@ BuidAI 是一个基于 Nuxt 4 + Vue 3 构建的现代化前端模板，面向 AI
 
 ## 核心特性
 
-- 最新生态：Nuxt 4、Vue 3、TypeScript、Tailwind CSS、Nuxt UI
-- 内容驱动：基于 Markdown 的文档与博客，内置集合与校验
-- 组件化：开箱即用的落地页与导航组件，响应式与无障碍
-- SEO 友好：集中式 Head 管理、OG 标签与关键词配置
-- 预渲染：自动收集文档路由，SSG 输出，适配 Vercel Static
+- **最新生态**：Nuxt 4、Vue 3、TypeScript、Tailwind CSS、Nuxt UI
+- **内容驱动**：基于 Markdown 的文档与博客，内置集合与校验
+- **组件化**：开箱即用的落地页与导航组件，响应式与无障碍
+- **SEO 友好**：集中式 Head 管理、OG 标签与关键词配置
+- **预渲染**：自动收集文档路由，SSG 输出，适配 Vercel Static
+
+## 技术栈详情
+
+| 类别 | 技术/库 | 说明 |
+| :--- | :--- | :--- |
+| **核心框架** | [Nuxt 4](https://nuxt.com) | 基于 Vue 3 的全栈框架，使用最新的 Nuxt 4 版本 |
+| **前端框架** | [Vue 3](https://vuejs.org) | Composition API, `<script setup>` |
+| **编程语言** | [TypeScript](https://www.typescriptlang.org) | 全面类型安全支持 |
+| **UI 框架** | [Nuxt UI](https://ui.nuxt.com) | 基于 Headless UI 和 Tailwind CSS 的组件库 |
+| **样式系统** | [Tailwind CSS v4](https://tailwindcss.com) | 原子化 CSS 框架，使用最新的 v4 引擎 |
+| **内容管理** | [Nuxt Content v3](https://content.nuxt.com) | 基于文件(Markdown/YAML)的内容管理，使用 SQLite 数据库 |
+| **构建/部署** | Nitro (SSG) | 静态站点生成，默认适配 Vercel Static |
+| **图标库** | Heroicons, Lucide, Iconify | 多源图标支持，统一通过 Nuxt UI 或组件使用 |
+| **动画** | AOS, Tailwind Animate | 滚动动画与 CSS 关键帧动画 |
+| **SEO** | @nuxtjs/sitemap, useSeoMeta | 自动生成站点地图，页面级元数据管理 |
+| **测试** | Vitest | 单元测试框架 |
 
 ## 目录结构
 
@@ -115,6 +131,9 @@ e:\buidai.com\buidai/
 - 类型检查：`npm run typecheck`（必须执行）
 - 单元测试：已安装 `vitest` 与 `@nuxt/test-utils`，可按需添加测试文件与脚本
 - Storybook：已安装 `@storybook/vue3`，示例见 `stories/Plugin.stories.ts`
+
+
+
 
 ## 许可证
 

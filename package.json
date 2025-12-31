@@ -11,7 +11,6 @@
     "test:sitemap": "node scripts/test-sitemap.mjs"
   },
   "devDependencies": {
-    "@headlessui/vue": "^1.7.22",
     "@heroicons/vue": "^2.1.5",
     "@iconify-json/lucide": "^1.2.81",
     "@iconify-json/ph": "^1.2.2",
@@ -20,7 +19,6 @@
     "@nuxt/fonts": "^0.12.1",
     "@nuxt/test-utils": "^3.21.0",
     "@nuxtjs/sitemap": "^7.5.0",
-    "@storybook/vue3": "^10.1.9",
     "@tailwindcss/typography": "^0.5.19",
     "@types/aos": "^3.0.7",
     "@types/node": "^25.0.2",
@@ -43,7 +41,6 @@
     "aos": "^2.3.4",
     "lucide-vue-next": "^0.561.0",
     "tailwindcss": "^4.1.18",
-    "vue": "^3.4.31",
-    "vue-router": "^4.4.0"
+    "vue": "^3.4.31"
   }
 }

@@ -1,3 +1,6 @@
+---
+alwaysApply: false
+---
 # 项目规则 (Project Rules)
 
 ## 1. 项目概览
