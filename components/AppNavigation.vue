@@ -35,7 +35,9 @@
           <!-- Desktop Actions -->
           <div class="hidden md:flex items-center gap-3">
             <UButton
-              to="/docs"
+              to="https://doc.buidai.com/"
+              target="_blank"
+              rel="noopener noreferrer"
               variant="ghost"
               color="neutral"
               class="h-10 rounded-full px-4 sm:px-6 font-medium transition-colors duration-200"
@@ -104,7 +106,9 @@
 
           <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
             <UButton
-              to="/docs"
+              to="https://doc.buidai.com/"
+              target="_blank"
+              rel="noopener noreferrer"
               block
               color="neutral"
               variant="ghost"
