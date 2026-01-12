@@ -384,7 +384,18 @@
           <div class="flex flex-col lg:flex-row gap-8 md:gap-12 lg:gap-24 items-start">
             <!-- 左侧：标题 -->
             <div class="lg:w-1/3 w-full">
-              <h1 class="text-2xl md:text-4xl font-bold text-[#0F0F12] mb-2 md:mb-0">常见问题</h1>
+              <h1 class="text-2xl md:text-4xl font-bold text-[#0F0F12] mb-4">常见问题</h1>
+              <p class="text-neutral-500 text-sm md:text-base mb-6">关于必定AI的常见疑问解答</p>
+              <div class="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-3">
+                <button @click="openQrModal('coupon')" class="px-6 py-2.5 rounded-full bg-neutral-900 text-white text-sm font-medium hover:bg-neutral-800 active:scale-95 transition-all flex items-center justify-center gap-2 touch-manipulation">
+                  <TicketIcon class="w-4 h-4" />
+                  获取优惠码
+                </button>
+                <button @click="openQrModal('wechat')" class="px-6 py-2.5 rounded-full bg-white border border-neutral-200 text-neutral-900 text-sm font-medium hover:bg-neutral-50 active:scale-95 transition-all shadow-sm flex items-center justify-center gap-2 touch-manipulation">
+                  <ChatBubbleLeftRightIcon class="w-4 h-4" />
+                  联系客服
+                </button>
+              </div>
             </div>
 
             <!-- 右侧：折叠面板列表 -->
@@ -445,8 +456,18 @@ import {
   ArrowRightIcon,
   SparklesIcon,
   PhotoIcon,
-  ChevronDownIcon
+  ChevronDownIcon,
+  TicketIcon,
+  ChatBubbleLeftRightIcon
 } from '@heroicons/vue/24/outline'
+
+// 二维码弹窗 - 触发 BackToTop 组件
+const openQrModal = (type: 'coupon' | 'wechat') => {
+  const config = type === 'coupon'
+    ? { title: '获取优惠码', desc: '扫码获取专属优惠', image: '/qrcode.png' }
+    : { title: '联系客服', desc: '扫码添加微信客服', image: '/wechat.png' }
+  window.dispatchEvent(new CustomEvent('showQRCodeModal', { detail: config }))
+}
 
 // 设置页面布局
 definePageMeta({
@@ -676,7 +697,7 @@ const quickStartCards: QuickStartCard[] = [
  * FAQ 常见问题数据
  */
 const faqs = ref<FaqItem[]>([
-  { question: '怎么下载导出必定AI生成的PPT、文档、表格、设计？', answer: '必定AIAI生成好后，你可以直接选择导出下载，支持常见的PPTX、DOCX、PDF、XLSX、JPG、PNG格式。', open: true },
+  { question: '怎么下载导出必定AI生成的PPT、文档、表格、设计？', answer: '必定AI生成好后，你可以直接选择导出下载，支持常见的PPTX、DOCX、PDF、XLSX、JPG、PNG格式。', open: true },
   { question: '必定AI是免费使用吗？', answer: '必定AI提供免费的基础版，包含大部分核心功能。对于高级功能和更多存储空间，我们提供灵活的付费订阅方案。', open: false },
   { question: '必定AI可以把PDF/图片/网站/报告/论文内容改成PPT吗？', answer: '可以。您可以上传 PDF、图片或输入网址，AI 会自动提取关键信息并生成结构清晰、设计精美的 PPT 演示文稿。', open: false },
   { question: '我没有设计基础，可以让必定AI做设计吗？', answer: '完全没问题。必定AI内置了专业的设计引擎，您只需输入文字描述，AI 就能自动生成海报、Banner、配图等高质量设计作品。', open: false },

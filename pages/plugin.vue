@@ -42,7 +42,7 @@
                 <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Building应用市场上线啦!</h2>
                 <p class="text-blue-100 text-sm sm:text-base">联系客服领取五折优惠码，数量有限，先到先得</p>
               </div>
-              <button class="px-6 py-2.5 bg-gray-900 text-white rounded-full font-medium text-sm hover:bg-gray-800 transition-colors shadow-lg whitespace-nowrap flex items-center gap-2">
+              <button @click="openQrModal" class="px-6 py-2.5 bg-gray-900 text-white rounded-full font-medium text-sm hover:bg-gray-800 transition-colors shadow-lg whitespace-nowrap flex items-center gap-2">
                 获取5折优惠码
                 <ArrowRightIcon class="w-4 h-4" />
               </button>
@@ -151,6 +151,13 @@ import {
 } from 'lucide-vue-next'
 import { apps, categories } from '~/utils/pluginData'
 import type { AppData, Category } from '~/utils/pluginData'
+
+// 二维码弹窗 - 触发 BackToTop 组件
+const openQrModal = () => {
+  window.dispatchEvent(new CustomEvent('showQRCodeModal', {
+    detail: { title: '获取优惠码', desc: '扫码获取五折优惠', image: '/qrcode.png' }
+  }))
+}
 
 definePageMeta({
   layout: 'default'

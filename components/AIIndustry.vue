@@ -98,12 +98,12 @@
 
           <!-- 底部操作栏 -->
           <div class="mt-auto pt-6 border-t border-neutral-100 flex flex-wrap gap-4">
-            <button class="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-white bg-neutral-900 hover:bg-neutral-800 rounded-full transition-all shadow-lg shadow-neutral-200 hover:-translate-y-0.5">
+            <button @click="openQrModal('solution')" class="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-white bg-neutral-900 hover:bg-neutral-800 rounded-full transition-all shadow-lg shadow-neutral-200 hover:-translate-y-0.5">
               了解方案详情
               <ArrowRightIcon class="ml-2 h-4 w-4" />
             </button>
 
-            <button class="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-neutral-700 bg-white hover:bg-neutral-50 border border-neutral-200 rounded-full transition-all hover:border-neutral-300 hover:-translate-y-0.5 shadow-sm">
+            <button @click="openQrModal('consult')" class="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-neutral-700 bg-white hover:bg-neutral-50 border border-neutral-200 rounded-full transition-all hover:border-neutral-300 hover:-translate-y-0.5 shadow-sm">
               联系售前咨询
               <ChatBubbleLeftRightIcon class="ml-2 h-4 w-4" />
             </button>
@@ -137,6 +137,14 @@ import {
   ArrowRightIcon,
   CommandLineIcon
 } from '@heroicons/vue/24/outline'
+
+// 二维码弹窗 - 触发 BackToTop 组件
+const openQrModal = (type: 'solution' | 'consult') => {
+  const config = type === 'solution'
+    ? { title: '了解方案详情', desc: '扫码获取完整方案', image: '/qrcode.png' }
+    : { title: '联系售前咨询', desc: '扫码添加微信顾问', image: '/wechat.png' }
+  window.dispatchEvent(new CustomEvent('showQRCodeModal', { detail: config }))
+}
 
 /**
  * AI Industry Solutions Component

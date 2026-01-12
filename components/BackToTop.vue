@@ -182,15 +182,15 @@
 
             <!-- 内容区域 -->
             <div class="p-6 sm:p-8 text-center">
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">联系客服</h3>
-              <p class="text-sm text-gray-600 mb-4 sm:mb-6">扫描二维码添加客服微信</p>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ qrCodeConfig.title }}</h3>
+              <p class="text-sm text-gray-600 mb-4 sm:mb-6">{{ qrCodeConfig.desc }}</p>
 
               <!-- 二维码 -->
               <div class="flex justify-center mb-3 sm:mb-4">
                 <div class="relative">
                   <img
-                    src="/qrcode.png"
-                    alt="客服二维码"
+                    :src="qrCodeConfig.image"
+                    :alt="qrCodeConfig.title"
                     class="w-40 h-40 sm:w-48 sm:h-48 object-contain border border-gray-200 shadow-lg"
                   />
                 </div>
@@ -219,8 +219,13 @@ import {
 const isVisible = ref(false)
 const showQRCode = ref(false)
 const showAfterSales = ref(false)
-// 新增：点击弹出的二维码状态
+// 点击弹出的二维码状态
 const showClickQRCode = ref(false)
+const qrCodeConfig = ref({
+  title: '联系客服',
+  desc: '扫描二维码添加客服微信',
+  image: '/qrcode.png'
+})
 
 // 监听滚动事件，当页面滚动超过300px时显示按钮
 const toggleVisibility = () => {
@@ -232,7 +237,15 @@ const toggleVisibility = () => {
 }
 
 // 监听自定义事件，用于从其他组件触发二维码弹窗
-const handleShowQRCodeModal = () => {
+const handleShowQRCodeModal = (e: Event) => {
+  const customEvent = e as CustomEvent
+  if (customEvent.detail) {
+    qrCodeConfig.value = {
+      title: customEvent.detail.title || '联系客服',
+      desc: customEvent.detail.desc || '扫描二维码添加客服微信',
+      image: customEvent.detail.image || '/qrcode.png'
+    }
+  }
   showClickQRCode.value = true
 }
 

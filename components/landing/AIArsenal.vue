@@ -41,10 +41,10 @@
 
           <!-- Buttons -->
           <div class="flex flex-wrap gap-4 pt-4">
-            <button class="px-8 py-3.5 rounded-full bg-white text-gray-900 font-bold hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2">
+            <button @click="openQrModal('community')" class="px-8 py-3.5 rounded-full bg-white text-gray-900 font-bold hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2">
              加入社群
             </button>
-            <button class="px-8 py-3.5 rounded-full bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-all duration-300 transform hover:-translate-y-0.5">
+            <button @click="openQrModal('contact')" class="px-8 py-3.5 rounded-full bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-all duration-300 transform hover:-translate-y-0.5">
               联系我们
             </button>
           </div>
@@ -104,6 +104,14 @@ const features = [
   { name: '工作流 (Workflow)', icon: CodeBracketIcon },
   { name: '自然语言处理 (NLP)', icon: ChatBubbleBottomCenterTextIcon },
 ]
+
+// 二维码弹窗 - 触发 BackToTop 组件
+const openQrModal = (type) => {
+  const config = type === 'community'
+    ? { title: '加入社群', desc: '扫码加入必定AI社群', image: '/qrcode.png' }
+    : { title: '联系我们', desc: '扫码添加微信客服', image: '/wechat.png' }
+  window.dispatchEvent(new CustomEvent('showQRCodeModal', { detail: config }))
+}
 </script>
 
 <style scoped>

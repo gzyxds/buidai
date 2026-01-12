@@ -406,7 +406,17 @@
           <!-- 左侧：标题 -->
           <div class="lg:w-1/3 w-full text-center lg:text-left">
             <h2 class="text-2xl md:text-4xl font-bold text-[#0F0F12] mb-4">常见问题</h2>
-            <p class="text-neutral-500 text-sm md:text-base">关于必定AI的常见疑问解答</p>
+            <p class="text-neutral-500 text-sm md:text-base mb-6">关于必定AI的常见疑问解答</p>
+            <div class="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-3 justify-center lg:justify-start">
+              <button @click="openQrModal('coupon')" class="px-6 py-2.5 rounded-full bg-neutral-900 text-white text-sm font-medium hover:bg-neutral-800 active:scale-95 transition-all flex items-center justify-center gap-2 touch-manipulation">
+                <TicketIcon class="w-4 h-4" />
+                获取优惠码
+              </button>
+              <button @click="openQrModal('wechat')" class="px-6 py-2.5 rounded-full bg-white border border-neutral-200 text-neutral-900 text-sm font-medium hover:bg-neutral-50 active:scale-95 transition-all shadow-sm flex items-center justify-center gap-2 touch-manipulation">
+                <ChatBubbleLeftRightIcon class="w-4 h-4" />
+                联系客服
+              </button>
+            </div>
           </div>
 
           <!-- 右侧：FAQ 列表 -->
@@ -442,30 +452,39 @@
     </section>
 
     <!-- Footer -->
-    <section class="py-16 md:py-24 relative overflow-hidden bg-white border-t border-neutral-100">
-      <!-- 底部渐变背景 -->
-      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-neutral-50/50 via-transparent to-transparent pointer-events-none"></div>
+    <section class="py-16 md:py-24 relative overflow-hidden bg-white dark:bg-neutral-900">
+      <!-- 装饰背景 -->
+      <div class="absolute inset-0 bg-linear-to-b from-transparent to-neutral-50/50 dark:to-neutral-800/50 pointer-events-none"></div>
 
       <div class="container mx-auto px-4 relative z-10">
-        <div class="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-16">
-          <div class="text-center lg:text-left flex-1 max-w-2xl">
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-neutral-900 tracking-tight leading-tight">
-              现在开始构建您的 <span class="text-transparent bg-clip-text bg-linear-to-r from-blue-500 to-blue-700">AI Agent</span>
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-16 p-8 md:p-12 rounded-3xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50/50 dark:bg-neutral-800/30">
+          <!-- 左侧文案 -->
+          <div class="text-center lg:text-left max-w-2xl">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-neutral-900 dark:text-white tracking-tight leading-tight">
+              现在开始构建您的 <span class="text-transparent bg-clip-text bg-[linear-gradient(to_right,#2055FA,#1B52F8,#A07CFE,#ADB9FF)]">AI Agent</span>
             </h2>
-            <p class="text-lg md:text-xl text-neutral-500 leading-relaxed">
-              必定AI 提供企业级 AI 基础设施，让智能体构建触手可及，助力业务数智化升级。
+            <p class="text-lg md:text-xl text-neutral-500 dark:text-neutral-400 leading-relaxed">
+              加入数万开发者的行列，使用 必定AI 释放智能体的无限潜能，让 AI 触手可及。
             </p>
           </div>
 
-          <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto shrink-0">
-            <button class="w-full sm:w-auto min-w-[160px] h-[56px] text-lg font-semibold px-8 rounded-full bg-white border border-neutral-200 text-neutral-900 hover:bg-neutral-50 active:scale-95 transition-all shadow-sm flex items-center justify-center group">
-              立即使用
-              <ArrowRightIcon class="w-5 h-5 ml-2 text-neutral-400 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button class="w-full sm:w-auto min-w-[160px] h-[56px] text-lg font-semibold px-8 rounded-full bg-neutral-900 text-white hover:bg-neutral-800 active:scale-95 transition-all shadow-lg shadow-neutral-200 flex items-center justify-center group">
-              开始构建
-              <RocketLaunchIcon class="w-5 h-5 ml-2 group-hover:-translate-y-1 transition-transform" />
-            </button>
+          <!-- 右侧按钮组 -->
+          <div class="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto shrink-0">
+            <UButton
+              label="立即使用"
+              size="lg"
+              variant="ghost"
+              color="neutral"
+              class="w-full sm:w-auto justify-center px-6 py-3 font-medium rounded-xl border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-all"
+            />
+            <UButton
+              label="开始构建"
+              size="lg"
+              color="neutral"
+              variant="solid"
+              class="w-full sm:w-auto justify-center px-6 py-3 font-medium rounded-xl shadow-md hover:-translate-y-0.5 transition-all bg-neutral-900 text-white hover:bg-neutral-800"
+              icon="i-heroicons-rocket-launch"
+            />
           </div>
         </div>
       </div>
@@ -568,12 +587,21 @@ import {
   XMarkIcon,
   CpuChipIcon,
   CreditCardIcon,
-  ChevronRightIcon
+  ChevronRightIcon,
+  TicketIcon
 } from '@heroicons/vue/24/outline'
 
 // AOS
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+
+// 二维码弹窗 - 触发 BackToTop 组件
+const openQrModal = (type: 'coupon' | 'wechat') => {
+  const config = type === 'coupon'
+    ? { title: '获取优惠码', desc: '扫码获取专属优惠', image: '/qrcode.png' }
+    : { title: '联系客服', desc: '扫码添加微信客服', image: '/wechat.png' }
+  window.dispatchEvent(new CustomEvent('showQRCodeModal', { detail: config }))
+}
 
 // 打字机效果状态
 const typewriterText = {
@@ -1029,5 +1057,15 @@ const toggleFaq = (idx: number) => { activeFaq.value = activeFaq.value === idx ?
   0% { transform: translate(0, 0) rotate(20deg); opacity: 0; }
   10% { opacity: 0.8; }
   100% { transform: translate(-15vw, 100vh) rotate(20deg); opacity: 0; }
+}
+
+/* 弹窗过渡动画 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

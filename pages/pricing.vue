@@ -6,6 +6,14 @@
 import { ref, computed } from 'vue'
 import { CheckIcon, XMarkIcon, QuestionMarkCircleIcon } from '@heroicons/vue/24/solid'
 
+// 二维码弹窗 - 触发 BackToTop 组件
+const openQrModal = (type: 'coupon' | 'wechat') => {
+  const config = type === 'coupon'
+    ? { title: '获取优惠码', desc: '扫码获取专属优惠', image: '/qrcode.png' }
+    : { title: '联系技术专家', desc: '扫码添加微信顾问', image: '/wechat.png' }
+  window.dispatchEvent(new CustomEvent('showQRCodeModal', { detail: config }))
+}
+
 // 类型定义
 interface PricingFeature {
   label: string
@@ -196,6 +204,11 @@ const faqItems = [
     content: '1条知识库存储等于1条知识库索引。一条分块数据，通常对应多条索引，可以在单个知识库集合中查阅“W组索引”。'
   }
 ]
+
+const activeFaq = ref<number | null>(null)
+const toggleFaq = (idx: number) => {
+  activeFaq.value = activeFaq.value === idx ? null : idx
+}
 
 // SEO 元数据配置
 useSeoMeta({
@@ -405,45 +418,52 @@ useSeoMeta({
             </p>
             <div class="flex flex-wrap gap-4">
               <UButton
-                label="联系技术专家"
+                label="获取优惠码"
                 size="xl"
                 color="primary"
-                icon="i-heroicons-chat-bubble-left-right"
+                icon="i-heroicons-ticket"
                 class="font-black px-10 rounded-xl"
+                @click="openQrModal('coupon')"
               />
               <UButton
-                label="查阅开发文档"
+                label="联系技术专家"
                 size="xl"
                 variant="ghost"
                 color="neutral"
-                icon="i-heroicons-document-text"
+                icon="i-heroicons-chat-bubble-left-right"
                 class="font-black px-10 rounded-xl"
+                @click="openQrModal('wechat')"
               />
             </div>
           </div>
 
           <!-- 右侧：FAQ 列表 -->
-          <div class="lg:col-span-7">
-            <UAccordion
-              :items="faqItems"
-              multiple
-              :ui="{
-                root: 'divide-y divide-gray-100 dark:divide-gray-800 border-t border-gray-100 dark:border-gray-800',
-                item: 'py-8',
-                content: 'pb-8 text-base text-gray-500 dark:text-gray-400 leading-loose'
-              }"
+          <div class="lg:col-span-7 space-y-4">
+            <div
+              v-for="(item, idx) in faqItems"
+              :key="idx"
+              class="bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 overflow-hidden"
             >
-              <template #default="{ item, open }">
-                <div class="flex items-center justify-between w-full cursor-pointer group">
-                  <span class="text-lg font-black text-gray-900 dark:text-white group-hover:text-ui-primary transition-colors">{{ item.label }}</span>
-                  <UIcon
-                    :name="open ? 'i-heroicons-minus' : 'i-heroicons-plus'"
-                    class="size-5 text-gray-400 group-hover:text-ui-primary transition-all duration-300"
-                    :class="{ 'rotate-180': open }"
-                  />
+              <button
+                @click="toggleFaq(idx)"
+                class="w-full flex items-start justify-between p-6 text-left hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+              >
+                <span class="text-base md:text-lg font-medium text-gray-900 dark:text-white pr-4">{{ item.label }}</span>
+                <span class="text-gray-400 shrink-0 mt-1 transition-transform duration-300" :class="{ 'rotate-45': activeFaq === idx }">
+                  <UIcon name="i-heroicons-plus" class="size-5" />
+                </span>
+              </button>
+              <div
+                class="grid transition-all duration-300 ease-in-out"
+                :class="activeFaq === idx ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'"
+              >
+                <div class="overflow-hidden">
+                  <div class="px-6 pb-6 text-[15px] text-gray-500 dark:text-gray-400 leading-relaxed">
+                    {{ item.content }}
+                  </div>
                 </div>
-              </template>
-            </UAccordion>
+              </div>
+            </div>
           </div>
         </div>
       </div>
