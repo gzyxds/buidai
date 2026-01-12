@@ -3,19 +3,13 @@
     <!-- 背景装饰：左上角网格 -->
     <div class="absolute top-0 left-0 w-full h-[400px] md:h-[600px] bg-[url('/images/buidai.png')] pointer-events-none mask-[linear-gradient(to_bottom,white,transparent)] z-0"></div>
 
-    <!-- 动态流星雨背景 -->
+    <!-- 动态流星雨背景 - 使用 CSS 变量减少重绘 -->
     <div class="absolute inset-0 h-[600px] overflow-hidden pointer-events-none z-0">
       <div
-        v-for="meteor in meteors"
-        :key="meteor.id"
-        class="absolute w-[2px] bg-linear-to-b from-transparent to-blue-400/80 opacity-0 meteor-animation rounded-full"
-        :style="{
-          left: meteor.left,
-          top: meteor.top,
-          height: meteor.length,
-          animationDelay: meteor.delay,
-          animationDuration: meteor.duration
-        }"
+        v-for="i in 12"
+        :key="i"
+        class="meteor-item"
+        :style="`--i:${i}`"
       ></div>
     </div>
 
@@ -214,21 +208,16 @@
     <!-- 功能部分: AI赋能企业通用场景 -->
     <section class="py-12 lg:py-20 bg-neutral-50/50">
       <div class="container mx-auto px-4">
-        <div data-aos="fade-up" data-aos-offset="5" data-aos-delay="0" data-aos-duration="600">
-          <h2 class="text-2xl md:text-4xl font-bold text-center mb-10 md:mb-12 text-[#0F0F12]">AI 赋能企业通用场景</h2>
-        </div>
+        <h2 class="text-2xl md:text-4xl font-bold text-center mb-10 md:mb-12 text-[#0F0F12]" data-aos="fade-up">AI 赋能企业通用场景</h2>
 
         <div class="flex flex-col gap-8 lg:gap-0 relative w-full pb-8 md:pb-12 lg:pb-16">
           <div
             v-for="(scenario, idx) in scenarios"
-            :key="scenario.title"
-            class="scenario-card rounded-2xl p-8 md:p-12 lg:p-16 transition-transform duration-500 overflow-hidden group bg-white border border-[rgba(68,83,130,0.15)]"
-            :style="getScenarioCardStyle(idx)"
+            :key="idx"
+            class="scenario-card rounded-2xl p-8 md:p-12 lg:p-16 overflow-hidden bg-white border border-neutral-200/50"
+            :style="`--card-top:${90 + idx * 40}px;--scale:${0.99 + idx * 0.0033};z-index:${idx + 1}`"
             data-aos="fade-up"
-            data-aos-offset="50"
-            :data-aos-delay="idx * 100"
-            data-aos-duration="800"
-            data-aos-anchor-placement="top-center"
+            :data-aos-delay="idx * 60"
           >
             <div class="absolute inset-0 pointer-events-none opacity-80" :class="scenario.cardGradientClass"></div>
 
@@ -258,11 +247,11 @@
                 <div class="flex items-center justify-between mt-6 pt-6 border-t border-[rgba(68,83,130,0.15)]">
                   <button
                     type="button"
-                    class="group px-8 py-3 rounded-xl bg-neutral-900 text-white text-sm font-semibold hover:bg-neutral-800 transition-colors active:scale-95 flex items-center gap-2"
+                    class="group/btn px-8 py-3 rounded-xl bg-neutral-900 text-white text-sm font-semibold hover:bg-neutral-800 active:scale-[0.98] transition-all duration-200 flex items-center gap-2"
                     @click="openScenarioOverlay(idx)"
                   >
                     立即体验
-                    <ArrowRightIcon class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRightIcon class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-200" />
                   </button>
                   <span class="text-6xl font-black text-neutral-100 select-none tracking-tighter">{{ scenario.index }}</span>
                 </div>
@@ -479,8 +468,6 @@
             </button>
           </div>
         </div>
-
-
       </div>
     </section>
 
@@ -604,106 +591,46 @@ const displayedText = reactive({
 const typingStatus = ref<'idle' | 'part1' | 'part2' | 'part3' | 'done'>('idle')
 const showCursor = ref(true)
 
-// 流星雨数据
-const meteors = ref<{ id: number; left: string; top: string; length: string; delay: string; duration: string }[]>([])
-
 // 光标闪烁
-let cursorInterval: any
+let cursorInterval: ReturnType<typeof setInterval> | null = null
 
 onMounted(() => {
-  // 生成流星数据
-  meteors.value = Array.from({ length: 30 }).map((_, i) => ({
-    id: i,
-    left: `${Math.random() * 120 - 10}%`, // -10% 到 110% (覆盖更宽的顶部区域)
-    top: `${Math.random() * 100 - 100}%`, // -100% 到 0% (从屏幕上方开始)
-    length: `${Math.random() * 30 + 15}px`, // 短雨滴
-    delay: `${Math.random() * 5}s`,
-    duration: `${Math.random() * 5 + 8}s` // 极慢速 (8-13s)
-  }))
-
-  AOS.init({
-    duration: 600,
-    once: true,
-    mirror: false,
-    offset: 5,
-    anchorPlacement: 'top-bottom'
-  })
+  AOS.init({ duration: 500, once: true, offset: 50 })
 
   cursorInterval = setInterval(() => {
-    if (typingStatus.value !== 'done') {
-      showCursor.value = !showCursor.value
-    }
-  }, 500)
+    if (typingStatus.value !== 'done') showCursor.value = !showCursor.value
+  }, 530)
 
   startTypewriter()
 })
 
-const startTypewriter = async () => {
-  // 初始延迟
-  await new Promise(resolve => setTimeout(resolve, 500))
+const delay = (ms: number) => new Promise(r => setTimeout(r, ms))
 
+const startTypewriter = async () => {
+  await delay(400)
   typingStatus.value = 'part2'
-  // Part 2
   for (let i = 1; i <= typewriterText.part2.length; i++) {
     displayedText.part2 = typewriterText.part2.slice(0, i)
-    await new Promise(resolve => setTimeout(resolve, 150))
+    await delay(120)
   }
-
   typingStatus.value = 'part3'
-  // Part 3
   for (let i = 1; i <= typewriterText.part3.length; i++) {
     displayedText.part3 = typewriterText.part3.slice(0, i)
-    await new Promise(resolve => setTimeout(resolve, 150))
+    await delay(120)
   }
-
   typingStatus.value = 'done'
   showCursor.value = false
 }
 
 onBeforeUnmount(() => {
-  if (cursorInterval) clearInterval(cursorInterval)
+  cursorInterval && clearInterval(cursorInterval)
+  if (import.meta.client) document.body.style.overflow = ''
 })
 
-// 类型定义：功能特性
-interface Feature {
-  title: string
-  desc: string
-  icon: Component
-  image: string
-}
-
-// 类型定义：场景
-interface Scenario {
-  title: string
-  items: string[]
-  icon: Component
-  iconBg: string
-  cardGradientClass: string
-  image: string
-  index: string
-}
-
-// 类型定义：优势
-interface Advantage {
-  title: string
-  description: string
-  icon: string
-  class?: string
-  variant?: 'solid' | 'outline' | 'soft'
-  orientation?: 'horizontal' | 'vertical'
-  reverse?: boolean
-  image?: {
-    path: string
-    width: number
-    height: number
-  }
-}
-
-// 类型定义：常见问题
-interface Faq {
-  question: string
-  answer: string
-}
+// 类型定义
+interface Feature { title: string; desc: string; icon: Component; image: string }
+interface Scenario { title: string; items: string[]; icon: Component; iconBg: string; cardGradientClass: string; image: string; index: string }
+interface Advantage { title: string; description: string; icon: string; class?: string; variant?: 'solid' | 'outline' | 'soft'; orientation?: 'horizontal' | 'vertical'; reverse?: boolean; image?: { path: string; width: number; height: number } }
 
 // SEO 元数据配置
 useSeoMeta({
@@ -864,78 +791,22 @@ const scenarios: Scenario[] = [
   }
 ]
 
-/**
- * 生成场景卡片的样式对象（顶部偏移与透视缩放）
- * @param idx - 场景索引
- * @returns 场景卡片的内联样式对象
- */
-const getScenarioCardStyle = (idx: number): Record<string, string | number> => {
-  const baseTop = 90
-  const stepTop = 40
-  const minScale = 0.99
-  const maxScale = 1
-  const denom = Math.max(scenarios.length - 1, 1)
-  const scale = minScale + ((maxScale - minScale) * idx) / denom
-
-  return {
-    '--card-top': `${baseTop + idx * stepTop}px`,
-    transform: `translate3d(0px, 0px, 0px) scale(${scale}, ${scale})`,
-    transformOrigin: 'top center',
-    zIndex: idx + 1
-  }
-}
-
 const overlayScenarioIndex = ref<number | null>(null)
 
-const overlayScenario = computed<Scenario | null>(() => {
-  if (overlayScenarioIndex.value === null) return null
-  return scenarios[overlayScenarioIndex.value] ?? null
-})
+const overlayScenario = computed(() => overlayScenarioIndex.value !== null ? scenarios[overlayScenarioIndex.value] : null)
+const openScenarioOverlay = (idx: number) => { overlayScenarioIndex.value = idx }
+const closeScenarioOverlay = () => { overlayScenarioIndex.value = null }
 
-/**
- * 打开场景体验覆盖层
- * @param idx - 场景索引
- * @returns void
- */
-const openScenarioOverlay = (idx: number): void => {
-  overlayScenarioIndex.value = idx
-}
-
-/**
- * 关闭场景体验覆盖层
- * @returns void
- */
-const closeScenarioOverlay = (): void => {
-  overlayScenarioIndex.value = null
-}
-
-/**
- * 处理覆盖层键盘事件（按 Esc 关闭）
- * @param event - 键盘事件
- * @returns void
- */
-const handleOverlayKeydown = (event: KeyboardEvent): void => {
-  if (event.key === 'Escape') closeScenarioOverlay()
-}
-
-watch(overlayScenarioIndex, (next, prev) => {
+watch(overlayScenarioIndex, (val, prev) => {
   if (!import.meta.client) return
-
-  document.body.style.overflow = next === null ? '' : 'hidden'
-
-  if (prev !== null) window.removeEventListener('keydown', handleOverlayKeydown)
-  if (next !== null) window.addEventListener('keydown', handleOverlayKeydown)
-})
-
-onBeforeUnmount(() => {
-  if (!import.meta.client) return
-  document.body.style.overflow = ''
-  window.removeEventListener('keydown', handleOverlayKeydown)
+  document.body.style.overflow = val === null ? '' : 'hidden'
+  const handler = (e: KeyboardEvent) => e.key === 'Escape' && closeScenarioOverlay()
+  if (prev !== null) window.removeEventListener('keydown', handler)
+  if (val !== null) window.addEventListener('keydown', handler)
 })
 
 /**
  * 平台优势数据列表
- * 突出产品核心竞争力
  */
 const advantages: Advantage[] = [
   {
@@ -995,7 +866,7 @@ const advantages: Advantage[] = [
 ]
 
 /**
- * 为什么选择我们数据列表
+ * 为什么选择我们
  */
 const whyChooseUs = [
   {
@@ -1022,10 +893,8 @@ const whyChooseUs = [
   }
 ]
 
-
-
 /**
- * 用户评价数据列表
+ * 用户评价
  */
 const testimonials = [
   {
@@ -1079,8 +948,7 @@ const testimonials = [
 ]
 
 /**
- * 用户评价分列数据
- * 用于实现瀑布流滚动效果，将评价分配到3列中
+ * 用户评价分列
  */
 const testimonialColumns = computed(() => {
   const columns: (typeof testimonials)[] = [[], [], []]
@@ -1091,9 +959,9 @@ const testimonialColumns = computed(() => {
 })
 
 /**
- * 常见问题数据列表
+ * 常见问题
  */
-const faqs: Faq[] = [
+const faqs = [
   {
     question: '官人技术专家能为我做什么？',
     answer: '我们提供官方认证的技术专家远程服务，可协助您完成 BuildingAI 平台框架的本地或服务器部署，包含环境配置、源码安装、插件调试及后续运维指导，一站式解决部署难题。'
@@ -1120,56 +988,46 @@ const faqs: Faq[] = [
   }
 ]
 
-// FAQ 展开/收起状态管理
 const activeFaq = ref<number | null>(null)
-
-/**
- * 切换 FAQ 展开状态
- * 使用索引控制当前展开的项，再次点击则收起
- * @param idx - 点击的 FAQ 索引
- */
-const toggleFaq = (idx: number) => {
-  activeFaq.value = activeFaq.value === idx ? null : idx
-}
+const toggleFaq = (idx: number) => { activeFaq.value = activeFaq.value === idx ? null : idx }
 </script>
 
 <style scoped>
+/* 场景卡片 - 简化样式 */
 .scenario-card {
   position: sticky;
   top: var(--card-top);
-  backface-visibility: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  transform: scale(var(--scale, 1));
+  transform-origin: top center;
+  will-change: transform;
 }
 
 @media (max-width: 1023px) {
   .scenario-card {
     position: relative;
     top: auto;
+    transform: none;
+    will-change: auto;
   }
 }
 
-.stroke-gray-400\/30 {
-  stroke: color-mix(in oklab, var(--color-gray-400) 30%, transparent);
+/* 流星动画 - 纯 CSS 实现 */
+.meteor-item {
+  position: absolute;
+  width: 2px;
+  height: 20px;
+  background: linear-gradient(to bottom, transparent, rgba(96, 165, 250, 0.7));
+  border-radius: 9999px;
+  left: calc(var(--i) * 8.3%);
+  top: -10%;
+  opacity: 0;
+  animation: meteor 8s linear infinite;
+  animation-delay: calc(var(--i) * 0.6s);
 }
 
 @keyframes meteor {
-  0% {
-    transform: translate(0, 0) rotate(20deg);
-    opacity: 0;
-  }
-  15% {
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-20vw, 120vh) rotate(20deg);
-    opacity: 0;
-  }
-}
-
-.meteor-animation {
-  animation-name: meteor;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+  0% { transform: translate(0, 0) rotate(20deg); opacity: 0; }
+  10% { opacity: 0.8; }
+  100% { transform: translate(-15vw, 100vh) rotate(20deg); opacity: 0; }
 }
 </style>

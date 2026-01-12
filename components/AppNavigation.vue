@@ -171,20 +171,20 @@ const items = computed<NavigationMenuItem[][]>(() => [
     { label: '必定AI', to: '/agent', icon: 'i-lucide-bot' },
     { label: '私有部署', to: '/buidai', icon: 'i-lucide-server' },
     {
-      label: '必定空间',
+      label: '解决方案',
       icon: 'i-lucide-box',
       children: [
-        {
-          label: '解决方案',
-          description: '探索 BuidAI 的行业解决方案',
-          icon: 'i-lucide-lightbulb',
-          to: '/solutions'
-        },
         {
           label: '应用中心',
           description: '丰富的 AI 应用插件',
           icon: 'i-lucide-grid',
           to: '/plugin'
+        },
+        {
+          label: '解决方案',
+          description: '探索 BuidAI 的行业解决方案',
+          icon: 'i-lucide-lightbulb',
+          to: '/solutions'
         }
       ]
     },
@@ -243,30 +243,76 @@ const headerClasses = computed(() => {
 
 /**
  * UI Configuration for Desktop Navigation Menu
- * Adapts to transparent/solid states.
+ * Adapts to transparent/solid states with enterprise-grade dropdown styling.
  */
 const navigationMenuUi = computed(() => ({
+  // 一级菜单链接样式 - 使用系统默认配色
   link: isTransparent.value
-    ? 'text-base text-white/80 hover:text-white hover:bg-white/10 font-medium rounded-lg px-3 py-2'
-    : 'text-base text-gray-600 hover:text-gray-900 hover:bg-gray-50 font-medium rounded-lg px-3 py-2',
+    ? 'text-base text-white/80 hover:text-white hover:bg-white/10 font-medium rounded-lg px-3 py-2 transition-colors duration-150'
+    : 'text-base text-muted hover:text-highlighted hover:bg-elevated font-medium rounded-lg px-3 py-2 transition-colors duration-150',
   linkActive: isTransparent.value
-    ? 'text-white font-bold bg-white/10 rounded-lg'
-    : 'text-primary font-bold bg-primary-50 text-primary-600 rounded-lg',
+    ? 'text-white font-semibold bg-white/15 rounded-lg'
+    : 'text-primary font-semibold bg-primary/10 rounded-lg',
   linkLeadingIcon: isTransparent.value
     ? 'text-white/60 group-hover:text-white'
-    : 'text-gray-400 group-hover:text-gray-500 group-[.router-link-active]:text-primary-600',
-  childLinkDescription: 'text-xs text-gray-500'
+    : 'text-dimmed group-hover:text-muted group-[.router-link-active]:text-primary',
+  
+  // 二级菜单下拉面板 - 企业级简洁风格
+  content: 'bg-default rounded-xl shadow-xl ring-1 ring-default p-2 min-w-[280px]',
+  viewport: 'overflow-hidden',
+  
+  // 二级菜单列表容器
+  childList: 'space-y-1',
+  
+  // 二级菜单项
+  childItem: '',
+  
+  // 二级菜单链接 - icon和label并排，description换行贴左
+  childLink: 'flex flex-wrap items-center gap-x-2 gap-y-1 p-3 rounded-lg hover:bg-elevated transition-colors duration-150 group/child',
+  
+  // 二级菜单链接包装器 - 让子元素直接参与父级布局
+  childLinkWrapper: 'contents',
+  
+  // 二级菜单图标
+  childLinkIcon: 'size-5 text-dimmed group-hover/child:text-muted shrink-0 transition-colors duration-150',
+  
+  // 二级菜单标题 - 与icon同行
+  childLinkLabel: 'font-semibold text-highlighted group-hover/child:text-primary transition-colors duration-150',
+  
+  // 二级菜单描述 - 占满宽度换行贴左
+  childLinkDescription: 'w-full text-sm text-muted leading-relaxed'
 }))
 
 /**
  * UI Configuration for Mobile Navigation Menu
- * Larger touch targets and cleaner spacing.
+ * Larger touch targets, cleaner spacing, and enterprise-grade styling.
  */
 const mobileNavigationMenuUi = computed(() => ({
-  link: 'text-base text-gray-700 hover:text-gray-900 hover:bg-gray-50 font-medium rounded-lg px-3 py-3 min-h-[48px] flex items-center leading-relaxed',
-  linkActive: 'text-primary-600 font-bold bg-primary-50 rounded-lg px-3 py-3 min-h-[48px] flex items-center',
-  linkLeadingIcon: 'text-gray-400 group-hover:text-gray-500 group-[.router-link-active]:text-primary-600 w-5 h-5 mr-3',
-  childLinkDescription: 'text-sm text-gray-500 mt-1'
+  // 一级菜单链接 - 使用系统默认配色
+  link: 'text-base text-muted hover:text-highlighted hover:bg-elevated font-medium rounded-lg px-3 py-3 min-h-[48px] flex items-center leading-relaxed transition-colors duration-150',
+  linkActive: 'text-primary font-semibold bg-primary/10 rounded-lg px-3 py-3 min-h-[48px] flex items-center',
+  linkLeadingIcon: 'text-dimmed group-hover:text-muted group-[.router-link-active]:text-primary w-5 h-5 mr-3',
+  
+  // 二级菜单容器
+  content: 'bg-elevated/50 rounded-lg mt-1 mb-2',
+  
+  // 二级菜单列表
+  childList: 'space-y-1 p-2',
+  
+  // 二级菜单链接 - icon和label并排，description换行贴左
+  childLink: 'flex flex-wrap items-center gap-x-2 gap-y-1 p-3 rounded-lg hover:bg-default transition-colors duration-150 group/child',
+  
+  // 二级菜单链接包装器
+  childLinkWrapper: 'contents',
+  
+  // 二级菜单图标
+  childLinkIcon: 'size-5 text-dimmed shrink-0',
+  
+  // 二级菜单标题
+  childLinkLabel: 'font-semibold text-highlighted',
+  
+  // 二级菜单描述
+  childLinkDescription: 'w-full text-sm text-muted leading-relaxed'
 }))
 
 // --- Scroll Handling ---

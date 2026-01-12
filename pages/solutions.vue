@@ -153,8 +153,7 @@
              <div class="h-full w-full flex flex-col">
                 <!-- 卡片视觉内容 -->
                 <div class="flex-1 relative overflow-hidden flex items-center justify-center p-6" :class="item.bgClass">
-                   <component :is="item.icon" v-if="item.icon" class="w-16 h-16 text-[#6E58FF] opacity-80" />
-                   <div v-if="item.customVisual" v-html="item.customVisual"></div>
+                   <UIcon :name="item.iconClass" class="w-12 h-12 text-[#6E58FF] opacity-70" />
                 </div>
                 <!-- 卡片底部信息 -->
                 <div class="h-16 bg-white border-t border-gray-100 px-5 flex items-center justify-between">
@@ -470,18 +469,11 @@ useSeoMeta({
  * 功能特性数据接口
  */
 interface FeatureItem {
-  /** 标题 */
-  title: string;
-  /** 标签文本 */
-  tag: string;
-  /** 所属分类 */
-  category: string;
-  /** 图标组件（可选） */
-  icon?: any;
-  /** 背景样式类 */
-  bgClass?: string;
-  /** 自定义视觉 HTML 字符串（可选） */
-  customVisual?: string;
+  title: string
+  tag: string
+  category: string
+  bgClass?: string
+  iconClass: string
 }
 
 /**
@@ -609,326 +601,56 @@ const solutionRows: SolutionRow[] = [
  */
 const allFeatures: FeatureItem[] = [
   // AI 视觉创作
-  {
-    title: 'Sora2视频',
-    tag: 'Video',
-    category: 'AI 视觉创作',
-    bgClass: 'bg-gradient-to-br from-blue-50 to-purple-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">🎥 Sora2</div>'
-  },
-  {
-    title: '香蕉绘画Nanobanana',
-    tag: 'AI Art',
-    category: 'AI 视觉创作',
-    bgClass: 'bg-gradient-to-br from-purple-50 to-pink-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">🎨 Banana</div>'
-  },
-  {
-    title: 'AI视频',
-    tag: 'Video',
-    category: 'AI 视觉创作',
-    bgClass: 'bg-gradient-to-br from-blue-50 to-indigo-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">📹 AI Video</div>'
-  },
-  {
-    title: 'AI绘画',
-    tag: 'AI Art',
-    category: 'AI 视觉创作',
-    bgClass: 'bg-gradient-to-br from-pink-50 to-purple-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">🖼️ AI Art</div>'
-  },
-  {
-    title: '艺术二维码',
-    tag: 'QR Code',
-    category: 'AI 视觉创作',
-    bgClass: 'bg-gradient-to-br from-indigo-50 to-blue-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">📱 QR Code</div>'
-  },
-  {
-    title: '豆包文生图',
-    tag: 'AI Image',
-    category: 'AI 视觉创作',
-    bgClass: 'bg-gradient-to-br from-purple-50 to-blue-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">🖼️ Doudou</div>'
-  },
-  {
-    title: 'AI改图',
-    tag: 'Edit',
-    category: 'AI 视觉创作',
-    bgClass: 'bg-gradient-to-br from-blue-50 to-indigo-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">✏️ AI Edit</div>'
-  },
-  {
-    title: 'AI配音工具',
-    tag: 'Voice',
-    category: 'AI 视觉创作',
-    bgClass: 'bg-gradient-to-br from-indigo-50 to-purple-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">🎤 AI Voice</div>'
-  },
+  { title: 'Sora2视频', tag: 'Video', category: 'AI 视觉创作', bgClass: 'bg-gradient-to-br from-blue-50 to-purple-50', iconClass: 'i-lucide-video' },
+  { title: '香蕉绘画Nanobanana', tag: 'AI Art', category: 'AI 视觉创作', bgClass: 'bg-gradient-to-br from-purple-50 to-pink-50', iconClass: 'i-lucide-palette' },
+  { title: 'AI视频', tag: 'Video', category: 'AI 视觉创作', bgClass: 'bg-gradient-to-br from-blue-50 to-indigo-50', iconClass: 'i-lucide-clapperboard' },
+  { title: 'AI绘画', tag: 'AI Art', category: 'AI 视觉创作', bgClass: 'bg-gradient-to-br from-pink-50 to-purple-50', iconClass: 'i-lucide-image' },
+  { title: '艺术二维码', tag: 'QR Code', category: 'AI 视觉创作', bgClass: 'bg-gradient-to-br from-indigo-50 to-blue-50', iconClass: 'i-lucide-qr-code' },
+  { title: '豆包文生图', tag: 'AI Image', category: 'AI 视觉创作', bgClass: 'bg-gradient-to-br from-purple-50 to-blue-50', iconClass: 'i-lucide-image-plus' },
+  { title: 'AI改图', tag: 'Edit', category: 'AI 视觉创作', bgClass: 'bg-gradient-to-br from-blue-50 to-indigo-50', iconClass: 'i-lucide-pencil' },
+  { title: 'AI配音工具', tag: 'Voice', category: 'AI 视觉创作', bgClass: 'bg-gradient-to-br from-indigo-50 to-purple-50', iconClass: 'i-lucide-mic' },
   // 智能对话 Agent
-  {
-    title: '智能体',
-    tag: 'Agent',
-    category: '智能对话 Agent',
-    bgClass: 'bg-gradient-to-br from-purple-50 to-indigo-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">🤖 Agent</div>'
-  },
-  {
-    title: 'AI对话',
-    tag: 'Chat',
-    category: '智能对话 Agent',
-    bgClass: 'bg-gradient-to-br from-blue-50 to-purple-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">💬 AI Chat</div>'
-  },
-  {
-    title: '对话html预览',
-    tag: 'Preview',
-    category: '智能对话 Agent',
-    bgClass: 'bg-gradient-to-br from-indigo-50 to-blue-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">🌐 HTML Preview</div>'
-  },
-  {
-    title: '对话上传文件',
-    tag: 'Upload',
-    category: '智能对话 Agent',
-    bgClass: 'bg-gradient-to-br from-purple-50 to-blue-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">📤 Upload</div>'
-  },
-  {
-    title: '智能体DSL',
-    tag: 'DSL',
-    category: '智能对话 Agent',
-    bgClass: 'bg-gradient-to-br from-blue-50 to-indigo-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">🧰 DSL</div>'
-  },
-  {
-    title: '对话文案AI补全',
-    tag: 'Completion',
-    category: '智能对话 Agent',
-    bgClass: 'bg-gradient-to-br from-indigo-50 to-purple-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">✍️ AI Completion</div>'
-  },
-  {
-    title: '语音播报',
-    tag: 'TTS',
-    category: '智能对话 Agent',
-    bgClass: 'bg-gradient-to-br from-purple-50 to-pink-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">🔊 TTS</div>'
-  },
-  {
-    title: '分享对话',
-    tag: 'Share',
-    category: '智能对话 Agent',
-    bgClass: 'bg-gradient-to-br from-pink-50 to-purple-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">📤 Share</div>'
-  },
+  { title: '智能体', tag: 'Agent', category: '智能对话 Agent', bgClass: 'bg-gradient-to-br from-purple-50 to-indigo-50', iconClass: 'i-lucide-bot' },
+  { title: 'AI对话', tag: 'Chat', category: '智能对话 Agent', bgClass: 'bg-gradient-to-br from-blue-50 to-purple-50', iconClass: 'i-lucide-message-circle' },
+  { title: '对话html预览', tag: 'Preview', category: '智能对话 Agent', bgClass: 'bg-gradient-to-br from-indigo-50 to-blue-50', iconClass: 'i-lucide-code' },
+  { title: '对话上传文件', tag: 'Upload', category: '智能对话 Agent', bgClass: 'bg-gradient-to-br from-purple-50 to-blue-50', iconClass: 'i-lucide-upload' },
+  { title: '智能体DSL', tag: 'DSL', category: '智能对话 Agent', bgClass: 'bg-gradient-to-br from-blue-50 to-indigo-50', iconClass: 'i-lucide-workflow' },
+  { title: '对话文案AI补全', tag: 'Completion', category: '智能对话 Agent', bgClass: 'bg-gradient-to-br from-indigo-50 to-purple-50', iconClass: 'i-lucide-sparkles' },
+  { title: '语音播报', tag: 'TTS', category: '智能对话 Agent', bgClass: 'bg-gradient-to-br from-purple-50 to-pink-50', iconClass: 'i-lucide-volume-2' },
+  { title: '分享对话', tag: 'Share', category: '智能对话 Agent', bgClass: 'bg-gradient-to-br from-pink-50 to-purple-50', iconClass: 'i-lucide-share-2' },
   // 知识库与文档
-  {
-    title: '知识库',
-    tag: 'Knowledge',
-    category: '知识库与文档',
-    bgClass: 'bg-gradient-to-br from-blue-50 to-purple-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">📚 Knowledge</div>'
-  },
-  {
-    title: '文件导入导出',
-    tag: 'Import',
-    category: '知识库与文档',
-    bgClass: 'bg-gradient-to-br from-indigo-50 to-blue-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">📥 Import</div>'
-  },
-  {
-    title: '问答对导入',
-    tag: 'QA',
-    category: '知识库与文档',
-    bgClass: 'bg-gradient-to-br from-purple-50 to-blue-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">❓ QA</div>'
-  },
-  {
-    title: '拆分问答对',
-    tag: 'Split',
-    category: '知识库与文档',
-    bgClass: 'bg-gradient-to-br from-blue-50 to-indigo-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">✂️ Split</div>'
-  },
-  {
-    title: '文档问答',
-    tag: 'Doc QA',
-    category: '知识库与文档',
-    bgClass: 'bg-gradient-to-br from-indigo-50 to-purple-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">📄 Doc QA</div>'
-  },
-  {
-    title: 'PDF解析工具',
-    tag: 'PDF',
-    category: '知识库与文档',
-    bgClass: 'bg-gradient-to-br from-purple-50 to-pink-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">📄 PDF</div>'
-  },
-  {
-    title: '文件生成',
-    tag: 'Generate',
-    category: '知识库与文档',
-    bgClass: 'bg-gradient-to-br from-pink-50 to-purple-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">📄 Generate</div>'
-  },
+  { title: '知识库', tag: 'Knowledge', category: '知识库与文档', bgClass: 'bg-gradient-to-br from-blue-50 to-purple-50', iconClass: 'i-lucide-book-open' },
+  { title: '文件导入导出', tag: 'Import', category: '知识库与文档', bgClass: 'bg-gradient-to-br from-indigo-50 to-blue-50', iconClass: 'i-lucide-import' },
+  { title: '问答对导入', tag: 'QA', category: '知识库与文档', bgClass: 'bg-gradient-to-br from-purple-50 to-blue-50', iconClass: 'i-lucide-help-circle' },
+  { title: '拆分问答对', tag: 'Split', category: '知识库与文档', bgClass: 'bg-gradient-to-br from-blue-50 to-indigo-50', iconClass: 'i-lucide-scissors' },
+  { title: '文档问答', tag: 'Doc QA', category: '知识库与文档', bgClass: 'bg-gradient-to-br from-indigo-50 to-purple-50', iconClass: 'i-lucide-file-question' },
+  { title: 'PDF解析工具', tag: 'PDF', category: '知识库与文档', bgClass: 'bg-gradient-to-br from-purple-50 to-pink-50', iconClass: 'i-lucide-file-text' },
+  { title: '文件生成', tag: 'Generate', category: '知识库与文档', bgClass: 'bg-gradient-to-br from-pink-50 to-purple-50', iconClass: 'i-lucide-file-plus' },
   // 模型与数据能力
-  {
-    title: 'MCP',
-    tag: 'MCP',
-    category: '模型与数据能力',
-    bgClass: 'bg-gradient-to-br from-blue-50 to-purple-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">🧠 MCP</div>'
-  },
-  {
-    title: '模型管理',
-    tag: 'Model',
-    category: '模型与数据能力',
-    bgClass: 'bg-gradient-to-br from-indigo-50 to-blue-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">🤖 Model</div>'
-  },
-  {
-    title: '大模型视觉识别',
-    tag: 'Vision',
-    category: '模型与数据能力',
-    bgClass: 'bg-gradient-to-br from-purple-50 to-blue-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">👁️ Vision</div>'
-  },
-  {
-    title: '网页解析',
-    tag: 'Parse',
-    category: '模型与数据能力',
-    bgClass: 'bg-gradient-to-br from-blue-50 to-indigo-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">🌐 Parse</div>'
-  },
-  {
-    title: '图文解析',
-    tag: 'Image Parse',
-    category: '模型与数据能力',
-    bgClass: 'bg-gradient-to-br from-indigo-50 to-purple-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">📸 Image Parse</div>'
-  },
-  {
-    title: '网页速读',
-    tag: 'Read',
-    category: '模型与数据能力',
-    bgClass: 'bg-gradient-to-br from-purple-50 to-pink-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">📖 Read</div>'
-  },
-  {
-    title: '内容总结',
-    tag: 'Summary',
-    category: '模型与数据能力',
-    bgClass: 'bg-gradient-to-br from-pink-50 to-purple-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">📝 Summary</div>'
-  },
-  {
-    title: '图表生成',
-    tag: 'Chart',
-    category: '模型与数据能力',
-    bgClass: 'bg-gradient-to-br from-purple-50 to-blue-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">📊 Chart</div>'
-  },
+  { title: 'MCP', tag: 'MCP', category: '模型与数据能力', bgClass: 'bg-gradient-to-br from-blue-50 to-purple-50', iconClass: 'i-lucide-cpu' },
+  { title: '模型管理', tag: 'Model', category: '模型与数据能力', bgClass: 'bg-gradient-to-br from-indigo-50 to-blue-50', iconClass: 'i-lucide-boxes' },
+  { title: '大模型视觉识别', tag: 'Vision', category: '模型与数据能力', bgClass: 'bg-gradient-to-br from-purple-50 to-blue-50', iconClass: 'i-lucide-eye' },
+  { title: '网页解析', tag: 'Parse', category: '模型与数据能力', bgClass: 'bg-gradient-to-br from-blue-50 to-indigo-50', iconClass: 'i-lucide-globe' },
+  { title: '图文解析', tag: 'Image Parse', category: '模型与数据能力', bgClass: 'bg-gradient-to-br from-indigo-50 to-purple-50', iconClass: 'i-lucide-scan' },
+  { title: '网页速读', tag: 'Read', category: '模型与数据能力', bgClass: 'bg-gradient-to-br from-purple-50 to-pink-50', iconClass: 'i-lucide-book-marked' },
+  { title: '内容总结', tag: 'Summary', category: '模型与数据能力', bgClass: 'bg-gradient-to-br from-pink-50 to-purple-50', iconClass: 'i-lucide-list' },
+  { title: '图表生成', tag: 'Chart', category: '模型与数据能力', bgClass: 'bg-gradient-to-br from-purple-50 to-blue-50', iconClass: 'i-lucide-bar-chart-3' },
   // 营销与应用集成
-  {
-    title: '发布至微信公众号',
-    tag: 'WeChat',
-    category: '营销与应用集成',
-    bgClass: 'bg-gradient-to-br from-blue-50 to-indigo-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">📱 WeChat</div>'
-  },
-  {
-    title: '发布至朋友圈海报',
-    tag: 'WeChat',
-    category: '营销与应用集成',
-    bgClass: 'bg-gradient-to-br from-indigo-50 to-purple-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">📸 Poster</div>'
-  },
-  {
-    title: '发布至企业微信',
-    tag: 'WeCom',
-    category: '营销与应用集成',
-    bgClass: 'bg-gradient-to-br from-purple-50 to-pink-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">💼 WeCom</div>'
-  },
-  {
-    title: '发布至影刀RPA',
-    tag: 'RPA',
-    category: '营销与应用集成',
-    bgClass: 'bg-gradient-to-br from-pink-50 to-purple-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">🤖 RPA</div>'
-  },
-  {
-    title: '思维导图',
-    tag: 'Mind Map',
-    category: '营销与应用集成',
-    bgClass: 'bg-gradient-to-br from-purple-50 to-blue-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">🧠 Mind Map</div>'
-  },
-  {
-    title: 'GEO排名',
-    tag: 'GEO',
-    category: '营销与应用集成',
-    bgClass: 'bg-gradient-to-br from-blue-50 to-indigo-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">🌍 GEO</div>'
-  },
-  {
-    title: '优化工具',
-    tag: 'Optimize',
-    category: '营销与应用集成',
-    bgClass: 'bg-gradient-to-br from-indigo-50 to-purple-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">⚙️ Optimize</div>'
-  },
-  {
-    title: 'AI PPT',
-    tag: 'PPT',
-    category: '营销与应用集成',
-    bgClass: 'bg-gradient-to-br from-purple-50 to-pink-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">📊 PPT</div>'
-  },
-  {
-    title: '爆款文章生成',
-    tag: 'Article',
-    category: '营销与应用集成',
-    bgClass: 'bg-gradient-to-br from-pink-50 to-purple-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">📝 Article</div>'
-  },
+  { title: '发布至微信公众号', tag: 'WeChat', category: '营销与应用集成', bgClass: 'bg-gradient-to-br from-blue-50 to-indigo-50', iconClass: 'i-lucide-send' },
+  { title: '发布至朋友圈海报', tag: 'WeChat', category: '营销与应用集成', bgClass: 'bg-gradient-to-br from-indigo-50 to-purple-50', iconClass: 'i-lucide-layout-template' },
+  { title: '发布至企业微信', tag: 'WeCom', category: '营销与应用集成', bgClass: 'bg-gradient-to-br from-purple-50 to-pink-50', iconClass: 'i-lucide-building-2' },
+  { title: '发布至影刀RPA', tag: 'RPA', category: '营销与应用集成', bgClass: 'bg-gradient-to-br from-pink-50 to-purple-50', iconClass: 'i-lucide-bot' },
+  { title: '思维导图', tag: 'Mind Map', category: '营销与应用集成', bgClass: 'bg-gradient-to-br from-purple-50 to-blue-50', iconClass: 'i-lucide-git-fork' },
+  { title: 'GEO排名', tag: 'GEO', category: '营销与应用集成', bgClass: 'bg-gradient-to-br from-blue-50 to-indigo-50', iconClass: 'i-lucide-map-pin' },
+  { title: '优化工具', tag: 'Optimize', category: '营销与应用集成', bgClass: 'bg-gradient-to-br from-indigo-50 to-purple-50', iconClass: 'i-lucide-settings' },
+  { title: 'AI PPT', tag: 'PPT', category: '营销与应用集成', bgClass: 'bg-gradient-to-br from-purple-50 to-pink-50', iconClass: 'i-lucide-presentation' },
+  { title: '爆款文章生成', tag: 'Article', category: '营销与应用集成', bgClass: 'bg-gradient-to-br from-pink-50 to-purple-50', iconClass: 'i-lucide-newspaper' },
   // 其他功能
-  {
-    title: '上传文件',
-    tag: 'Upload',
-    category: '其他功能',
-    bgClass: 'bg-gradient-to-br from-blue-50 to-purple-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">📤 Upload</div>'
-  },
-  {
-    title: '手机号登录',
-    tag: 'Login',
-    category: '其他功能',
-    bgClass: 'bg-gradient-to-br from-indigo-50 to-blue-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">📱 Login</div>'
-  },
-  {
-    title: '图像识别',
-    tag: 'Image',
-    category: '其他功能',
-    bgClass: 'bg-gradient-to-br from-purple-50 to-blue-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">👁️ Image</div>'
-  },
-  {
-    title: '快递查询',
-    tag: 'Express',
-    category: '其他功能',
-    bgClass: 'bg-gradient-to-br from-blue-50 to-indigo-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">📦 Express</div>'
-  },
-  {
-    title: '天气查询',
-    tag: 'Weather',
-    category: '其他功能',
-    bgClass: 'bg-gradient-to-br from-indigo-50 to-purple-50',
-    customVisual: '<div class="text-2xl font-bold text-[#6E58FF]">🌤️ Weather</div>'
-  }
+  { title: '上传文件', tag: 'Upload', category: '其他功能', bgClass: 'bg-gradient-to-br from-blue-50 to-purple-50', iconClass: 'i-lucide-cloud-upload' },
+  { title: '手机号登录', tag: 'Login', category: '其他功能', bgClass: 'bg-gradient-to-br from-indigo-50 to-blue-50', iconClass: 'i-lucide-smartphone' },
+  { title: '图像识别', tag: 'Image', category: '其他功能', bgClass: 'bg-gradient-to-br from-purple-50 to-blue-50', iconClass: 'i-lucide-scan-eye' },
+  { title: '快递查询', tag: 'Express', category: '其他功能', bgClass: 'bg-gradient-to-br from-blue-50 to-indigo-50', iconClass: 'i-lucide-package' },
+  { title: '天气查询', tag: 'Weather', category: '其他功能', bgClass: 'bg-gradient-to-br from-indigo-50 to-purple-50', iconClass: 'i-lucide-cloud-sun' }
 ]
 
 /**
