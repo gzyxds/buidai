@@ -14,6 +14,11 @@ export const sceneApps: SceneAppData[] = [
     image: '/plugin/Sora2短剧视频创作.png'
   },
   {
+    name: '大模型擂台',
+    description: '大模型擂台是一款集合了众多先进大型语言模型的竞技与交流平台，致力于为用户提供最前沿的A技术体验与高效的问题解决服务。通过这款软件，用户可以轻松报触到由全球顶尖团队研发的各种大模型，感受它们在文本生成、语言理解、知识问答等多方面的强大能力。',
+    image: 'https://server.buildingai.cc/uploads/image/2026/01/1763924b-e6ce-4c81-977e-37028d4bbda0.png'
+  },
+  {
     name: 'Nanobanana',
     description: '香蕉绘画预置多个模版，开箱即用。结合gemini-3-pro-image-preview的生图能力，能够有效保持角色一致性。',
     image: '/plugin/Nanobanana.png'

@@ -227,8 +227,8 @@ export const apps: AppData[] = [
     icon: TrophyIcon,
     image: '/plugin/大模型擂台.png',
     category: 'enterprise',
-    originalPrice: 0.00,
-    discountPrice: 0.00,
+    originalPrice: 1198.00,
+    discountPrice: 1198.00,
     date: '2025/11/15'
   },
   {
@@ -238,8 +238,8 @@ export const apps: AppData[] = [
     icon: CopyIcon,
     image: '/plugin/小红书内容复刻.png',
     category: 'writing',
-    originalPrice: 599.00,
-    discountPrice: 299.00,
+    originalPrice: 1398.00,
+    discountPrice: 1398.00,
     date: '2025/11/15'
   },
   {
@@ -271,8 +271,8 @@ export const apps: AppData[] = [
     icon: ImagePlusIcon,
     image: '/plugin/爆款文章自动配图.png',
     category: 'writing',
-    originalPrice: 499.00,
-    discountPrice: 249.00,
+    originalPrice: 998.00,
+    discountPrice: 998.00,
     date: '2025/11/15'
   },
   {
@@ -283,7 +283,7 @@ export const apps: AppData[] = [
     image: '/plugin/AI音乐.png',
     category: 'video',
     originalPrice: 1399.00,
-    discountPrice: 699.00,
+    discountPrice: 1399.00,
     date: '2025/12/27'
   },
   {
