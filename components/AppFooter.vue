@@ -94,16 +94,19 @@
       </div>
 
       <!-- 友情链接 (新增) -->
-      <div class="mb-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-400">
-        <span class="text-gray-300 select-none">友情链接:</span>
-        <a href="#" class="hover:text-primary-600 transition-colors">艺创AI</a>
-        <a href="#" class="hover:text-primary-600 transition-colors">企业知识库</a>
-        <a href="#" class="hover:text-primary-600 transition-colors">优刻云</a>
-        <a href="#" class="hover:text-primary-600 transition-colors">AI数字人</a>
-        <a href="#" class="hover:text-primary-600 transition-colors">AI绘画</a>
-        <a href="#" class="hover:text-primary-600 transition-colors">论文创作</a>
-        <a href="#" class="hover:text-primary-600 transition-colors">PaYphp</a>
-        <a href="#" class="hover:text-primary-600 transition-colors">172号卡</a>
+      <div class="mb-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-neutral-400">
+        <span class="text-neutral-300 select-none">友情链接:</span>
+        <a
+          v-for="link in friendLinks"
+          :key="link.name"
+          :href="link.url"
+          class="hover:text-primary-600 transition-colors"
+          :title="link.description"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {{ link.name }}
+        </a>
       </div>
 
       <div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
