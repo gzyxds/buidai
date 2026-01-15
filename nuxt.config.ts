@@ -65,7 +65,7 @@ export default defineNuxtConfig({
         // 设置不同页面的优先级
         let priority = 0.7
         let changefreq: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never' = 'daily'
-        
+
         if (route === '/') {
           priority = 1.0
           changefreq = 'daily'
@@ -82,7 +82,7 @@ export default defineNuxtConfig({
           priority = 0.9
           changefreq = 'weekly'
         }
-        
+
         return {
           url: route,
           priority,
