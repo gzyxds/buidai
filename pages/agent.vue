@@ -20,18 +20,18 @@
         </p>
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto px-4 sm:px-0">
-          <button class="w-full sm:w-auto px-8 py-3 rounded-full bg-neutral-900 text-white font-semibold hover:bg-neutral-800 active:scale-95 transition-all flex items-center justify-center gap-2 touch-manipulation">
+          <a href="https://cloud.buidai.com/" target="_blank" class="w-full sm:w-auto px-8 py-3 rounded-full bg-neutral-900 text-white font-semibold hover:bg-neutral-800 active:scale-95 transition-all flex items-center justify-center gap-2 touch-manipulation">
             <!-- Rocket Icon -->
             <RocketLaunchIcon class="w-5 h-5" />
             立即开始
             <!-- Arrow Right Icon -->
             <ArrowRightIcon class="w-4 h-4" />
-          </button>
-          <button class="w-full sm:w-auto px-8 py-3 rounded-full bg-white border border-neutral-200 text-neutral-900 font-semibold hover:bg-neutral-50 active:scale-95 transition-all shadow-sm flex items-center justify-center gap-2 touch-manipulation">
+          </a>
+          <a href="https://doc.buidai.com/" target="_blank" class="w-full sm:w-auto px-8 py-3 rounded-full bg-white border border-neutral-200 text-neutral-900 font-semibold hover:bg-neutral-50 active:scale-95 transition-all shadow-sm flex items-center justify-center gap-2 touch-manipulation">
             <!-- Document Icon -->
             <DocumentTextIcon class="w-5 h-5" />
             查看文档
-          </button>
+          </a>
         </div>
       </div>
     </section>

@@ -46,6 +46,9 @@
                 size="xl"
                 color="primary"
                 label="开始使用"
+                to="https://cloud.buidai.com"
+                target="_blank"
+                icon="i-heroicons-rocket-launch"
                 class="w-full sm:w-auto rounded-full px-8 py-3.5 text-lg justify-center"
               />
               <UButton
@@ -53,6 +56,9 @@
                 variant="solid"
                 color="neutral"
                 label="立即创造"
+                to="https://cloud.buidai.com"
+                target="_blank"
+                icon="i-heroicons-sparkles"
                 class="w-full sm:w-auto rounded-full px-8 py-3.5 text-lg justify-center"
               />
             </div>

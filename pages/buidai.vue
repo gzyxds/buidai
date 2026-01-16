@@ -30,18 +30,18 @@
         </p>
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto px-4 sm:px-0">
-          <button class="w-full sm:w-auto px-8 py-3 rounded-full bg-neutral-900 text-white font-semibold hover:bg-neutral-800 active:scale-95 transition-all flex items-center justify-center gap-2 touch-manipulation">
+          <a href="https://cloud.buidai.com/" target="_blank" class="w-full sm:w-auto px-8 py-3 rounded-full bg-neutral-900 text-white font-semibold hover:bg-neutral-800 active:scale-95 transition-all flex items-center justify-center gap-2 touch-manipulation">
             <!-- Rocket Icon -->
             <RocketLaunchIcon class="w-5 h-5" />
             立即开始
             <!-- Arrow Right Icon -->
             <ArrowRightIcon class="w-4 h-4" />
-          </button>
-          <button class="w-full sm:w-auto px-8 py-3 rounded-full bg-white border border-neutral-200 text-neutral-900 font-semibold hover:bg-neutral-50 active:scale-95 transition-all shadow-sm flex items-center justify-center gap-2 touch-manipulation">
+          </a>
+          <a href="https://doc.buidai.com/" target="_blank" class="w-full sm:w-auto px-8 py-3 rounded-full bg-white border border-neutral-200 text-neutral-900 font-semibold hover:bg-neutral-50 active:scale-95 transition-all shadow-sm flex items-center justify-center gap-2 touch-manipulation">
             <!-- Document Icon -->
             <DocumentTextIcon class="w-5 h-5" />
             查看文档
-          </button>
+          </a>
         </div>
       </div>
     </section>
@@ -245,14 +245,14 @@
 
                 <!-- 按钮与序号 -->
                 <div class="flex items-center justify-between mt-6 pt-6 border-t border-[rgba(68,83,130,0.15)]">
-                  <button
-                    type="button"
+                  <a
+                    href="https://cloud.buidai.com/login/"
+                    target="_blank"
                     class="group/btn px-8 py-3 rounded-xl bg-neutral-900 text-white text-sm font-semibold hover:bg-neutral-800 active:scale-[0.98] transition-all duration-200 flex items-center gap-2"
-                    @click="openScenarioOverlay(idx)"
                   >
                     立即体验
                     <ArrowRightIcon class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-200" />
-                  </button>
+                  </a>
                   <span class="text-6xl font-black text-neutral-100 select-none tracking-tighter">{{ scenario.index }}</span>
                 </div>
               </div>
@@ -475,6 +475,8 @@
               size="lg"
               variant="ghost"
               color="neutral"
+              to="https://cloud.buidai.com/"
+              target="_blank"
               class="w-full sm:w-auto justify-center px-6 py-3 font-medium rounded-xl border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-all"
             />
             <UButton
@@ -482,6 +484,8 @@
               size="lg"
               color="neutral"
               variant="solid"
+              to="https://cloud.buidai.com/"
+              target="_blank"
               class="w-full sm:w-auto justify-center px-6 py-3 font-medium rounded-xl shadow-md hover:-translate-y-0.5 transition-all bg-neutral-900 text-white hover:bg-neutral-800"
               icon="i-heroicons-rocket-launch"
             />
@@ -490,81 +494,7 @@
       </div>
     </section>
 
-    <Teleport to="body">
-      <div
-        v-if="overlayScenario"
-        class="fixed inset-0 z-1000 bg-black/50 flex items-center justify-center p-4"
-        role="dialog"
-        aria-modal="true"
-        @click.self="closeScenarioOverlay"
-      >
-        <div class="w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-neutral-100 overflow-hidden">
-          <div class="flex items-center justify-between px-6 py-4 border-b border-neutral-100">
-            <div class="flex items-center gap-3 min-w-0">
-              <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" :class="overlayScenario.iconBg">
-                <component :is="overlayScenario.icon" class="w-6 h-6" />
-              </div>
-              <div class="min-w-0">
-                <div class="text-sm text-neutral-500">场景体验</div>
-                <div class="text-lg font-semibold text-neutral-900 truncate">{{ overlayScenario.title }}</div>
-              </div>
-            </div>
 
-            <button
-              type="button"
-              class="w-10 h-10 inline-flex items-center justify-center rounded-xl hover:bg-neutral-50 active:bg-neutral-100 transition-colors"
-              @click="closeScenarioOverlay"
-              aria-label="关闭"
-            >
-              <XMarkIcon class="w-6 h-6 text-neutral-500" />
-            </button>
-          </div>
-
-          <div class="p-6 md:p-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-start">
-              <div class="space-y-4">
-                <ul class="space-y-3">
-                  <li
-                    v-for="(item, i) in overlayScenario.items"
-                    :key="i"
-                    class="flex items-start gap-3 text-neutral-600 text-base leading-relaxed"
-                  >
-                    <CheckCircleIcon class="w-6 h-6 text-primary-500 shrink-0 mt-0.5" />
-                    <span>{{ item }}</span>
-                  </li>
-                </ul>
-
-                <div class="pt-4 border-t border-neutral-100 flex flex-wrap gap-3">
-                  <button
-                    type="button"
-                    class="px-5 py-2.5 rounded-xl bg-neutral-900 text-white text-sm font-semibold hover:bg-neutral-800 transition-colors"
-                    @click="closeScenarioOverlay"
-                  >
-                    立即开始
-                  </button>
-                  <button
-                    type="button"
-                    class="px-5 py-2.5 rounded-xl bg-white border border-neutral-200 text-neutral-700 text-sm font-semibold hover:bg-neutral-50 transition-colors"
-                    @click="closeScenarioOverlay"
-                  >
-                    返回
-                  </button>
-                </div>
-              </div>
-
-              <div class="relative rounded-2xl overflow-hidden shadow-xl ring-1 ring-neutral-900/5 bg-white">
-                <div class="h-8 bg-neutral-50 flex items-center px-4 gap-2 border-b border-neutral-200">
-                  <div class="w-2.5 h-2.5 rounded-full bg-red-400/80"></div>
-                  <div class="w-2.5 h-2.5 rounded-full bg-yellow-400/80"></div>
-                  <div class="w-2.5 h-2.5 rounded-full bg-green-400/80"></div>
-                </div>
-                <img :src="overlayScenario.image" :alt="overlayScenario.title" loading="lazy" class="w-full h-auto object-cover" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </Teleport>
   </div>
 </template>
 
@@ -752,7 +682,8 @@ const openSourceLinks = [
     },
     color: 'neutral' as const,
     variant: 'solid' as const,
-    trailingIcon: 'i-lucide-message-circle'
+    icon: 'i-lucide-message-circle',
+    ui: { leadingIcon: 'w-3.5 h-3.5' }
   },
   {
     label: '部署服务',
@@ -761,7 +692,8 @@ const openSourceLinks = [
     },
     color: 'neutral' as const,
     variant: 'ghost' as const,
-    trailingIcon: 'i-lucide-rocket'
+    icon: 'i-lucide-rocket',
+    ui: { leadingIcon: 'w-3.5 h-3.5' }
   }
 ]
 
@@ -819,19 +751,7 @@ const scenarios: Scenario[] = [
   }
 ]
 
-const overlayScenarioIndex = ref<number | null>(null)
 
-const overlayScenario = computed(() => overlayScenarioIndex.value !== null ? scenarios[overlayScenarioIndex.value] : null)
-const openScenarioOverlay = (idx: number) => { overlayScenarioIndex.value = idx }
-const closeScenarioOverlay = () => { overlayScenarioIndex.value = null }
-
-watch(overlayScenarioIndex, (val, prev) => {
-  if (!import.meta.client) return
-  document.body.style.overflow = val === null ? '' : 'hidden'
-  const handler = (e: KeyboardEvent) => e.key === 'Escape' && closeScenarioOverlay()
-  if (prev !== null) window.removeEventListener('keydown', handler)
-  if (val !== null) window.addEventListener('keydown', handler)
-})
 
 /**
  * 平台优势数据列表
