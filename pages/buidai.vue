@@ -620,7 +620,7 @@ const features: Feature[] = [
     title: '知识库',
     desc: '通过文档构建知识库，支持向量检索与RAG增强生成',
     icon: BookOpenIcon,
-    image: '/images/code3.png'
+    image: '/images/code4.png'
   },
   {
     title: 'MCP调用',
@@ -644,7 +644,7 @@ const features: Feature[] = [
     title: '充值计费',
     desc: '内置会员管理、计费管理、支付功能，开箱即用',
     icon: CreditCardIcon,
-    image: '/images/code3.png'
+    image: '/images/code7.png'
   }
 ]
 
