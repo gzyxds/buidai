@@ -8,7 +8,7 @@
         <div class="text-center mb-16">
           <h1 class="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight sm:text-5xl">文档中心</h1>
           <p class="text-xl text-gray-500 max-w-2xl mx-auto">
-            探索 BuidAI 的详细文档，快速构建您的 AI 应用。
+            探索 必创AI 的详细文档，快速构建您的 AI 应用。
           </p>
         </div>
 

@@ -2,7 +2,7 @@
   <section class="py-24 bg-gray-50 overflow-hidden">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 mb-16 text-center">
       <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
-        必创AI - BuidAI 产品功能
+        必创AI - 产品功能
       </h2>
       <p class="text-gray-500 text-lg">
         让每个人都能自由构建智能应用，加速想法的落地与迭代

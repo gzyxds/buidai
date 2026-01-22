@@ -154,8 +154,8 @@
     <section class="py-16 md:py-24 bg-neutral-50/50 dark:bg-neutral-900 relative overflow-hidden">
       <div class="container mx-auto px-4 relative z-10">
         <div class="text-center mb-16 md:mb-20">
-          <UBadge label="Why BuidAI" variant="subtle" color="neutral" class="mb-4 px-3 py-1" />
-          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-neutral-900 dark:text-white tracking-tight">为什么选择 BuidAI ?</h2>
+          <UBadge label="Why 必创AI" variant="subtle" color="neutral" class="mb-4 px-3 py-1" />
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-neutral-900 dark:text-white tracking-tight">为什么选择 必创AI ?</h2>
           <p class="text-lg text-neutral-500 dark:text-neutral-400 max-w-2xl mx-auto leading-relaxed">
             从底层架构到上层应用，我们提供全栈式的 AI 解决方案，助您在智能时代保持领先
           </p>

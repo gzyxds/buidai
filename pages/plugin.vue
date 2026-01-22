@@ -43,7 +43,7 @@
             </div>
             <div class="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
               <div class="space-y-2">
-                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">必创AI-BuidAI应用市场上线啦!</h2>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">必创AI-应用市场上线啦!</h2>
                 <p class="text-blue-100 text-sm sm:text-base">联系客服领取五折优惠码，数量有限，先到先得</p>
               </div>
               <button @click="openQrModal" class="px-6 py-2.5 bg-gray-900 text-white rounded-full font-medium text-sm hover:bg-gray-800 transition-colors shadow-lg whitespace-nowrap flex items-center gap-2">

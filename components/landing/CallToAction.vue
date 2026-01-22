@@ -60,7 +60,7 @@ const handleCTAClick = () => {
     <div class="container mx-auto px-4 text-center relative z-10">
       <!-- 主要标题 -->
       <h2 class="text-2xl md:text-4xl font-medium text-gray-900 mb-2 tracking-tight">
-        BuidAI-构建你自己的人工智能应用程序，快速而简单。
+        必创AI-构建你自己的人工智能应用程序，快速而简单。
       </h2>
 
       <!-- 渐变副标题 -->

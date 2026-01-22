@@ -13,11 +13,8 @@ description: 必创AI 演示环境的使用说明和访问信息。
 
 ## 演示站点
 
-地址：https://demo.buidAI.com/
+地址：https://demo.buidai.com/
 
-超级管理员账号：admin
-
-密码：buidAI&123456
 
 ::warning
 每日自动还原数据，仅做前后台界面功能演示，所有用户均可登录查看，请勿在演示平台保存或输入密码、秘钥等任何包含个人隐私的信息

@@ -10,7 +10,7 @@
       <div class="mx-auto max-w-2xl text-center mb-12">
         <h2 class="text-base font-semibold text-ui-primary leading-7">多场景覆盖</h2>
         <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-          BuidAI 灵活适配您的业务需求
+          必创AI 灵活适配您的业务需求
         </p>
         <p class="mt-4 text-lg text-gray-600 max-w-xl mx-auto">
           从内部提效到外部服务，全面覆盖企业智能化需求，助力企业快速落地 AI 应用。

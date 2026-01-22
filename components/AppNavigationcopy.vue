@@ -182,7 +182,7 @@ const items = computed<NavigationMenuItem[][]>(() => [
         },
         {
           label: '解决方案',
-          description: '探索 BuidAI 的行业解决方案',
+          description: '探索 必创AI 的行业解决方案',
           icon: 'i-lucide-lightbulb',
           to: '/solutions'
         }
