@@ -74,7 +74,7 @@ export const apps: AppData[] = [
     image: '/plugin/Sora2短剧视频创作.png',
     category: 'video',
     originalPrice: 1398.00,
-    discountPrice: 699.00,
+    discountPrice: 1398.00,
     date: '2025/11/14'
   },
   {
@@ -85,7 +85,7 @@ export const apps: AppData[] = [
     image: '/plugin/Nanobanana.png',
     category: 'video',
     originalPrice: 1398.00,
-    discountPrice: 699.00,
+    discountPrice: 1398.00,
     date: '2025/11/14'
   },
   {
@@ -95,8 +95,8 @@ export const apps: AppData[] = [
     icon: FileTextIcon,
     image: '/plugin/AI简历.png',
     category: 'efficiency',
-    originalPrice: 1598.00,
-    discountPrice: 799.00,
+    originalPrice: 1298.00,
+    discountPrice: 1298.00,
     date: '2025/11/14'
   },
   {
@@ -106,8 +106,8 @@ export const apps: AppData[] = [
     icon: GitBranchIcon,
     image: '/plugin/思维导图.png',
     category: 'efficiency',
-    originalPrice: 899.00,
-    discountPrice: 499.00,
+    originalPrice: 1198.00,
+    discountPrice: 1198.00,
     date: '2025/11/14'
   },
   {
@@ -117,8 +117,8 @@ export const apps: AppData[] = [
     icon: UserIcon,
     image: '/plugin/AI证件照.png',
     category: 'video',
-    originalPrice: 599.00,
-    discountPrice: 299.00,
+    originalPrice: 998.00,
+    discountPrice: 998.00,
     date: '2025/11/14'
   },
   {
@@ -128,8 +128,8 @@ export const apps: AppData[] = [
     icon: PenToolIcon,
     image: '/plugin/智能写作助手.png',
     category: 'writing',
-    originalPrice: 999.00,
-    discountPrice: 499.00,
+    originalPrice: 1198.00,
+    discountPrice: 1198.00,
     date: '2025/11/14'
   },
   {
@@ -140,7 +140,7 @@ export const apps: AppData[] = [
     image: '/plugin/aippt.png',
     category: 'efficiency',
     originalPrice: 1299.00,
-    discountPrice: 599.00,
+    discountPrice: 1299.00,
     date: '2025/11/15'
   },
   {
@@ -150,8 +150,8 @@ export const apps: AppData[] = [
     icon: FileSignatureIcon,
     image: '/plugin/AI合同.png',
     category: 'enterprise',
-    originalPrice: 2999.00,
-    discountPrice: 1499.00,
+    originalPrice: 1399.00,
+    discountPrice: 1399.00,
     date: '2025/11/15'
   },
   {
@@ -161,8 +161,8 @@ export const apps: AppData[] = [
     icon: ShoppingBagIcon,
     image: '/plugin/AI商图秀.png',
     category: 'video',
-    originalPrice: 899.00,
-    discountPrice: 399.00,
+    originalPrice: 1398.00,
+    discountPrice: 1398.00,
     date: '2025/11/15'
   },
   {
@@ -172,7 +172,7 @@ export const apps: AppData[] = [
     icon: TvIcon,
     image: '/plugin/AI直播短视频数字人.webp',
     category: 'video',
-    originalPrice: 3999.00,
+    originalPrice: 1999.00,
     discountPrice: 1999.00,
     date: '2025/11/15'
   },
@@ -183,8 +183,8 @@ export const apps: AppData[] = [
     icon: BookOpenIcon,
     image: '/plugin/AI短剧小说创作.png',
     category: 'writing',
-    originalPrice: 699.00,
-    discountPrice: 349.00,
+    originalPrice: 1598.00,
+    discountPrice: 1198.00,
     date: '2025/11/15'
   },
   {
@@ -195,7 +195,7 @@ export const apps: AppData[] = [
     image: '/plugin/GEO优化排名工具.png',
     category: 'enterprise',
     originalPrice: 1599.00,
-    discountPrice: 799.00,
+    discountPrice: 1599.00,
     date: '2025/11/15'
   },
   {
@@ -206,7 +206,7 @@ export const apps: AppData[] = [
     image: '/plugin/即梦AI绘画.png',
     category: 'video',
     originalPrice: 999.00,
-    discountPrice: 499.00,
+    discountPrice: 999.00,
     date: '2025/11/15'
   },
   {
@@ -216,8 +216,8 @@ export const apps: AppData[] = [
     icon: FilmIcon,
     image: '/plugin/即梦AI视频.png',
     category: 'video',
-    originalPrice: 1499.00,
-    discountPrice: 749.00,
+    originalPrice: 999.00,
+    discountPrice: 999.00,
     date: '2025/11/15'
   },
   {
@@ -249,8 +249,8 @@ export const apps: AppData[] = [
     icon: ShirtIcon,
     image: '/plugin/模绘衣境.png',
     category: 'video',
-    originalPrice: 1999.00,
-    discountPrice: 999.00,
+    originalPrice: 1399.00,
+    discountPrice: 1399.00,
     date: '2025/11/15'
   },
   {
@@ -260,8 +260,8 @@ export const apps: AppData[] = [
     icon: ScissorsIcon,
     image: '/plugin/热门视频混剪.png',
     category: 'video',
-    originalPrice: 899.00,
-    discountPrice: 449.00,
+    originalPrice: 1399.00,
+    discountPrice: 1399.00,
     date: '2025/11/15'
   },
   {
@@ -271,8 +271,8 @@ export const apps: AppData[] = [
     icon: ImagePlusIcon,
     image: '/plugin/爆款文章自动配图.png',
     category: 'writing',
-    originalPrice: 998.00,
-    discountPrice: 998.00,
+    originalPrice: 1198.00,
+    discountPrice: 1198.00,
     date: '2025/11/15'
   },
   {
