@@ -2,9 +2,12 @@
   <div class="min-h-screen bg-white text-neutral-900 font-sans selection:bg-neutral-100 relative">
     <!-- 英雄区域 -->
     <section class="pt-24 sm:pt-28 pb-12 sm:pb-16 md:pt-32 md:pb-20 lg:pt-36 lg:pb-24 relative overflow-hidden z-10">
-      <!-- 导入背景动画 -->
-      <div class="absolute inset-0 z-0 overflow-hidden">
-        <PixelBlast class="w-full h-full" />
+      <!-- 静态渐变背景 -->
+      <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div class="absolute inset-0 bg-linear-to-br from-white via-[#f3f0ff] to-cyan-50/60" />
+        <div class="absolute top-[-12%] left-[-6%] h-[420px] w-[420px] rounded-full bg-[#6E58FF]/10 blur-[120px]" />
+        <div class="absolute right-[-10%] top-[10%] h-[360px] w-[360px] rounded-full bg-cyan-400/10 blur-[120px]" />
+        <div class="absolute bottom-[-14%] left-[28%] h-[300px] w-[300px] rounded-full bg-violet-400/10 blur-[100px]" />
       </div>
       
       <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">

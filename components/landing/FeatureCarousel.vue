@@ -113,10 +113,8 @@ const originalCards = apps.map((app, index) => ({
   gradient: gradients[index % gradients.length]
 }))
 
-// 复制 5 份以实现无限滚动
+// 复制 3 份以实现无限滚动 (从 5 份减为 3 份以优化性能)
 const cards = [
-  ...originalCards,
-  ...originalCards,
   ...originalCards,
   ...originalCards,
   ...originalCards
@@ -185,13 +183,13 @@ const checkInfiniteScroll = () => {
   const itemFullWidth = cardWidth + gap
   const singleSetWidth = itemFullWidth * originalCards.length
 
-  // 如果滚动到了第 4 组（倒数第 2 组），跳转回第 2 组
-  if (container.scrollLeft > singleSetWidth * 3.5) {
-    container.scrollLeft -= singleSetWidth * 2
+  // 如果滚动到了第 2 组（最后一组），跳转回第 1 组
+  if (container.scrollLeft > singleSetWidth * 2.2) {
+    container.scrollLeft -= singleSetWidth
   }
-  // 如果滚动到了第 0 组（第 1 组），跳转回第 2 组
-  else if (container.scrollLeft < singleSetWidth * 0.5) {
-    container.scrollLeft += singleSetWidth * 2
+  // 如果滚动到了第 0 组（第一组），跳转回第 1 组
+  else if (container.scrollLeft < singleSetWidth * 0.8) {
+    container.scrollLeft += singleSetWidth
   }
 }
 
@@ -199,18 +197,33 @@ const updateTransforms = () => {
   if (!scrollContainer.value) {return}
 
   const container = scrollContainer.value
-  const viewportCenter = window.innerWidth / 2
-  const isMobile = window.innerWidth < 768 // MD breakpoint
+  const scrollLeft = container.scrollLeft
+  const viewportWidth = window.innerWidth
+  const viewportCenter = viewportWidth / 2
+  const isMobile = viewportWidth < 768
 
-  cardRefs.value.forEach((card) => {
+  const gap = isMobile ? 16 : 32
+  const cardWidth = isMobile ? viewportWidth * 0.85 : 360
+  const itemFullWidth = cardWidth + gap
+  const containerPadding = isMobile ? viewportWidth * 0.075 : viewportWidth * 0.5
+
+  cardRefs.value.forEach((card, index) => {
     if (!card) {return}
-    const rect = card.getBoundingClientRect()
-    const cardCenter = rect.left + rect.width / 2
 
-    // Calculate distance from center (normalized)
+    // 计算卡片中心点相对于视口左侧的距离
+    // 卡片在容器内的位置 = index * itemFullWidth + containerPadding
+    // 距离视口左侧 = 卡片在容器内的位置 - scrollLeft
+    const cardCenterInViewport = (index * itemFullWidth + containerPadding + cardWidth / 2) - scrollLeft
+
     // 移动端范围适配：屏幕宽度的80%作为激活区
-    const range = isMobile ? window.innerWidth * 0.8 : 1000
-    let dist = (cardCenter - viewportCenter) / range
+    const range = isMobile ? viewportWidth * 0.8 : 1000
+    let dist = (cardCenterInViewport - viewportCenter) / range
+
+    // 性能优化：如果卡片远在视口之外，跳过复杂的 transform 计算
+    if (Math.abs(cardCenterInViewport - viewportCenter) > viewportWidth) {
+      card.style.opacity = '0'
+      return
+    }
 
     // Clamp distance
     if (dist < -1) {dist = -1}
@@ -276,11 +289,11 @@ onMounted(() => {
       const cardWidth = isMobile ? window.innerWidth * 0.85 : 360
       const itemFullWidth = cardWidth + gap
 
-      // 初始化位置：定位到中间那一组（第 2 组，索引从 0 开始则是第 2 组，即 index 2）
-      // cards 有 5 组: 0, 1, 2, 3, 4
-      // 初始定位到第 2 组开头，并加上偏移量使第一个卡片居中
+      // 初始化位置：定位到中间那一组（第 1 组，索引从 0 开始）
+      // cards 有 3 组: 0, 1, 2
+      // 初始定位到第 1 组开头，并加上偏移量使第一个卡片居中
       const singleSetWidth = itemFullWidth * originalCards.length
-      const initialSetOffset = singleSetWidth * 2
+      const initialSetOffset = singleSetWidth
 
       if (!isMobile) {
          // Desktop centering adjustment

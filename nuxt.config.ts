@@ -15,6 +15,12 @@ export default defineNuxtConfig({
     typeCheck: false
   },
 
+  // Nuxt 实验性功能
+  experimental: {
+    payloadExtraction: true,
+    renderJsonPayloads: true
+  },
+
   // 启用的 Nuxt 模块
   modules: [
     '@nuxt/ui',       // UI 组件库 (基于 Tailwind CSS)
@@ -94,6 +100,7 @@ export default defineNuxtConfig({
   // Nitro 服务端引擎配置
   nitro: {
     preset: 'static', // 强制使用通用静态输出，禁用 Vercel 自动检测
+    compressPublicAssets: true, // 启用公共资源压缩
     output: {
       publicDir: 'dist' // 强制输出目录为 'dist' 以适配 Vercel 默认配置
     },

@@ -4,7 +4,7 @@
       <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-8 mb-12">
         <div class="col-span-2 lg:col-span-2">
           <NuxtLink to="/" class="flex items-center space-x-3 mb-6">
-            <img src="/logo.svg" alt="智言AI" class="h-6 w-auto" />
+            <img src="/logo.svg" alt="智言AI" class="h-6 w-auto" loading="lazy" decoding="async" />
           </NuxtLink>
           <p class="text-gray-500 text-sm leading-relaxed max-w-xs mb-6">
             智言AI 致力于降低企业 AI 应用开发门槛，赋能每一个团队构建智能未来。
@@ -58,11 +58,11 @@
                       </div>
                       <div class="flex flex-row flex-nowrap space-x-2 pt-2 overflow-x-auto">
                         <div class="flex flex-col items-center space-y-1 shrink-0">
-                          <img src="/qrcode.png" alt="QQ QR Code" class="w-20 h-20 object-contain bg-gray-50 p-1 rounded border border-gray-100" />
+                          <img src="/qrcode.png" alt="QQ QR Code" class="w-20 h-20 object-contain bg-gray-50 p-1 rounded border border-gray-100" loading="lazy" decoding="async" />
                           <span class="text-xs text-gray-400">在线咨询</span>
                         </div>
                         <div class="flex flex-col items-center space-y-1 shrink-0">
-                          <img src="/wechat.png" alt="WeChat QR Code" class="w-20 h-20 object-contain bg-gray-50 p-1 rounded border border-gray-100" />
+                          <img src="/wechat.png" alt="WeChat QR Code" class="w-20 h-20 object-contain bg-gray-50 p-1 rounded border border-gray-100" loading="lazy" decoding="async" />
                           <span class="text-xs text-gray-400">关注我们</span>
                         </div>
                       </div>

@@ -4,6 +4,7 @@
  * 展示不同等级的订阅计划及其功能对比，包含计费周期切换、FAQ 等模块。
  */
 import { ref } from 'vue'
+import type { Component } from 'vue'
 import { RocketLaunchIcon, BuildingOfficeIcon, CloudIcon, SparklesIcon } from '@heroicons/vue/24/solid'
 
 // 二维码弹窗 - 触发 BackToTop 组件
@@ -39,7 +40,7 @@ interface PricingPlan {
   }
   highlight?: boolean
   badge?: string
-  icon?: any
+  icon?: Component
   level: 'free' | 'pro' | 'master' | 'enterprise'
   subtitle: string
   features: Record<string, string | boolean>
@@ -630,12 +631,12 @@ useSeoMeta({
                     <!-- Plus 图标 -->
                     <UIcon 
                       name="i-heroicons-plus" 
-                      class="w-5 h-5 text-gray-400 group-open:hidden flex-shrink-0 transition-colors"
+                      class="w-5 h-5 text-gray-400 group-open:hidden shrink-0 transition-colors"
                     />
                     <!-- Minus 图标 -->
                     <UIcon 
                       name="i-heroicons-minus" 
-                      class="w-5 h-5 text-indigo-600 hidden group-open:block flex-shrink-0"
+                      class="w-5 h-5 text-indigo-600 hidden group-open:block shrink-0"
                     />
                   </summary>
 

@@ -42,7 +42,7 @@
             :to="post.path"
             class="group bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
           >
-            <div class="aspect-[16/10] bg-gray-100 overflow-hidden relative">
+            <div class="aspect-16/10 bg-gray-100 overflow-hidden relative">
               <img
                 v-if="post.image"
                 :src="post.image"
@@ -100,8 +100,6 @@
 </template>
 
 <script setup lang="ts">
-const route = useRoute()
-
 // SEO
 useSeoMeta({
   title: '智言AI - 智言万象 | 技术博客、AI技术洞察、教程与最佳实践',

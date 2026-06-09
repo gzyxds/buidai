@@ -1,7 +1,7 @@
 <template>
   <header
     ref="headerRef"
-    class="sticky top-0 inset-x-0 z-[100] transition-all duration-300 border-b"
+    class="sticky top-0 inset-x-0 z-100 transition-all duration-300 border-b"
     :class="headerClasses"
   >
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,6 +14,7 @@
               alt="智言万象 Logo"
               width="120"
               height="32"
+              fetchpriority="high"
               class="h-8 w-auto object-contain transition-opacity duration-300"
             />
           </NuxtLink>

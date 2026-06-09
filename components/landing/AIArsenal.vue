@@ -24,11 +24,11 @@
           <div class="space-y-4">
             <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-neutral-900">
              开启你的<span class="text-indigo-600">AI大航海之旅</span>
-             <img src="/AIArsenal.svg" alt="" class="inline-block w-16 h-16 ml-2 -mt-2" />
+             <img src="/AIArsenal.svg" alt="" class="inline-block w-16 h-16 ml-2 -mt-2" loading="lazy" decoding="async" />
               <br />
               <span class="text-neutral-900 text-2xl md:text-3xl lg:text-4xl">
                旅程从这里开始...
-                  <img src="/AIArsenal-1.svg" alt="" class="inline-block w-10 h-10 ml-2 -mt-1" />
+                  <img src="/AIArsenal-1.svg" alt="" class="inline-block w-10 h-10 ml-2 -mt-1" loading="lazy" decoding="async" />
               </span>
             </h2>
 

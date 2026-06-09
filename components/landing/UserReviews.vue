@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
 
 /**
  * 用户评价组件 + 常见问题

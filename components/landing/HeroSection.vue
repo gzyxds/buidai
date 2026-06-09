@@ -1,8 +1,11 @@
 <template>
   <section class="relative min-h-[80dvh] flex items-center overflow-hidden bg-white text-black pt-24 pb-16 md:py-24">
-    <!-- PixelBlast 动态背景 -->
-    <div class="absolute inset-0 z-0 overflow-hidden">
-      <PixelBlast class="w-full h-full" />
+    <!-- 静态渐变背景 -->
+    <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+      <div class="absolute inset-0 bg-linear-to-br from-white via-primary-50/40 to-cyan-50/50" />
+      <div class="absolute top-[-10%] left-[-5%] h-[420px] w-[420px] rounded-full bg-primary/12 blur-[120px]" />
+      <div class="absolute right-[-8%] top-[12%] h-[360px] w-[360px] rounded-full bg-cyan-400/10 blur-[120px]" />
+      <div class="absolute bottom-[-12%] left-[25%] h-[300px] w-[300px] rounded-full bg-violet-400/10 blur-[100px]" />
     </div>
     <div class="container mx-auto container-padding relative z-10 w-full" :class="props.ui.container">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -63,7 +66,7 @@
 
             <!-- Falling Text 动画组件 -->
             <div class="pt-2 md:pt-4 w-full max-w-2xl mx-auto lg:mx-0 lg:-ml-8 h-[160px] md:h-[200px] pointer-events-auto">
-              <FallingText
+              <LazyFallingText
                 text="TypeScript 智言AI NestJS Vue Nuxt 开源"
                 :word-colors="[
                   { word: 'TypeScript', color: 'text-blue-600' },
@@ -177,7 +180,6 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed } from 'vue'
-import FallingText from '~/components/FallingText.vue'
 // 导入应用数据：从 utils/pluginData.ts 中获取应用列表，用于提取图片生成跑马灯背景
 import { apps } from '~/utils/pluginData'
 import { LAYOUT, ANIMATION, MARQUEE } from '~/utils/ui'

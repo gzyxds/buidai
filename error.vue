@@ -66,7 +66,7 @@ import { type PropType } from 'vue'
  * 继承默认布局，保持导航栏和页脚的一致性。
  */
 
-const props = defineProps({
+defineProps({
   /**
    * Nuxt 传递的错误对象
    */

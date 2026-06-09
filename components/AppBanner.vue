@@ -15,7 +15,7 @@
 if (import.meta.client) {
   try {
     localStorage.removeItem('banner-sora2-banner')
-  } catch (e) {
+  } catch {
     // 忽略可能的存储访问错误
   }
 }

@@ -11,7 +11,7 @@
         <div class="grid-border-content px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10 relative">
           <!-- Falling Text 动画组件 -->
           <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 w-[520px] h-[240px] md:w-[720px] md:h-[320px] pointer-events-auto">
-            <FallingText
+            <LazyFallingText
               text="智言万象 AI 企业级 开源 Agent Workflow 知识库 RAG 检索"
               :highlight-words="['AI', 'Agent','企业级','开源','Workflow', 'RAG']"
               trigger="scroll"
@@ -56,6 +56,8 @@
                     src="/images/FeatureSteps.webp"
                     alt=""
                     class="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <Transition name="slide-in" mode="out-in">
@@ -64,6 +66,7 @@
                     :src="currentCard.image"
                     :alt="currentCard.title"
                     loading="lazy"
+                    decoding="async"
                     class="absolute inset-0 h-full w-full object-contain z-10 translate-x-4 sm:translate-x-6"
                   />
                 </Transition>

@@ -1,6 +1,24 @@
 <script setup lang="ts">
+interface ChangelogAuthor {
+  name: string
+  avatar: {
+    src: string
+    alt: string
+  }
+}
+
+interface ChangelogVersion {
+  title: string
+  date: string
+  isMajor?: boolean
+  to?: string
+  target?: string
+  image?: string
+  authors?: ChangelogAuthor[]
+}
+
 defineProps<{
-  versions: any[]
+  versions: ChangelogVersion[]
 }>()
 </script>
 
@@ -75,7 +93,7 @@ class="hidden sm:block absolute left-4 sm:left-32 top-8 w-4 h-4 rounded-full bor
             />
           </div>
           <div class="text-sm text-gray-500">
-            发布者: <span class="font-medium text-gray-900">{{ version.authors.map((a: any) => a.name).join(', ') }}</span>
+            发布者: <span class="font-medium text-gray-900">{{ version.authors.map(author => author.name).join(', ') }}</span>
           </div>
         </div>
       </div>

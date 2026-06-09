@@ -1,7 +1,7 @@
 <template>
   <div
     ref="containerRef"
-    class="falling-text-container relative z-[1] w-full h-full cursor-pointer text-center overflow-hidden"
+    class="falling-text-container relative z-1 w-full h-full cursor-pointer text-center overflow-hidden"
     :class="{ 'pointer-events-none': effectStarted }"
     @click="handleTrigger"
     @mouseenter="handleTrigger"
@@ -19,7 +19,10 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
-import Matter from 'matter-js'
+import type MatterType from 'matter-js'
+
+// Matter.js 动态导入
+let Matter: typeof import('matter-js') | null = null
 
 /**
  * 单词颜色配置接口
@@ -87,10 +90,10 @@ const canvasContainerRef = ref<HTMLDivElement | null>(null)
 const effectStarted = ref(false)
 
 // Matter.js 相关引用
-let engine: Matter.Engine | null = null
-let render: Matter.Render | null = null
-let runner: Matter.Runner | null = null
-let wordBodies: { elem: Element; body: Matter.Body }[] = []
+let engine: MatterType.Engine | null = null
+let render: MatterType.Render | null = null
+let runner: MatterType.Runner | null = null
+let wordBodies: { elem: Element; body: MatterType.Body }[] = []
 let animationFrameId: number | null = null
 let observer: IntersectionObserver | null = null
 
@@ -161,10 +164,21 @@ const handleTrigger = () => {
 /**
  * 启动物理动画效果
  */
-const startEffect = () => {
+const startEffect = async () => {
   if (effectStarted.value) {
     return
   }
+
+  // 动态加载 Matter.js
+  if (!Matter) {
+    try {
+      const module = await import('matter-js')
+      Matter = module.default || module
+    } catch {
+      return
+    }
+  }
+
   effectStarted.value = true
 
   nextTick(() => {
@@ -176,11 +190,12 @@ const startEffect = () => {
  * 初始化 Matter.js 物理引擎
  */
 const initPhysics = () => {
-  if (!containerRef.value || !canvasContainerRef.value || !textRef.value) {
+  if (!Matter || !containerRef.value || !canvasContainerRef.value || !textRef.value) {
     return
   }
+  const MatterLib = Matter
 
-  const { Engine, Render, World, Bodies, Runner, Mouse, MouseConstraint } = Matter
+  const { Engine, Render, World, Bodies, Runner, Mouse, MouseConstraint } = MatterLib
 
   const containerRect = containerRef.value.getBoundingClientRect()
   const width = containerRect.width
@@ -192,7 +207,9 @@ const initPhysics = () => {
 
   // 创建物理引擎
   engine = Engine.create()
-  engine.world.gravity.y = props.gravity
+  if (engine && engine.world) {
+    engine.world.gravity.y = props.gravity
+  }
 
   // 创建渲染器
   render = Render.create({
@@ -231,11 +248,11 @@ const initPhysics = () => {
     })
 
     // 设置初始速度和角速度
-    Matter.Body.setVelocity(body, {
+    MatterLib.Body.setVelocity(body, {
       x: (Math.random() - 0.5) * 5,
       y: 0,
     })
-    Matter.Body.setAngularVelocity(body, (Math.random() - 0.5) * 0.05)
+    MatterLib.Body.setAngularVelocity(body, (Math.random() - 0.5) * 0.05)
 
     return { elem, body }
   })
@@ -251,6 +268,9 @@ const initPhysics = () => {
 
   // 创建鼠标约束
   const mouse = Mouse.create(containerRef.value)
+  if (!engine) {
+    return
+  }
   const mouseConstraint = MouseConstraint.create(engine, {
     mouse,
     constraint: {
@@ -274,12 +294,16 @@ const initPhysics = () => {
 
   // 运行引擎和渲染器
   runner = Runner.create()
-  Runner.run(runner, engine)
-  Render.run(render)
+  if (runner && engine) {
+    Runner.run(runner, engine)
+  }
+  if (render) {
+    Render.run(render)
+  }
 
   // 更新循环：同步 DOM 元素位置与物理体位置
   const updateLoop = () => {
-    if (!engine) {
+    if (!engine || !engine.world) {
       return
     }
 
@@ -291,7 +315,7 @@ const initPhysics = () => {
       htmlElem.style.transform = `translate(-50%, -50%) rotate(${body.angle}rad)`
     })
 
-    Matter.Engine.update(engine)
+    MatterLib.Engine.update(engine)
     animationFrameId = requestAnimationFrame(updateLoop)
   }
   updateLoop()
@@ -301,27 +325,29 @@ const initPhysics = () => {
  * 清理物理引擎资源
  */
 const cleanup = () => {
+  const MatterLib = Matter
+
   if (animationFrameId) {
     cancelAnimationFrame(animationFrameId)
     animationFrameId = null
   }
 
-  if (render) {
-    Matter.Render.stop(render)
+  if (render && MatterLib) {
+    MatterLib.Render.stop(render)
     if (render.canvas && canvasContainerRef.value) {
       canvasContainerRef.value.removeChild(render.canvas)
     }
     render = null
   }
 
-  if (runner) {
-    Matter.Runner.stop(runner)
+  if (runner && MatterLib) {
+    MatterLib.Runner.stop(runner)
     runner = null
   }
 
-  if (engine) {
-    Matter.World.clear(engine.world, false)
-    Matter.Engine.clear(engine)
+  if (engine && MatterLib) {
+    MatterLib.World.clear(engine.world, false)
+    MatterLib.Engine.clear(engine)
     engine = null
   }
 

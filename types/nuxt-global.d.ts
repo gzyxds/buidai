@@ -10,8 +10,8 @@ declare global {
   const useHead: (head: Record<string, unknown>) => void
   
   // 路由相关
-  const useRouter: () => any
-  const useRoute: () => any
+  const useRouter: typeof import('vue-router').useRouter
+  const useRoute: typeof import('vue-router').useRoute
   const navigateTo: (path: string, options?: Record<string, unknown>) => void
   
   // 状态管理
@@ -32,17 +32,8 @@ declare global {
   const setResponseStatus: (code: number, message?: string) => void
   
   // Nuxt Content v3 API
-  const queryCollection: (collection: string) => any
-  const queryCollectionItemSurroundings: (collection: string, path: string) => any
-}
-
-// NodeJS 类型
-declare namespace NodeJS {
-  interface Timeout {
-    hasRef: () => boolean
-    ref: () => Timeout
-    unref: () => Timeout
-  }
+  const queryCollection: (collection: string) => unknown
+  const queryCollectionItemSurroundings: (collection: string, path: string) => unknown
 }
 
 export {}

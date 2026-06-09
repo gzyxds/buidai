@@ -33,9 +33,11 @@ const handleCTAClick = () => {
         src="/images/Modelbackground.png" 
         alt="" 
         class="w-full h-full object-cover object-center blur-[2px] scale-100"
+        loading="lazy"
+        decoding="async"
       />
       <!-- 叠加一层白色遮罩，确保内容可读性 -->
-      <div class="absolute inset-0 bg-white/80"></div>
+      <div class="absolute inset-0 bg-white/80"/>
     </div>
     
     <!-- 浮动图标背景 -->
