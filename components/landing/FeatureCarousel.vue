@@ -10,10 +10,10 @@
 
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 mb-12 md:mb-20 text-center relative z-10">
       <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 mb-4 md:mb-6 tracking-tight">
-       智言AI - 可以帮你做什么
+       智言AI - 探索无限可能
       </h2>
       <p class="text-gray-500 text-sm sm:text-lg tracking-wide max-w-xl mx-auto">
-        智言AI 无限拓展应用场景
+        覆盖多行业场景的智能解决方案
       </p>
     </div>
 
@@ -37,22 +37,25 @@
           class="shrink-0 w-[85vw] sm:w-[360px]"
         >
           <div
-            class="group relative h-auto min-h-[320px] sm:min-h-[400px] rounded-2xl overflow-hidden transition-shadow duration-300 hover:shadow-xl bg-white/80 backdrop-blur-sm border border-gray-100"
+            class="group relative rounded-2xl overflow-hidden transition-shadow duration-300 hover:shadow-xl bg-white border border-gray-100"
           >
             <!-- 渐变背景 -->
             <div class="absolute inset-0 -z-10 opacity-20" :class="`bg-linear-to-b ${card.gradient}`"/>
 
             <!-- Content -->
-            <div class="p-6 sm:p-8 h-full flex flex-col">
-              <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
+            <div class="p-5">
+              <!-- 标题 -->
+              <h3 class="text-lg font-medium text-gray-900 mb-2 line-clamp-1">
                 {{ card.title }}
               </h3>
-              <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-6">
+              
+              <!-- 描述 -->
+              <p class="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3 h-[4.5em]">
                 {{ card.desc }}
               </p>
 
               <!-- 图片 -->
-              <div class="mt-auto rounded-xl overflow-hidden h-32 sm:h-40 shadow-sm bg-gray-50">
+              <div class="rounded-xl overflow-hidden aspect-video shadow-sm bg-gray-50">
                  <img
                    :src="card.image"
                    :alt="card.title"
