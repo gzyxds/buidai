@@ -12,12 +12,12 @@ useSeoMeta({
     keywords: '即梦AI,AI视频生成,文生视频,图生视频,视频生成工具,智言AI,智言万象,视频制作,开源AI系统,私有化部署,即梦4.0,视频生成源码',
     ogTitle: '即梦AI - 一键生成 AI 视频 | 智言AI-智言万象',
     ogDescription: '输入文字描述或上传参考图,即可快速生成风格多样的短视频。支持纯文本提示词、多种视频比例和分辨率,让创作更简单。',
-    ogImage: '/product/jimeng.png',
+    ogImage: '/product/jimeng-4.png',
     ogType: 'website',
     twitterCard: 'summary_large_image',
     twitterTitle: '即梦AI - 一键生成 AI 视频 | 智言AI-智言万象',
     twitterDescription: '输入文字描述或上传参考图,即可快速生成风格多样的短视频,支持纯文本提示词和多种视频比例。',
-    twitterImage: '/product/jimeng.png'
+    twitterImage: '/product/jimeng-4.png'
 });
 
 // --- 功能网格数据 ---

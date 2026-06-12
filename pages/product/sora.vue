@@ -12,7 +12,7 @@ useSeoMeta({
     keywords: 'Sora,Sora视频,Sora源码,AI视频生成,文生视频,视频生成模型,智言万象,开源AI系统,私有化部署,OpenAI Sora,视频大模型',
     ogTitle: 'Sora 视频生成引擎 - 打造您的专属 AI 视频创作平台 | 智言万象',
     ogDescription: '一键生成电影级 AI 视频，支持文生视频与图生视频。基于开源 Sora 技术构建的新一代 AI 视频生成平台，提供完整源码，让创意无限延伸。',
-    ogImage: '/plugin/sora.png',
+    ogImage: '/product/sora.png',
     ogType: 'website',
     twitterCard: 'summary_large_image',
     twitterTitle: 'Sora 视频生成引擎 - 打造您的专属 AI 视频创作平台 | 智言万象',

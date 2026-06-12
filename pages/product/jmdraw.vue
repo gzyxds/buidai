@@ -12,12 +12,12 @@ useSeoMeta({
     keywords: '即梦AI,AI绘画,文生图,图生图,AI绘画工具,智言AI,智言万象,图片生成,开源AI系统,私有化部署,即梦4.0,绘画源码',
     ogTitle: '即梦AI绘画 - 一键生成 AI 图片 | 智言AI-智言万象',
     ogDescription: '通过简单提示词快速生成高质量图像,风格覆盖广泛,写实、卡通、插画等皆可驾驭。支持纯文本提示词、多种图片比例和分辨率,让创作更简单。',
-    ogImage: '/product/jmdraw.png',
+    ogImage: '/product/jmdraw-2.png',
     ogType: 'website',
     twitterCard: 'summary_large_image',
     twitterTitle: '即梦AI绘画 - 一键生成 AI 图片 | 智言AI-智言万象',
     twitterDescription: '通过简单提示词快速生成高质量图像,风格覆盖广泛,支持纯文本提示词和多种图片比例。',
-    twitterImage: '/product/jmdraw.png'
+    twitterImage: '/product/jmdraw-2.png'
 });
 
 // --- 功能网格数据 ---

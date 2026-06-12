@@ -12,12 +12,12 @@ useSeoMeta({
     keywords: 'AI简历,智能简历,简历生成,简历分析,简历优化,简历模板,智言AI,智言万象,简历制作工具,开源AI系统,私有化部署,简历源码',
     ogTitle: 'AI简历 - 一键生成智能分析 | 智言AI-智言万象',
     ogDescription: '致力于高效生成与深度优化您的个人简历，帮助您节省时间的同时，显著提升简历质量与影响力。通过简单的基本信息输入，即可快速生成结构完整的个人简历。',
-    ogImage: '/product/resume.png',
+    ogImage: '/product/resume-1.png',
     ogType: 'website',
     twitterCard: 'summary_large_image',
     twitterTitle: 'AI简历 - 一键生成智能分析 | 智言AI-智言万象',
     twitterDescription: '致力于高效生成与深度优化您的个人简历，帮助您节省时间的同时，显著提升简历质量与影响力。',
-    twitterImage: '/product/resume.png'
+    twitterImage: '/product/resume-1.png'
 });
 
 // --- 功能网格数据 ---

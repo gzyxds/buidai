@@ -12,12 +12,12 @@ useSeoMeta({
     keywords: 'AI音乐,音乐生成,文生音乐,歌词生成,哼唱生成,乐谱生成,智言AI,智言万象,音乐创作工具,开源AI系统,私有化部署,音乐源码',
     ogTitle: 'AI音乐 - 一键生成 AI 音乐 | 智言AI-智言万象',
     ogDescription: '以文本/歌词/哼唱/乐谱为输入,快速生成完整歌曲、伴奏、人声或纯音乐。降低门槛、提升效率,支持个人娱乐与商用配乐。',
-    ogImage: '/product/music.png',
+    ogImage: '/product/AI音乐.png',
     ogType: 'website',
     twitterCard: 'summary_large_image',
     twitterTitle: 'AI音乐 - 一键生成 AI 音乐 | 智言AI-智言万象',
     twitterDescription: '以文本/歌词/哼唱/乐谱为输入,快速生成完整歌曲、伴奏、人声或纯音乐,降低门槛、提升效率。',
-    twitterImage: '/product/music.png'
+    twitterImage: '/product/AI音乐.png'
 });
 
 // --- 功能网格数据 ---

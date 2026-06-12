@@ -12,12 +12,12 @@ useSeoMeta({
     keywords: '电商试衣,AI换装,AI模特,背景替换,商品主图,电商视觉优化,智言AI,智言万象,AI系统,AI源码,开源代码,试衣换装源码',
     ogTitle: '电商试衣换装 - AI模特多场景切换 | 智言AI-智言万象',
     ogDescription: '专为电商卖家打造的AI视觉优化解决方案，提升商品主图的吸引力与转化率。无需复杂拍摄与高昂成本，通过AI技术实现商品一键适配模特上身与背景智能替换。',
-    ogImage: '/product/model.png',
+    ogImage: '/product/model-1.png',
     ogType: 'website',
     twitterCard: 'summary_large_image',
     twitterTitle: '电商试衣换装 - AI模特多场景切换 | 智言AI-智言万象',
     twitterDescription: '专为电商卖家打造的AI视觉优化解决方案，提升商品主图的吸引力与转化率。无需复杂拍摄与高昂成本，通过AI技术实现商品一键适配模特上身与背景智能替换。',
-    twitterImage: '/product/model.png'
+    twitterImage: '/product/model-1.png'
 });
 
 // --- 功能网格数据 ---

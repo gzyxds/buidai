@@ -12,12 +12,12 @@ useSeoMeta({
     keywords: '视频混剪,视频剪辑,批量剪辑,智能转场,滤镜调色,字幕添加,背景音乐,智言AI,智言万象,视频制作工具,开源AI系统,私有化部署,视频剪辑源码',
     ogTitle: '视频混剪助手 - 一键生成混剪视频 | 智言AI-智言万象',
     ogDescription: '高效易用的视频剪辑软件,支持自动化批量剪辑、智能转场、滤镜调色、字幕添加和背景音乐匹配。一键生成节奏感强、视觉冲击力大的混剪视频。',
-    ogImage: '/product/videoclip.png',
+    ogImage: '/product/videoclip-1.png',
     ogType: 'website',
     twitterCard: 'summary_large_image',
     twitterTitle: '视频混剪助手 - 一键生成混剪视频 | 智言AI-智言万象',
     twitterDescription: '高效易用的视频剪辑软件,支持自动化批量剪辑、智能转场、滤镜调色、字幕添加和背景音乐匹配,大幅降低剪辑门槛与时间成本。',
-    twitterImage: '/product/videoclip.png'
+    twitterImage: '/product/videoclip-1.png'
 });
 
 // --- 功能网格数据 ---

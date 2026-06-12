@@ -12,12 +12,12 @@ useSeoMeta({
     keywords: 'AI PPT,智能演示文稿,自动生成PPT,模板图表,智能配色,字体搭配,动画效果,智言AI,智言万象,PPT制作工具,开源AI系统,私有化部署,PPT源码',
     ogTitle: 'AI PPT - 一键直出幻灯片 | 智言AI-智言万象',
     ogDescription: '智能演示文稿制作工具，能够根据用户输入的主题或大纲，自动生成结构清晰、设计美观的PPT页面。内置多种模板与图表，支持智能配色、字体搭配与动画效果优化。',
-    ogImage: '/plugin/ppt.png',
+    ogImage: '/plugin/aippt.png',
     ogType: 'website',
     twitterCard: 'summary_large_image',
     twitterTitle: 'AI PPT - 一键直出幻灯片 | 智言AI-智言万象',
     twitterDescription: '智能演示文稿制作工具，能够根据用户输入的主题或大纲，自动生成结构清晰、设计美观的PPT页面，显著提升制作效率与视觉表现力。',
-    twitterImage: '/plugin/ppt.png'
+    twitterImage: '/plugin/aippt.png'
 });
 
 // --- 功能网格数据 ---

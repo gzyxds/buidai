@@ -363,7 +363,7 @@ const handleVisibilityChange = (): void => {
 // 处理图片加载错误
 const handleImageError = (event: Event): void => {
   const img = event.target as HTMLImageElement
-  img.src = '/images/placeholder.jpg'
+  img.src = '/images/placeholder.webp'
 }
 
 onMounted(() => {

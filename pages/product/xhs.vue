@@ -12,7 +12,7 @@ useSeoMeta({
     keywords: '小红书助手,小红书创作,AI文案生成,小红书爆款标题,小红书配图,内容创作工具,小红书运营,笔记生成,AI写作,小红书标签推荐,开源AI系统,私有化部署',
     ogTitle: '小红书热门内容创作助手 - 打造爆款笔记的神器 | 智言万象',
     ogDescription: '专为小红书创作者打造,一键生成爆款标题与风格化推广文案。支持 AI 生成配图、视频封面制作、智能匹配热门标签,提升笔记曝光与互动率。',
-    ogImage: '/product/xhs.png',
+    ogImage: '/product/xiaohongshu.png',
     ogType: 'website',
     twitterCard: 'summary_large_image',
     twitterTitle: '小红书热门内容创作助手 - 打造爆款笔记的神器 | 智言万象',

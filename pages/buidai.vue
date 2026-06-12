@@ -674,43 +674,43 @@ const features: Feature[] = [
     title: 'AI对话',
     desc: '基于 LLM 模型进行对话、文本生成，支持多模态模型调用',
     icon: ChatBubbleLeftRightIcon,
-    image: '/images/code1.png'
+    image: '/images/placeholder.webp'
   },
   {
     title: 'AI智能体',
     desc: '支持创建具备记忆、目标和工具使用能力的智能体，实现自主任务执行',
     icon: CpuChipIcon,
-    image: '/images/code2.png'
+    image: '/images/placeholder.webp'
   },
   {
     title: '知识库',
     desc: '通过文档构建知识库，支持向量检索与RAG增强生成',
     icon: BookOpenIcon,
-    image: '/images/code4.png'
+    image: '/images/placeholder.webp'
   },
   {
     title: 'MCP调用',
     desc: '支持以 SSE、StreamableHTTP 方式调用MCP工具',
     icon: CommandLineIcon,
-    image: '/images/code4.png'
+    image: '/images/placeholder.webp'
   },
   {
     title: '模型管理',
     desc: '支持主流大模型集成，统一API规范',
     icon: CubeIcon,
-    image: '/images/code5.png'
+    image: '/images/placeholder.webp'
   },
   {
     title: '拓展机制',
     desc: '通过安装拓展丰富系统功能和AI能力',
     icon: PuzzlePieceIcon,
-    image: '/images/code6.png'
+    image: '/images/placeholder.webp'
   },
   {
     title: '充值计费',
     desc: '内置会员管理、计费管理、支付功能，开箱即用',
     icon: CreditCardIcon,
-    image: '/images/code7.png'
+    image: '/images/placeholder.webp'
   }
 ]
 

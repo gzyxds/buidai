@@ -1,0 +1,56 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A" offset="0" />
+      <stop stop-color="#1E293B" offset="1" />
+    </linearGradient>
+    <linearGradient id="brand" x1="0" y1="0" x2="400" y2="100" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3B82F6" offset="0" />
+      <stop stop-color="#8B5CF6" offset="0.5" />
+      <stop stop-color="#A855F7" offset="1" />
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="1200" height="630" rx="16" fill="url(#bg)" />
+
+  <!-- 装饰圆 -->
+  <circle cx="1000" cy="100" r="300" fill="#3B82F6" opacity="0.08" />
+  <circle cx="200" cy="550" r="250" fill="#8B5CF6" opacity="0.06" />
+
+  <!-- Logo 图标区 -->
+  <g transform="translate(80, 140)">
+    <rect width="120" height="120" rx="28" fill="url(#brand)" opacity="0.15" />
+    <path d="M60 35 L90 60 L85 65 L60 40 L35 65 L30 60 L60 35Z" fill="url(#brand)" />
+    <rect x="45" y="65" width="30" height="8" rx="4" fill="url(#brand)" opacity="0.6" />
+    <rect x="50" y="78" width="20" height="6" rx="3" fill="url(#brand)" opacity="0.4" />
+  </g>
+
+  <!-- 标题 -->
+  <text x="240" y="200" fill="white" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="800" letter-spacing="-2">
+    智言AI
+  </text>
+
+  <!-- 副标题 -->
+  <text x="240" y="260" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="400">
+    企业级 AI 应用构建平台
+  </text>
+
+  <!-- 分隔线 -->
+  <line x1="240" y1="300" x2="800" y2="300" stroke="#334155" stroke-width="1" />
+
+  <!-- 标签 -->
+  <g transform="translate(240, 340)">
+    <rect x="0" y="0" width="160" height="42" rx="21" fill="#3B82F6" opacity="0.15" />
+    <text x="22" y="28" fill="#60A5FA" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="600">智能体构建</text>
+    <rect x="180" y="0" width="130" height="42" rx="21" fill="#8B5CF6" opacity="0.15" />
+    <text x="202" y="28" fill="#A78BFA" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="600">知识库管理</text>
+    <rect x="330" y="0" width="130" height="42" rx="21" fill="#A855F7" opacity="0.15" />
+    <text x="352" y="28" fill="#C084FC" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="600">私有化部署</text>
+  </g>
+
+  <!-- 底部域名 -->
+  <text x="1200" y="590" fill="#475569" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="500" text-anchor="end">
+    www.buidai.com
+  </text>
+</svg>

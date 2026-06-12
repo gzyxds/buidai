@@ -12,12 +12,12 @@ useSeoMeta({
     keywords: 'AI短剧创作,网文写作,短剧本创作,网络小说,AI写作工具,智言AI,智言万象,小说创作,剧本生成,AI扩写,AI润色,开源AI系统,私有化部署',
     ogTitle: 'AI 短剧小说创作 - 打造爆款短剧的神器 | 智言AI-智言万象',
     ogDescription: '专为自媒体创作者、编剧、网络作家打造,支持创建无限量剧本、角色设定、章节可视化拖拽、AI 扩写润色改写续写。让短剧创作更高效、更系统。',
-    ogImage: '/product/drama.png',
+    ogImage: '/product/drama-1.png',
     ogType: 'website',
     twitterCard: 'summary_large_image',
     twitterTitle: 'AI 短剧小说创作 - 打造爆款短剧的神器 | 智言AI-智言万象',
     twitterDescription: '专为自媒体创作者、编剧、网络作家打造,支持创建无限量剧本、角色设定、章节可视化拖拽、AI 扩写润色改写续写。',
-    twitterImage: '/product/drama.png'
+    twitterImage: '/product/drama-1.png'
 });
 
 // --- 功能网格数据 ---
