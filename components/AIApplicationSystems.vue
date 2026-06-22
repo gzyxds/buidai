@@ -1,8 +1,8 @@
 <template>
   <!-- AI应用系统展示组件 -->
-  <section class="bg-white">
+  <section class="bg-neutral-50">
     <!-- 主内容区域 -->
-    <div class="container mx-auto px-4 py-16 md:py-20">
+    <div class="container mx-auto px-4 py-14 md:py-20">
       <!-- 标题 -->
       <div class="mb-10">
         <h2 class="text-2xl font-bold text-neutral-900 md:text-3xl">
@@ -12,18 +12,18 @@
       </div>
 
       <!-- Bento Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         <!-- 左侧展示卡片 -->
-        <div class="md:col-span-2 lg:col-span-2 lg:row-span-3 bg-neutral-50 rounded-2xl overflow-hidden flex flex-col border border-neutral-300">
+        <div class="md:col-span-2 lg:col-span-2 lg:row-span-3 bg-white rounded-xl overflow-hidden flex flex-col border border-neutral-200">
           <!-- 图片区域 - 添加触摸事件支持 -->
           <div 
-            class="relative w-full bg-white p-4 touch-pan-y"
+            class="relative w-full bg-neutral-50 p-3 touch-pan-y"
             @touchstart="handleTouchStart"
             @touchmove="handleTouchMove"
             @touchend="handleTouchEnd"
             @touchcancel="handleTouchCancel"
           >
-            <div class="relative w-full overflow-hidden rounded-xl border border-neutral-300" style="aspect-ratio: 16/5.5;">
+            <div class="relative w-full overflow-hidden rounded-lg" style="aspect-ratio: 16/5.5;">
               <!-- 预加载下一张图片 -->
               <img
                 v-for="system in systemsList"
@@ -38,25 +38,25 @@
                 :src="currentSystem?.demoImage || '/images/CtaSection.jpg'"
                 :alt="currentSystem?.name"
                 loading="eager"
-                class="absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-out rounded-xl"
-                :class="isTransitioning ? 'opacity-0 scale-105' : 'opacity-100 scale-100'"
+                class="absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-out rounded-lg"
+                :class="isTransitioning ? 'opacity-0 scale-[1.02]' : 'opacity-100 scale-100'"
                 @error="handleImageError"
               />
             </div>
           </div>
           
           <!-- 信息栏 -->
-          <div class="px-5 py-3 border-t border-neutral-200 flex items-center justify-between bg-white">
-            <h3 class="font-semibold text-neutral-900">{{ currentSystem?.name }}</h3>
+          <div class="px-4 py-2.5 flex items-center justify-between bg-white">
+            <h3 class="font-medium text-sm text-neutral-800">{{ currentSystem?.name }}</h3>
             <!-- 圆点指示器 -->
             <div class="flex items-center gap-1.5">
               <button
                 v-for="(system, idx) in systemsList"
                 :key="`dot-${system.id}`"
-                class="w-2 h-2 rounded-full transition-all duration-300"
+                class="rounded-full transition-all duration-300"
                 :class="activeIndex === idx
-                  ? 'bg-indigo-500 w-5'
-                  : 'bg-neutral-300 hover:bg-neutral-400'"
+                  ? 'bg-indigo-500 w-4 h-1.5'
+                  : 'bg-neutral-300 hover:bg-neutral-400 w-1.5 h-1.5'"
                 :aria-label="`切换到 ${system.name}`"
                 @click="selectSystem(idx)"
                 @mouseenter="pauseAutoPlay"
@@ -65,10 +65,10 @@
             </div>
           </div>
           
-          <!-- 进度条 - 使用 JS 计算实现更精确的控制 -->
-          <div class="h-1 bg-neutral-200 relative overflow-hidden">
+          <!-- 进度条 -->
+          <div class="h-0.5 bg-neutral-100 relative overflow-hidden">
             <div 
-              class="h-full bg-linear-to-r from-indigo-500 to-indigo-600 absolute left-0 top-0 transition-none"
+              class="h-full bg-indigo-500 absolute left-0 top-0 transition-none"
               :style="progressBarStyle"
             />
           </div>
@@ -78,25 +78,25 @@
         <div
           v-for="(system, index) in systemsList"
           :key="system.id"
-          class="px-4 py-5 rounded-xl border cursor-pointer transition-all duration-300 flex flex-col justify-center"
+          class="px-3.5 py-4 rounded-xl cursor-pointer transition-all duration-200 flex flex-col justify-center border"
           :class="activeIndex === index 
-            ? 'border-indigo-300 bg-indigo-50/60' 
-            : 'border-neutral-300 hover:border-indigo-300 bg-white'"
+            ? 'border-indigo-200 bg-indigo-50/50' 
+            : 'border-neutral-200 hover:border-indigo-200 bg-white'"
           @click="selectSystem(index)"
           @mouseenter="pauseAutoPlay"
           @mouseleave="resumeAutoPlay"
         >
           <div class="flex items-start gap-3">
             <div 
-              class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300"
+              class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-all duration-200"
               :class="activeIndex === index 
-                ? 'bg-linear-to-br from-indigo-500 to-indigo-600 text-white shadow-md' 
-                : 'bg-neutral-100 text-neutral-500'"
+                ? 'bg-indigo-500 text-white' 
+                : 'bg-neutral-100 text-neutral-400'"
             >
-              <component :is="system.icon" class="w-5 h-5"/>
+              <component :is="system.icon" class="w-4.5 h-4.5"/>
             </div>
             <div class="flex-1 min-w-0">
-              <h4 class="font-semibold text-sm leading-tight transition-colors duration-300" :class="activeIndex === index ? 'text-indigo-600' : 'text-neutral-800'">
+              <h4 class="font-medium text-sm leading-tight transition-colors duration-200" :class="activeIndex === index ? 'text-indigo-600' : 'text-neutral-800'">
                 {{ system.name }}
               </h4>
               <p class="text-xs text-neutral-500 line-clamp-2 mt-1 leading-relaxed">{{ system.description }}</p>
@@ -408,5 +408,10 @@ onUnmounted(() => {
 .touch-pan-y {
   touch-action: pan-y;
   -webkit-tap-highlight-color: transparent;
+}
+
+/* 圆点指示器基础尺寸 */
+:deep(button[class*='rounded-full']) {
+  min-width: 6px;
 }
 </style>

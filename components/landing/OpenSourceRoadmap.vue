@@ -9,8 +9,8 @@
         <div class="grid-border-content px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
           <div class="mb-6 sm:mb-8">
             <div class="flex items-center gap-2 mb-2">
-              <span class="inline-block h-1.5 w-4 rounded-full bg-indigo-600" />
-              <span class="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-600">
+              <span class="inline-block h-1 w-4 rounded-full bg-indigo-500" />
+              <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-neutral-500">
                 功能特性
               </span>
             </div>
@@ -18,7 +18,7 @@
               智言AI 智言万象
               <span class="text-indigo-600">你的私有AI应用系统</span>
             </h2>
-            <p class="mt-3 text-sm text-neutral-500 max-w-2xl">
+            <p class="mt-2.5 text-sm text-neutral-500 max-w-2xl">
               致力于在AI时代打造备受青睐的、可快速搭建AI应用解决方案
             </p>
           </div>
@@ -38,16 +38,16 @@
             <div
               v-for="(item, index) in displayedItems"
               :key="index"
-              class="group relative flex flex-col gap-3 border border-neutral-200/70 bg-white p-5 -mt-px -ml-px first:mt-0 first:ml-0 sm:[&:nth-child(2)]:ml-0 lg:[&:nth-child(3)]:ml-0 xl:[&:nth-child(4)]:ml-0 transition-all duration-200 ease-out hover:border-indigo-200 hover:bg-indigo-50/20 hover:z-10"
+              class="group relative flex flex-col gap-2.5 border border-neutral-100 bg-white p-4 -mt-px -ml-px first:mt-0 first:ml-0 sm:[&:nth-child(2)]:ml-0 lg:[&:nth-child(3)]:ml-0 xl:[&:nth-child(4)]:ml-0 transition-colors duration-150 ease-out hover:border-indigo-100 hover:bg-indigo-50/30 hover:z-10"
             >
               <!-- 头部：图标 + 标题 -->
-              <div class="flex items-center gap-3">
-                <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-indigo-50 border border-indigo-100">
-                  <component :is="item.icon" class="h-4 w-4 text-indigo-600" stroke-width="1.5" />
+              <div class="flex items-center gap-2.5">
+                <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-indigo-50">
+                  <component :is="item.icon" class="h-3.5 w-3.5 text-indigo-500" stroke-width="1.5" />
                 </div>
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center gap-2">
-                    <h3 class="text-sm font-bold text-neutral-900 tracking-tight">
+                    <h3 class="text-sm font-semibold text-neutral-800 tracking-tight">
                       {{ item.title }}
                     </h3>
                     <span
@@ -61,16 +61,16 @@
               </div>
 
               <!-- 描述 -->
-              <p class="text-xs leading-5 text-neutral-600 line-clamp-2">
+              <p class="text-xs leading-5 text-neutral-500 line-clamp-2">
                 {{ item.desc }}
               </p>
 
               <!-- 底部标签 -->
-              <div class="mt-auto flex flex-wrap gap-2 pt-2">
+              <div class="mt-auto flex flex-wrap gap-1.5 pt-1.5">
                 <span
                   v-for="(tag, tagIndex) in item.tags"
                   :key="tagIndex"
-                  class="bg-neutral-100 px-2 py-0.5 text-[11px] font-medium text-neutral-600"
+                  class="bg-neutral-50 px-2 py-0.5 text-[11px] font-medium text-neutral-500"
                 >
                   {{ tag }}
                 </span>
@@ -82,11 +82,10 @@
           <div class="mt-8 text-center">
             <button
               type="button"
-              class="group inline-flex h-10 items-center gap-2 border border-neutral-200 bg-white px-5 text-sm font-medium text-neutral-900 transition-all duration-200 hover:border-indigo-400 hover:bg-indigo-50 hover:text-indigo-600"
+              class="group inline-flex h-9 items-center gap-2 border border-neutral-200 bg-white px-5 text-sm font-medium text-neutral-700 transition-colors duration-150 hover:border-indigo-300 hover:text-indigo-600"
               @click="toggleExpand"
             >
               <span>{{ isExpanded ? '收起' : '查看更多' }}</span>
-              <component :is="isExpanded ? PanelTopClose : LayoutGrid" class="h-4 w-4" />
               <ChevronDownIcon
                 class="h-4 w-4 transition-transform duration-200"
                 :class="{ 'rotate-180': isExpanded }"
@@ -104,9 +103,9 @@
         <div class="grid-border-side grid-border-side-right" />
 
         <div class="grid-border-content content-footer px-4 sm:px-6 lg:px-8">
-          <span class="text-lg sm:text-xl font-bold text-neutral-900 tracking-tight">智言AI</span>
-          <span class="w-px h-6 bg-neutral-200" />
-          <span class="text-base sm:text-lg text-neutral-600 font-medium">持续迭代，功能不断完善</span>
+          <span class="text-lg sm:text-xl font-bold text-neutral-800 tracking-tight">智言AI</span>
+          <span class="w-px h-5 bg-neutral-200" />
+          <span class="text-base sm:text-lg text-neutral-500 font-medium">持续迭代，功能不断完善</span>
         </div>
       </div>
 
@@ -145,8 +144,6 @@ import {
   Key,
   FolderOpen,
   Ticket,
-  LayoutGrid,
-  PanelTopClose,
   ChevronDownIcon,
   type LucideIcon,
 } from 'lucide-vue-next'

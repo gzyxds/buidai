@@ -67,29 +67,40 @@
 
 
     <!-- 产品优势 -->
-    <section class="py-16 md:py-24 bg-white">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-16 md:mb-20">
-          <span
-            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-semibold mb-4"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 16 16">
-              <path fill="currentColor" fill-opacity="0.8" d="m10.5 6.882-5.98 5.98a.47.47 0 0 1-.665 0l-1.217-1.215a.47.47 0 0 1 0-.665L8.618 5z"/>
-              <path fill="currentColor" d="M14.5 9.375a.46.46 0 0 1-.136.324.47.47 0 0 1-.327.134h-.926v.917a.46.46 0 0 1-.135.324.466.466 0 0 1-.655 0 .46.46 0 0 1-.136-.324v-.917h-.926a.47.47 0 0 1-.327-.134.456.456 0 0 1 .327-.782h.926V8a.465.465 0 0 1 .926 0v.917h.926c.123 0 .24.048.327.134a.46.46 0 0 1 .136.324M3.39 4.792h.925v.916a.465.465 0 0 0 .926 0v-.916h.926c.123 0 .24-.049.327-.135a.456.456 0 0 0-.327-.782h-.926v-.917a.46.46 0 0 0-.136-.324.465.465 0 0 0-.79.324v.917H3.39a.47.47 0 0 0-.327.134.456.456 0 0 0 .327.783m7.406 6.875h-.462v-.459a.46.46 0 0 0-.136-.324.466.466 0 0 0-.79.324v.459h-.463a.47.47 0 0 0-.328.134.456.456 0 0 0 .328.782h.463v.459c0 .121.048.238.135.324a.466.466 0 0 0 .79-.324v-.459h.463c.123 0 .241-.048.328-.134a.456.456 0 0 0-.328-.782M12.84 5.25l-8.062 7.981a.93.93 0 0 1-1.309 0l-1.198-1.184a.92.92 0 0 1-.2-1 .9.9 0 0 1 .2-.297l8.063-7.981a.93.93 0 0 1 1.009-.2.9.9 0 0 1 .3.2l1.197 1.184a.915.915 0 0 1 .2 1 .9.9 0 0 1-.2.297M9.678 7.083 8.482 5.898l-5.556 5.5 1.197 1.185zm2.507-2.481-1.197-1.185L9.136 5.25l1.198 1.185z"/>
-            </svg>
-            核心功能
-          </span>
-          <h2
-            class="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 mb-6 tracking-tight"
-          >
-            产品核心优势
-          </h2>
-          <p class="text-lg text-neutral-500 max-w-2xl mx-auto leading-relaxed">
-            为您提供一站式的 AI 解决方案，助力企业实现业务效率的质变与创新
-          </p>
+    <section class="overflow-hidden bg-white">
+      <div class="grid-border-container">
+        <!-- 标题区域 -->
+        <div class="grid-border-wrapper">
+          <div class="grid-border-side grid-border-side-left" />
+          <div class="grid-border-side grid-border-side-right" />
+
+          <div class="grid-border-content px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
+            <div class="mb-6 sm:mb-8">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="inline-block h-1.5 w-4 rounded-full bg-indigo-600" />
+                <span class="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-600">
+                  核心功能
+                </span>
+              </div>
+              <h2 class="text-xl font-bold tracking-tight text-neutral-900 sm:text-2xl">
+                产品核心优势
+              </h2>
+              <p class="mt-3 text-sm text-neutral-500 max-w-2xl">
+                为您提供一站式的 AI 解决方案，助力企业实现业务效率的质变与创新
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div class="flex flex-col gap-16 md:gap-24">
+        <div class="grid-border-divider" />
+
+        <!-- 功能展示区域 -->
+        <div class="grid-border-wrapper">
+          <div class="grid-border-side grid-border-side-left" />
+          <div class="grid-border-side grid-border-side-right" />
+
+          <div class="grid-border-content px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12">
+            <div class="flex flex-col gap-16 md:gap-24">
           <div
             v-for="(feature, idx) in features"
             :key="idx"
@@ -213,7 +224,26 @@
               </div>
             </div>
           </div>
+            </div>
+          </div>
         </div>
+
+        <div class="grid-border-divider" />
+
+        <!-- 底部信息 -->
+        <div class="grid-border-wrapper">
+          <div class="grid-border-side grid-border-side-left" />
+          <div class="grid-border-side grid-border-side-right" />
+
+          <div class="grid-border-content content-footer px-4 sm:px-6 lg:px-8">
+            <span class="text-lg sm:text-xl font-bold text-neutral-900 tracking-tight">智言AI</span>
+            <span class="w-px h-6 bg-neutral-200" />
+            <span class="text-base sm:text-lg text-neutral-600 font-medium">全栈赋能，开箱即用，安全可信，全网发布</span>
+          </div>
+        </div>
+
+        <!-- 底部边框行 -->
+        <div class="grid-border-row" />
       </div>
     </section>
 
