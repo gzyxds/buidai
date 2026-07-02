@@ -1,91 +1,140 @@
 <template>
-  <section class="relative min-h-[80dvh] flex items-center overflow-hidden bg-white text-black pt-24 pb-16 md:py-24">
-    <!-- 现代化企业级背景 -->
-    <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-      <!-- 基础渐变层 -->
-      <div class="absolute inset-0 bg-linear-to-br from-slate-50 via-white to-blue-50/30" />
-      
-      <!-- 网格纹理背景 -->
-      <div class="absolute inset-0 opacity-[0.03]" 
-           style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px); background-size: 60px 60px;" />
-      
-      <!-- 主光晕 - 左上 -->
-      <div class="absolute -top-[20%] -left-[10%] w-[800px] h-[800px] rounded-full bg-linear-to-br from-blue-600/8 to-cyan-400/5 blur-[100px]" />
-      
-      <!-- 次光晕 - 右下 -->
-      <div class="absolute -bottom-[20%] -right-[10%] w-[600px] h-[600px] rounded-full bg-linear-to-tl from-indigo-600/8 to-purple-400/5 blur-[100px]" />
-      
-      <!-- 装饰性几何图形 - 右上角 -->
-      <div class="absolute top-[15%] right-[5%] w-[400px] h-[400px] border border-blue-200/20 rounded-full" />
-      <div class="absolute top-[20%] right-[10%] w-[300px] h-[300px] border border-indigo-200/15 rounded-full" />
-      
-      <!-- 装饰性几何图形 - 左下角 -->
-      <div class="absolute bottom-[10%] left-[8%] w-[200px] h-[200px] border border-slate-200/20 rotate-45" />
-      
-      <!-- 动态光点 -->
-      <div class="absolute top-[30%] left-[20%] w-2 h-2 bg-blue-400/30 rounded-full animate-pulse" />
-      <div class="absolute top-[60%] right-[25%] w-1.5 h-1.5 bg-indigo-400/30 rounded-full animate-pulse" style="animation-delay: 1s;" />
-      <div class="absolute bottom-[30%] left-[40%] w-1 h-1 bg-cyan-400/30 rounded-full animate-pulse" style="animation-delay: 2s;" />
+  <section
+    class="relative min-h-[80dvh] flex items-center overflow-hidden bg-white text-black pt-24 pb-16 md:py-24"
+  >
+    <!-- AI 主题背景：极光网格 + 六边形电路 + 扩散波纹 -->
+    <div class="ai-bg absolute inset-0 z-0 overflow-hidden pointer-events-none">
+      <!-- 基础色层 -->
+      <div class="absolute inset-0 bg-[#fafbff]" />
+
+      <!-- 六边形网格纹理 -->
+      <svg class="hex-grid absolute inset-0 w-full h-full" aria-hidden="true">
+        <defs>
+          <pattern id="hex" width="56" height="100" patternUnits="userSpaceOnUse" patternTransform="scale(1.2)">
+            <path d="M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100" fill="none" stroke="rgba(99,102,241,.06)" stroke-width="0.6"/>
+            <path d="M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34" fill="none" stroke="rgba(99,102,241,.04)" stroke-width="0.4"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#hex)" />
+      </svg>
+
+      <!-- 极光渐变流动层 -->
+      <div class="ai-aurora ai-aurora-1" />
+      <div class="ai-aurora ai-aurora-2" />
+
+      <!-- 电路走线 SVG（静态装饰） -->
+      <svg class="circuit-lines absolute inset-0 w-full h-full" aria-hidden="true">
+        <g fill="none" stroke-width="1" stroke-linecap="round" opacity="0.6">
+          <path d="M0,35% H12% L15%,32% H28%" stroke="rgba(99,102,241,.12)" />
+          <circle cx="28%" cy="32%" r="2.5" fill="rgba(99,102,241,.2)" class="ai-dot-pulse" />
+          <path d="M0,55% H8% L10%,52% H22% L24%,55% H32%" stroke="rgba(139,92,246,.1)" />
+          <circle cx="32%" cy="55%" r="2" fill="rgba(139,92,246,.15)" class="ai-dot-pulse" style="animation-delay:1s" />
+          <path d="M100%,42% H88% L85%,45% H72%" stroke="rgba(99,102,241,.12)" />
+          <circle cx="72%" cy="45%" r="2.5" fill="rgba(99,102,241,.2)" class="ai-dot-pulse" style="animation-delay:.5s" />
+          <path d="M100%,68% H90% L88%,65% H78% L76%,68% H68%" stroke="rgba(6,182,212,.1)" />
+          <circle cx="68%" cy="68%" r="2" fill="rgba(6,182,212,.15)" class="ai-dot-pulse" style="animation-delay:1.5s" />
+          <path d="M45%,0 V12% L48%,15% V25%" stroke="rgba(99,102,241,.1)" />
+          <circle cx="48%" cy="25%" r="2" fill="rgba(99,102,241,.15)" class="ai-dot-pulse" style="animation-delay:2s" />
+        </g>
+      </svg>
+
+      <!-- 扩散波纹环 -->
+      <div class="ai-ripple ai-ripple-1" />
+
+      <!-- 底部渐变过渡 -->
+      <div class="absolute bottom-0 inset-x-0 h-24 bg-linear-to-t from-white to-transparent" />
     </div>
-    <div class="container mx-auto container-padding relative z-10 w-full" :class="props.ui.container">
+    <div
+      class="container mx-auto container-padding relative z-10 w-full"
+      :class="props.ui.container"
+    >
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-        <div class="relative space-y-6 md:space-y-8 text-center lg:text-left" :class="props.ui.content">
-          <!-- 装饰背景 -->
-          <div class="absolute inset-0 -z-10 overflow-visible pointer-events-none select-none">
-            <!-- 左侧柔和光晕 -->
-            <div class="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-linear-to-r from-blue-500/5 to-transparent rounded-full blur-[60px]"/>
-            
-            <!-- 微妙的几何装饰 -->
-            <div class="absolute top-10 right-20 w-16 h-16 border border-blue-200/20 rounded-lg rotate-12"/>
-            <div class="absolute bottom-20 left-10 w-12 h-12 border border-indigo-200/15 rounded-full"/>
-          </div>
+        <div
+          class="relative space-y-6 md:space-y-8 text-center lg:text-left"
+          :class="props.ui.content"
+        >
 
           <div class="flex justify-center lg:justify-start">
-            <div class="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 rounded-full bg-black/5 border border-black/10">
-              <span class="px-1.5 py-0.5 rounded bg-ui-primary text-[11px] md:text-xs font-bold text-white tracking-wider">NEW</span>
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 rounded-full bg-black/5 border border-black/10"
+            >
+              <span
+                class="px-1.5 py-0.5 rounded bg-ui-primary text-[11px] md:text-xs font-bold text-white tracking-wider"
+              >
+                NEW
+              </span>
               <span class="text-xs md:text-sm text-gray-600">Nanobanana视频生成全新升级</span>
             </div>
           </div>
 
           <slot name="title">
             <div class="space-y-3 md:space-y-5" :class="props.ui.title">
-              <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight text-black">
-                <span class="text-ui-primary">企业级一体化</span> 生成创作平台
+              <h1
+                class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight text-black"
+              >
+                <span class="text-ui-primary">企业级一体化</span>
+                生成创作平台
               </h1>
               <p class="text-sm sm:text-base lg:text-lg text-black/60 leading-relaxed">
-                面向 <span class="text-ui-primary font-semibold">AI开发者</span> · <span class="text-ui-primary font-semibold">AI创业者</span> · <span class="text-ui-primary font-semibold">先进组织</span>
+                面向
+                <span class="text-ui-primary font-semibold">AI开发者</span>
+                ·
+                <span class="text-ui-primary font-semibold">AI创业者</span>
+                ·
+                <span class="text-ui-primary font-semibold">先进组织</span>
               </p>
             </div>
           </slot>
 
           <slot name="description">
-            <p class="text-base sm:text-lg lg:text-xl text-gray-700 max-w-2xl mx-auto lg:mx-0 leading-relaxed min-h-[1.75em]" :class="props.ui.description">
-              {{ typeWriterText }}<span class="animate-blink ml-1 border-r-2 border-ui-primary h-[1.2em] align-middle inline-block"/>
+            <p
+              class="text-base sm:text-lg lg:text-xl text-gray-700 max-w-2xl mx-auto lg:mx-0 leading-relaxed min-h-[1.75em]"
+              :class="props.ui.description"
+            >
+              {{ typeWriterText }}
+              <span
+                class="animate-blink ml-1 border-r-2 border-ui-primary h-[1.2em] align-middle inline-block"
+              />
             </p>
           </slot>
 
-          <slot name="links" :class="props.ui.links">
-            <div class="mt-6 sm:mt-8 lg:mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-2 sm:gap-3 w-full sm:w-auto px-3 sm:px-0">
+          <slot name="links">
+            <div
+              class="mt-6 sm:mt-8 lg:mt-10 flex flex-row items-center justify-center lg:justify-start gap-2 sm:gap-3 w-full sm:w-auto px-3 sm:px-0"
+              :class="props.ui.links"
+            >
               <a
                 href="https://www.gmlart.cn"
                 target="_blank"
-                class="w-full sm:w-auto px-5 sm:px-6 lg:px-8 py-2.5 sm:py-3 rounded-full bg-primary text-white text-xs sm:text-sm font-semibold hover:bg-primary/90 active:scale-95 transition-all flex items-center justify-center gap-1.5 sm:gap-2 touch-manipulation min-h-[40px] sm:min-h-[44px]"
+                rel="noopener noreferrer"
+                class="flex-1 sm:flex-none px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 rounded-full bg-primary text-white text-xs sm:text-sm font-semibold hover:bg-primary/90 active:scale-95 transition-all flex items-center justify-center gap-1 sm:gap-2 touch-manipulation min-h-[40px] sm:min-h-[44px]"
               >
-                <UIcon name="i-heroicons-rocket-launch" class="shrink-0 size-4 sm:size-5" aria-hidden="true" />
+                <UIcon
+                  name="i-heroicons-rocket-launch"
+                  class="shrink-0 size-4 sm:size-5"
+                  aria-hidden="true"
+                />
                 开始使用
               </a>
               <a
                 href="https://www.gmlart.cn"
                 target="_blank"
-                class="w-full sm:w-auto px-5 sm:px-6 lg:px-8 py-2.5 sm:py-3 rounded-full bg-white border border-neutral-200 text-neutral-700 text-xs sm:text-sm font-semibold hover:bg-neutral-50 hover:border-neutral-300 active:scale-95 transition-all flex items-center justify-center gap-1.5 sm:gap-2 touch-manipulation min-h-[40px] sm:min-h-[44px]"
+                rel="noopener noreferrer"
+                class="flex-1 sm:flex-none px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 rounded-full bg-white border border-neutral-200 text-neutral-700 text-xs sm:text-sm font-semibold hover:bg-neutral-50 hover:border-neutral-300 active:scale-95 transition-all flex items-center justify-center gap-1 sm:gap-2 touch-manipulation min-h-[40px] sm:min-h-[44px]"
               >
-                <UIcon name="i-heroicons-sparkles" class="shrink-0 size-4 sm:size-5" aria-hidden="true" />
+                <UIcon
+                  name="i-heroicons-sparkles"
+                  class="shrink-0 size-4 sm:size-5"
+                  aria-hidden="true"
+                />
                 立即创造
               </a>
             </div>
 
             <!-- Falling Text 动画组件 -->
-            <div class="pt-2 md:pt-4 w-full max-w-2xl mx-auto lg:mx-0 lg:-ml-8 h-[160px] md:h-[200px] pointer-events-auto">
+            <div
+              class="pt-2 md:pt-4 w-full max-w-2xl mx-auto lg:mx-0 lg:-ml-8 h-[160px] md:h-[200px] pointer-events-auto"
+            >
               <LazyFallingText
                 text="TypeScript 智言AI NestJS Vue Nuxt 开源"
                 :word-colors="[
@@ -106,150 +155,126 @@
           </slot>
         </div>
 
-          <div class="relative w-full z-10 mt-8 lg:mt-0 lg:absolute lg:left-1/2 lg:top-0 lg:bottom-0 lg:w-[50vw] lg:h-auto flex flex-col justify-center" :class="props.ui.imageSection">
-            <div class="absolute inset-0 -z-10 pointer-events-none">
-              <div class="mx-auto w-[90%] md:w-[85%] h-[60%] rounded-[40px] bg-linear-to-br from-black/5 via-black/2 to-black/5 blur-2xl"/>
-            </div>
-
-            <!-- Desktop: Vertical Marquee -->
-            <div class="hidden lg:grid grid-cols-2 gap-6 w-full pl-12 pr-4">
-              <UMarquee
-                orientation="vertical"
-                :overlay="false"
-                :ui="{
-                  root: '[--duration:34s] relative h-[720px]'
-                }"
-              >
-                <img
-                  v-for="(img, index) in marqueeImageGroups.first"
-                  :key="index"
-                  :src="img"
-                  width="460"
-                  height="258"
-                  :alt="`智言万象 插件预览 ${index + 1}`"
-                  loading="lazy"
-                  decoding="async"
-                  class="aspect-video border border-default rounded-[12px] bg-white shadow-sm"
-                />
-              </UMarquee>
-              <UMarquee
-                reverse
-                orientation="vertical"
-                :overlay="false"
-                :ui="{
-                  root: '[--duration:38s] relative h-[720px]'
-                }"
-              >
-                <img
-                  v-for="(img, index) in marqueeImageGroups.second"
-                  :key="index"
-                  :src="img"
-                  width="460"
-                  height="258"
-                  :alt="`智言万象 插件预览 ${index + 1}`"
-                  loading="lazy"
-                  decoding="async"
-                  class="aspect-video border border-default rounded-[12px] bg-white shadow-sm"
-                />
-              </UMarquee>
-            </div>
-
-            <!-- Mobile: Horizontal Marquee -->
-            <div class="flex flex-col gap-4 lg:hidden w-screen -ml-[calc(50vw-50%)]">
-              <UMarquee
-                orientation="horizontal"
-                :overlay="false"
-                :ui="{
-                  root: '[--duration:30s] relative py-2'
-                }"
-              >
-                <img
-                  v-for="(img, index) in marqueeImageGroups.first"
-                  :key="index"
-                  :src="img"
-                  class="h-[140px] w-auto aspect-video border border-default rounded-[12px] bg-white shadow-sm mx-2"
-                  alt="智言万象 插件预览"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </UMarquee>
-              <UMarquee
-                reverse
-                orientation="horizontal"
-                :overlay="false"
-                :ui="{
-                  root: '[--duration:35s] relative py-2'
-                }"
-              >
-                <img
-                  v-for="(img, index) in marqueeImageGroups.second"
-                  :key="index"
-                  :src="img"
-                  class="h-[140px] w-auto aspect-video border border-default rounded-[12px] bg-white shadow-sm mx-2"
-                  alt="智言万象 插件预览"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </UMarquee>
-            </div>
+        <div
+          class="relative w-full z-10 mt-8 lg:mt-0 lg:absolute lg:left-1/2 lg:top-0 lg:bottom-0 lg:w-[50vw] lg:h-auto flex flex-col justify-center"
+          :class="props.ui.imageSection"
+        >
+          <div class="absolute inset-0 -z-10 pointer-events-none">
+            <div
+              class="mx-auto w-[90%] md:w-[85%] h-[60%] rounded-[40px] bg-linear-to-br from-black/5 via-black/2 to-black/5 blur-2xl"
+            />
           </div>
+
+          <!-- Desktop: Vertical Marquee -->
+          <div class="hidden lg:grid grid-cols-2 gap-6 w-full pl-12 pr-4">
+            <UMarquee
+              orientation="vertical"
+              :overlay="false"
+              :ui="{
+                root: '[--duration:34s] relative h-[720px]'
+              }"
+            >
+              <img
+                v-for="(img, index) in marqueeImageGroups.first"
+                :key="img"
+                :src="img"
+                width="460"
+                height="258"
+                :alt="`智言万象 插件预览 ${index + 1}`"
+                loading="lazy"
+                decoding="async"
+                class="aspect-video border border-default rounded-[12px] bg-white shadow-sm"
+                @error="handleImageError"
+              />
+            </UMarquee>
+            <UMarquee
+              reverse
+              orientation="vertical"
+              :overlay="false"
+              :ui="{
+                root: '[--duration:38s] relative h-[720px]'
+              }"
+            >
+              <img
+                v-for="(img, index) in marqueeImageGroups.second"
+                :key="img"
+                :src="img"
+                width="460"
+                height="258"
+                :alt="`智言万象 插件预览 ${index + 1}`"
+                loading="lazy"
+                decoding="async"
+                class="aspect-video border border-default rounded-[12px] bg-white shadow-sm"
+                @error="handleImageError"
+              />
+            </UMarquee>
+          </div>
+
+          <!-- Mobile: Horizontal Marquee -->
+          <div class="flex flex-col gap-4 lg:hidden w-screen -ml-[calc(50vw-50%)]">
+            <UMarquee
+              orientation="horizontal"
+              :overlay="false"
+              :ui="{
+                root: '[--duration:30s] relative py-2'
+              }"
+            >
+              <img
+                v-for="img in marqueeImageGroups.first"
+                :key="img"
+                :src="img"
+                class="h-[140px] w-auto aspect-video border border-default rounded-[12px] bg-white shadow-sm mx-2"
+                alt="智言万象 插件预览"
+                loading="lazy"
+                decoding="async"
+                @error="handleImageError"
+              />
+            </UMarquee>
+            <UMarquee
+              reverse
+              orientation="horizontal"
+              :overlay="false"
+              :ui="{
+                root: '[--duration:35s] relative py-2'
+              }"
+            >
+              <img
+                v-for="img in marqueeImageGroups.second"
+                :key="img"
+                :src="img"
+                class="h-[140px] w-auto aspect-video border border-default rounded-[12px] bg-white shadow-sm mx-2"
+                alt="智言万象 插件预览"
+                loading="lazy"
+                decoding="async"
+                @error="handleImageError"
+              />
+            </UMarquee>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, computed } from 'vue'
-// 导入应用数据：从 utils/pluginData.ts 中获取应用列表，用于提取图片生成跑马灯背景
+import { ref, onMounted, onUnmounted } from 'vue'
 import { apps } from '~/utils/pluginData'
 import { LAYOUT, ANIMATION, MARQUEE } from '~/utils/ui'
 
-// 只取 image 字段用于跑马灯
 const marqueeImages = apps.map(app => app.image)
 
-/**
- * Hero Section Logic
- * 包含响应式状态检测，用于优化移动端体验（如禁用复杂的悬停效果）
- */
-
-// Props定义，支持UI自定义配置
 interface HeroSectionProps {
-  /**
-   * 组件方向
-   */
   orientation?: 'horizontal' | 'vertical'
-  /**
-   * UI配置选项
-   */
   ui?: {
-    /**
-     * 容器样式
-     */
     container?: string
-    /**
-     * 标题样式
-     */
     title?: string
-    /**
-     * 描述样式
-     */
     description?: string
-    /**
-     * 链接/按钮样式
-     */
     links?: string
-    /**
-     * 左侧内容样式
-     */
     content?: string
-    /**
-     * 右侧图片展示区样式
-     */
     imageSection?: string
   }
 }
 
-// 默认属性值
 const props = withDefaults(defineProps<HeroSectionProps>(), {
   orientation: 'horizontal',
   ui: () => ({
@@ -262,10 +287,9 @@ const props = withDefaults(defineProps<HeroSectionProps>(), {
   })
 })
 
-// 响应式状态
 const isMobile = ref(false)
 
-// 打字机效果逻辑
+// ── 打字机效果 ──
 const typeWriterText = ref('')
 const sentences = [
   '它能够助您快速开发AI应用，缩短80%项目交付周期',
@@ -280,7 +304,7 @@ let typeTimeout: ReturnType<typeof setTimeout> | null = null
 
 const typeWriter = () => {
   const currentSentence = sentences[sentenceIndex]
-  if (!currentSentence) {return}
+  if (!currentSentence) return
 
   if (isDeleting) {
     typeWriterText.value = currentSentence.substring(0, charIndex - 1)
@@ -290,115 +314,179 @@ const typeWriter = () => {
     charIndex++
   }
 
-  let typeSpeed: number = isDeleting ? ANIMATION.TYPEWRITER_DELETING_SPEED : ANIMATION.TYPEWRITER_TYPING_SPEED
+  let typeSpeed: number = isDeleting
+    ? ANIMATION.TYPEWRITER_DELETING_SPEED
+    : ANIMATION.TYPEWRITER_TYPING_SPEED
 
   if (!isDeleting && charIndex === currentSentence.length) {
-    typeSpeed = ANIMATION.TYPEWRITER_PAUSE_AFTER_COMPLETE // 句子打完后暂停
+    typeSpeed = ANIMATION.TYPEWRITER_PAUSE_AFTER_COMPLETE
     isDeleting = true
   } else if (isDeleting && charIndex === 0) {
     isDeleting = false
     sentenceIndex = (sentenceIndex + 1) % sentences.length
-    typeSpeed = ANIMATION.TYPEWRITER_PAUSE_BEFORE_NEW // 开始新句子前暂停
+    typeSpeed = ANIMATION.TYPEWRITER_PAUSE_BEFORE_NEW
   }
 
   typeTimeout = setTimeout(typeWriter, typeSpeed)
 }
 
-// 插件图片配置 - 直接从 pluginData.ts 获取，实现自动同步
-const allPluginImages = computed(() => marqueeImages)
-
-/**
- * 随机打乱数组顺序的函数
- * @param array 需要打乱的数组
- * @returns 打乱后的新数组
- */
+// ── 跑马灯图片分组 ──
 const shuffleArray = (array: string[]) => {
   const newArray = [...array]
   for (let i = newArray.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1))
-    const ai = newArray[i]!
-    const aj = newArray[j]!
-    newArray[i] = aj
-    newArray[j] = ai
+    ;[newArray[i], newArray[j]] = [newArray[j]!, newArray[i]!]
   }
   return newArray
 }
 
-/**
- * 生成两组跑马灯展示图片。
- *
- * @returns 包含 `first` 与 `second` 两组图片数组的对象。移动端总计 10 张，桌面端总计 16 张，均匀拆分为两列并随机打乱。
- */
-const marqueeImageGroups = computed(() => {
-  const base = shuffleArray(allPluginImages.value)
-  const total = isMobile.value ? MARQUEE.MOBILE_IMAGE_COUNT : MARQUEE.DESKTOP_IMAGE_COUNT
-  const selected = base.slice(0, total)
+const splitGroups = (selected: string[]) => {
   const half = Math.ceil(selected.length / 2)
-  return {
-    first: selected.slice(0, half),
-    second: selected.slice(half)
-  }
-})
+  return { first: selected.slice(0, half), second: selected.slice(half) }
+}
 
-/**
- * 检测设备类型并更新移动端状态。
- *
- * @returns 无返回值。根据窗口宽度设置 `isMobile` 布尔值，宽度小于 768px 视为移动端。
- */
+const initMarqueeGroups = () =>
+  splitGroups(marqueeImages.slice(0, MARQUEE.DESKTOP_IMAGE_COUNT))
+
+const marqueeImageGroups = ref(initMarqueeGroups())
+
+const generateMarqueeGroups = () => {
+  const total = isMobile.value ? MARQUEE.MOBILE_IMAGE_COUNT : MARQUEE.DESKTOP_IMAGE_COUNT
+  marqueeImageGroups.value = splitGroups(shuffleArray(marqueeImages).slice(0, total))
+}
+
+const handleImageError = (event: Event) => {
+  const img = event.target as HTMLImageElement
+  if (img) img.style.display = 'none'
+}
+
+// ── 响应式设备检测 ──
 const checkDevice = () => {
   if (typeof window !== 'undefined') {
-    const prev = isMobile.value
     isMobile.value = window.innerWidth < LAYOUT.MOBILE_BREAKPOINT
-    if (prev !== isMobile.value) {
-      /* 依赖 isMobile 的计算属性会自动刷新 */
-    }
   }
 }
 
+let resizeTicking = false
+const throttledCheckDevice = () => {
+  if (resizeTicking) return
+  resizeTicking = true
+  requestAnimationFrame(() => {
+    const prev = isMobile.value
+    checkDevice()
+    if (isMobile.value !== prev) generateMarqueeGroups()
+    resizeTicking = false
+  })
+}
+
 onMounted(() => {
+  if (typeTimeout) clearTimeout(typeTimeout)
   checkDevice()
-  window.addEventListener('resize', checkDevice)
-  typeWriter() // 启动打字机
+  generateMarqueeGroups()
+  window.addEventListener('resize', throttledCheckDevice)
+  typeWriter()
 })
 
 onUnmounted(() => {
-  window.removeEventListener('resize', checkDevice)
-  if (typeTimeout) {clearTimeout(typeTimeout)}
+  window.removeEventListener('resize', throttledCheckDevice)
+  if (typeTimeout) clearTimeout(typeTimeout)
 })
 </script>
 
 <style scoped>
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-15px) rotate(3deg);
-  }
+/* ── AI 主题 CSS 变量 ── */
+.ai-bg {
+  --ai-primary: rgba(99, 102, 241, 0.15);
+  --ai-secondary: rgba(139, 92, 246, 0.12);
+  --ai-accent: rgba(6, 182, 212, 0.1);
 }
 
-.animate-float {
-  animation: float 8s ease-in-out infinite;
+/* ── 六边形网格 ── */
+.hex-grid { opacity: 0.8; }
+
+/* ── 极光渐变流动（用径向渐变模拟模糊，零 filter 开销） ── */
+.ai-aurora {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+  contain: layout style paint;
+}
+.ai-aurora-1 {
+  width: 900px; height: 600px;
+  top: -18%; left: -12%;
+  background: radial-gradient(ellipse 60% 50%, rgba(99,102,241,.1) 0%, rgba(139,92,246,.04) 40%, transparent 70%);
+  animation: aurora-drift-1 20s ease-in-out infinite;
+}
+.ai-aurora-2 {
+  width: 700px; height: 500px;
+  bottom: -12%; right: -8%;
+  background: radial-gradient(ellipse 55% 45%, rgba(6,182,212,.09) 0%, rgba(59,130,246,.04) 40%, transparent 70%);
+  animation: aurora-drift-2 25s ease-in-out infinite;
 }
 
-.animation-delay-2000 {
-  animation-delay: 2s;
+@keyframes aurora-drift-1 {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(60px, 40px, 0); }
+}
+@keyframes aurora-drift-2 {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(-50px, -40px, 0); }
 }
 
-.animation-delay-4000 {
-  animation-delay: 4s;
+/* ── 电路节点脉冲（仅 opacity，走合成层） ── */
+.ai-dot-pulse {
+  animation: dot-pulse 3s ease-in-out infinite;
+}
+@keyframes dot-pulse {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.9; }
 }
 
+/* ── 扩散波纹环（仅 1 个，translate3d 强制 GPU） ── */
+.ai-ripple {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(99,102,241,.07);
+  will-change: transform, opacity;
+  contain: layout style;
+}
+.ai-ripple-1 {
+  width: 300px; height: 300px;
+  top: 30%; left: 20%;
+  animation: ripple-expand 8s ease-out infinite;
+}
+
+@keyframes ripple-expand {
+  0% { transform: scale(0.5); opacity: 0.6; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* ── 打字光标闪烁 ── */
 .animate-blink {
   animation: blink 1s step-end infinite;
 }
-
 @keyframes blink {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ── 移动端简化动画 ── */
+@media (max-width: 767px) {
+  .ai-aurora { animation: none; }
+  .ai-ripple { display: none; }
+  .hex-grid { opacity: 0.4; }
+  .circuit-lines { display: none; }
+  .ai-dot-pulse { animation: none; opacity: 0.4; }
+}
+
+/* ── 无障碍：尊重用户减少动画偏好 ── */
+@media (prefers-reduced-motion: reduce) {
+  .ai-aurora,
+  .ai-dot-pulse,
+  .ai-ripple,
+  .animate-blink {
+    animation: none !important;
+    opacity: 0.5;
   }
 }
 </style>
