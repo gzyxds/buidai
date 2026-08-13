@@ -84,7 +84,7 @@
         <div class="lg:col-span-4 group">
           <div
             class="h-full relative overflow-hidden rounded-2xl p-8 sm:p-10 ring-1 ring-white/10 hover:ring-white/20 transition-all duration-200 bg-cover bg-center bg-no-repeat"
-            style="background-image: url('/images/CtaSection.jpg');"
+            style="background-image: url('/images/ValueProps-5.png');"
           >
             
             <div class="relative">
@@ -94,7 +94,7 @@
               <h3 class="mt-6 text-2xl font-bold tracking-tight text-white">
                 赋能开发者
               </h3>
-              <p class="mt-4 text-base leading-7 text-slate-400">
+              <p class="mt-4 text-base leading-7 text-white">
                 提供完整的 AI 开发工具链，帮助开发者快速转型为 AI 开发者。通过内置应用市场实现技术变现，构建个人技术品牌。
               </p>
               <!-- 指示点 - 更克制的点缀色 -->

@@ -30,7 +30,7 @@ const handleCTAClick = () => {
     <!-- 背景图片 -->
     <div class="absolute inset-0 z-0">
       <img 
-        src="/images/Modelbackground.png" 
+        src="/images/CallToAction.jpg" 
         alt="" 
         class="w-full h-full object-cover object-center blur-[2px] scale-100"
         loading="lazy"

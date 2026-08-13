@@ -244,35 +244,35 @@ const featureCards: FeatureCard[] = [
     tag: '文生图 · 图生图',
     title: 'Nanobanana 香蕉绘画',
     desc: '基于 Gemini 3 Pro Image Preview 模型的一站式 AI 图像创作平台，支持高质量文生图、图生图及多图融合，预置模板开箱即用，生成速度极快。',
-    image: '/product/banana-1.png'
+    image: '/product/FeatureSteps-1.png'
   },
   {
     category: 'AI视频',
     tag: '文生视频 · 图生视频',
     title: '即梦AI 视频生成',
     desc: '输入文字描述或上传参考图，即可快速生成风格多样的短视频。支持多种视频比例和分辨率（720P、1080P），让创意瞬间变为现实。',
-    image: '/plugin/即梦AI视频.png'
+    image: '/product/FeatureSteps-2.png'
   },
   {
     category: 'AI数字人',
     tag: '形象克隆 · 声音克隆',
     title: 'AI数字人系统',
     desc: '一键克隆形象与声音，支持 4K 超清画质、5 秒声音克隆、多语种合成。上传视频即可克隆专属形象，1:1 还原真人表情与动作。',
-    image: '/product/human.png'
+    image: '/product/FeatureSteps-3.jpg'
   },
   {
     category: 'AI创作',
     tag: '短剧 · 小说 · 剧本',
     title: 'AI短剧小说创作',
     desc: '专为自媒体创作者、编剧、网络作家打造，支持创建无限量剧本、角色设定、章节可视化拖拽、AI 扩写润色改写续写，让创作更高效。',
-    image: '/plugin/AI短剧小说创作.png'
+    image: '/product/FeatureSteps-4.png'
   },
   {
     category: 'AI工具',
     tag: '音乐 · PPT · 简历',
     title: '多元化 AI 创作工具',
     desc: '涵盖 AI 音乐生成、智能 PPT 制作、简历生成分析等多款工具。支持文生音乐、一键生成演示文稿、智能简历优化，满足多样化创作需求。',
-    image: '/plugin/xiaohongshu.png'
+    image: '/product/FeatureSteps-5.png'
   }
 ]
 

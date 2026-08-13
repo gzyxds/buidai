@@ -209,15 +209,12 @@
               <div class="relative h-full">
                 <div class="relative p-2 rounded-3xl bg-neutral-50/50 backdrop-blur-sm border border-neutral-100 h-full">
                   <div class="relative rounded-2xl overflow-hidden border border-neutral-100 shadow-sm bg-white aspect-video">
-                    <video
-                      :src="feature.video"
-                      autoplay
-                      loop
-                      muted
-                      playsinline
+                    <img
+                      :src="feature.image"
+                      :alt="feature.title"
                       class="w-full h-full object-cover"
                     />
-                    <!-- 视频遮罩 -->
+                    <!-- 图片遮罩 -->
                     <div class="absolute inset-0 bg-linear-to-tr from-neutral-500/5 to-transparent pointer-events-none" />
                   </div>
                 </div>
@@ -560,7 +557,7 @@ interface Feature {
   title: string
   desc: string
   icon: Component
-  video: string
+  image: string
   points: { title: string; desc: string }[]
   activePoint: number
 }
@@ -599,8 +596,7 @@ const features = ref<Feature[]>([
     title: '全栈赋能',
     desc: '最新的大模型，丰富的资源库，提供 AI Agent 开发所需的全部核心技术。',
     icon: CubeIcon,
-    video:
-      'https://portal.volccdn.com/obj/volcfe/bee_prod/biz_950/tos_5947ecf038587e21912f7a7f0c29723a.mp4',
+    image: '/images/agent/Fullstack.png',
     points: [
       { title: '多模型接入', desc: '支持 GPT-4、Claude、Gemini 等全球主流大模型' },
       { title: '知识库管理', desc: '强大的 RAG 检索增强，支持多种文档格式' },
@@ -612,8 +608,7 @@ const features = ref<Feature[]>([
     title: '开箱即用',
     desc: '健全的应用模板和编排框架，用最低的成本开发最专业的 AI Agent。',
     icon: WrenchScrewdriverIcon,
-    video:
-      'https://lf6-cdn-tos.huoshanstatic.com/obj/inspirecloud-file/baas/tt502102w0zm96mm30/7a2291113013f873_1749556611819.mp4',
+    image: '/images/agent/Outofthebox.png',
     points: [
       { title: '丰富模板', desc: '预置 50+ 行业场景模板，一键快速部署' },
       { title: '智能体市场', desc: '海量优质 Agent 应用，即装即用' },
@@ -625,8 +620,7 @@ const features = ref<Feature[]>([
     title: '安全可信',
     desc: '覆盖 Agent 开发全生命周期安全保障，满足企业级安全需求。',
     icon: PuzzlePieceIcon,
-    video:
-      'https://lf6-cdn-tos.huoshanstatic.com/obj/inspirecloud-file/baas/tt502102w0zm96mm30/d2dabbdbb1d7fbae_1765444399839.mp4',
+    image: '/images/agent/privatization.png',
     points: [
       { title: '私有化部署', desc: '数据本地化存储，完全自主可控' },
       { title: '权限管理', desc: '细粒度访问控制，保障数据安全' },
@@ -638,8 +632,7 @@ const features = ref<Feature[]>([
     title: '全网发布',
     desc: '点击一下，全平台上线！APP、网页、小程序统统搞定。',
     icon: RocketLaunchIcon,
-    video:
-      'https://lf6-cdn-tos.huoshanstatic.com/obj/inspirecloud-file/baas/tt502102w0zm96mm30/58508b9898be7111_1749556627094.mp4',
+    image: '/images/agent/Network-wide.png',
     points: [
       { title: '多端适配', desc: '一次开发，自动适配 Web、iOS、Android' },
       { title: '一键发布', desc: '无需配置服务器，快速上线运营' },
