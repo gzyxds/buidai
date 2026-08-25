@@ -17,7 +17,6 @@ export interface FriendLink {
  * 用于页脚底部的友情链接展示
  */
 export const friendLinks: FriendLink[] = [
-  { name: '智言API', url: 'https://api.gmlart.cn/', description: '大模型接口网关' },
   { name: 'Nanobanana 香蕉绘画', url: '/product/banana', description: '开源免费的 AI 图像生成系统' },
   { name: 'AI短剧小说创作', url: '/product/drama', description: '开源免费的网文短剧写作系统' },
   { name: 'AI数字人系统', url: '/product/human', description: '开源免费的虚拟形象克隆系统' },
@@ -27,7 +26,6 @@ export const friendLinks: FriendLink[] = [
   { name: 'AI音乐', url: '/product/music', description: '开源免费的 AI 音乐生成系统' },
   { name: 'AI PPT', url: '/product/ppt', description: '开源免费的智能演示文稿制作工具' },
   { name: 'AI简历', url: '/product/resume', description: '开源免费的智能简历生成与分析系统' },
-  { name: 'Sora 视频生成引擎', url: '/product/sora', description: '开源免费的 AI 视频创作系统' },
   { name: '视频混剪助手', url: '/product/videoclip', description: '开源免费的视频剪辑软件' },
   { name: '小红书创作助手', url: '/product/xhs', description: '开源免费的 AI 文案生成系统' },
   { name: '艺创AI', url: 'https://www.urlnet.cn' },
@@ -36,7 +34,6 @@ export const friendLinks: FriendLink[] = [
   { name: 'AI数字人', url: 'https://v.cnai.art' },
   { name: 'AI绘画', url: 'https://urlnet.cn' },
   { name: '论文创作', url: 'https://paper.gmlart.cn' },
-  { name: 'PaYphp', url: 'https://www.payphp.cn' },
-  { name: '172号卡', url: 'https://www.urlka.cn' },
+  { name: '免费领卡', url: 'https://www.urlka.cn' },
   { name: 'AI系统源码', url: 'https://www.artaigc.cn' }
 ]
