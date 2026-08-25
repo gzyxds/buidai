@@ -17,7 +17,7 @@ export interface FriendLink {
  * 用于页脚底部的友情链接展示
  */
 export const friendLinks: FriendLink[] = [
-  { name: 'Nanobanana 香蕉绘画', url: '/product/banana', description: '开源免费的 AI 图像生成系统' },
+  { name: 'AI绘画', url: '/product/banana', description: '开源免费的 AI 图像生成系统' },
   { name: 'AI短剧小说创作', url: '/product/drama', description: '开源免费的网文短剧写作系统' },
   { name: 'AI数字人系统', url: '/product/human', description: '开源免费的虚拟形象克隆系统' },
   { name: '即梦AI', url: '/product/jimeng', description: '开源免费的 AI 视频生成系统' },
