@@ -238,7 +238,7 @@
       <div class="mt-6 sm:mt-8 lg:mt-10 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 w-full sm:w-auto px-3 sm:px-0">
         <a 
           href="https://www.buidai.com/" 
-          target="_blank" 
+          target="_blank" rel="noopener noreferrer" 
           class="w-full sm:w-auto px-5 sm:px-6 lg:px-8 py-2.5 sm:py-3 rounded-full bg-[var(--brand-primary)] text-white text-xs sm:text-sm font-semibold hover:bg-[var(--brand-primary-dark)] active:scale-95 transition-all flex items-center justify-center gap-1.5 sm:gap-2 touch-manipulation min-h-[40px] sm:min-h-[44px]"
         >
           快速开始
@@ -248,7 +248,7 @@
         </a>
         <a 
           href="https://doc.buidai.com/" 
-          target="_blank" 
+          target="_blank" rel="noopener noreferrer" 
           class="w-full sm:w-auto px-5 sm:px-6 lg:px-8 py-2.5 sm:py-3 rounded-full bg-white border border-neutral-200 text-neutral-700 text-xs sm:text-sm font-semibold hover:bg-neutral-50 hover:border-neutral-300 active:scale-95 transition-all flex items-center justify-center gap-1.5 sm:gap-2 touch-manipulation min-h-[40px] sm:min-h-[44px]"
         >
           查看文档

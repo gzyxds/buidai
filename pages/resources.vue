@@ -95,37 +95,37 @@ const resources = [
     title: '文档中心',
     description: '全面的产品使用指南、API 文档和 SDK 说明，帮助您快速上手开发。',
     icon: DocumentTextIcon,
-    to: '#'
+    to: '/docs'
   },
   {
     title: 'API 参考',
     description: '详细的 REST API 接口定义、参数说明及调用示例。',
     icon: CodeBracketIcon,
-    to: '#'
+    to: '/contact'
   },
   {
     title: '视频教程',
     description: '从入门到精通的视频教学课程，直观演示操作流程。',
     icon: VideoCameraIcon,
-    to: '#'
+    to: '/contact'
   },
   {
     title: '社区论坛',
     description: '加入开发者社区，与数万名开发者交流心得，解决技术难题。',
     icon: ChatBubbleLeftRightIcon,
-    to: '#'
+    to: '/contact'
   },
   {
     title: '技术博客',
     description: '深度技术文章、行业洞察及最佳实践分享。',
     icon: NewspaperIcon,
-    to: '#'
+    to: '/blog'
   },
   {
     title: 'CLI 工具',
     description: '强大的命令行工具，让开发、部署和管理更加高效。',
     icon: CommandLineIcon,
-    to: '#'
+    to: '/contact'
   }
 ]
 </script>

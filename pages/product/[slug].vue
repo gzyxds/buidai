@@ -68,7 +68,7 @@ const toDemo = () => {
             <UButton
               size="xl"
               color="primary"
-              to="#"
+              to="/contact"
               class="px-8 py-3.5 rounded-full justify-center text-base font-medium shadow-lg shadow-ui-primary/20"
             >
               {{ product.hero.primaryBtn }}
@@ -203,7 +203,7 @@ const toDemo = () => {
 
             <div class="mt-2">
               <UButton
-                to="#"
+                to="/contact"
                 color="primary"
                 size="md"
                 class="rounded-full px-6 py-2.5 font-medium shadow-md shadow-ui-primary/20"
@@ -246,7 +246,7 @@ const toDemo = () => {
           {{ product.cta.description }}
         </p>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
-          <UButton size="xl" color="primary" to="#" class="px-10 py-3 rounded-full justify-center shadow-lg transition-all">
+          <UButton size="xl" color="primary" to="/contact" class="px-10 py-3 rounded-full justify-center shadow-lg transition-all">
             免费试用
           </UButton>
           <UButton

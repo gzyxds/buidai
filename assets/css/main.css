@@ -58,9 +58,6 @@
   .bg-ui-primary-weak {
     background-color: color-mix(in oklab, var(--ui-primary) 12%, transparent);
   }
-  .bg-ui-primary-glow-weak {
-    background-color: color-mix(in oklab, var(--ui-primary) 5%, transparent);
-  }
   .bg-ui-primary-glow-medium {
     background-color: color-mix(in oklab, var(--ui-primary) 10%, transparent);
   }
@@ -70,32 +67,10 @@
   .bg-ui-primary {
     background-color: var(--ui-primary);
   }
-  .ring-ui-primary {
-    --tw-ring-color: var(--ui-primary);
-  }
-  /* 主要按钮样式 */
-  .btn-primary {
-    @apply inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-all duration-200 ease-in-out;
-  }
-
-  /* 次要按钮样式 */
-  .btn-secondary {
-    @apply inline-flex items-center px-6 py-3 border border-gray-300 text-base font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-all duration-200 ease-in-out;
-  }
-
-  /* 幽灵按钮样式 (无背景) */
-  .btn-ghost {
-    @apply inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-all duration-200 ease-in-out;
-  }
 
   /* 基础卡片样式 */
   .card {
     @apply bg-white rounded-xl shadow-sm border border-gray-200 transition-all duration-200 ease-in-out;
-  }
-
-  /* 卡片悬停效果 (阴影加深 + 上浮) */
-  .card-hover {
-    @apply hover:shadow-lg hover:border-primary-200 hover:-translate-y-1;
   }
 
   /* 简化的设计工具类 */
@@ -120,31 +95,8 @@
   .text-balance {
     text-wrap: balance;
   }
-  .decoration-ui-primary-40 {
-    text-decoration-color: color-mix(in oklab, var(--ui-primary) 40%, transparent);
-  }
-
-  /* 上滑淡入动画 */
-  .animate-slide-up {
-    animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  /* 上滑关键帧定义 */
-  @keyframes slideUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
   /* 动画延迟工具类 */
   .animation-delay-200 {
     animation-delay: 200ms;
-  }
-
-  .animation-delay-400 {
-    animation-delay: 400ms;
   }
 }

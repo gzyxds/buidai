@@ -237,6 +237,11 @@ const { data: post } = await useAsyncData(route.path, () => {
   return queryCollection('blog').path(route.path).first()
 })
 
+// 文章不存在时交由 Nuxt 错误页处理，避免返回 200 + 空内容（软 404）
+if (!post.value) {
+  throw createError({ statusCode: 404, statusMessage: '文章不存在' })
+}
+
 // Fetch Surround (Older/Newer posts)
 // 手动实现 Surround 逻辑：获取所有文章的简要信息，然后计算相邻
  
@@ -292,8 +297,10 @@ const copyLink = () => {
 }
 
 // Observer for TOC
+let tocObserver: IntersectionObserver | null = null
+
 onMounted(() => {
-  const observer = new IntersectionObserver(
+  tocObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -305,7 +312,7 @@ onMounted(() => {
   )
 
   document.querySelectorAll('h2, h3').forEach((section) => {
-    observer.observe(section)
+    tocObserver?.observe(section)
   })
 })
 
@@ -326,11 +333,13 @@ const updateScroll = () => {
 }
 
 onMounted(() => {
-  window.addEventListener('scroll', updateScroll)
+  window.addEventListener('scroll', updateScroll, { passive: true })
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', updateScroll)
+  tocObserver?.disconnect()
+  tocObserver = null
 })
 
 // SEO

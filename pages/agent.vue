@@ -34,7 +34,7 @@
         >
           <a
             href="https://www.gmlart.cn"
-            target="_blank"
+            target="_blank" rel="noopener noreferrer"
             class="w-full sm:w-auto px-8 py-3 rounded-full bg-indigo-500 text-white font-semibold hover:bg-indigo-600 active:scale-95 transition-all flex items-center justify-center gap-2 touch-manipulation"
           >
             <!-- Rocket Icon -->
@@ -45,7 +45,7 @@
           </a>
           <a
             href="https://www.gmlart.cn"
-            target="_blank"
+            target="_blank" rel="noopener noreferrer"
             class="w-full sm:w-auto px-8 py-3 rounded-full bg-white border border-neutral-200 text-neutral-900 font-semibold hover:bg-neutral-50 active:scale-95 transition-all shadow-sm flex items-center justify-center gap-2 touch-manipulation"
           >
             <!-- Document Icon -->
@@ -194,7 +194,7 @@
                 <div class="mt-2">
                   <a
                     href="https://www.gmlart.cn"
-                    target="_blank"
+                    target="_blank" rel="noopener noreferrer"
                     class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-indigo-500 text-white font-medium hover:bg-indigo-600 transition-all duration-200 shadow-md shadow-indigo-500/20 hover:-translate-y-0.5"
                   >
                     立即体验
@@ -750,6 +750,8 @@ const currentTextIndex = ref(0)
 const currentCharIndex = ref(0)
 const isDeleting = ref(false)
 
+let typewriterTimer: ReturnType<typeof setTimeout> | null = null
+
 const typeWriter = () => {
   const currentText = texts[currentTextIndex.value] ?? ''
   const typingSpeed = isDeleting.value ? 30 : 75
@@ -765,22 +767,29 @@ const typeWriter = () => {
 
   if (!isDeleting.value && currentCharIndex.value === currentText.length) {
     showCursor.value = true
-    setTimeout(() => {
+    typewriterTimer = setTimeout(() => {
       isDeleting.value = true
       typeWriter()
     }, pauseDuration)
   } else if (isDeleting.value && currentCharIndex.value === 0) {
     isDeleting.value = false
     currentTextIndex.value = (currentTextIndex.value + 1) % texts.length
-    setTimeout(typeWriter, 500)
+    typewriterTimer = setTimeout(typeWriter, 500)
   } else {
-    setTimeout(typeWriter, typingSpeed)
+    typewriterTimer = setTimeout(typeWriter, typingSpeed)
   }
 }
 
 onMounted(() => {
   // 启动打字机效果
-  setTimeout(typeWriter, 1000)
+  typewriterTimer = setTimeout(typeWriter, 1000)
+})
+
+onUnmounted(() => {
+  if (typewriterTimer) {
+    clearTimeout(typewriterTimer)
+    typewriterTimer = null
+  }
 })
 </script>
 

@@ -24,7 +24,7 @@
 
         <!-- 行动号召按钮 -->
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 md:mb-24 w-full sm:w-auto px-4 sm:px-0">
-          <a href="https://www.gmlart.cn" target="_blank" class="w-full sm:w-auto group relative px-8 py-3.5 rounded-full bg-linear-to-r from-[var(--brand-primary)] to-[#7A42FF] text-white font-semibold text-[15px] shadow-[0_8px_20px_-4px_rgba(110,88,255,0.4)] hover:shadow-[0_12px_24px_-6px_rgba(110,88,255,0.5)] active:scale-95 transition-all duration-300 touch-manipulation flex items-center justify-center">
+          <a href="https://www.gmlart.cn" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto group relative px-8 py-3.5 rounded-full bg-linear-to-r from-[var(--brand-primary)] to-[#7A42FF] text-white font-semibold text-[15px] shadow-[0_8px_20px_-4px_rgba(110,88,255,0.4)] hover:shadow-[0_12px_24px_-6px_rgba(110,88,255,0.5)] active:scale-95 transition-all duration-300 touch-manipulation flex items-center justify-center">
             立即体验
             <span class="absolute inset-0 rounded-full bg-white opacity-0 group-hover:opacity-10 transition-opacity"/>
           </a>

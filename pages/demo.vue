@@ -824,7 +824,7 @@ useHead({
                     v-for="platform in selectedProduct.platforms"
                     :key="platform.title"
                     :href="platform.url"
-                    target="_blank"
+                    target="_blank" rel="noopener noreferrer"
                     class="group block p-2.5 sm:p-3 bg-white rounded-lg border border-neutral-200 hover:border-indigo-500/30 transition-colors duration-200"
                     :class="{ 'sm:col-span-2': selectedProduct.platforms.length === 1 }"
                   >

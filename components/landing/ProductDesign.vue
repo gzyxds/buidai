@@ -33,7 +33,7 @@
           </a>
           <a 
             href="https://github.com" 
-            target="_blank"
+            target="_blank" rel="noopener noreferrer"
             class="group inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white text-slate-700 text-sm font-medium ring-1 ring-inset ring-slate-300 hover:bg-slate-50 hover:ring-slate-400 transition-all duration-200"
           >
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">

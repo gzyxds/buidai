@@ -38,9 +38,9 @@
 
           <!-- 操作按钮 -->
           <div class="flex items-center gap-3 pt-3 border-t border-neutral-100">
-            <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-700 transition-colors">应用价格</a>
+            <NuxtLink to="/pricing" class="text-sm font-medium text-indigo-600 hover:text-indigo-700 transition-colors">应用价格</NuxtLink>
             <span class="text-neutral-300">|</span>
-            <a href="#" class="text-sm text-neutral-500 hover:text-neutral-700 transition-colors">查看文档</a>
+            <NuxtLink to="/docs" class="text-sm text-neutral-500 hover:text-neutral-700 transition-colors">查看文档</NuxtLink>
           </div>
         </div>
       </div>
