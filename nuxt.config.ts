@@ -1,4 +1,5 @@
 import { defineNuxtConfig } from 'nuxt/config'
+import type { SitemapUrl } from '@nuxtjs/sitemap'
 import { getDocsRoutes } from './utils/getDocsRoutes'
 import { getSitemapRoutes } from './utils/getSitemapRoutes'
 
@@ -28,22 +29,6 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap' // 网站地图生成模块
   ],
 
-  // @ts-expect-error - 字体模块配置（由 @nuxt/fonts 模块注入）
-  fonts: {
-    providers: {
-      google: false,
-      googleicons: false
-    }
-  },
-
-  // Content 模块配置（由 @nuxt/content 模块注入）
-  content: {
-    // 使用 SQLite 作为内容数据库
-    database: {
-      type: 'sqlite'
-    }
-  },
-
   // Sitemap 网站地图配置
   site: {
     url: 'https://www.buidai.com' // 网站基础 URL（请根据实际域名修改）
@@ -51,8 +36,26 @@ export default defineNuxtConfig({
 
   // Sitemap 模块配置
   sitemap: {
-    // 自动生成的路由
-    urls: () => getSitemapRoutes(),
+    // 自动生成路由，并按页面类型设置优先级
+    urls: () =>
+      getSitemapRoutes().map((route): SitemapUrl => {
+        if (route === '/') {
+          return { loc: route, priority: 1, changefreq: 'daily' }
+        }
+        if (route.startsWith('/docs')) {
+          return { loc: route, priority: 0.9, changefreq: 'weekly' }
+        }
+        if (route.startsWith('/blog')) {
+          return { loc: route, priority: 0.8, changefreq: 'weekly' }
+        }
+        if (route.startsWith('/changelog')) {
+          return { loc: route, priority: 0.6, changefreq: 'monthly' }
+        }
+        if (['/pricing', '/download', '/contact'].includes(route)) {
+          return { loc: route, priority: 0.9, changefreq: 'weekly' }
+        }
+        return { loc: route, priority: 0.7, changefreq: 'daily' }
+      }),
     // 排除的路由
     exclude: [
       '/demo' // 排除演示页面
@@ -62,38 +65,6 @@ export default defineNuxtConfig({
       changefreq: 'daily',
       priority: 0.7,
       lastmod: new Date().toISOString()
-    },
-    // 不同类型页面的优先级配置
-    routes: async () => {
-      const routes = getSitemapRoutes()
-      return routes.map(route => {
-        // 设置不同页面的优先级
-        let priority = 0.7
-        let changefreq: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never' = 'daily'
-
-        if (route === '/') {
-          priority = 1.0
-          changefreq = 'daily'
-        } else if (route.startsWith('/docs')) {
-          priority = 0.9
-          changefreq = 'weekly'
-        } else if (route.startsWith('/blog')) {
-          priority = 0.8
-          changefreq = 'weekly'
-        } else if (route.startsWith('/changelog')) {
-          priority = 0.6
-          changefreq = 'monthly'
-        } else if (['/pricing', '/download', '/contact'].includes(route)) {
-          priority = 0.9
-          changefreq = 'weekly'
-        }
-
-        return {
-          url: route,
-          priority,
-          changefreq
-        }
-      })
     }
   },
 
