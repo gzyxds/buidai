@@ -107,7 +107,7 @@ const navigation = computed(() => {
   })
 
   // Sort logic: Consistent with Sidebar
-  const categoryOrder = ['指南', '框架', '未分类']
+  const categoryOrder = ['入门指南', '进阶教程', '未分类']
 
   return Object.entries(groups)
     .sort(([a], [b]) => {

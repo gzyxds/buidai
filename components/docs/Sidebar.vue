@@ -207,7 +207,7 @@ const items = computed<NavigationItem[]>(() => {
     })
 
     // 定义分类的显示顺序
-    const categoryOrder = ['指南', '框架', '未分类']
+    const categoryOrder = ['入门指南', '进阶教程', '未分类']
 
     // 将分组对象转换为数组，并进行排序
     return Object.entries(groups)

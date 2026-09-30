@@ -1,4 +1,5 @@
 ---
+order: 3
 category: 进阶教程
 title: 集合源
 navigation:

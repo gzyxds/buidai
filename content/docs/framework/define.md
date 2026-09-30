@@ -1,4 +1,5 @@
 ---
+order: 2
 category: 进阶教程
 title: 定义内容集合
 navigation:

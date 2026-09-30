@@ -1,4 +1,5 @@
 ---
+order: 5
 category: 进阶教程
 title: 模式验证器
 navigation:

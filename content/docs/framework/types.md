@@ -1,4 +1,5 @@
 ---
+order: 4
 category: 进阶教程
 title: 集合类型
 navigation:
