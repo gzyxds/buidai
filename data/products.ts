@@ -114,7 +114,7 @@ export const products: ProductPageData[] = [
         '基于 Gemini 3 Pro Image Preview 的新一代 AI 绘画平台,一键生成高质量图像。<br class="hidden sm:block" />预置模板开箱即用,保持角色一致性,开启智能绘画创作新时代。',
       primaryBtn: '开始构建',
       secondaryBtn: '查看案例',
-      demoImage: '/public/plugin/Nanobanana.png',
+      demoImage: '/plugin/Nanobanana.png',
       demoAlt: '香蕉绘画展示'
     },
     featuresGrid: {
@@ -228,7 +228,7 @@ export const products: ProductPageData[] = [
         '专为自媒体创作者、编剧、网络作家打造的 AI 写作工具,支持无限量剧本创作。<br class="hidden sm:block" />AI 扩写润色改写续写,章节可视化拖拽,开启智能创作新时代。',
       primaryBtn: '开始构建',
       secondaryBtn: '查看案例',
-      demoImage: '/public/plugin/AI短剧小说创作.png',
+      demoImage: '/plugin/AI短剧小说创作.png',
       demoAlt: 'AI短剧小说创作'
     },
     featuresGrid: {
@@ -456,7 +456,7 @@ export const products: ProductPageData[] = [
         '新一代 AI 视频生成工具,输入文字描述或上传参考图即可快速生成视频。<br class="hidden sm:block" />支持多种视频比例和分辨率,让创作更简单,开启智能视频创作新时代。',
       primaryBtn: '开始创作',
       secondaryBtn: '查看示例',
-      demoImage: '/public/plugin/即梦AI视频.png',
+      demoImage: '/plugin/即梦AI视频.png',
       demoAlt: '即梦AI视频生成展示'
     },
     featuresGrid: {
@@ -572,7 +572,7 @@ export const products: ProductPageData[] = [
         '新一代 AI 绘画生成工具,输入文字描述或上传参考图即可快速生成高质量图像。<br class="hidden sm:block" />风格覆盖广泛,写实、卡通、插画等皆可驾驭,充分释放您的创作潜能。',
       primaryBtn: '开始创作',
       secondaryBtn: '查看示例',
-      demoImage: '/public/plugin/即梦AI绘画.png',
+      demoImage: '/plugin/即梦AI绘画.png',
       demoAlt: '即梦AI绘画生成展示'
     },
     featuresGrid: {
@@ -686,7 +686,7 @@ export const products: ProductPageData[] = [
         '专为电商卖家打造的AI视觉优化解决方案，提升商品主图的吸引力与转化率。<br class="hidden sm:block" />无需复杂拍摄与高昂成本，通过AI技术实现商品一键适配模特上身与背景智能替换。',
       primaryBtn: '开始试衣',
       secondaryBtn: '查看示例',
-      demoImage: '/public/plugin/fashion-ai.png',
+      demoImage: '/plugin/fashion-ai.png',
       demoAlt: '电商试衣换装展示'
     },
     featuresGrid: {
@@ -891,7 +891,7 @@ export const products: ProductPageData[] = [
         '智能演示文稿制作工具，根据主题或大纲自动生成 PPT。<br class="hidden sm:block" />内置多种模板与图表，支持智能配色、字体搭配与动画效果优化。',
       primaryBtn: '开始制作',
       secondaryBtn: '查看示例',
-      demoImage: '/public/plugin/aippt.png',
+      demoImage: '/plugin/aippt.png',
       demoAlt: 'AI PPT展示'
     },
     featuresGrid: {
