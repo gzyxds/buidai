@@ -1,5 +1,7 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
+/* 排版插件 — 为 Markdown 渲染内容提供 prose 系列类 */
+@plugin "@tailwindcss/typography";
 
 /**
  * 全局变量定义

@@ -29,6 +29,14 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap' // 网站地图生成模块
   ],
 
+  // @nuxt/fonts（由 @nuxt/ui 注册）— 关闭 Google 字体源，避免构建期访问 fonts.google.com
+  fonts: {
+    providers: {
+      google: false,
+      googleicons: false
+    }
+  },
+
   // Sitemap 网站地图配置
   site: {
     url: 'https://www.buidai.com' // 网站基础 URL（请根据实际域名修改）
