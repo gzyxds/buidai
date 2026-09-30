@@ -16,12 +16,6 @@
  * - 作为应用的根组件
  * - 添加 JSON-LD 结构化数据
  */
-import { initAOS } from '~/utils/aos' // 引入 AOS 初始化工具函数
-
-onMounted(() => {
-  initAOS()
-})
-
 // JSON-LD 结构化数据
 useHead({
   script: [
