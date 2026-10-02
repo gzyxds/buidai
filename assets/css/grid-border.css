@@ -8,7 +8,7 @@
 
 /* ---------- 设计令牌 ---------- */
 :root {
-  --grid-ink: color-mix(in oklab, rgb(3 7 18) 7%, transparent); /* 纹理线色 */
+  --grid-ink: color-mix(in oklab, rgb(3 7 18) 5%, transparent); /* 纹理线色 */
   --grid-line: 1px;      /* 线宽 */
   --grid-pitch: 10px;    /* 纹理周期（间距） */
   --grid-angle: 315deg;  /* 斜线角度 */
@@ -16,7 +16,7 @@
   --grid-bg: #fff;       /* 纹理底色 */
   --grid-frame: 1536px;  /* 内容框架宽（竖带定位依据） */
   --grid-strip: 1rem;    /* 横分隔带高 */
-  --grid-side: 1rem;     /* 竖带宽 */
+  --grid-side: 2rem;  /* 竖带宽 */
 }
 
 /* 暗色模式令牌（接入暗色页面时生效，预留接口） */
@@ -120,7 +120,7 @@
 }
 
 /* 视口窄于 框架宽 + 2×竖带宽 时隐藏竖带 */
-@media (max-width: 1567.98px) {
+@media (max-width: 1583.98px) {
   .gb-frame-side {
     display: none;
   }
