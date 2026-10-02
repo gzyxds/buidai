@@ -58,8 +58,8 @@ const handleFaqToggle = (event: Event, idx: number) => {
 </script>
 
 <template>
-  <!-- 常见问题区域 -->
-  <div class="mt-24 lg:mt-32 pb-20">
+  <!-- 常见问题区域（间距由页面 grid-border-content 包裹层提供） -->
+  <div>
     <div class="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_2fr]">
       <!-- 左侧：标题区 -->
       <div class="lg:border-r lg:border-gray-200 dark:lg:border-gray-800">
