@@ -85,7 +85,7 @@ export default defineNuxtConfig({
     },
     // 预渲染配置
     prerender: {
-      failOnError: false, // 遇到错误时不中断构建
+      failOnError: true, // 预渲染失败时中断构建，避免坏页面静默发布
       routes: getDocsRoutes() // 注入动态生成的文档路由
     }
   },

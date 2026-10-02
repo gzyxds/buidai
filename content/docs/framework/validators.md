@@ -144,6 +144,6 @@ Nuxt Content 内部将您的集合模式转换为 JSON Schema Draft-07。如果�
 
 您可以通过 `property(...).editor({ ... })` 为 Studio 丰富字段，两种验证器都支持此功能。有关映射详情，请参阅 Studio 文档。
 
-::tip{to="/docs/studio/content"}
+::tip
 了解编辑器元数据如何映射到 Studio 中的表单输入。
 ::

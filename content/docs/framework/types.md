@@ -47,7 +47,7 @@ Nuxt Content 将为集合中的每个文件自动生成路径，从而轻松创�
 | `content/1.guide/2.installation` | `/guide/installation` |
 
 ::note
-您可以使用帮助工具 [`queryCollection('COLLECTION').path('PATH')`](/docs/utils/query-collection) 通过特定路径检索内容。
+您可以使用帮助工具 `queryCollection('COLLECTION').path('PATH')` 通过特定路径检索内容。
 ::
 
 ### 模式覆盖
@@ -59,7 +59,7 @@ Nuxt Content 将为集合中的每个文件自动生成路径，从而轻松创�
 - `description`：页面描述
 - `seo`：SEO 元数据（与 Nuxt 的 `useSeoMeta` 组合式函数一起使用）
 - `body`：解析为 AST 的页面内容
-- `navigation`：页面导航配置（用于 [queryCollectionNavigation](/docs/utils/query-collection-navigation)）
+- `navigation`：页面导航配置（用于 `queryCollectionNavigation`）
 
 以下是应用的相应模式：
 
@@ -109,7 +109,7 @@ defineCollection({
 对于数据集合，您可以完全控制模式，允许您定义自定义结构。
 
 ::note
-集合类型和文件扩展名之间没有严格的关系。例如，**page** 集合可以使用 [Markdown](/docs/files/markdown)、[YAML](/docs/files/yaml) 或 [JSON](/docs/files/json) 文件，而 **data** 集合也可以使用这些格式中的任何一种。
+集合类型和文件扩展名之间没有严格的关系。例如，**page** 集合可以使用 Markdown、YAML 或 JSON 文件，而 **data** 集合也可以使用这些格式中的任何一种。
 ::
 
 ## 文件排序

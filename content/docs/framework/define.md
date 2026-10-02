@@ -150,7 +150,7 @@ export default defineContentConfig({
 
 ## 查询集合
 
-使用 [`queryCollection`](/docs/utils/query-collection) 工具从集合中获取一个或所有项目：
+使用 `queryCollection` 工具从集合中获取一个或所有项目：
 
 ```vue [pages/blog.vue]
 <script setup lang="ts">
@@ -169,7 +169,7 @@ const { data: posts } = await useAsyncData('blog', () => queryCollection('blog')
 </template>
 ```
 
-::note{to="/docs/utils/query-collection"}
+::note
 在我们的 `queryCollections` API 文档中了解更多可用的查询选项。
 ::
 
@@ -201,7 +201,7 @@ type CollectionIndex = {
 }
 ```
 
-::note{to="/docs/collections/types"}
+::note{to="/docs/framework/types"}
 了解有关集合类型的更多信息。
 ::
 
@@ -222,7 +222,7 @@ type CollectionSource = {
 }
 ```
 
-::note{to="/docs/collections/sources"}
+::note{to="/docs/framework/sources"}
 了解有关集合源的更多信息。
 ::
 
