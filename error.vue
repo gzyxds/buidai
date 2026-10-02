@@ -4,18 +4,17 @@
       <div class="flex flex-col items-center justify-center min-h-[70vh] text-center px-4 relative overflow-hidden">
         <!-- 背景装饰 -->
         <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden opacity-10 dark:opacity-5">
-          <span class="text-[20rem] font-black text-neutral-900 dark:text-white transform -rotate-12">404</span>
+          <span class="text-[20rem] font-black text-neutral-900 dark:text-white transform -rotate-12">{{ statusCode }}</span>
         </div>
 
       <!-- 主要内容 -->
       <div class="relative z-10 space-y-8 max-w-lg mx-auto backdrop-blur-sm">
         <div class="space-y-4">
           <h1 class="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight">
-            页面未找到
+            {{ title }}
           </h1>
           <p class="text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed">
-            抱歉，您访问的页面不存在或已被移除。<br/>
-            请检查链接是否正确，或返回首页继续浏览。
+            {{ description }}
           </p>
         </div>
 
@@ -57,16 +56,15 @@
 
 <script setup lang="ts">
 import type { NuxtError } from '#app'
-import { type PropType } from 'vue'
+import { computed, type PropType } from 'vue'
 
 /**
- * 404 错误页面组件 (Error Page)
+ * 全局错误页面组件 (Error Page)
  *
- * 用于处理全站的 404 及其他未捕获错误。
- * 继承默认布局，保持导航栏和页脚的一致性。
+ * 按状态码区分 404 与服务端错误，继承默认布局保持导航与页脚一致性。
  */
 
-defineProps({
+const props = defineProps({
   /**
    * Nuxt 传递的错误对象
    */
@@ -78,6 +76,20 @@ defineProps({
 
 // 判断是否为开发环境
 const isDev = import.meta.dev
+
+const statusCode = computed(() => props.error?.statusCode || 500)
+
+const isNotFound = computed(() => statusCode.value === 404)
+
+const title = computed(() =>
+  isNotFound.value ? '页面未找到' : '服务暂时不可用'
+)
+
+const description = computed(() =>
+  isNotFound.value
+    ? '抱歉，您访问的页面不存在或已被移除。请检查链接是否正确，或返回首页继续浏览。'
+    : '服务器开小差了，请稍后重试。若问题持续存在，欢迎联系我们的客服团队。'
+)
 
 /**
  * 清除错误状态并重定向到首页
@@ -110,7 +122,7 @@ const goBack = () => {
 
 // 设置页面元数据
 useHead({
-  title: '404 - 页面未找到',
+  title: () => `${statusCode.value} - ${title.value}`,
   meta: [
     { name: 'robots', content: 'noindex, nofollow' }
   ]
