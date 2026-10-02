@@ -61,3 +61,19 @@ const testimonialColumns = computed(() => {
     </div>
   </section>
 </template>
+
+<style scoped>
+/* 垂直滚动动画：三列内容复制三份，-50% 处与起点内容一致，实现无缝循环 */
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+.animate-marquee-vertical {
+  animation: marquee-vertical 40s linear infinite;
+}
+</style>

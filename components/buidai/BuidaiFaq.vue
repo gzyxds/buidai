@@ -78,7 +78,7 @@ const activeFaq = ref<number>(0)
 
         <div class="flex-1 min-w-0">
           <div class="bg-white border border-neutral-200 rounded-xl p-6 md:p-8 h-full">
-            <div class="animate-fade-in h-full flex flex-col">
+            <div :key="activeFaq" class="animate-fade-in h-full flex flex-col">
               <div class="flex items-start justify-between gap-4 mb-4">
                 <span class="text-xs font-medium tracking-[0.15em] text-indigo-300 uppercase">{{ String(activeFaq + 1).padStart(2, '0') }}</span>
                 <div class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center shrink-0">
@@ -108,3 +108,19 @@ const activeFaq = ref<number>(0)
     </div>
   </section>
 </template>
+
+<style scoped>
+/* 答案面板切换淡入（配合 :key 在切换时重播） */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+</style>
