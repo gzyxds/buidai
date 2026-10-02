@@ -1,5 +1,5 @@
 import { defineNuxtConfig } from 'nuxt/config'
-import { SITE_TITLE, SITE_DESCRIPTION } from './data/site'
+import { SITE_TITLE, SITE_DESCRIPTION, SITE_URL } from './data/site'
 import type { SitemapUrl } from '@nuxtjs/sitemap'
 import { getDocsRoutes } from './utils/getDocsRoutes'
 import { getSitemapRoutes } from './utils/getSitemapRoutes'
@@ -19,8 +19,7 @@ export default defineNuxtConfig({
 
   // Nuxt 实验性功能
   experimental: {
-    payloadExtraction: true,
-    renderJsonPayloads: true
+    payloadExtraction: true
   },
 
   // 启用的 Nuxt 模块
@@ -40,7 +39,7 @@ export default defineNuxtConfig({
 
   // Sitemap 网站地图配置
   site: {
-    url: 'https://www.buidai.com' // 网站基础 URL（请根据实际域名修改）
+    url: SITE_URL // 网站基础 URL
   },
 
   // Sitemap 模块配置
@@ -73,7 +72,9 @@ export default defineNuxtConfig({
     defaults: {
       changefreq: 'daily',
       priority: 0.7,
-      lastmod: new Date().toISOString()
+      // 固定日期而非 new Date()：构建期时间戳会破坏产物确定性，
+      // 导致 CDN 缓存无法命中、git diff 每次构建都变化。内容大更新时手动更新此值
+      lastmod: '2026-10-02'
     }
   },
 
@@ -87,6 +88,7 @@ export default defineNuxtConfig({
     // 预渲染配置
     prerender: {
       failOnError: true, // 预渲染失败时中断构建，避免坏页面静默发布
+      crawlLinks: true, // 爬取页面链接自动发现预渲染路由，避免遗漏
       routes: getDocsRoutes() // 注入动态生成的文档路由
     }
   },
@@ -130,9 +132,9 @@ export default defineNuxtConfig({
         { rel: 'shortcut icon', href: '/favicon.ico' },
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg', sizes: 'any' },
         { rel: 'icon', type: 'image/png', href: '/icon.png' },
-        { rel: 'apple-touch-icon', href: '/icon.png' },
-        // 规范标签 (Canonical URL)
-        { rel: 'canonical', href: 'https://www.buidai.com' }
+        { rel: 'apple-touch-icon', href: '/icon.png' }
+        // canonical 不在全局声明：各页面由 usePageSeo 按 route.path 派生各自页面 URL，
+        // 全局硬编码会让所有内页继承首页 canonical（SEO 错误）
 
         // 字体使用系统默认，不加载远程 Google Fonts
         // { rel: 'preconnect', href: 'https://fonts.googleapis.com' },

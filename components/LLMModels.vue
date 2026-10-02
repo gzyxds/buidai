@@ -117,7 +117,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
 
 const isExpanded = ref(false)
 const DEFAULT_VISIBLE_COUNT = 12

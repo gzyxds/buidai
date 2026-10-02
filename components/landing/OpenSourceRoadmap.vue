@@ -89,7 +89,6 @@ name="i-lucide-chevron-down"
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
 interface FeatureItem {
   title: string
   desc: string

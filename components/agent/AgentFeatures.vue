@@ -2,7 +2,6 @@
 /**
  * 产品核心优势区块：grid-border 三段式 + 功能折叠列表
  */
-import { ref } from 'vue'
 // 类型定义：核心特性
 interface Feature {
   title: string
@@ -198,7 +197,7 @@ const features = ref<Feature[]>([
               <!-- CTA 按钮 -->
               <div class="mt-2">
                 <a
-                  href="https://www.gmlart.cn"
+                  href="https://www.buidai.com"
                   target="_blank" rel="noopener noreferrer"
                   class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-indigo-500 text-white font-medium hover:bg-indigo-600 transition-all duration-200 shadow-md shadow-indigo-500/20 hover:-translate-y-0.5"
                 >
@@ -230,6 +229,8 @@ const features = ref<Feature[]>([
                     :src="feature.image"
                     :alt="feature.title"
                     class="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <!-- 图片遮罩 -->
                   <div class="absolute inset-0 bg-linear-to-tr from-neutral-500/5 to-transparent pointer-events-none" />

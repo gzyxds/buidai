@@ -68,13 +68,5 @@ const emit = defineEmits<{
 </template>
 
 <style scoped>
-/* 隐藏滚动条但保持滚动功能 */
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
+/* .scrollbar-hide 已收敛至 assets/css/main.css 的工具类层 */
 </style>

@@ -1,8 +1,13 @@
 <template>
   <UApp>
     <NuxtLayout>
-      <!-- page-key 按完整路径区分：同一路由记录不同参数间跳转（如 /product/a → /product/b）时重建组件，避免复用旧的 setup 状态 -->
-      <NuxtPage :page-key="(route) => route.fullPath" />
+      <!--
+        page-key 用 route.path 而非 route.fullPath：
+        path 变化时（如 /product/a → /product/b）重建组件，避免复用旧的 setup 状态；
+        而 fullPath 含 query，用它会让 /plugin?category=video 这类仅筛选条件变化
+        的跳转也整页重挂载，丢失筛选状态与滚动位置
+      -->
+      <NuxtPage :page-key="(route) => route.path" />
     </NuxtLayout>
   </UApp>
 </template>
@@ -17,6 +22,8 @@
  * - 作为应用的根组件
  * - 添加 JSON-LD 结构化数据
  */
+import { SITE_URL } from '~/data/site'
+
 // JSON-LD 结构化数据
 useHead({
   script: [
@@ -27,8 +34,8 @@ useHead({
         '@context': 'https://schema.org',
         '@type': 'Organization',
         name: '智言 AI',
-        url: 'https://www.buidai.com',
-        logo: 'https://www.buidai.com/logo.svg',
+        url: SITE_URL,
+        logo: `${SITE_URL}/logo.svg`,
         description: '企业级 AI 应用构建平台，提供可视化 Workflow 编排、AI 知识库、RAG 检索等核心能力',
         sameAs: [
           'https://github.com/buidai',
@@ -49,10 +56,10 @@ useHead({
         '@context': 'https://schema.org',
         '@type': 'WebSite',
         name: '智言 AI',
-        url: 'https://www.buidai.com',
+        url: SITE_URL,
         potentialAction: {
           '@type': 'SearchAction',
-          target: 'https://www.buidai.com/search?q={search_term_string}',
+          target: `${SITE_URL}/search?q={search_term_string}`,
           'query-input': 'required name=search_term_string'
         }
       })

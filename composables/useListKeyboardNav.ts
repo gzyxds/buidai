@@ -1,5 +1,3 @@
-import { nextTick } from 'vue'
-
 interface ListKeyboardNavOptions {
   /** 激活后迁移焦点的元素 id 前缀（如 'feature-tab-'），不传则不动焦点 */
   focusIdPrefix?: string

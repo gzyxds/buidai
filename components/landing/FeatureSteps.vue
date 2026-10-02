@@ -198,7 +198,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
 
 /**
  * 自动轮播间隔时间（毫秒）

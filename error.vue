@@ -56,7 +56,7 @@
 
 <script setup lang="ts">
 import type { NuxtError } from '#app'
-import { computed, type PropType } from 'vue'
+import type { PropType } from 'vue'
 
 /**
  * 全局错误页面组件 (Error Page)

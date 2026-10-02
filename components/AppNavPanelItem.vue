@@ -14,11 +14,13 @@ defineProps<{
 
 <template>
   <NuxtLink
-    :to="item.to!"
+    v-if="item.to"
+    :to="item.to"
     class="group/item flex items-start gap-2.5 rounded-lg p-2.5 hover:bg-elevated transition-colors duration-150"
   >
     <UIcon
-      :name="item.icon!"
+      v-if="item.icon"
+      :name="item.icon"
       class="size-5 mt-px shrink-0 text-dimmed group-hover/item:text-muted transition-colors duration-150"
     />
     <span class="min-w-0">

@@ -1,10 +1,13 @@
 <script setup lang="ts">
+// 页面级 meta 占位：需要两侧竖带装饰的页面可声明 frameSides: true（见 layouts/default.vue）
+definePageMeta({})
+
 /**
  * 产品演示中心页面
  * 状态中枢：维护选中产品/分类状态，组装 Hero、移动标签栏、侧栏与详情组件
  */
-import { computed, onErrorCaptured, ref } from 'vue'
 import { demoCategories as categories, type ProductDemo } from '~/data/products'
+import { SITE_URL } from '~/data/site'
 
 /**
  * 当前选中的产品
@@ -86,7 +89,8 @@ onErrorCaptured(() => {
  * SEO 配置常量
  */
 const siteName = '智言万象'
-const baseUrl = 'https://buidai.com'
+// 统一用 SITE_URL（原写死 https://buidai.com 少 www，与站点基准域名不一致）
+const baseUrl = SITE_URL
 const pageTitle = '产品演示中心 - 智言万象 | 在线体验AI产品'
 const pageDescription = '智言万象产品演示中心，在线体验智言AI智能客服、企业知识库、AI绘画、AI视频、AI数字人等AI产品。支持PC端、移动端、后台管理等多平台演示。'
 const canonicalUrl = `${baseUrl}/demo`

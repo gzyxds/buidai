@@ -44,7 +44,7 @@ const product: Product = {
       {
         title: '联系客服',
         icon: 'i-heroicons-chat-bubble-left-right',
-        url: 'https://buidai.com/contact',
+        url: 'https://www.buidai.com/contact',
         account: '联系客服',
         password: '联系客服'
       }

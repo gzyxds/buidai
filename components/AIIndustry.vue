@@ -132,8 +132,6 @@
 </template>
 
 <script setup lang="ts">
-import { dispatchQrModal } from '~/utils/qrModal'
-import { ref, computed } from 'vue'
 const AUTOPLAY_INTERVAL = 5000
 const RESUME_DELAY = 5000
 
@@ -215,12 +213,10 @@ const setActive = (index: number) => { active.value = index; resumeAutoplay() }
 
 const { handleKeydown } = useListKeyboardNav(() => tabs.length, setActive, { focusIdPrefix: 'industry-tab-' })
 
-const openQrModal = (type: 'solution' | 'consult') => {
-  const config = type === 'solution'
-    ? { title: '了解方案详情', desc: '扫码获取完整方案', image: '/qrcode.png' }
-    : { title: '联系售前咨询', desc: '扫码添加微信顾问', image: '/wechat.png' }
-  dispatchQrModal(config)
-}
+const openQrModal = useQrModal({
+  solution: { title: '了解方案详情', desc: '扫码获取完整方案', image: '/qrcode.png' },
+  consult: { title: '联系售前咨询', desc: '扫码添加微信顾问', image: '/wechat.png' }
+})
 
 </script>
 

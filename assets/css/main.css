@@ -103,4 +103,32 @@
   .animation-delay-200 {
     animation-delay: 200ms;
   }
+
+  /* 隐藏滚动条但保持滚动功能（横向标签栏、轮播轨道） */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* 细滚动条（弹窗内容区、桌面端侧栏） */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(0 0 0 / 0.1) transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgb(0 0 0 / 0.1);
+    border-radius: 2px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgb(0 0 0 / 0.2);
+  }
 }

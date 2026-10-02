@@ -18,7 +18,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import type MatterType from 'matter-js'
 
 // Matter.js 动态导入

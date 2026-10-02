@@ -56,7 +56,6 @@
 </template>
 
 <script setup lang="ts">
-import { h } from 'vue'
 
 const createIcon = (path: string) => {
   return h('svg', {

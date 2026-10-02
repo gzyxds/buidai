@@ -2,6 +2,7 @@
  * 演示视图派生层（兼容旧 data/demoProducts 的消费方）
  */
 import { products } from './entities'
+import { handleImageError as handleImageErrorWithFallback } from '../../utils/image'
 
 /** 演示平台（形状兼容旧 DemoPlatform） */
 export interface ProductDemo {
@@ -61,13 +62,8 @@ export function getProductImageUrl(path: string | undefined): string {
   return path || DEFAULT_PRODUCT_IMAGE
 }
 
-/** 图片加载失败时替换为默认图 */
-export function handleImageError(event: Event): void {
-  const img = event.target as HTMLImageElement
-  if (img) {
-    img.src = DEFAULT_PRODUCT_IMAGE
-  }
-}
+/** 图片加载失败时替换为默认图（实现收敛于 utils/image.ts） */
+export const handleImageError = (event: Event) => handleImageErrorWithFallback(event, DEFAULT_PRODUCT_IMAGE)
 
 const DEMO_CATEGORY_META = [
   { id: 'independent', name: '独立系统', icon: 'i-heroicons-shopping-bag' },

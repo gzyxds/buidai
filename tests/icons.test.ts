@@ -29,7 +29,7 @@ function isValidIcon(name: string): boolean {
       break
     }
   }
-  if (!prefix || !n) return false
+  if (!prefix || !n) {return false}
   const set = prefix === 'heroicons-solid' ? sets.heroicons : sets[prefix as keyof typeof sets]
   return prefix === 'heroicons-solid' ? set.has(n + '-20-solid') : set.has(n)
 }
@@ -39,8 +39,8 @@ function walk(d: string, acc: string[] = []): string[] {
     const p = path.join(d, e.name)
     if (e.isDirectory()) {
       if (!/node_modules|dist|\.nuxt|\.output|\.git|\.data|参考设计|项目文档/.test(e.name))
-        walk(p, acc)
-    } else if (/\.(vue|ts|md)$/.test(e.name)) acc.push(p)
+        {walk(p, acc)}
+    } else if (/\.(vue|ts|md)$/.test(e.name)) {acc.push(p)}
   }
   return acc
 }
@@ -63,7 +63,7 @@ describe('全站图标名校验', () => {
       for (const m of src.matchAll(
         /i-(?:heroicons-solid|heroicons|lucide|ph|simple-icons)-[a-z0-9-]+/g
       )) {
-        if (!isValidIcon(m[0])) invalid.push(`${m[0]} (${f})`)
+        if (!isValidIcon(m[0])) {invalid.push(`${m[0]} (${f})`)}
       }
     }
     expect(invalid, `非法图标名：\n${invalid.join('\n')}`).toEqual([])
@@ -77,7 +77,7 @@ describe('图标组件标签残留检查', () => {
     for (const f of files) {
       const src = fs.readFileSync(f, 'utf8')
       for (const m of src.matchAll(/<[A-Z][A-Za-z]*Icon\b/g)) {
-        if (m[0] !== '<UIcon') leftover.push(`${m[0]} (${f})`)
+        if (m[0] !== '<UIcon') {leftover.push(`${m[0]} (${f})`)}
       }
     }
     expect(leftover, `未转换的图标组件标签：\n${leftover.join('\n')}`).toEqual([])

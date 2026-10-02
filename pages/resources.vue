@@ -68,9 +68,7 @@
 </template>
 
 <script setup lang="ts">
-definePageMeta({
-  layout: 'default'
-})
+definePageMeta({})
 
 usePageSeo({
   title: '智言AI - 智言万象资源中心 - 开发者文档、教程与社区 | AI应用开发指南',

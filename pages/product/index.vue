@@ -1,9 +1,7 @@
 <script lang="ts" setup>
 import { getProductDetailBySlug, handleImageError, productSlugs, type ProductDetail } from '~/data/products'
 
-definePageMeta({
-  layout: 'default'
-})
+definePageMeta({})
 
 // SEO 元数据
 usePageSeo({

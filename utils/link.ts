@@ -33,7 +33,7 @@ export const friendLinks: FriendLink[] = [
   { name: '优刻云', url: 'https://www.cloudcvm.com' },
   { name: 'AI数字人', url: 'https://v.cnai.art' },
   { name: 'AI绘画', url: 'https://urlnet.cn' },
-  { name: '论文创作', url: 'https://paper.gmlart.cn' },
+  { name: '论文创作', url: 'https://paper.buidai.com' },
   { name: '免费领卡', url: 'https://www.urlka.cn' },
   { name: 'AI系统源码', url: 'https://www.artaigc.cn' }
 ]

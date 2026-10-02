@@ -2,7 +2,6 @@
 /**
  * 定价方案区块：计费周期切换 + 四档方案卡片
  */
-import { ref } from 'vue'
 interface PricingPlan {
   title: string
   price: {

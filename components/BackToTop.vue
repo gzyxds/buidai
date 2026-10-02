@@ -12,7 +12,6 @@
 // ----------------------------------------------------------------------
 // 1. Imports (导入)
 // ----------------------------------------------------------------------
-import { ref, onMounted, onUnmounted } from 'vue'
 import { QR_MODAL_EVENT, type QrModalConfig } from '~/utils/qrModal'
 
 // ----------------------------------------------------------------------
@@ -371,7 +370,7 @@ onUnmounted(() => {
   BackToTop Component Styles
 */
 
-/* 自定义滚动条样式 - 兼容多浏览器 */
+/* 自定义滚动条样式 —— 弹窗为浅色底，此处用 slate 系半透明以保持低对比 */
 .custom-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: rgba(203, 213, 225, 0.4) transparent;

@@ -123,37 +123,12 @@
           </slot>
 
           <slot name="links">
-            <div
-              class="mt-6 sm:mt-8 lg:mt-10 flex flex-row items-center justify-center lg:justify-start gap-2 sm:gap-3 w-full sm:w-auto px-3 sm:px-0"
+            <CtaPair
+              ui="flex-row items-center lg:justify-start"
               :class="props.ui.links"
-            >
-              <a
-                href="https://www.gmlart.cn"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex-1 sm:flex-none px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 rounded-full bg-primary text-white text-xs sm:text-sm font-semibold hover:bg-primary/90 active:scale-95 transition-all flex items-center justify-center gap-1 sm:gap-2 touch-manipulation min-h-[40px] sm:min-h-[44px]"
-              >
-                <UIcon
-                  name="i-heroicons-rocket-launch"
-                  class="shrink-0 size-4 sm:size-5"
-                  aria-hidden="true"
-                />
-                开始使用
-              </a>
-              <a
-                href="https://www.gmlart.cn"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex-1 sm:flex-none px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 rounded-full bg-white border border-neutral-200 text-neutral-700 text-xs sm:text-sm font-semibold hover:bg-neutral-50 hover:border-neutral-300 active:scale-95 transition-all flex items-center justify-center gap-1 sm:gap-2 touch-manipulation min-h-[40px] sm:min-h-[44px]"
-              >
-                <UIcon
-                  name="i-heroicons-sparkles"
-                  class="shrink-0 size-4 sm:size-5"
-                  aria-hidden="true"
-                />
-                立即创造
-              </a>
-            </div>
+              :primary="{ href: 'https://www.buidai.com', label: '开始使用', icon: 'i-heroicons-rocket-launch' }"
+              :secondary="{ href: 'https://www.buidai.com', label: '立即创造', icon: 'i-heroicons-sparkles' }"
+            />
 
             <!-- Falling Text 动画组件 -->
             <div
@@ -281,9 +256,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
 import { marketApps as apps } from '~/data/products'
 import { LAYOUT, MARQUEE } from '~/utils/ui'
+import { handleImageError } from '~/utils/image'
 
 const marqueeImages = apps.map(app => app.image)
 
@@ -337,19 +312,25 @@ const splitGroups = (selected: string[]) => {
   return { first: selected.slice(0, half), second: selected.slice(half) }
 }
 
+/**
+ * 跑马灯图片分组初始化（固定顺序）
+ *
+ * 服务端与客户端必须使用同一份计算结果，否则 hydration 时DOM 结构不一致，
+ * 触发「Hydration completed but contains mismatches」并导致图片重复请求。
+ */
 const initMarqueeGroups = () =>
   splitGroups(marqueeImages.slice(0, MARQUEE.DESKTOP_IMAGE_COUNT))
 
 const marqueeImageGroups = ref(initMarqueeGroups())
 
+/**
+ * 按当前设备重新生成跑马灯分组（随机顺序）
+ *
+ * 仅在移动端/桌面端断点切换时调用 —— 避免与 SSR 首屏顺序不一致。
+ */
 const generateMarqueeGroups = () => {
   const total = isMobile.value ? MARQUEE.MOBILE_IMAGE_COUNT : MARQUEE.DESKTOP_IMAGE_COUNT
   marqueeImageGroups.value = splitGroups(shuffleArray(marqueeImages).slice(0, total))
-}
-
-const handleImageError = (event: Event) => {
-  const img = event.target as HTMLImageElement
-  if (img) {img.style.display = 'none'}
 }
 
 // ── 响应式设备检测 ──
@@ -372,8 +353,9 @@ const throttledCheckDevice = () => {
 }
 
 onMounted(() => {
+  // 仅同步设备状态，不重排跑马灯：重排会与 SSR 首屏顺序不一致，
+  // 导致 hydration mismatch 与图片重复请求。分组仅在断点切换时更新。
   checkDevice()
-  generateMarqueeGroups()
   window.addEventListener('resize', throttledCheckDevice)
 })
 

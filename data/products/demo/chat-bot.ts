@@ -32,28 +32,28 @@ const product: Product = {
       {
         title: 'PC演示前台',
         icon: 'i-heroicons-computer-desktop',
-        url: 'https://gmlart.cn',
+        url: 'https://www.buidai.com',
         account: '自行注册',
         password: '自行注册'
       },
       {
         title: '站点管理端',
         icon: 'i-heroicons-cog-6-tooth',
-        url: 'https://gmlart.cn/admin',
+        url: 'https://www.buidai.com/admin',
         account: 'demo',
         password: 'demo123'
       },
       {
         title: 'SaaS平台端',
         icon: 'i-heroicons-cog-6-tooth',
-        url: 'https://gmlart.cn/saas',
+        url: 'https://www.buidai.com/saas',
         account: '联系客服',
         password: '联系客服'
       },
       {
         title: 'WAP演示',
         icon: 'i-heroicons-device-phone-mobile',
-        url: 'https://gmlart.cn/mobile',
+        url: 'https://www.buidai.com/mobile',
         account: '自行注册',
         password: '自行注册'
       }

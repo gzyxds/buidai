@@ -44,21 +44,21 @@ const product: Product = {
       {
         title: '演示前台',
         icon: 'i-heroicons-computer-desktop',
-        url: 'https://paper.gmlart.cn',
+        url: 'https://paper.buidai.com',
         account: '自行注册',
         password: '自行注册'
       },
       {
         title: '体验后台',
         icon: 'i-heroicons-cog-6-tooth',
-        url: 'https://paper.gmlart.cn/admin/',
+        url: 'https://paper.buidai.com/admin/',
         account: 'admin',
         password: '123456'
       },
       {
         title: '移动端',
         icon: 'i-heroicons-device-phone-mobile',
-        url: 'https://paper.gmlart.cn/mobile',
+        url: 'https://paper.buidai.com/mobile',
         account: '自行注册',
         password: '自行注册'
       }

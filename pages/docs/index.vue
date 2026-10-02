@@ -62,6 +62,9 @@
 </template>
 
 <script setup lang="ts">
+// 页面级 meta 占位：需要两侧竖带装饰的页面可声明 frameSides: true（见 layouts/default.vue）
+definePageMeta({})
+
 /**
  * 文档中心首页
  *

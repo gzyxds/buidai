@@ -2,7 +2,6 @@
 /**
  * Agent 页 Hero 区块：网格背景 + 打字机标题 + CTA
  */
-import { ref } from 'vue'
 // 打字机效果相关
 const texts = ['智言AI 领先的AI创作平台', '可视化 Workflow 编排', '超易用 AI 知识库', '创新 RAG 检索', '轻松构建强大 AI 应用']
 const { text: displayText } = useTypewriter(texts, {
@@ -48,7 +47,7 @@ const showCursor = ref(true)
           class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto px-4 sm:px-0"
         >
           <a
-            href="https://www.gmlart.cn"
+            href="https://www.buidai.com"
             target="_blank" rel="noopener noreferrer"
             class="w-full sm:w-auto px-8 py-3 rounded-full bg-indigo-500 text-white font-semibold hover:bg-indigo-600 active:scale-95 transition-all flex items-center justify-center gap-2 touch-manipulation"
           >
@@ -59,7 +58,7 @@ const showCursor = ref(true)
             <UIcon name="i-heroicons-arrow-right" class="w-4 h-4" />
           </a>
           <a
-            href="https://www.gmlart.cn"
+            href="https://www.buidai.com"
             target="_blank" rel="noopener noreferrer"
             class="w-full sm:w-auto px-8 py-3 rounded-full bg-white border border-neutral-200 text-neutral-900 font-semibold hover:bg-neutral-50 active:scale-95 transition-all shadow-sm flex items-center justify-center gap-2 touch-manipulation"
           >

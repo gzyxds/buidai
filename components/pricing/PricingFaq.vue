@@ -2,15 +2,11 @@
 /**
  * 定价页 FAQ 区块：左侧标题与联系入口 + 右侧详情列表
  */
-import { ref } from 'vue'
-import { dispatchQrModal } from '~/utils/qrModal'
 
-const openQrModal = (type: 'coupon' | 'wechat') => {
-  const config = type === 'coupon'
-    ? { title: '获取优惠码', desc: '扫码获取专属优惠', image: '/qrcode.png' }
-    : { title: '联系技术专家', desc: '扫码添加微信顾问', image: '/wechat.png' }
-  dispatchQrModal(config)
-}
+// 二维码弹窗 - 触发 BackToTop 组件（wechat 文案为「技术专家/顾问」）
+const openQrModal = useQrModal({
+  wechat: { title: '联系技术专家', desc: '扫码添加微信顾问' }
+})
 
 // FAQ 数据
 const faqItems = [
@@ -40,21 +36,8 @@ const faqItems = [
   }
 ]
 
-const activeFaq = ref<number | null>(null)
-
-/**
- * 处理 details 元素的 toggle 事件
- * @param event - Toggle 事件对象
- * @param idx - FAQ 索引
- */
-const handleFaqToggle = (event: Event, idx: number) => {
-  const details = event.target as HTMLDetailsElement
-  if (details.open) {
-    activeFaq.value = idx
-  } else if (activeFaq.value === idx) {
-    activeFaq.value = null
-  }
-}
+/** FAQ 手风琴：跟踪当前展开项（展开/收起动画由原生 details 提供） */
+const { activeIndex: activeFaq, handleToggle: handleFaqToggle } = useFaqAccordion()
 </script>
 
 <template>

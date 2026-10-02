@@ -10,7 +10,7 @@
         <div class="flex items-center gap-10 flex-1">
           <NuxtLink to="/" class="flex items-center gap-2 shrink-0" aria-label="智言万象 Home">
             <img
-              :src="isTransparent ? '/logo.svg' : '/logo.svg'"
+              src="/logo.svg"
               alt="智言万象 Logo"
               width="120"
               height="32"
@@ -34,48 +34,16 @@
                 两个面板统一 760px 宽：产品中心贴导航左缘、资源中心贴右缘（对称满幅）
               -->
               <template #products-content>
-                <div class="sm:w-[760px]">
-                  <div class="grid grid-cols-4 gap-1">
-                    <div v-for="group in productMenuGroups" :key="group.label" class="min-w-0">
-                      <p class="px-3 pt-1.5 pb-2 text-xs font-medium text-dimmed">
-                        {{ group.label }}
-                      </p>
-                      <ul class="space-y-1">
-                        <li v-for="item in group.children" :key="item.to as string">
-                          <AppNavPanelItem :item="item" />
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <!-- 底部入口：查看全部产品 / 应用中心 -->
-                  <div class="mt-2 flex items-center gap-1 border-t border-default pt-2">
-                    <AppNavPanelItem
-                      v-for="link in productMenuFooter"
-                      :key="link.to as string"
-                      :item="link"
-                      class="flex-1"
-                    />
-                  </div>
-                </div>
+                <NavPanelGroup
+                  :groups="productMenuGroups"
+                  :columns="4"
+                  :footer="productMenuFooter"
+                />
               </template>
 
               <!-- 资源中心：与产品中心同一外壳、同一卡片、同一宽度 -->
               <template #resources-content>
-                <div class="sm:w-[760px]">
-                  <div class="grid grid-cols-2 gap-1">
-                    <div v-for="group in resourceMenuGroups" :key="group.label" class="min-w-0">
-                      <p class="px-3 pt-1.5 pb-2 text-xs font-medium text-dimmed">
-                        {{ group.label }}
-                      </p>
-                      <ul class="space-y-1">
-                        <li v-for="item in group.children" :key="item.to as string">
-                          <AppNavPanelItem :item="item" />
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+                <NavPanelGroup :groups="resourceMenuGroups" :columns="2" />
               </template>
             </UNavigationMenu>
           </nav>
@@ -86,13 +54,12 @@
           <!-- 桌面端操作按钮 -->
           <div class="hidden md:flex items-center gap-3">
             <UButton
-              to="https://www.gmlart.cn"
+              to="https://www.buidai.com"
               target="_blank"
               rel="noopener noreferrer"
               variant="ghost"
               color="neutral"
-              class="h-10 rounded-full px-4 sm:px-6 font-medium transition-all duration-200"
-              :class="[isTransparent ? 'bg-white text-gray-900 hover:bg-gray-50' : 'bg-black text-white hover:bg-gray-800']"
+              class="h-10 rounded-full px-4 sm:px-6 font-medium transition-all duration-200 bg-black text-white hover:bg-gray-800"
             >
               <template #leading>
                 <UIcon name="i-lucide-log-in" class="w-4 h-4" />
@@ -101,13 +68,12 @@
             </UButton>
 
             <UButton
-              to="https://api.gmlart.cn/"
+              to="https://api.buidai.com/"
               target="_blank"
               rel="noopener noreferrer"
               variant="ghost"
               color="neutral"
-              class="h-10 rounded-full px-4 sm:px-6 font-medium transition-colors duration-200"
-              :class="[isTransparent ? 'bg-white/10 text-white hover:bg-white/20' : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50']"
+              class="h-10 rounded-full px-4 sm:px-6 font-medium transition-colors duration-200 bg-white border border-gray-200 text-gray-700 hover:bg-gray-50"
             >
               <template #leading>
                 <UIcon name="i-lucide-book-open" class="w-4 h-4" />
@@ -118,12 +84,11 @@
 
           <!-- 移动端菜单切换按钮 -->
           <UButton
-            class="md:hidden"
+            class="md:hidden text-gray-600 hover:bg-gray-100"
             variant="ghost"
             color="neutral"
             :aria-label="mobileMenuOpen ? '关闭菜单' : '打开菜单'"
             :aria-expanded="mobileMenuOpen"
-            :class="isTransparent ? 'text-white/80 hover:bg-white/10' : 'text-gray-600 hover:bg-gray-100'"
             @click="mobileMenuOpen = !mobileMenuOpen"
           >
             <UIcon :name="mobileMenuOpen ? 'i-lucide-x' : 'i-lucide-menu'" class="w-6 h-6" />
@@ -238,7 +203,7 @@
             <!-- 底部操作按钮 -->
             <div class="flex items-center gap-3 pt-3 border-t border-gray-100">
               <UButton
-                to="https://www.gmlart.cn"
+                to="https://www.buidai.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 block
@@ -253,7 +218,7 @@
               </UButton>
 
               <UButton
-                to="https://api.gmlart.cn/"
+                to="https://api.buidai.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 block
@@ -275,10 +240,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import type { NavigationMenuItem } from '@nuxt/ui'
-import { SCROLL, LAYOUT } from '~/utils/ui'
+import { LAYOUT } from '~/utils/ui'
 
 /**
  * AppNavigation 组件
@@ -439,41 +403,23 @@ const items = computed<NavigationMenuItem[][]>(() => [
 ])
 
 /**
- * 计算透明状态
- * 当前默认返回 false，可根据路由或滚动状态扩展
+ * 头部样式类
+ * 当前导航栏常驻白色不透底，无滚动态切换，故为静态类
  */
-const isTransparent = computed(() => {
-  return false
-})
-
-/**
- * 动态头部样式类
- */
-const headerClasses = computed(() => {
-  if (isTransparent.value) {
-    return isScrolled.value ? 'bg-white/90 backdrop-blur-md border-gray-200/50' : 'bg-transparent border-transparent'
-  }
-  return 'bg-white border-gray-100'
-})
+const headerClasses = 'bg-white border-gray-100'
 
 /**
  * 桌面端导航菜单 UI 配置
  */
-const navigationMenuUi = computed(() => ({
-  link: isTransparent.value
-    ? 'text-base text-white/80 hover:text-white hover:bg-white/10 font-medium rounded-lg px-3 py-2 transition-colors duration-150'
-    : 'text-base text-muted hover:text-highlighted hover:bg-elevated font-medium rounded-lg px-3 py-2 transition-colors duration-150',
-  linkActive: isTransparent.value
-    ? 'text-white font-semibold bg-white/15 rounded-lg'
-    : 'text-primary font-semibold bg-primary/10 rounded-lg',
-  linkLeadingIcon: isTransparent.value
-    ? 'text-white/60 group-hover:text-white'
-    : 'text-dimmed group-hover:text-muted group-[.router-link-active]:text-primary',
+const navigationMenuUi = {
+  link: 'text-base text-muted hover:text-highlighted hover:bg-elevated font-medium rounded-lg px-3 py-2 transition-colors duration-150',
+  linkActive: 'text-primary font-semibold bg-primary/10 rounded-lg',
+  linkLeadingIcon: 'text-dimmed group-hover:text-muted group-[.router-link-active]:text-primary',
   content: 'sm:w-auto bg-default rounded-xl shadow-xl ring-1 ring-default p-2',
   // justify-start 覆盖主题默认的 justify-center：Reka 的 left 变量以根元素为基准定位，flex 居中会叠加偏移
   viewportWrapper: 'absolute top-full start-0 flex w-full justify-start',
   viewport: 'sm:w-(--reka-navigation-menu-viewport-width) left-(--reka-navigation-menu-viewport-left) rtl:left-auto rtl:right-[calc(100%-var(--reka-navigation-menu-viewport-left)-var(--reka-navigation-menu-viewport-width))] overflow-hidden'
-}))
+}
 
 /**
  * 移动端菜单样式
@@ -633,8 +579,7 @@ const getPrimaryItemClasses = (item: FlattenedNavItem): string => {
 }
 
 // --- 滚动处理 ---
-
-const isScrolled = useScrollThreshold(SCROLL.THRESHOLD)
+// 导航栏为常驻不透底样式，无需滚动状态监听
 
 /**
  * 路由变化时关闭移动端菜单

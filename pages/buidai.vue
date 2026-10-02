@@ -1,4 +1,7 @@
 <script setup lang="ts">
+// 页面级 meta 占位：需要两侧竖带装饰的页面可声明 frameSides: true（见 layouts/default.vue）
+definePageMeta({})
+
 /**
  * 私有部署页面
  * 组装 Hero、技术栈、应用市场、氛围编程、平台优势、通用场景、选择理由、

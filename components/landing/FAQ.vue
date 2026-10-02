@@ -114,8 +114,6 @@
 </template>
 
 <script setup lang="ts">
-import { dispatchQrModal } from '~/utils/qrModal'
-import { ref } from 'vue'
 
 /**
  * FAQ 数据列表
@@ -148,33 +146,17 @@ const faqs = [
   }
 ]
 
-/** 当前展开的 FAQ 索引 */
-const activeFaq = ref<number | null>(null)
-
-/**
- * 处理 details 元素的 toggle 事件
- * @param event - Toggle 事件对象
- * @param idx - FAQ 索引
- */
-const handleToggle = (event: ToggleEvent, idx: number) => {
-  const details = event.target as HTMLDetailsElement
-  if (details.open) {
-    activeFaq.value = idx
-  } else if (activeFaq.value === idx) {
-    activeFaq.value = null
-  }
-}
+/** FAQ 手风琴：跟踪当前展开项（展开/收起动画由原生 details 提供） */
+const { activeIndex: activeFaq, handleToggle } = useFaqAccordion()
 
 /**
  * 打开二维码弹窗
  * @param type - 弹窗类型：community 社群 / contact 联系
  */
-const openQrModal = (type: string) => {
-  const config = type === 'community'
-    ? { title: '加入社群', desc: '扫码加入智言AI社群，获取更多帮助', image: '/qrcode.png' }
-    : { title: '联系我们', desc: '扫码添加微信客服，一对一解答', image: '/wechat.png' }
-  dispatchQrModal(config)
-}
+const openQrModal = useQrModal({
+  community: { title: '加入社群', desc: '扫码加入智言AI社群，获取更多帮助', image: '/qrcode.png' },
+  contact: { title: '联系我们', desc: '扫码添加微信客服，一对一解答', image: '/wechat.png' }
+})
 </script>
 
 <style scoped>

@@ -4,6 +4,9 @@
  * 首页标题与描述在全局 head（nuxt.config.ts）与首页 useSeoMeta 中复用，
  * 集中定义避免同一文案多处漂移。
  */
+/** 站点基准 URL —— canonical / JSON-LD / sitemap / og:url 统一引用，避免域名硬编码漂移 */
+export const SITE_URL = 'https://www.buidai.com'
+
 export const SITE_TITLE = '智言AI - 智言万象新一代AI一站式创意生产力平台'
 
 export const SITE_DESCRIPTION =

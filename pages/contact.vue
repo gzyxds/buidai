@@ -110,7 +110,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 
 /**
  * Contact Page
@@ -118,9 +117,7 @@ import { ref } from 'vue'
  * 联系我们页面，展示联系方式和二维码
  */
 
-definePageMeta({
-  layout: 'default'
-})
+definePageMeta({})
 
 usePageSeo({
   title: '联系我们 - 智言AI | 官方客服与商务合作渠道',

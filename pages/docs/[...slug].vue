@@ -41,30 +41,12 @@ name="i-heroicons-chevron-down"
                     />
                   </button>
                   <div v-show="isTocOpen" class="border-t border-gray-200 px-4 pb-4 pt-2">
-                    <nav class="space-y-1">
-                      <div v-for="link in page.body.toc.links" :key="link.id">
-                        <a
-                          :href="`#${link.id}`"
-                          class="block py-1.5 text-sm transition-colors truncate"
-                          :class="activeId === link.id ? 'text-primary-600 font-medium' : 'text-gray-500 hover:text-gray-900'"
-                          @click.prevent="scrollToHeading(link.id); isTocOpen = false"
-                        >
-                          {{ link.text }}
-                        </a>
-                        <div v-if="link.children" class="pl-4 mt-1 space-y-1">
-                          <a
-                            v-for="child in link.children"
-                            :key="child.id"
-                            :href="`#${child.id}`"
-                            class="block py-1 text-xs transition-colors truncate"
-                            :class="activeId === child.id ? 'text-primary-600 font-medium' : 'text-gray-500 hover:text-gray-900'"
-                            @click.prevent="scrollToHeading(child.id); isTocOpen = false"
-                          >
-                            {{ child.text }}
-                          </a>
-                        </div>
-                      </div>
-                    </nav>
+                    <DocsTocList
+                      :links="page.body.toc.links"
+                      :active-id="activeId"
+                      variant="mobile"
+                      @navigate="scrollToHeading"
+                    />
                   </div>
                 </div>
               </div>
@@ -127,30 +109,12 @@ name="i-heroicons-chevron-down"
         <aside class="hidden xl:block xl:col-span-2 sticky top-[72px] h-[calc(100vh-72px)] overflow-y-auto py-8 pl-4 border-l border-gray-100/50 scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent">
           <div v-if="page?.body?.toc?.links?.length">
             <h3 class="text-xs font-bold text-gray-900 mb-4 uppercase tracking-wider">本页目录</h3>
-            <nav class="space-y-1 relative">
-              <div v-for="link in page.body.toc.links" :key="link.id">
-                <a
-                  :href="`#${link.id}`"
-                  class="block py-1.5 text-sm transition-colors truncate"
-                  :class="activeId === link.id ? 'text-primary-600 font-medium pl-3 border-l-2 border-primary-600 -ml-[17px]' : 'text-gray-500 hover:text-gray-900'"
-                  @click.prevent="scrollToHeading(link.id)"
-                >
-                  {{ link.text }}
-                </a>
-                <div v-if="link.children" class="pl-3 mt-1 space-y-1">
-                  <a
-                    v-for="child in link.children"
-                    :key="child.id"
-                    :href="`#${child.id}`"
-                    class="block py-1 text-xs transition-colors truncate"
-                    :class="activeId === child.id ? 'text-primary-600 font-medium' : 'text-gray-400 hover:text-gray-900'"
-                    @click.prevent="scrollToHeading(child.id)"
-                  >
-                    {{ child.text }}
-                  </a>
-                </div>
-              </div>
-            </nav>
+            <DocsTocList
+              :links="page.body.toc.links"
+              :active-id="activeId"
+              variant="desktop"
+              @navigate="scrollToHeading"
+            />
           </div>
         </aside>
       </div>
@@ -159,18 +123,14 @@ name="i-heroicons-chevron-down"
 </template>
 
 <script setup lang="ts">
-import { SCROLL } from '~/utils/ui'
+// 页面级 meta 占位：需要两侧竖带装饰的页面可声明 frameSides: true（见 layouts/default.vue）
+definePageMeta({})
+
+import { normalizePath } from '~/utils/normalizePath'
 
 const route = useRoute()
-const currentPath = computed(() => {
-  const path = route.path
-  // 处理 URL 编码 (例如中文路径)
-  const decodedPath = decodeURIComponent(path)
-  // 移除尾部斜杠 (除非是根路径)
-  return decodedPath.endsWith('/') && decodedPath !== '/'
-    ? decodedPath.slice(0, -1)
-    : decodedPath
-})
+// URL 解码 + 去尾斜杠（逻辑收敛至 utils/normalizePath，与 blog 详情页共用）
+const currentPath = computed(() => normalizePath(route.path))
 
 // Parallel Data Fetching
 // Navigation is now handled internally by DocsSidebar
@@ -192,61 +152,25 @@ if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: '文档不存在' })
 }
 
-const activeId = ref('')
 const isTocOpen = ref(false)
-let observer: IntersectionObserver | null = null
 
 /**
- * 平滑滚动到指定的标题元素。
+ * 目录联动：平滑跳转 + 滚动高亮
  *
- * @param id - 目标标题元素的 ID。
+ * 移动端点击目录项后自动收起折叠面板（onBeforeNavigate），
+ * 桌面端点击时该回调同样生效但面板本就是展开态，无副作用。
  */
-const scrollToHeading = (id: string) => {
-  const element = document.getElementById(id)
-  if (element) {
-    const bodyRect = document.body.getBoundingClientRect().top
-    const elementRect = element.getBoundingClientRect().top
-    const elementPosition = elementRect - bodyRect
-    const offsetPosition = elementPosition - SCROLL.HEADING_OFFSET
-
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: 'smooth'
-    })
-
-    history.pushState(null, '', `#${id}`)
-    activeId.value = id
-  }
-}
-
-// Observer for TOC
-onMounted(() => {
-  observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          activeId.value = entry.target.id
-        }
-      })
-    },
-    { rootMargin: `${SCROLL.TOC_OBSERVER_TOP_MARGIN} 0px ${SCROLL.TOC_OBSERVER_BOTTOM_MARGIN} 0px` }
-  )
-
-  document.querySelectorAll('h2, h3').forEach((section) => {
-    observer?.observe(section)
-  })
-})
-
-onUnmounted(() => {
-  if (observer) {
-    observer.disconnect()
-    observer = null
+const { activeId, scrollToId: scrollToHeading } = useToc({
+  resolveTargets: () => Array.from(document.querySelectorAll<HTMLElement>('h2, h3')),
+  onBeforeNavigate: () => {
+    isTocOpen.value = false
   }
 })
 
-useSeoMeta({
+usePageSeo({
   title: page.value ? `${page.value.title} - 文档中心` : '文档中心',
-  description: page.value?.description || '智言万象 文档中心'
+  description: page.value?.description || '智言万象 文档中心',
+  ogType: 'article'
 })
 </script>
 

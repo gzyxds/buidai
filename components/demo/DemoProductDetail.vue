@@ -25,6 +25,8 @@ const props = defineProps<{
             :src="getProductImageUrl(props.selectedProduct.image)"
             :alt="props.selectedProduct.title"
             class="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
             @error="handleImageError"
           />
           <!-- 遮罩层 -->

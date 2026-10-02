@@ -2,7 +2,6 @@
 /**
  * 用户评价区块：三列垂直滚动
  */
-import { computed } from 'vue'
 
 const testimonials = [
   { user: { name: '李明', description: 'Java架构师 @某券商科技部', avatar: { src: 'https://api.dicebear.com/7.x/avataaars/svg?seed=李明', alt: '李明' } }, quote: 'Agents-Flex框架让风控Bot开发效率提升300%，@Function注解直接对接内部交易系统，插件热部署避免停机升级' },

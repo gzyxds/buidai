@@ -87,14 +87,11 @@
         <!-- Main Content Area -->
         <main class="main-content">
           <div class="space-y-12 lg:space-y-20">
-            <div
-              v-for="(version, index) in versions"
-              :id="`version-${index}`"
-              :key="index"
-              class="version-section scroll-mt-24 lg:scroll-mt-32"
-            >
-              <UChangelogVersions :versions="[version]" />
-            </div>
+            <!--
+              单实例渲染全部版本（组件内部 v-for），避免 v-for 内逐版本实例化组件
+              造成 N 份实例与重复渲染；锚点 id 由组件按 idPrefix 生成
+            -->
+            <UChangelogVersions id-prefix="version" :versions="changelogVersions" />
           </div>
         </main>
       </div>
@@ -103,11 +100,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
 
-definePageMeta({
-  layout: 'default'
-})
+definePageMeta({})
 
 usePageSeo({
   title: '智言AI - 更新日志 - 智言万象 | 产品迭代历史与新功能发布',
@@ -120,9 +114,11 @@ usePageSeo({
 
  
 const { data: versions } = await useAsyncData('changelog-updates', () => {
-   
   return queryCollection('update').order('date', 'DESC').all()
 })
+
+// async data 在挂载前可能为undefined，统一兜底为空数组供模板遍历
+const changelogVersions = computed(() => versions.value ?? [])
 
 // --- Interaction Logic ---
 
@@ -137,63 +133,49 @@ const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value
 }
 
-const scrollToVersion = (index: number) => {
-  activeIndex.value = index
-  isMobileMenuOpen.value = false
+/**
+ * 版本目录联动：平滑跳转 + 滚动高亮
+ *
+ * 该页以数字索引（activeIndex）驱动侧栏高亮，而 composable 返回字符串 id，
+ * 故用 resolveActiveId 把 `version-N` 反解为索引，回填到 activeIndex。
+ *
+ * 偏移量与 rootMargin 保留该页原有取值，断点行为不变。
+ */
+const { activeId, scrollToId: scrollToIdByAnchor } = useToc({
+  // 点击目录项：跳转并收起移动端目录
+  resolveTargets: () => changelogVersions.value
+    .map((_, index) => document.getElementById(`version-${index}`))
+    .filter((el): el is HTMLElement => el !== null),
+  resolveActiveId: el => el.id,
+  headingOffset: () => (window.innerWidth < 1024 ? 120 : 100),
+  syncHash: false,
+  rootMargin: '-20% 0px -50% 0px',
+  threshold: 0.1
+})
 
-  const el = document.getElementById(`version-${index}`)
-  if (el) {
-    // Offset for sticky headers
-    const offset = window.innerWidth < 1024 ? 120 : 100
-    const bodyRect = document.body.getBoundingClientRect().top
-    const elementRect = el.getBoundingClientRect().top
-    const elementPosition = elementRect - bodyRect
-    const offsetPosition = elementPosition - offset
-
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: 'smooth'
-    })
-  }
+/** 由锚点 id 推导版本索引 */
+const versionIndexFromAnchor = (id: string): number => {
+  const index = Number.parseInt(id.replace('version-', ''), 10)
+  return Number.isNaN(index) ? -1 : index
 }
 
-// Intersection Observer for Active State
-let observer: IntersectionObserver | null = null
-
-onMounted(() => {
-  if (typeof IntersectionObserver !== 'undefined') {
-    observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('id')
-          if (id) {
-            const index = parseInt(id.replace('version-', ''))
-            if (!isNaN(index)) {
-              activeIndex.value = index
-            }
-          }
-        }
-      })
-    }, {
-      rootMargin: '-20% 0px -50% 0px',
-      threshold: 0.1
-    })
-
-    // Observe all version sections
-    if (versions.value) {
-      versions.value.forEach((_, index) => {
-        const el = document.getElementById(`version-${index}`)
-        if (el) {observer?.observe(el)}
-      })
-    }
+// 观察器命中的锚点同步到侧栏高亮索引
+watch(activeId, (id) => {
+  const index = versionIndexFromAnchor(id)
+  if (index >= 0) {
+    activeIndex.value = index
   }
 })
 
-onUnmounted(() => {
-  if (observer) {
-    observer.disconnect()
-  }
-})
+/**
+ * 跳转到指定版本
+ * @param index 版本索引
+ */
+const scrollToVersion = (index: number): void => {
+  activeIndex.value = index
+  isMobileMenuOpen.value = false
+  scrollToIdByAnchor(`version-${index}`)
+}
 </script>
 
 <style scoped>

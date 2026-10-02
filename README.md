@@ -77,23 +77,22 @@
 | 包 | 声明版本 | 实际锁定版本 | 用途 |
 |---|---|---|---|
 | `@nuxt/content` | `^3.16.1` | **3.16.1** | 基于文件的内容管理（Markdown + SQLite 索引） |
-| `@nuxt/ui` | `^4.3.0` | **4.3.0** | 企业级 UI 组件库（内置 Tailwind 与 `UIcon`） |
-| `@tailwindcss/vite` | `^4.1.18` | **4.1.18** | Tailwind CSS v4 的 Vite 插件（CSS-first 配置） |
+| `@nuxt/fonts` | `^0.14.0` | **0.14.0** | 字体模块（由 `@nuxt/ui` 注册，顶层声明用于锁定版本并关闭 Google 源） |
+| `@nuxt/ui` | `^4.11.3` | **4.11.3** | 企业级 UI 组件库（内置 Tailwind 与 `UIcon`） |
 | `matter-js` | `^0.20.0` | **0.20.0** | 2D 物理引擎，仅用于 `FallingText` 文字坠落效果 |
-| `tailwindcss` | `^4.1.18` | **4.1.18** | 原子化 CSS 框架 v4 |
-| `vue` | `^3.4.31` | **3.5.26** | 前端框架（实际安装高于声明下界） |
+| `vue` | `^3.4.31` | **3.5.43** | 前端框架（实际安装高于声明下界） |
+| `vue-router` | `^5.3.1` | **5.3.1** | 官方路由（Nuxt 4 直接依赖） |
 
-### 2.2 开发依赖（`devDependencies`，27 个）
+### 2.2 开发依赖（`devDependencies`，23 个）
 
 | 包 | 声明版本 | 实际锁定版本 | 用途 |
 |---|---|---|---|
-| `nuxt` | `^4.2.2` | **4.2.2** | 元框架本体（Nitro 实测 `2.12.8`，见 `.vercel/output/nitro.json`） |
-| `@nuxt/devtools` | `^1.0.8` | **1.7.0** | 开发调试面板（`nuxt.config.ts:12` 已开启） |
-| `@nuxt/fonts` | `^0.12.1` | **0.12.1** | 由 `@nuxt/ui` 注册，此处显式关闭 Google 源 |
+| `nuxt` | `^4.5.2` | **4.5.2** | 元框架本体 |
 | `@nuxtjs/sitemap` | `^7.5.0` | **7.5.0** | `sitemap.xml` 生成 |
-| `@nuxt/test-utils` | `^3.21.0` | **3.21.0** | Nuxt 环境测试工具（当前测试未直接引用） |
+| `@tailwindcss/vite` | `^4.3.3` | **4.3.3** | Tailwind CSS v4 的 Vite 插件（CSS-first 配置） |
+| `tailwindcss` | `^4.3.3` | **4.3.3** | 原子化 CSS 框架 v4 |
 | `typescript` | `^5.5.4` | **5.9.3** | 类型系统 |
-| `vue-tsc` | `^3.2.0` | **3.2.0** | `nuxt typecheck` 底层执行器（含 Vue SFC 检查） |
+| `vue-tsc` | `^3.3.0` | **3.3.0** | typecheck 底层执行器（含 Vue SFC 检查） |
 | `typescript-eslint` | `^8.57.2` | **8.57.2** | TS Lint 规则集 |
 | `eslint` | `^10.1.0` | **10.1.0** | 代码检查 |
 | `@eslint/js` | `^10.0.1` | **10.0.1** | JS 推荐规则 |
@@ -103,13 +102,10 @@
 | `globals` | `^17.4.0` | **17.4.0** | ESLint 全局变量表 |
 | `prettier` | `^3.8.1` | **3.8.1** | 代码格式化 |
 | `vitest` | `^3.0.0` | **3.2.4** | 单元测试运行器 |
-| `@vue/test-utils` | `^2.4.6` | **2.4.6** | 组件挂载工具（当前测试未使用） |
 | `@tailwindcss/typography` | `^0.5.19` | **0.5.19** | `prose` 排版插件，用于 Markdown 渲染 |
 | `better-sqlite3` | `^12.10.0` | **12.10.0** | Content 模块的 SQLite 驱动（原生模块） |
 | `@types/matter-js` | `^0.20.2` | **0.20.2** | 物理引擎 TS 类型 |
-| `happy-dom` | `^20.0.11` | **20.0.11** | DOM 环境（当前 vitest 未启用） |
-| `jsdom` | `^27.3.0` | **27.3.0** | DOM 环境（当前 vitest 未启用） |
-| `@types/node` | `^25.0.2` | **25.0.3** | Node 类型（对应 Node 22+ 运行时） |
+| `@types/node` | `^25.0.2` | **25.9.9** | Node 类型 |
 | `@iconify-json/lucide` | `^1.2.81` | **1.2.81** | 图标集（导航与文档 frontmatter 主要使用） |
 | `@iconify-json/heroicons` | `^1.2.3` | **1.2.3** | 图标集（正文组件主要使用） |
 | `@iconify-json/ph` | `^1.2.2` | **1.2.2** | Phosphor 图标集（`app.config.ts` 图标别名的目标） |
@@ -359,7 +355,7 @@ export default defineConfig({
 })
 ```
 
-- **仅收集 `tests/**/*.test.ts`**，因此 `environment: 'node'` 足以覆盖当前全部用例
+- 未启用 `happy-dom` / `jsdom`，也未使用 `@vue/test-utils` —— 这两个包目前是**未被使用的依赖**
 - 未启用 `happy-dom` / `jsdom`，也未使用 `@vue/test-utils` —— 这两个包目前是**未被使用的依赖**
 - 若要开展组件级测试，需扩展 `include` 并将 `environment` 切至 `happy-dom`
 
@@ -1410,14 +1406,12 @@ body {
 
 `public/robots.txt`（**静态文件，非动态生成**）：
 
-- 注释标注域名为 `www.gmlart.cn`，最后更新 `2025-12-27`
+- 注释标注域名为 `www.buidai.com`，最后更新 `2026-10-02`
 - 全局 `Allow: /`；针对 `Googlebot` / `Bingbot` / `Baiduspider` 显式放行
 - `Disallow`：`/api/`、`/admin/`、`/_nuxt/`
 - 显式 `Allow`：/docs、/blog、/changelog、/pricing、/download、/contact、/about、/solutions、/resources、/product
-- `Sitemap: https://www.gmlart.cn/sitemap.xml`
+- `Sitemap: https://www.buidai.com/sitemap.xml`
 - 屏蔽 `AhrefsBot`、`SemrushBot`、`DotBot`
-
-> **域名不一致问题**：`nuxt.config.ts:43` 的 `site.url` 是 `https://www.buidai.com`，而 `robots.txt` 的 Sitemap 指向 `https://www.gmlart.cn`。详见 [19.4](#194-域名不一致问题)。
 
 ### 16.5 站点视觉资产
 
@@ -1641,14 +1635,7 @@ e40e0c8  chore: 参考设计目录移出仓库跟踪
 
 ### 19.2 依赖层面的冗余
 
-以下已安装依赖在当前代码中**无任何引用**：
-
-| 包 | 状态 |
-|---|---|
-| `@vue/test-utils` | `vitest.config.ts` 未启用 DOM 环境，无任何组件测试 |
-| `happy-dom`、`jsdom` | 同上，`environment: 'node'` 未用到它们 |
-| `@nuxt/test-utils` | 现有测试文件未 import |
-| `@storybook/vue3` 类型引用 | `env.d.ts:2` 仍引用，但依赖未安装，属**悬空类型引用** |
+审计确认后已从 `package.json` 移除 7 个无引用依赖（`@nuxt/devtools`、`@nuxt/fonts` 旧版、`@nuxt/schema`、`@nuxt/test-utils`、`@vue/test-utils`、`happy-dom`、`jsdom`），`env.d.ts` 的 `@storybook/vue3` 悬空类型引用也已删除。当前无未使用依赖。
 
 ### 19.3 路由与内容层面的注意点
 
@@ -1663,16 +1650,12 @@ e40e0c8  chore: 参考设计目录移出仓库跟踪
 
 ### 19.4 域名不一致问题
 
-代码中至少存在 **3 套域名**，上线前必须统一：
+域名已统一为 `https://www.buidai.com`（2026-10-02，P3 规范符合性阶段）：
 
-| 用途 | 当前值 | 位置 |
-|---|---|---|
-| 站点基准 URL | `https://www.buidai.com` | `nuxt.config.ts:43` |
-| Canonical | `https://www.buidai.com` | `nuxt.config.ts:124` |
-| JSON-LD Organization / WebSite | `https://www.buidai.com` | `app.vue:21-78` |
-| robots.txt 的 Sitemap | `https://www.gmlart.cn/sitemap.xml` | `public/robots.txt:26` |
-| 登录 / API 外跳 | `https://www.gmlart.cn`、`https://api.gmlart.cn/` | `AppNavigation.vue:40, 55, 184, 199` |
-| demo 页 canonical / og image | `https://buidai.com` | `pages/demo.vue:89` |
+- `data/site.ts` 新增 `SITE_URL` 常量，`nuxt.config.ts`（site.url / sitemap）、`app.vue`（JSON-LD）、`pages/demo.vue`（canonical / og image）均引用该常量
+- 全局 head 的 canonical 已移除，改由 `usePageSeo` 按 `route.path` 逐页派生（修复所有内页指向首页的 SEO 错误）
+- 原 `gmlart.cn` 系列 50 处（components 20 + data/products 28 + 配置 2）统一替换为 `buidai.com`，子域结构保留（`api.` / `paper.` / 无 www 形态不变）
+- robots.txt 的 Sitemap 已指向 `https://www.buidai.com/sitemap.xml`
 
 ### 19.5 其他技术债
 
@@ -1696,12 +1679,12 @@ e40e0c8  chore: 参考设计目录移出仓库跟踪
 |---|---|---|
 | `https://www.buidai.com` | `nuxt.config.ts:43, 124`；`app.vue` | 站点基准域名 / canonical / JSON-LD |
 | `https://www.cnai.art/seedance` | `AppBanner.vue` | 顶部横幅跳转 |
-| `https://www.gmlart.cn` | `AppNavigation.vue:40, 184` | 「登录智言」按钮 |
-| `https://api.gmlart.cn/` | `AppNavigation.vue:55, 199` | 「智言API」按钮 |
+| `https://www.buidai.com` | `AppNavigation.vue` | 「登录智言」按钮 |
+| `https://api.buidai.com/` | `AppNavigation.vue` | 「智言API」按钮 |
 | `https://www.cloudcvm.com` | `AppNavigation.vue:321`；`utils/link.ts:33` | 导航「优刻云计算」/ 友情链接 |
 | `https://www.urlnet.cn`、`https://urlnet.cn` | `utils/link.ts:31, 35` | 友情链接 |
 | `https://v.cnai.art` | `utils/link.ts:34` | 友情链接（AI数字人） |
-| `https://paper.gmlart.cn` | `utils/link.ts:36` | 友情链接（论文创作） |
+| `https://paper.buidai.com` | `utils/link.ts` | 友情链接（论文创作） |
 | `https://www.urlka.cn` | `utils/link.ts:37` | 友情链接（免费领卡） |
 | `https://www.artaigc.cn` | `utils/link.ts:38` | 友情链接（AI系统源码） |
 | `https://beian.miit.gov.cn/` | `AppFooter.vue:117` | ICP 备案查询（赣ICP备2023002309号） |

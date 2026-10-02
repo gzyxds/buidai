@@ -60,7 +60,7 @@
 
             <!-- 特色图片 -->
             <div v-if="post.image" class="mb-12 rounded-2xl overflow-hidden shadow-sm border border-gray-100">
-              <img :src="post.image" :alt="post.title" class="w-full h-auto object-cover" />
+              <img :src="post.image" :alt="post.title" class="w-full h-auto object-cover" loading="lazy" decoding="async" />
             </div>
 
             <!-- 文章内容 Body -->
@@ -216,13 +216,19 @@
 </template>
 
 <script setup lang="ts">
+// 页面级 meta 占位：需要两侧竖带装饰的页面可声明 frameSides: true（见 layouts/default.vue）
+definePageMeta({})
+
+import { normalizePath } from '~/utils/normalizePath'
+
 const route = useRoute()
+// URL 解码 + 去尾斜杠：中文 slug 经浏览器编码后需还原，content 查询才能命中
+// （修复：原直接用 route.path 查询，中文 slug 会取不到文章）
+const slugPath = normalizePath(route.path)
 
 // Fetch Post
- 
 const { data: post } = await useAsyncData(route.path, () => {
-   
-  return queryCollection('blog').path(route.path).first()
+  return queryCollection('blog').path(slugPath).first()
 })
 
 // 文章不存在时交由 Nuxt 错误页处理，避免返回 200 + 空内容（软 404）
@@ -240,7 +246,7 @@ const { data: surround } = await useAsyncData(`surround-${route.path}`, async ()
     .select('title', 'path', 'date')
     .all()
 
-  const currentIndex = allPosts.findIndex(p => p.path === route.path)
+  const currentIndex = allPosts.findIndex(p => p.path === slugPath)
   if (currentIndex === -1) {return null}
 
   return {
@@ -249,29 +255,19 @@ const { data: surround } = await useAsyncData(`surround-${route.path}`, async ()
   }
 })
 
-const activeId = ref('')
 const copied = ref(false)
 
-// Scroll Handling
-const scrollToHeading = (id: string) => {
-  const element = document.getElementById(id)
-  if (element) {
-    const offset = 100 // 头部偏移量
-    const bodyRect = document.body.getBoundingClientRect().top
-    const elementRect = element.getBoundingClientRect().top
-    const elementPosition = elementRect - bodyRect
-    const offsetPosition = elementPosition - offset
-
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: 'smooth'
-    })
-
-    // Update URL hash without jumping
-    history.pushState(null, '', `#${id}`)
-    activeId.value = id
-  }
-}
+/**
+ * 目录联动：平滑跳转 + 滚动高亮
+ *
+ * 偏移量沿用本页面原有的 100px（顶部固定导航栏高度）。
+ * rootMargin 保留该页既有的 '-100px 0px -66% 0px'，使高亮切换时机不变。
+ */
+const { activeId, scrollToId: scrollToHeading } = useToc({
+  resolveTargets: () => Array.from(document.querySelectorAll<HTMLElement>('h2, h3')),
+  headingOffset: 100,
+  rootMargin: '-100px 0px -66% 0px'
+})
 
 // Copy Link
 const copyLink = () => {
@@ -284,26 +280,6 @@ const copyLink = () => {
   })
 }
 
-// Observer for TOC
-let tocObserver: IntersectionObserver | null = null
-
-onMounted(() => {
-  tocObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          activeId.value = entry.target.id
-        }
-      })
-    },
-    { rootMargin: '-100px 0px -66% 0px' }
-  )
-
-  document.querySelectorAll('h2, h3').forEach((section) => {
-    tocObserver?.observe(section)
-  })
-})
-
 const readingTime = computed(() => {
   if (!post.value?.body) {return 1}
   const text = JSON.stringify(post.value.body)
@@ -315,18 +291,14 @@ const readingTime = computed(() => {
 // Scroll Progress
 const scrollProgress = useScrollProgress()
 
-onUnmounted(() => {
-  tocObserver?.disconnect()
-  tocObserver = null
-})
-
 // SEO
+// article 类型（详情页）；ogTitle 与 title 不同，故显式传入ogImage
 if (post.value) {
-  useSeoMeta({
+  usePageSeo({
     title: `${post.value.title} - 智言万象 博客`,
     description: post.value.description,
+    ogType: 'article',
     ogTitle: post.value.title,
-    ogDescription: post.value.description,
     ogImage: post.value.image
   })
 }

@@ -19,15 +19,22 @@ interface ChangelogVersion {
 
 defineProps<{
   versions: ChangelogVersion[]
+  /**
+   * 锚点 id 前缀。为每个版本条目生成 `${idPrefix}-${index}` 的 DOM id，
+   * 供页面侧目录（IntersectionObserver）做滚动定位与高亮。
+   * 不传则不生成 id，组件仅作纯展示列表。
+   */
+  idPrefix?: string
 }>()
 </script>
 
 <template>
   <div class="">
     <div
-      v-for="version in versions"
+      v-for="(version, index) in versions"
+      :id="idPrefix ? `${idPrefix}-${index}` : undefined"
       :key="version.title"
-      class="relative pl-0 sm:pl-40 py-8 group"
+      class="version-section relative pl-0 sm:pl-40 py-8 group scroll-mt-24 lg:scroll-mt-32"
     >
       <!-- Timeline Line -->
       <div class="hidden sm:block absolute left-4 sm:left-32 top-0 bottom-0 w-px bg-gray-200 group-last:bottom-auto group-last:h-8"/>

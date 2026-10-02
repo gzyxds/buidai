@@ -78,7 +78,6 @@
 
 <script setup lang="ts">
 import { LAYOUT } from '~/utils/ui'
-import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 import { marketApps as apps } from '~/data/products'
 
 const gradients = [
@@ -223,11 +222,5 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.scrollbar-hide::-webkit-scrollbar {
-    display: none;
-}
-.scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
+/* .scrollbar-hide 已收敛至 assets/css/main.css 的工具类层 */
 </style>

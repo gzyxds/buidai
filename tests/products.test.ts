@@ -113,11 +113,11 @@ describe('products 数据完整性（统一数据层）', () => {
     )
     for (const p of products) {
       for (const raw of [p.icon, p.market?.description, p.demo?.icon]) {
-        if (!raw || !raw.startsWith('i-')) continue
+        if (!raw || !raw.startsWith('i-')) {continue}
         const m = raw.match(/^i-(heroicons-solid|heroicons|lucide)-(.+)$/)
-        if (!m) continue
+        if (!m) {continue}
         const [, prefix, name] = m
-        if (!prefix || !name) continue
+        if (!prefix || !name) {continue}
         const valid =
           prefix === 'lucide'
             ? lucide.has(name)
@@ -131,7 +131,7 @@ describe('products 数据完整性（统一数据层）', () => {
 
   it('市场实体具备图标与封面图且图片文件存在', () => {
     for (const p of products) {
-      if (!p.market) continue
+      if (!p.market) {continue}
       expect(p.icon, `${p.slug} 的市场图标不应为空`).toBeTruthy()
       expect(p.image, `${p.slug} 的市场封面图不应为空`).toBeTruthy()
       const path = 'public' + (p.image as string)

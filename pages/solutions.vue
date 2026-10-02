@@ -4,9 +4,7 @@
  * 组装 Hero、特征网格、场景展示、快速入门、卖点、FAQ 与底部 CTA 区块
  */
 // 设置页面布局
-definePageMeta({
-  layout: 'default'
-})
+definePageMeta({})
 
 // SEO 元数据配置
 usePageSeo({

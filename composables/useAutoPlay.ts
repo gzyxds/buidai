@@ -1,5 +1,3 @@
-import { onMounted, onUnmounted } from 'vue'
-
 interface AutoPlayOptions {
   /** 自动前进的间隔（毫秒），默认 5000 */
   interval?: number

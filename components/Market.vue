@@ -134,7 +134,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
 import { marketApps as apps, marketCategories as categories, type MarketApp as AppData } from '~/data/products'
 
 /**

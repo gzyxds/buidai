@@ -1,5 +1,5 @@
-# robots.txt for 智言万象 (www.gmlart.cn)
-# 最后更新: 2025-12-27
+# robots.txt for 智言万象 (www.buidai.com)
+# 最后更新: 2026-10-02
 
 # 全局规则 - 允许所有搜索引擎爬虫
 User-agent: *
@@ -23,7 +23,7 @@ Allow: /resources
 Allow: /product
 
 # Sitemap 位置
-Sitemap: https://www.gmlart.cn/sitemap.xml
+Sitemap: https://www.buidai.com/sitemap.xml
 
 # Google 爬虫特殊规则
 User-agent: Googlebot

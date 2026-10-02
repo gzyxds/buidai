@@ -2,16 +2,10 @@
 /**
  * FAQ 区块：左标题与联系入口 + 右折叠面板列表
  */
-import { ref } from 'vue'
-import { dispatchQrModal } from '~/utils/qrModal'
 
 // 二维码弹窗 - 触发 BackToTop 组件
-const openQrModal = (type: 'coupon' | 'wechat') => {
-  const config = type === 'coupon'
-    ? { title: '获取优惠码', desc: '扫码获取专属优惠', image: '/qrcode.png' }
-    : { title: '联系客服', desc: '扫码添加微信客服', image: '/wechat.png' }
-  dispatchQrModal(config)
-}
+// 二维码弹窗 - 触发 BackToTop 组件（文案与默认一致，无需覆盖）
+const openQrModal = useQrModal()
 
 /**
  * 常见问题接口

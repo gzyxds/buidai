@@ -1,10 +1,7 @@
 <script lang="ts" setup>
-import ProductFeatures from '~/components/landing/ProductFeatures.vue'
 import { getProductDetailBySlug } from '~/data/products'
 
-definePageMeta({
-  layout: 'default'
-})
+definePageMeta({})
 
 const route = useRoute()
 const slug = route.params.slug as string
@@ -94,7 +91,7 @@ const toDemo = () => {
     <div id="__demo_container__" class="container mx-auto px-4 py-12 md:py-20">
       <div class="relative p-2 rounded-3xl bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 max-w-5xl mx-auto">
         <div class="relative rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-sm bg-white/60 dark:bg-gray-800/60 aspect-video flex items-center justify-center">
-          <img :src="product.hero.demoImage" :alt="product.hero.demoAlt" class="w-full h-full object-contain" />
+          <img :src="product.hero.demoImage" :alt="product.hero.demoAlt" class="w-full h-full object-contain" loading="lazy" decoding="async" />
         </div>
       </div>
     </div>
@@ -218,7 +215,7 @@ const toDemo = () => {
           <div class="relative h-full">
             <div class="relative p-2 rounded-3xl bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 h-full">
               <div class="relative rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-sm bg-white/60 dark:bg-gray-800/60 h-full flex items-center justify-center">
-                <img :src="detail.image" :alt="detail.title" class="w-full h-full object-contain" />
+                <img :src="detail.image" :alt="detail.title" class="w-full h-full object-contain" loading="lazy" decoding="async" />
                 <div class="absolute inset-0 bg-linear-to-tr from-black/5 to-transparent pointer-events-none" />
               </div>
             </div>

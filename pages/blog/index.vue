@@ -48,6 +48,8 @@
                 :src="post.image"
                 :alt="post.title"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+                decoding="async"
               />
               <div v-else class="w-full h-full flex items-center justify-center bg-gray-50">
                 <UIcon name="i-heroicons-photo" class="w-12 h-12 text-gray-300" />
@@ -100,6 +102,9 @@
 </template>
 
 <script setup lang="ts">
+// 页面级 meta 占位：需要两侧竖带装饰的页面可声明 frameSides: true（见 layouts/default.vue）
+definePageMeta({})
+
 // SEO
 usePageSeo({
   title: '智言AI - 智言万象 | 技术博客、AI技术洞察、教程与最佳实践',

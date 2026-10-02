@@ -168,14 +168,14 @@ const product: Product = {
       {
         title: 'PC演示',
         icon: 'i-heroicons-computer-desktop',
-        url: 'https://www.gmlart.cn',
+        url: 'https://www.buidai.com',
         account: '自行注册',
         password: '自行注册'
       },
       {
         title: '管理后台',
         icon: 'i-heroicons-cog-6-tooth',
-        url: 'https://www.gmlart.cn/',
+        url: 'https://www.buidai.com/',
         account: 'admin',
         password: '123456'
       }

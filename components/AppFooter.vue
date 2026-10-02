@@ -131,7 +131,6 @@
 
 <script setup lang="ts">
 import { LAYOUT } from '~/utils/ui'
-import { ref } from 'vue'
 
 // 移动端折叠状态管理
 // 默认展开最后一个（关注我们），索引为4

@@ -11,9 +11,7 @@
  * 客户端下载页面，展示各平台下载入口
  */
 
-definePageMeta({
-  layout: 'default'
-})
+definePageMeta({})
 
 usePageSeo({
   title: '下载客户端 - 智言AI 智言万象 | Windows, macOS, Linux & 小程序',

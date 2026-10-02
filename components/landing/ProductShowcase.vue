@@ -159,7 +159,7 @@
                   class="w-full h-auto max-h-[140px] sm:max-h-[220px] lg:max-h-none lg:max-w-full object-contain rounded sm:rounded-lg"
                   loading="lazy"
                   decoding="async"
-                  @error="handleImageError"
+                  @error="handleImageError($event, '/images/placeholder.webp')"
                 />
 
                 <!-- 浮动功能标签 -->
@@ -235,31 +235,20 @@
       </div>
 
       <!-- CTA 区域 -->
-      <div class="mt-6 sm:mt-8 lg:mt-10 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 w-full sm:w-auto px-3 sm:px-0">
-        <a 
-          href="https://www.buidai.com/" 
-          target="_blank" rel="noopener noreferrer" 
-          class="w-full sm:w-auto px-5 sm:px-6 lg:px-8 py-2.5 sm:py-3 rounded-full bg-[var(--brand-primary)] text-white text-xs sm:text-sm font-semibold hover:bg-[var(--brand-primary-dark)] active:scale-95 transition-all flex items-center justify-center gap-1.5 sm:gap-2 touch-manipulation min-h-[40px] sm:min-h-[44px]"
-        >
-          快速开始
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-200">
-            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-          </svg>
-        </a>
-        <a 
-          href="https://doc.buidai.com/" 
-          target="_blank" rel="noopener noreferrer" 
-          class="w-full sm:w-auto px-5 sm:px-6 lg:px-8 py-2.5 sm:py-3 rounded-full bg-white border border-neutral-200 text-neutral-700 text-xs sm:text-sm font-semibold hover:bg-neutral-50 hover:border-neutral-300 active:scale-95 transition-all flex items-center justify-center gap-1.5 sm:gap-2 touch-manipulation min-h-[40px] sm:min-h-[44px]"
-        >
-          查看文档
-        </a>
-      </div>
+      <CtaPair
+        ui="flex-col sm:flex-row items-center justify-center"
+        primary-class="w-full sm:w-auto px-5 sm:px-6 lg:px-8 py-2.5 sm:py-3 bg-[var(--brand-primary)] text-white hover:bg-[var(--brand-primary-dark)] gap-1.5 sm:gap-2"
+        secondary-class="w-full sm:w-auto px-5 sm:px-6 lg:px-8 py-2.5 sm:py-3 bg-white border border-neutral-200 text-neutral-700 hover:bg-neutral-50 hover:border-neutral-300 gap-1.5 sm:gap-2"
+        :primary="{ href: 'https://www.buidai.com/', label: '快速开始', icon: 'i-lucide-arrow-right', iconClass: 'transition-transform duration-200 w-3.5 h-3.5' }"
+        :secondary="{ href: 'https://doc.buidai.com/', label: '查看文档' }"
+      />
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, shallowRef } from 'vue'
+import { handleImageError } from '~/utils/image'
+
 // ==========================================
 // 类型定义
 // ==========================================
@@ -291,43 +280,43 @@ const tabs: TabItem[] = [
     name: '智能体',
     description: 'AI Agent 工作流编排',
     image: '/images/buidai-1.webp',
-    url: 'gmlart.cn/agents'
+    url: 'www.buidai.com/agents'
   },
   {
     name: '知识库',
     description: 'RAG 向量检索系统',
     image: '/images/buidai-2.webp',
-    url: 'gmlart.cn/knowledge'
+    url: 'www.buidai.com/knowledge'
   },
   {
     name: '应用中心',
     description: '预置应用模板市场',
     image: '/images/buidai-3.webp',
-    url: 'gmlart.cn/apps'
+    url: 'www.buidai.com/apps'
   },
   {
     name: '模型管理',
     description: '多模型接入与管理',
     image: '/images/buidai-4.webp',
-    url: 'gmlart.cn/models'
+    url: 'www.buidai.com/models'
   },
   {
     name: 'MCP',
     description: '模型上下文协议',
     image: '/images/buidai-5.webp',
-    url: 'gmlart.cn/mcp'
+    url: 'www.buidai.com/mcp'
   },
   {
     name: 'DIY中心',
     description: '可视化界面构建',
     image: '/images/buidai-6.webp',
-    url: 'gmlart.cn/diy'
+    url: 'www.buidai.com/diy'
   },
   {
     name: '会员订阅',
     description: '灵活的计费方案',
     image: '/images/buidai-7.webp',
-    url: 'gmlart.cn/billing'
+    url: 'www.buidai.com/billing'
   }
 ]
 
@@ -372,7 +361,7 @@ const isDragging = ref(false)
  * 当前标签的模拟URL
  */
 const currentTabUrl = computed(() => {
-  return tabs[activeTab.value]?.url || 'gmlart.cn'
+  return tabs[activeTab.value]?.url || 'www.buidai.com'
 })
 
 // ==========================================
@@ -497,9 +486,27 @@ const handleSwipe = (): void => {
 
 /**
  * 处理键盘导航事件
+ *
+ * 仅在非输入态响应：输入框/文本域/可编辑区域内按方向键属于光标操作，
+ * 不应触发轮播切换，否则用户编辑文本时会被劫持。
+ *
  * @param event - 键盘事件对象
  */
 const handleKeydown = (event: KeyboardEvent): void => {
+  // 目标元素处于可编辑状态时让出（输入框、文本域、contenteditable）
+  const target = event.target as HTMLElement | null
+  if (target) {
+    const tag = target.tagName
+    if (
+      target.isContentEditable
+      || tag === 'INPUT'
+      || tag === 'TEXTAREA'
+      || tag === 'SELECT'
+    ) {
+      return
+    }
+  }
+
   if (event.key === 'ArrowLeft') {
     event.preventDefault()
     prevTab()
@@ -533,15 +540,6 @@ const preloadAdjacentImages = (): void => {
       img.src = tabs[index].image
     }
   })
-}
-
-/**
- * 处理图片加载错误
- */
-const handleImageError = (event: Event): void => {
-  const img = event.target as HTMLImageElement
-  // 可以设置一个默认的占位图
-  img.src = '/images/placeholder.webp'
 }
 
 const { start: startAutoPlay, stop: stopAutoPlay, reset: resetAutoPlay } = useAutoPlay(nextTab, { interval: 4000 })
@@ -602,36 +600,9 @@ button:focus-visible {
 }
 
 /* ==========================================
-   自定义滚动条 (桌面端)
+   自定义滚动条与滚动条隐藏
+   —— 均已收敛至 assets/css/main.css 的工具类层
    ========================================== */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 4px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 2px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.2);
-}
-
-/* ==========================================
-   隐藏滚动条但保持滚动功能 (移动端标签栏)
-   ========================================== */
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
 
 /* ==========================================
    触摸优化

@@ -2,15 +2,9 @@
 /**
  * FAQ 区块：左侧问题选项卡 + 右侧答案面板
  */
-import { ref } from 'vue'
-import { dispatchQrModal } from '~/utils/qrModal'
 
-const openQrModal = (type: 'coupon' | 'wechat') => {
-  const config = type === 'coupon'
-    ? { title: '获取优惠码', desc: '扫码获取专属优惠', image: '/qrcode.png' }
-    : { title: '联系客服', desc: '扫码添加微信客服', image: '/wechat.png' }
-  dispatchQrModal(config)
-}
+// 二维码弹窗 - 触发 BackToTop 组件（文案与默认一致，无需覆盖）
+const openQrModal = useQrModal()
 
 const faqs = [
   { question: '官方技术专家能为我做什么？', answer: '我们提供官方认证的技术专家远程服务，可协助您完成 智言万象 平台框架的本地或服务器部署，包含环境配置、源码安装、插件调试及后续运维指导，一站式解决部署难题。' },

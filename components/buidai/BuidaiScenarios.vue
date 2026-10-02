@@ -135,7 +135,7 @@ const scenarios: Scenario[] = [
 
                   <div class="mt-5 sm:mt-6 pt-4 sm:pt-5 border-t border-neutral-200">
                     <a
-                      href="https://www.gmlart.cn/"
+                      href="https://www.buidai.com/"
                       target="_blank" rel="noopener noreferrer"
                       class="group/btn inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 sm:py-2 rounded-md bg-neutral-900 text-white text-sm font-medium hover:bg-neutral-800 active:scale-[0.98] transition-all duration-200 w-full sm:w-auto"
                     >
