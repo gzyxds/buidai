@@ -2,8 +2,6 @@
 /**
  * 场景展示区块：3 行 6 卡的 bento 网格（PPT/设计/写作/Excel/编程/播客）
  */
-import { ArrowRightIcon } from '@heroicons/vue/24/outline'
-
 /**
  * 解决方案卡片接口
  */
@@ -201,7 +199,7 @@ const solutionRows: SolutionRow[] = [
                 </div>
 
                 <button class="w-fit bg-white text-black px-4 py-1.5 rounded-full text-xs md:text-sm font-medium flex items-center gap-1 shadow-sm group-hover:bg-gray-50 transition-colors z-10">
-                   {{ card.actionText }} <ArrowRightIcon class="w-3 h-3 md:w-4 md:h-4" />
+                   {{ card.actionText }} <UIcon name="i-heroicons-arrow-right" class="w-3 h-3 md:w-4 md:h-4" />
                 </button>
              </div>
           </div>

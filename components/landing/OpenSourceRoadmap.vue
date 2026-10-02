@@ -72,7 +72,7 @@
 
           <div class="mt-auto pt-3 flex items-center justify-between border-t border-neutral-100/80">
             <span class="text-[10px] text-neutral-400 font-medium tracking-wide">已上线</span>
-            <ArrowRightIcon class="w-3.5 h-3.5 text-neutral-300 group-hover:text-indigo-400 transition-colors" />
+            <UIcon name="i-heroicons-arrow-right" class="w-3.5 h-3.5 text-neutral-300 group-hover:text-indigo-400 transition-colors" />
           </div>
         </div>
       </div>
@@ -85,7 +85,8 @@
           @click="toggleExpand"
         >
           <span>{{ isExpanded ? '收起' : '查看更多' }}</span>
-          <ChevronDownIcon
+          <UIcon
+name="i-lucide-chevron-down"
             class="h-4 w-4 transition-transform duration-200"
             :class="{ 'rotate-180': isExpanded }"
           />
@@ -97,9 +98,6 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { ChevronDownIcon } from 'lucide-vue-next'
-import { ArrowRightIcon } from '@heroicons/vue/24/outline'
-
 interface FeatureItem {
   title: string
   desc: string
@@ -186,8 +184,8 @@ const DEFAULT_DISPLAY_COUNT = 16
 
 const effectiveFeatures = computed(() => {
   return allFeatures.filter(f => {
-    if (activeCategory.value === 0) return true
-    if (activeCategory.value === 7) return f.category === 7
+    if (activeCategory.value === 0) {return true}
+    if (activeCategory.value === 7) {return f.category === 7}
     return f.category === activeCategory.value
   })
 })

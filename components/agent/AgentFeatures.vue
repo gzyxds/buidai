@@ -3,14 +3,11 @@
  * 产品核心优势区块：grid-border 三段式 + 功能折叠列表
  */
 import { ref } from 'vue'
-import type { Component } from 'vue'
-import { CubeIcon, WrenchScrewdriverIcon, PuzzlePieceIcon, RocketLaunchIcon } from '@heroicons/vue/24/outline'
-
 // 类型定义：核心特性
 interface Feature {
   title: string
   desc: string
-  icon: Component
+  icon: string
   image: string
   points: { title: string; desc: string }[]
   activePoint: number
@@ -24,7 +21,7 @@ const features = ref<Feature[]>([
   {
     title: '全栈赋能',
     desc: '最新的大模型，丰富的资源库，提供 AI Agent 开发所需的全部核心技术。',
-    icon: CubeIcon,
+    icon: 'i-heroicons-cube',
     image: '/images/agent/Fullstack.png',
     points: [
       { title: '多模型接入', desc: '支持 GPT-4、Claude、Gemini 等全球主流大模型' },
@@ -36,7 +33,7 @@ const features = ref<Feature[]>([
   {
     title: '开箱即用',
     desc: '健全的应用模板和编排框架，用最低的成本开发最专业的 AI Agent。',
-    icon: WrenchScrewdriverIcon,
+    icon: 'i-heroicons-wrench-screwdriver',
     image: '/images/agent/Outofthebox.png',
     points: [
       { title: '丰富模板', desc: '预置 50+ 行业场景模板，一键快速部署' },
@@ -48,7 +45,7 @@ const features = ref<Feature[]>([
   {
     title: '安全可信',
     desc: '覆盖 Agent 开发全生命周期安全保障，满足企业级安全需求。',
-    icon: PuzzlePieceIcon,
+    icon: 'i-heroicons-puzzle-piece',
     image: '/images/agent/privatization.png',
     points: [
       { title: '私有化部署', desc: '数据本地化存储，完全自主可控' },
@@ -60,7 +57,7 @@ const features = ref<Feature[]>([
   {
     title: '全网发布',
     desc: '点击一下，全平台上线！APP、网页、小程序统统搞定。',
-    icon: RocketLaunchIcon,
+    icon: 'i-heroicons-rocket-launch',
     image: '/images/agent/Network-wide.png',
     points: [
       { title: '多端适配', desc: '一次开发，自动适配 Web、iOS、Android' },

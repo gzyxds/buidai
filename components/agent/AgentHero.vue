@@ -3,8 +3,6 @@
  * Agent 页 Hero 区块：网格背景 + 打字机标题 + CTA
  */
 import { ref } from 'vue'
-import { DocumentTextIcon, RocketLaunchIcon, ArrowRightIcon } from '@heroicons/vue/24/outline'
-
 // 打字机效果相关
 const texts = ['智言AI 领先的AI创作平台', '可视化 Workflow 编排', '超易用 AI 知识库', '创新 RAG 检索', '轻松构建强大 AI 应用']
 const { text: displayText } = useTypewriter(texts, {
@@ -55,10 +53,10 @@ const showCursor = ref(true)
             class="w-full sm:w-auto px-8 py-3 rounded-full bg-indigo-500 text-white font-semibold hover:bg-indigo-600 active:scale-95 transition-all flex items-center justify-center gap-2 touch-manipulation"
           >
             <!-- Rocket Icon -->
-            <RocketLaunchIcon class="w-5 h-5" />
+            <UIcon name="i-heroicons-rocket-launch" class="w-5 h-5" />
             立即开始
             <!-- Arrow Right Icon -->
-            <ArrowRightIcon class="w-4 h-4" />
+            <UIcon name="i-heroicons-arrow-right" class="w-4 h-4" />
           </a>
           <a
             href="https://www.gmlart.cn"
@@ -66,7 +64,7 @@ const showCursor = ref(true)
             class="w-full sm:w-auto px-8 py-3 rounded-full bg-white border border-neutral-200 text-neutral-900 font-semibold hover:bg-neutral-50 active:scale-95 transition-all shadow-sm flex items-center justify-center gap-2 touch-manipulation"
           >
             <!-- Document Icon -->
-            <DocumentTextIcon class="w-5 h-5" />
+            <UIcon name="i-heroicons-document-text" class="w-5 h-5" />
             查看文档
           </a>
         </div>

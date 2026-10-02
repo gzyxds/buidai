@@ -60,7 +60,7 @@
 v-for="(item, index) in features" :key="`set1-${index}`"
                    class="group flex items-center p-4 rounded-2xl bg-neutral-50 border border-neutral-200 hover:bg-white hover:shadow-lg hover:border-indigo-200 transition-all duration-300 cursor-pointer">
                 <div class="w-12 h-12 rounded-xl bg-white border border-neutral-100 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300 shadow-sm">
-                  <component :is="item.icon" class="w-6 h-6 text-indigo-600" />
+                  <UIcon :name="item.icon" class="w-6 h-6 text-indigo-600" />
                 </div>
                 <span class="text-lg font-medium text-neutral-700 group-hover:text-indigo-700 transition-colors">{{ item.name }}</span>
               </div>
@@ -71,7 +71,7 @@ v-for="(item, index) in features" :key="`set1-${index}`"
 v-for="(item, index) in features" :key="`set2-${index}`"
                    class="group flex items-center p-4 rounded-2xl bg-neutral-50 border border-neutral-200 hover:bg-white hover:shadow-lg hover:border-indigo-200 transition-all duration-300 cursor-pointer">
                 <div class="w-12 h-12 rounded-xl bg-white border border-neutral-100 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300 shadow-sm">
-                  <component :is="item.icon" class="w-6 h-6 text-indigo-600" />
+                  <UIcon :name="item.icon" class="w-6 h-6 text-indigo-600" />
                 </div>
                 <span class="text-lg font-medium text-neutral-700 group-hover:text-indigo-700 transition-colors">{{ item.name }}</span>
               </div>
@@ -86,26 +86,15 @@ v-for="(item, index) in features" :key="`set2-${index}`"
 
 <script setup>
 import { dispatchQrModal } from '~/utils/qrModal'
-import {
-  CpuChipIcon,
-  ChatBubbleBottomCenterTextIcon,
-  PhotoIcon,
-  DocumentTextIcon,
-  EyeIcon,
-  ServerIcon,
-  CloudIcon,
-  CodeBracketIcon
-} from '@heroicons/vue/24/outline'
-
 const features = [
-  { name: '智能体 (Agent)', icon: CpuChipIcon },
-  { name: '智能体记忆 (Memory)', icon: ServerIcon },
-  { name: '多模态 (Multimodal)', icon: PhotoIcon },
-  { name: '超长上下文 (Long Context)', icon: DocumentTextIcon },
-  { name: 'OCR模型 (OCR)', icon: EyeIcon },
-  { name: '知识库 (Knowledge Base)', icon: CloudIcon },
-  { name: '工作流 (Workflow)', icon: CodeBracketIcon },
-  { name: '自然语言处理 (NLP)', icon: ChatBubbleBottomCenterTextIcon },
+  { name: '智能体 (Agent)', icon: 'i-heroicons-cpu-chip' },
+  { name: '智能体记忆 (Memory)', icon: 'i-heroicons-server' },
+  { name: '多模态 (Multimodal)', icon: 'i-heroicons-photo' },
+  { name: '超长上下文 (Long Context)', icon: 'i-heroicons-document-text' },
+  { name: 'OCR模型 (OCR)', icon: 'i-heroicons-eye' },
+  { name: '知识库 (Knowledge Base)', icon: 'i-heroicons-cloud' },
+  { name: '工作流 (Workflow)', icon: 'i-heroicons-code-bracket' },
+  { name: '自然语言处理 (NLP)', icon: 'i-heroicons-chat-bubble-bottom-center-text' },
 ]
 
 // 二维码弹窗 - 触发 BackToTop 组件

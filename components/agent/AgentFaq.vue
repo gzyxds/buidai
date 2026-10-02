@@ -3,7 +3,6 @@
  * FAQ 区块：grid-border 三段式 + 左二维码入口 + 右 tablist 手风琴
  */
 import { ref } from 'vue'
-import { ChatBubbleLeftRightIcon, ChevronDownIcon, TicketIcon } from '@heroicons/vue/24/outline'
 import { dispatchQrModal } from '~/utils/qrModal'
 
 // 二维码弹窗 - 触发 BackToTop 组件
@@ -123,7 +122,7 @@ const { handleKeydown: handleFaqKeydown } = useListKeyboardNav(() => faqs.length
                     class="group relative inline-flex items-center justify-center px-5 py-3 text-sm font-semibold text-white bg-linear-to-r from-indigo-600 to-indigo-500 hover:from-indigo-700 hover:to-indigo-600 rounded-xl transition-all duration-200 hover:-translate-y-0.5"
                     @click="openQrModal('coupon')"
                   >
-                    <TicketIcon class="relative mr-2 h-4 w-4 transition-transform duration-200 group-hover:scale-110" />
+                    <UIcon name="i-heroicons-ticket" class="relative mr-2 h-4 w-4 transition-transform duration-200 group-hover:scale-110" />
                     <span class="relative">获取优惠码</span>
                   </button>
 
@@ -132,7 +131,7 @@ const { handleKeydown: handleFaqKeydown } = useListKeyboardNav(() => faqs.length
                     class="group inline-flex items-center justify-center px-5 py-3 text-sm font-semibold text-neutral-700 bg-white hover:bg-neutral-50 border-2 border-neutral-200 rounded-xl transition-all duration-200 hover:-translate-y-0.5"
                     @click="openQrModal('wechat')"
                   >
-                    <ChatBubbleLeftRightIcon class="mr-2 h-4 w-4 text-neutral-500 group-hover:text-indigo-500 transition-all duration-200 group-hover:scale-110" />
+                    <UIcon name="i-heroicons-chat-bubble-left-right" class="mr-2 h-4 w-4 text-neutral-500 group-hover:text-indigo-500 transition-all duration-200 group-hover:scale-110" />
                     <span class="group-hover:text-neutral-900 transition-colors duration-200">联系客服</span>
                   </button>
                 </div>
@@ -210,10 +209,10 @@ const { handleKeydown: handleFaqKeydown } = useListKeyboardNav(() => faqs.length
                   </span>
 
                   <!-- chevron 图标 -->
-                  <ChevronDownIcon
+                  <UIcon
+name="i-heroicons-chevron-down"
                     class="h-5 w-5 shrink-0 text-neutral-400 transition-all duration-200"
                     :class="activeFaq === idx ? 'rotate-180 text-indigo-500' : 'group-hover:text-neutral-600'"
-                    stroke-width="2"
                   />
                 </button>
 

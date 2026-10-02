@@ -8,7 +8,7 @@ export function useScrollThreshold(threshold: number): Ref<boolean> {
   let ticking = false
 
   const update = () => {
-    if (ticking) return
+    if (ticking) {return}
     ticking = true
     window.requestAnimationFrame(() => {
       const value = window.scrollY > threshold
@@ -37,7 +37,7 @@ export function useScrollProgress(): Ref<number> {
   let ticking = false
 
   const update = () => {
-    if (ticking) return
+    if (ticking) {return}
     ticking = true
     window.requestAnimationFrame(() => {
       const winScroll = document.body.scrollTop || document.documentElement.scrollTop

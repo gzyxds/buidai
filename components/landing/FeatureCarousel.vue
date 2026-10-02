@@ -122,7 +122,7 @@ const startDrag = (e: MouseEvent) => {
 }
 
 const onDrag = (e: MouseEvent) => {
-  if (!isDragging.value || !scrollContainer.value) return
+  if (!isDragging.value || !scrollContainer.value) {return}
   e.preventDefault()
   const x = e.pageX - scrollContainer.value.offsetLeft
   const walk = (x - startX.value) * 1.5
@@ -170,7 +170,7 @@ const stopAutoPlay = () => {
 
 // 无限滚动
 const checkInfiniteScroll = () => {
-  if (!scrollContainer.value || isDragging.value) return
+  if (!scrollContainer.value || isDragging.value) {return}
 
   const container = scrollContainer.value
   const isMobile = window.innerWidth < 768

@@ -3,9 +3,6 @@
  * 定价方案区块：计费周期切换 + 四档方案卡片
  */
 import { ref } from 'vue'
-import type { Component } from 'vue'
-import { RocketLaunchIcon, BuildingOfficeIcon, CloudIcon, SparklesIcon } from '@heroicons/vue/24/solid'
-
 interface PricingPlan {
   title: string
   price: {
@@ -24,7 +21,7 @@ interface PricingPlan {
   }
   highlight?: boolean
   badge?: string
-  icon?: Component
+  icon?: string
   level: 'free' | 'pro' | 'master' | 'enterprise'
   subtitle: string
   features: Record<string, string | boolean>
@@ -48,7 +45,7 @@ const plans: PricingPlan[] = [
     originalPrice: { monthly: '', yearly: '' },
     description: '先人一步体验 AI 生产力',
     button: { label: '开始使用', variant: 'soft', color: 'neutral' },
-    icon: SparklesIcon,
+    icon: 'i-heroicons-solid-sparkles',
     level: 'free',
     subtitle: '适合个人体验',
     features: {
@@ -80,7 +77,7 @@ const plans: PricingPlan[] = [
     description: '适合开发者和小型团队',
     button: { label: '立即开通', variant: 'solid', color: 'primary' },
     highlight: true,
-    icon: RocketLaunchIcon,
+    icon: 'i-heroicons-solid-rocket-launch',
     level: 'pro',
     subtitle: '22元/月起，超值性价比',
     badge: '最受欢迎',
@@ -112,7 +109,7 @@ const plans: PricingPlan[] = [
     originalPrice: { monthly: '¥1298', yearly: '¥12980' },
     description: '专业团队和组织首选',
     button: { label: '立即开通', variant: 'solid', color: 'primary' },
-    icon: BuildingOfficeIcon,
+    icon: 'i-heroicons-solid-building-office',
     level: 'master',
     subtitle: '83元/月起，专业首选',
     badge: '限时特惠',
@@ -144,7 +141,7 @@ const plans: PricingPlan[] = [
     originalPrice: { monthly: '', yearly: '' },
     description: '中大型企业拥抱 AI 的最佳选择',
     button: { label: '联系顾问', variant: 'solid', color: 'warning' },
-    icon: CloudIcon,
+    icon: 'i-heroicons-solid-cloud',
     level: 'enterprise',
     subtitle: '按需定制，专属服务',
     badge: '企业专属',

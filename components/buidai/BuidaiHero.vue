@@ -2,7 +2,6 @@
 /**
  * Hero 区块：波浪流光背景 + 主标题 + CTA
  */
-import { ArrowRightIcon } from '@heroicons/vue/24/outline'
 </script>
 
 <template>
@@ -60,7 +59,7 @@ import { ArrowRightIcon } from '@heroicons/vue/24/outline'
       <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 mb-5 sm:mb-6 px-4 sm:px-0">
         <a href="https://www.buidai.com/" target="_blank" rel="noopener noreferrer" class="group w-full sm:w-auto px-6 sm:px-8 py-2.5 sm:py-3 rounded-full bg-[var(--brand-primary)] text-white text-sm sm:text-base font-semibold hover:bg-[var(--brand-primary-dark)] active:scale-95 transition-all flex items-center justify-center gap-2">
           快速开始
-          <ArrowRightIcon class="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+          <UIcon name="i-heroicons-arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
         </a>
         <a href="https://doc.buidai.com/" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-6 sm:px-8 py-2.5 sm:py-3 rounded-full bg-neutral-900 text-white text-sm sm:text-base font-semibold hover:bg-neutral-800 active:scale-95 transition-all flex items-center justify-center gap-2">
           前往部署

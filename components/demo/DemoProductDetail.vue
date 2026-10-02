@@ -2,7 +2,6 @@
 /**
  * 演示页产品详情卡：封面 + 标签 + 描述 + 核心功能 + 演示平台 + CTA
  */
-import { ArrowTopRightOnSquareIcon, ArrowRightIcon } from '@heroicons/vue/24/outline'
 import { getProductImageUrl, getStatusClass, getStatusText, handleImageError, type ProductDemo } from '~/data/demoProducts'
 
 const props = defineProps<{
@@ -35,8 +34,8 @@ const props = defineProps<{
             <div
               class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-2 sm:mb-3 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center"
             >
-              <component
-                :is="props.selectedProduct.icon"
+              <UIcon
+:name="props.selectedProduct.icon"
                 class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white"
               />
             </div>
@@ -113,7 +112,7 @@ const props = defineProps<{
             >
               <div class="flex items-center gap-2 sm:gap-3">
                 <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-neutral-50 border border-neutral-200 flex items-center justify-center group-hover:bg-indigo-50 group-hover:border-indigo-200 transition-colors shrink-0">
-                  <component :is="platform.icon" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-neutral-600 group-hover:text-indigo-500 transition-colors" />
+                  <UIcon :name="platform.icon" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-neutral-600 group-hover:text-indigo-500 transition-colors" />
                 </div>
                 <div class="flex-1 min-w-0 overflow-hidden">
                   <h4 class="text-xs sm:text-sm font-medium text-neutral-900 group-hover:text-indigo-500 transition-colors truncate">
@@ -123,7 +122,7 @@ const props = defineProps<{
                     {{ platform.url }}
                   </p>
                 </div>
-                <ArrowTopRightOnSquareIcon class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-neutral-400 group-hover:text-indigo-500 transition-colors shrink-0" />
+                <UIcon name="i-heroicons-arrow-top-right-on-square" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-neutral-400 group-hover:text-indigo-500 transition-colors shrink-0" />
               </div>
             </a>
           </div>
@@ -139,7 +138,7 @@ const props = defineProps<{
         class="inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg bg-indigo-500 text-white text-xs sm:text-sm font-medium hover:bg-indigo-600 transition-colors"
       >
         联系我们
-        <ArrowRightIcon class="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+        <UIcon name="i-heroicons-arrow-right" class="w-3.5 h-3.5 sm:w-4 sm:h-4" />
       </a>
     </div>
   </main>

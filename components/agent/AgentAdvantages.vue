@@ -2,21 +2,11 @@
 /**
  * 为什么选择智言AI区块：grid-border 三段式 + 优势卡片网格
  */
-import type { Component } from 'vue'
-import {
-  ArrowsRightLeftIcon,
-  CubeIcon,
-  PuzzlePieceIcon,
-  WrenchIcon,
-  WrenchScrewdriverIcon,
-  SparklesIcon,
-} from '@heroicons/vue/24/outline'
-
 // 类型定义：优势
 interface Advantage {
   title: string
   desc: string
-  icon: Component
+  icon: string
 }
 
 /**
@@ -27,32 +17,32 @@ const advantages: Advantage[] = [
   {
     title: '开源优势',
     desc: '坚持开源，代码透明，社区活跃。支持私有化部署，数据更安全。',
-    icon: CubeIcon
+    icon: 'i-heroicons-cube'
   },
   {
     title: '独特的 QA 结构',
     desc: '专为 QA 问答优化的数据结构，提高搜索准确率和回复质量。',
-    icon: SparklesIcon
+    icon: 'i-heroicons-sparkles'
   },
   {
     title: '可视化工作流',
     desc: '通过拖拽即可完成 AI 工作流的编排，降低使用门槛，提高效率。',
-    icon: ArrowsRightLeftIcon
+    icon: 'i-heroicons-arrows-right-left'
   },
   {
     title: '无限扩展',
     desc: '基于插件机制，可以轻松接入各类第三方服务，扩展系统能力。',
-    icon: PuzzlePieceIcon
+    icon: 'i-heroicons-puzzle-piece'
   },
   {
     title: '便于调试',
     desc: '提供完整的调试工具，方便开发者快速定位问题，优化 Prompt。',
-    icon: WrenchScrewdriverIcon
+    icon: 'i-heroicons-wrench-screwdriver'
   },
   {
     title: '支持多种模型',
     desc: '兼容 OpenAI、Azure、Anthropic 等主流大模型，支持本地模型接入。',
-    icon: WrenchIcon
+    icon: 'i-heroicons-wrench'
   }
 ]
 </script>
@@ -100,10 +90,9 @@ const advantages: Advantage[] = [
             >
               <!-- 图标区域 -->
               <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-50 border border-indigo-100 shrink-0">
-                <component
-                  :is="adv.icon"
+                <UIcon
+:name="adv.icon"
                   class="h-5 w-5 text-indigo-600"
-                  stroke-width="1.5"
                 />
               </div>
 

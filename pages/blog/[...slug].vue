@@ -13,7 +13,7 @@
             <NuxtLink to="/" class="hover:text-primary-600 transition-colors">首页</NuxtLink>
             <span class="mx-2 text-gray-300">/</span>
             <NuxtLink to="/blog" class="hover:text-primary-600 transition-colors flex items-center gap-1">
-              <BookOpenIcon class="w-4 h-4" />
+              <UIcon name="i-heroicons-book-open" class="w-4 h-4" />
               技术博客
             </NuxtLink>
             <span class="mx-2 text-gray-300">/</span>
@@ -28,12 +28,12 @@
                   {{ post.category }}
                 </span>
                 <time class="text-sm text-gray-500 flex items-center gap-1">
-                  <CalendarIcon class="w-4 h-4" />
+                  <UIcon name="i-heroicons-calendar" class="w-4 h-4" />
                   {{ formatDate(post.date) }}
                 </time>
                 <span class="text-gray-300">|</span>
                 <span class="text-sm text-gray-500 flex items-center gap-1">
-                  <ClockIcon class="w-4 h-4" />
+                  <UIcon name="i-heroicons-clock" class="w-4 h-4" />
                   {{ readingTime }} 分钟阅读
                 </span>
               </div>
@@ -49,7 +49,7 @@
               <!-- 作者信息 (模拟/预留) -->
               <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 overflow-hidden">
-                   <UserIcon class="w-6 h-6" />
+                   <UIcon name="i-heroicons-user" class="w-6 h-6" />
                 </div>
                 <div class="text-sm">
                   <div class="font-medium text-gray-900">智言万象 Team</div>
@@ -74,7 +74,7 @@
                 to="/blog"
                 class="inline-flex items-center text-sm font-medium text-gray-600 hover:text-primary-600 transition-colors"
               >
-                <ArrowLeftIcon class="w-4 h-4 mr-2" />
+                <UIcon name="i-heroicons-arrow-left" class="w-4 h-4 mr-2" />
                 返回博客列表
               </NuxtLink>
 
@@ -84,7 +84,7 @@
                   :class="copied ? 'bg-green-50 text-green-600' : 'bg-gray-50 text-gray-600 hover:bg-gray-100'"
                   @click="copyLink"
                 >
-                  <component :is="copied ? CheckIcon : LinkIcon" class="w-4 h-4 mr-2" />
+                  <UIcon :name="copied ? 'i-heroicons-check' : 'i-heroicons-link'" class="w-4 h-4 mr-2" />
                   {{ copied ? '已复制链接' : '复制链接' }}
                 </button>
               </div>
@@ -107,7 +107,7 @@
                 class="group p-6 rounded-xl border border-gray-200 hover:border-primary-500/30 hover:shadow-md transition-all text-left block"
               >
                 <div class="text-xs text-gray-500 mb-2 flex items-center gap-1">
-                  <ArrowLeftIcon class="w-3 h-3 group-hover:-translate-x-1 transition-transform" />
+                  <UIcon name="i-heroicons-arrow-left" class="w-3 h-3 group-hover:-translate-x-1 transition-transform" />
                   上一篇
                 </div>
                 <div class="font-bold text-gray-900 group-hover:text-primary-600 transition-colors line-clamp-2">
@@ -123,7 +123,7 @@
               >
                 <div class="text-xs text-gray-500 mb-2 flex items-center gap-1 justify-end">
                   下一篇
-                  <ArrowRightIcon class="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                  <UIcon name="i-heroicons-arrow-right" class="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </div>
                 <div class="font-bold text-gray-900 group-hover:text-primary-600 transition-colors line-clamp-2">
                   {{ surround.older.title }}
@@ -144,7 +144,7 @@
           <div class="sticky top-32">
             <div class="bg-gray-50/50 rounded-2xl p-6 border border-gray-100 backdrop-blur-sm">
               <div class="flex items-center gap-2 text-gray-900 font-bold mb-6">
-                <ListBulletIcon class="w-5 h-5 text-primary-600" />
+                <UIcon name="i-heroicons-list-bullet" class="w-5 h-5 text-primary-600" />
                 目录导航
               </div>
 
@@ -216,18 +216,6 @@
 </template>
 
 <script setup lang="ts">
-import {
-  CalendarIcon,
-  ClockIcon,
-  UserIcon,
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  LinkIcon,
-  CheckIcon,
-  BookOpenIcon,
-  ListBulletIcon
-} from '@heroicons/vue/24/outline'
-
 const route = useRoute()
 
 // Fetch Post

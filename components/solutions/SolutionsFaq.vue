@@ -3,7 +3,6 @@
  * FAQ 区块：左标题与联系入口 + 右折叠面板列表
  */
 import { ref } from 'vue'
-import { ChevronDownIcon, TicketIcon, ChatBubbleLeftRightIcon } from '@heroicons/vue/24/outline'
 import { dispatchQrModal } from '~/utils/qrModal'
 
 // 二维码弹窗 - 触发 BackToTop 组件
@@ -46,11 +45,11 @@ const faqs = ref<FaqItem[]>([
             <p class="text-neutral-500 text-sm md:text-base mb-6">关于智言AI的常见疑问解答</p>
             <div class="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-3">
               <button class="px-6 py-2.5 rounded-full bg-neutral-900 text-white text-sm font-medium hover:bg-neutral-800 active:scale-95 transition-all flex items-center justify-center gap-2 touch-manipulation" @click="openQrModal('coupon')">
-                <TicketIcon class="w-4 h-4" />
+                <UIcon name="i-heroicons-ticket" class="w-4 h-4" />
                 获取优惠码
               </button>
               <button class="px-6 py-2.5 rounded-full bg-white border border-neutral-200 text-neutral-900 text-sm font-medium hover:bg-neutral-50 active:scale-95 transition-all shadow-sm flex items-center justify-center gap-2 touch-manipulation" @click="openQrModal('wechat')">
-                <ChatBubbleLeftRightIcon class="w-4 h-4" />
+                <UIcon name="i-heroicons-chat-bubble-left-right" class="w-4 h-4" />
                 联系客服
               </button>
             </div>
@@ -61,7 +60,7 @@ const faqs = ref<FaqItem[]>([
              <div v-for="(faq, i) in faqs" :key="i" class="bg-white rounded-2xl transition-all duration-300 overflow-hidden border border-transparent hover:border-gray-200">
                 <button class="w-full flex items-start justify-between p-6 text-left active:bg-gray-50 transition-colors touch-manipulation min-h-[60px]" @click="faq.open = !faq.open">
                    <span class="text-base md:text-lg font-medium text-[var(--brand-text)] pr-8">{{ faq.question }}</span>
-                   <ChevronDownIcon class="w-5 h-5 text-gray-400 shrink-0 mt-1 transition-transform duration-300" :class="{ 'rotate-180': faq.open }" />
+                   <UIcon name="i-heroicons-chevron-down" class="w-5 h-5 text-gray-400 shrink-0 mt-1 transition-transform duration-300" :class="{ 'rotate-180': faq.open }" />
                 </button>
                 <div
                   class="grid transition-all duration-300 ease-in-out"

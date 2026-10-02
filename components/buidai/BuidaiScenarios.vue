@@ -2,18 +2,6 @@
 /**
  * AI 赋能企业通用场景区块：sticky 卡片栈
  */
-import type { Component } from 'vue'
-import {
-  CheckCircleIcon,
-  SparklesIcon,
-  ArrowRightIcon,
-  UserGroupIcon,
-  BookOpenIcon,
-  ChatBubbleLeftRightIcon,
-  CommandLineIcon,
-  DocumentTextIcon,
-} from '@heroicons/vue/24/outline'
-
 /** 场景统计数据 */
 const scenarioStats = [
   { value: '9+', label: '应用场景', bg: 'bg-indigo-50', color: 'text-indigo-600' },
@@ -24,7 +12,7 @@ const scenarioStats = [
 interface Scenario {
   title: string
   items: string[]
-  icon: Component
+  icon: string
   iconBg: string
   image: string
   index: string
@@ -34,47 +22,47 @@ const scenarios: Scenario[] = [
   {
     title: 'Nanobanana',
     items: ['基于 Gemini 3 Pro Image Preview 模型，支持文生图、图生图及多图融合', '保持角色一致性，支持文本渲染，生成速度极快', '预置多个模板开箱即用，后台可自由配置提示词和参考图'],
-    icon: ChatBubbleLeftRightIcon, iconBg: 'bg-blue-50 text-blue-600', image: '/plugin/Nanobanana.png', index: '01',
+    icon: 'i-heroicons-chat-bubble-left-right', iconBg: 'bg-blue-50 text-blue-600', image: '/plugin/Nanobanana.png', index: '01',
   },
   {
     title: '企业智能体系统',
     items: ['支持创建具备记忆、目标和工具使用能力的智能体，实现自主任务执行', '通过 AI 之间的分工合作，精准、稳定地解决复杂业务问题', '可视化工作流编排，降低使用门槛，提高开发效率'],
-    icon: UserGroupIcon, iconBg: 'bg-indigo-50 text-indigo-600', image: '/product/model-1.png', index: '02',
+    icon: 'i-heroicons-user-group', iconBg: 'bg-indigo-50 text-indigo-600', image: '/product/model-1.png', index: '02',
   },
   {
     title: '企业 AI 客服系统',
     items: ['一键即可将 AI 技术与企业知识库相连，全面支持 PDF、Word、Excel 等文档格式', '轻松通过 API 将 AI 融入企业系统，提升内部知识检索效率', '支持多渠道接入，如网站、微信、APP 等，提供 7×24 小时智能客服服务'],
-    icon: BookOpenIcon, iconBg: 'bg-emerald-50 text-emerald-600', image: '/plugin/writing-assist.png', index: '03',
+    icon: 'i-heroicons-book-open', iconBg: 'bg-emerald-50 text-emerald-600', image: '/plugin/writing-assist.png', index: '03',
   },
   {
     title: 'AI 漫剧创意系统',
     items: ['快速搭建支持剧本智能创作、角色形象生成、漫剧素材库管理的系统', '适配分镜设计与台词优化，显著降低漫剧创作门槛', '支持创建无限量剧本和小说，提供丰富的剧情模板和冲突框架'],
-    icon: SparklesIcon, iconBg: 'bg-purple-50 text-purple-600', image: '/plugin/wanxiang.png', index: '04',
+    icon: 'i-heroicons-sparkles', iconBg: 'bg-purple-50 text-purple-600', image: '/plugin/wanxiang.png', index: '04',
   },
   {
     title: 'AI 数字人系统',
     items: ['上传视频即可克隆专属形象，1:1 还原真人表情与动作，支持 4K 超清画质', '仅需一段语音即可克隆声音音色，支持多语种合成及 SSML 语音标记', '用于直播带货、企业代言、教育培训等场景，打造逼真数字形象'],
-    icon: UserGroupIcon, iconBg: 'bg-rose-50 text-rose-600', image: '/product/human-1.png', index: '05',
+    icon: 'i-heroicons-user-group', iconBg: 'bg-rose-50 text-rose-600', image: '/product/human-1.png', index: '05',
   },
   {
     title: 'AI 视频剪辑系统',
     items: ['支持自动化批量剪辑、智能转场、滤镜调色，大幅提升视频制作效率', '智能字幕添加与背景音乐匹配，一键生成节奏感强的混剪视频', '提供海量模板与素材库，轻松制作门店营销、产品带货等专业级视频内容'],
-    icon: SparklesIcon, iconBg: 'bg-amber-50 text-amber-600', image: '/plugin/video-mix.png', index: '06',
+    icon: 'i-heroicons-sparkles', iconBg: 'bg-amber-50 text-amber-600', image: '/plugin/video-mix.png', index: '06',
   },
   {
     title: 'AI 简历生成系统',
     items: ['通过智能问答快速收集个人信息，一键生成结构完整的专业简历', '提供数十款专业模板，涵盖不同行业和职位，支持在线编辑与下载', '深度解析简历亮点并提供优化建议，显著提升简历质量与影响力'],
-    icon: DocumentTextIcon, iconBg: 'bg-teal-50 text-teal-600', image: '/product/resume-1.png', index: '07',
+    icon: 'i-heroicons-document-text', iconBg: 'bg-teal-50 text-teal-600', image: '/product/resume-1.png', index: '07',
   },
   {
     title: 'AI PPT 演示系统',
     items: ['根据主题或大纲自动生成结构清晰、设计美观的 PPT 演示文稿', '内置多种模板与图表，支持智能配色、字体搭配与动画效果优化', '一键生成演讲备注，支持实时预览与云端存储，满足各类展示需求'],
-    icon: CommandLineIcon, iconBg: 'bg-cyan-50 text-cyan-600', image: '/plugin/aippt.png', index: '08',
+    icon: 'i-heroicons-command-line', iconBg: 'bg-cyan-50 text-cyan-600', image: '/plugin/aippt.png', index: '08',
   },
   {
     title: 'AI音乐创作系统',
     items: ['以文本/歌词/哼唱/乐谱为输入，快速生成完整歌曲、伴奏、人声或纯音乐', '降低音乐创作门槛，支持个人娱乐与商用配乐，提供完整商用授权'],
-    icon: SparklesIcon, iconBg: 'bg-violet-50 text-violet-600', image: '/plugin/AI音乐.png', index: '09',
+    icon: 'i-heroicons-sparkles', iconBg: 'bg-violet-50 text-violet-600', image: '/plugin/AI音乐.png', index: '09',
   },
 ]
 </script>
@@ -131,7 +119,7 @@ const scenarios: Scenario[] = [
                 <div class="flex-1 bg-neutral-50 rounded-xl border border-neutral-100 p-4 sm:p-6 md:p-8 flex flex-col">
                   <div class="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
                     <div class="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center shrink-0" :class="scenario.iconBg">
-                      <component :is="scenario.icon" class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+                      <UIcon :name="scenario.icon" class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
                     </div>
                     <h3 class="text-base sm:text-lg md:text-xl font-bold text-neutral-900 leading-tight">{{ scenario.title }}</h3>
                   </div>
@@ -140,7 +128,7 @@ const scenarios: Scenario[] = [
 
                   <ul class="space-y-2 sm:space-y-3 flex-1">
                     <li v-for="(item, i) in scenario.items" :key="i" class="flex items-start gap-2 sm:gap-3 text-neutral-600 text-xs sm:text-sm md:text-base leading-relaxed">
-                      <CheckCircleIcon class="w-4 h-4 sm:w-5 sm:h-5 text-neutral-400 shrink-0 mt-0.5" />
+                      <UIcon name="i-heroicons-check-circle" class="w-4 h-4 sm:w-5 sm:h-5 text-neutral-400 shrink-0 mt-0.5" />
                       <span>{{ item }}</span>
                     </li>
                   </ul>
@@ -152,7 +140,7 @@ const scenarios: Scenario[] = [
                       class="group/btn inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 sm:py-2 rounded-md bg-neutral-900 text-white text-sm font-medium hover:bg-neutral-800 active:scale-[0.98] transition-all duration-200 w-full sm:w-auto"
                     >
                       立即体验
-                      <ArrowRightIcon class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-200" />
+                      <UIcon name="i-heroicons-arrow-right" class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-200" />
                     </a>
                   </div>
                 </div>

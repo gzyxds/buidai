@@ -18,7 +18,7 @@
               <!-- Breadcrumbs -->
               <nav class="flex items-center text-sm text-gray-500 mb-6 not-prose">
                 <NuxtLink to="/docs" class="hover:text-gray-900 transition-colors">Docs</NuxtLink>
-                <ChevronRightIcon class="h-4 w-4 mx-2 text-gray-400" />
+                <UIcon name="i-heroicons-chevron-right" class="h-4 w-4 mx-2 text-gray-400" />
                 <span class="font-medium text-gray-900 truncate">{{ page.title }}</span>
               </nav>
 
@@ -35,7 +35,8 @@
                     @click="isTocOpen = !isTocOpen"
                   >
                     <span>本页目录</span>
-                    <ChevronDownIcon
+                    <UIcon
+name="i-heroicons-chevron-down"
                       :class="[isTocOpen ? 'rotate-180' : '', 'h-5 w-5 text-gray-500 transition-transform duration-200']"
                     />
                   </button>
@@ -83,7 +84,7 @@
                     class="group border border-gray-200 rounded-xl p-6 hover:border-primary-500/50 hover:shadow-sm hover:bg-primary-50/30 transition-all block"
                   >
                     <div class="flex items-center text-sm text-gray-500 mb-2 group-hover:text-primary-600">
-                      <ArrowLeftIcon class="h-4 w-4 mr-1" />
+                      <UIcon name="i-heroicons-arrow-left" class="h-4 w-4 mr-1" />
                       Previous
                     </div>
                     <div class="font-semibold text-gray-900 group-hover:text-primary-700">{{ surround[0].title }}</div>
@@ -98,7 +99,7 @@
                   >
                     <div class="flex items-center justify-end text-sm text-gray-500 mb-2 group-hover:text-primary-600">
                       Next
-                      <ArrowRightIcon class="h-4 w-4 ml-1" />
+                      <UIcon name="i-heroicons-arrow-right" class="h-4 w-4 ml-1" />
                     </div>
                     <div class="font-semibold text-gray-900 group-hover:text-primary-700">{{ surround[1].title }}</div>
                   </NuxtLink>
@@ -158,7 +159,6 @@
 </template>
 
 <script setup lang="ts">
-import { ChevronDownIcon, ChevronRightIcon, ArrowLeftIcon, ArrowRightIcon } from '@heroicons/vue/24/outline'
 import { SCROLL } from '~/utils/ui'
 
 const route = useRoute()

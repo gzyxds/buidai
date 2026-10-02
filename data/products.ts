@@ -723,7 +723,7 @@ export const products: ProductPageData[] = [
       {
         title: '简洁易用',
         desc: '直观的用户界面设计，降低使用门槛，让每一位用户都能轻松上手。',
-        icon: 'i-heroicons-lightning-bolt'
+        icon: 'i-heroicons-bolt'
       }
     ],
     featureDetails: [
@@ -917,7 +917,7 @@ export const products: ProductPageData[] = [
       {
         title: '字体搭配',
         desc: '智能推荐字体搭配方案，确保排版美观专业，提升阅读体验。',
-        icon: 'i-heroicons-font'
+        icon: 'i-lucide-letter-text'
       },
       {
         title: '动画效果',
@@ -1244,7 +1244,7 @@ export const products: ProductPageData[] = [
       { title: '批量剪辑', desc: '支持自动化批量剪辑,大幅提升视频制作效率,节省大量时间成本。', icon: 'i-heroicons-film' },
       { title: '智能转场', desc: '智能匹配转场效果,让视频衔接更加流畅自然,提升观看体验。', icon: 'i-heroicons-sparkles' },
       { title: '滤镜调色', desc: '提供丰富的滤镜和调色功能,一键美化视频画面,打造专业视觉效果。', icon: 'i-heroicons-adjustments-horizontal' },
-      { title: '字幕添加', desc: '支持智能字幕添加,快速生成字幕内容,让视频信息传达更加清晰。', icon: 'i-heroicons-closed-captioning' },
+      { title: '字幕添加', desc: '支持智能字幕添加,快速生成字幕内容,让视频信息传达更加清晰。', icon: 'i-lucide-closed-caption' },
       { title: '背景音乐', desc: '支持背景音乐匹配,智能推荐合适的音乐,让视频节奏感更强。', icon: 'i-heroicons-musical-note' },
       { title: '海量模板', desc: '提供海量模板与素材库,一键套用模板,快速生成专业级视频。', icon: 'i-heroicons-rectangle-stack' }
     ],

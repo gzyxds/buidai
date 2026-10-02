@@ -2,37 +2,22 @@
 /**
  * 氛围编程区块：Vibe Coding 工具网格
  */
-import type { Component } from 'vue'
-import { SparklesIcon } from '@heroicons/vue/24/outline'
-import {
-  Sun,
-  Code2,
-  Square,
-  Waves,
-  Cloud,
-  Zap,
-  Brain,
-  CloudLightning,
-  Boxes,
-  Binary,
-} from 'lucide-vue-next'
-
 /** Vibe Coding 工具列表 */
-interface VibeTool { name: string; icon: Component; bg: string; color: string }
+interface VibeTool { name: string; icon: string; bg: string; color: string }
 
 const vibeTools: VibeTool[] = [
-  { name: 'Trae', icon: SparklesIcon, bg: 'bg-emerald-100', color: 'text-emerald-600' },
-  { name: 'Claude Code', icon: Sun, bg: 'bg-orange-100', color: 'text-orange-600' },
-  { name: 'Codex', icon: Code2, bg: 'bg-violet-100', color: 'text-violet-600' },
-  { name: 'Cursor', icon: Square, bg: 'bg-neutral-900', color: 'text-white' },
-  { name: 'Windsurf', icon: Waves, bg: 'bg-blue-100', color: 'text-blue-600' },
-  { name: 'GitHub Copilot', icon: Cloud, bg: 'bg-gray-100', color: 'text-gray-800' },
-  { name: '通义灵码', icon: Cloud, bg: 'bg-cyan-100', color: 'text-cyan-600' },
-  { name: '文心快码', icon: Zap, bg: 'bg-indigo-100', color: 'text-indigo-600' },
-  { name: '智谱CodeGeeX', icon: Brain, bg: 'bg-rose-100', color: 'text-rose-600' },
-  { name: 'CodeWhisperer', icon: CloudLightning, bg: 'bg-amber-100', color: 'text-amber-600' },
-  { name: 'JetBrains AI', icon: Boxes, bg: 'bg-purple-100', color: 'text-purple-600' },
-  { name: 'Tabnine', icon: Binary, bg: 'bg-teal-100', color: 'text-teal-600' },
+  { name: 'Trae', icon: 'i-heroicons-sparkles', bg: 'bg-emerald-100', color: 'text-emerald-600' },
+  { name: 'Claude Code', icon: 'i-lucide-sun', bg: 'bg-orange-100', color: 'text-orange-600' },
+  { name: 'Codex', icon: 'i-lucide-code-xml', bg: 'bg-violet-100', color: 'text-violet-600' },
+  { name: 'Cursor', icon: 'i-lucide-square', bg: 'bg-neutral-900', color: 'text-white' },
+  { name: 'Windsurf', icon: 'i-lucide-waves', bg: 'bg-blue-100', color: 'text-blue-600' },
+  { name: 'GitHub Copilot', icon: 'i-lucide-cloud', bg: 'bg-gray-100', color: 'text-gray-800' },
+  { name: '通义灵码', icon: 'i-lucide-cloud', bg: 'bg-cyan-100', color: 'text-cyan-600' },
+  { name: '文心快码', icon: 'i-lucide-zap', bg: 'bg-indigo-100', color: 'text-indigo-600' },
+  { name: '智谱CodeGeeX', icon: 'i-lucide-brain', bg: 'bg-rose-100', color: 'text-rose-600' },
+  { name: 'CodeWhisperer', icon: 'i-lucide-cloud-lightning', bg: 'bg-amber-100', color: 'text-amber-600' },
+  { name: 'JetBrains AI', icon: 'i-lucide-boxes', bg: 'bg-purple-100', color: 'text-purple-600' },
+  { name: 'Tabnine', icon: 'i-lucide-binary', bg: 'bg-teal-100', color: 'text-teal-600' },
 ]
 </script>
 
@@ -53,7 +38,7 @@ const vibeTools: VibeTool[] = [
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <div v-for="tool in vibeTools" :key="tool.name" class="flex items-center gap-3 px-5 py-4 bg-white rounded-xl border border-neutral-200 hover:border-indigo-200 hover:shadow-sm transition-all duration-200">
           <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" :class="tool.bg">
-            <component :is="tool.icon" class="w-5 h-5" :class="tool.color" />
+            <UIcon :name="tool.icon" class="w-5 h-5" :class="tool.color" />
           </div>
           <span class="text-sm font-semibold text-neutral-800">{{ tool.name }}</span>
         </div>

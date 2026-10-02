@@ -325,7 +325,7 @@ const generateMarqueeGroups = () => {
 
 const handleImageError = (event: Event) => {
   const img = event.target as HTMLImageElement
-  if (img) img.style.display = 'none'
+  if (img) {img.style.display = 'none'}
 }
 
 // ── 响应式设备检测 ──
@@ -337,12 +337,12 @@ const checkDevice = () => {
 
 let resizeTicking = false
 const throttledCheckDevice = () => {
-  if (resizeTicking) return
+  if (resizeTicking) {return}
   resizeTicking = true
   requestAnimationFrame(() => {
     const prev = isMobile.value
     checkDevice()
-    if (isMobile.value !== prev) generateMarqueeGroups()
+    if (isMobile.value !== prev) {generateMarqueeGroups()}
     resizeTicking = false
   })
 }

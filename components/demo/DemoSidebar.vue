@@ -2,7 +2,6 @@
 /**
  * 演示页桌面侧栏：可展开折叠的产品分类导航
  */
-import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/vue/24/outline'
 import type { ProductCategory, ProductDemo } from '~/data/demoProducts'
 
 const props = defineProps<{
@@ -36,11 +35,11 @@ const emit = defineEmits<{
             :class="props.selectedCategoryId === category.id ? 'bg-neutral-100 text-neutral-900' : 'hover:bg-neutral-50'"
             @click="emit('toggle-category', category.id)"
           >
-            <component :is="category.icon" class="w-4 h-4 flex-shrink-0" :class="props.selectedCategoryId === category.id ? 'text-indigo-600' : 'text-neutral-400'" />
+            <UIcon :name="category.icon" class="w-4 h-4 flex-shrink-0" :class="props.selectedCategoryId === category.id ? 'text-indigo-600' : 'text-neutral-400'" />
             <span class="truncate flex-1 text-left">{{ category.name }}</span>
             <span class="text-[10px] text-neutral-400">{{ category.products.length }}</span>
-            <component
-              :is="props.expandedCategories[category.id] ? ChevronDownIcon : ChevronRightIcon"
+            <UIcon
+:name="props.expandedCategories[category.id] ? 'i-heroicons-chevron-down' : 'i-heroicons-chevron-right'"
               class="w-3.5 h-3.5 flex-shrink-0 text-neutral-400"
             />
           </button>
@@ -71,8 +70,8 @@ const emit = defineEmits<{
                     />
 
                     <!-- 产品图标 -->
-                    <component
-                      :is="product.icon"
+                    <UIcon
+:name="product.icon"
                       class="w-4 h-4 flex-shrink-0 transition-colors"
                       :class="props.selectedProduct?.id === product.id ? 'text-indigo-600' : 'text-neutral-400 group-hover:text-neutral-500'"
                     />

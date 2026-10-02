@@ -46,16 +46,16 @@
                   @keydown="handleKeydown($event, idx)"
                 >
                   <div :class="['ai-tab-indicator', active === idx ? 'ai-tab-indicator--active' : 'ai-tab-indicator--inactive']" />
-                  <component :is="t.icon" :class="['ai-tab-icon', active === idx ? 'ai-tab-icon--active' : 'ai-tab-icon--inactive']" stroke-width="1.5" />
+                  <UIcon :name="t.icon" :class="['ai-tab-icon', active === idx ? 'ai-tab-icon--active' : 'ai-tab-icon--inactive']" />
                   <span :class="['ai-tab-label', active === idx ? 'ai-tab-label--active' : 'ai-tab-label--inactive']">{{ t.name }}</span>
-                  <ChevronRightIcon :class="['ai-tab-arrow', active === idx ? 'ai-tab-arrow--active' : 'ai-tab-arrow--inactive']" stroke-width="2" />
+                  <UIcon name="i-heroicons-chevron-right" :class="['ai-tab-arrow', active === idx ? 'ai-tab-arrow--active' : 'ai-tab-arrow--inactive']" />
                   <div v-if="active === idx && isAutoplay" class="ai-tab-progress"><div class="ai-tab-progress-bar" /></div>
                 </button>
               </div>
               <div class="ai-tabs-footer">
                 <div class="ai-tabs-footer-top">
                   <div class="ai-tabs-footer-icon">
-                    <SparklesIcon class="w-3.5 h-3.5 text-indigo-500" stroke-width="1.5" />
+                    <UIcon name="i-heroicons-sparkles" class="w-3.5 h-3.5 text-indigo-500" />
                   </div>
                   <p class="text-xs font-semibold text-neutral-800">探索 AI 能力</p>
                 </div>
@@ -66,7 +66,7 @@
             <section class="ai-panel">
               <div class="ai-panel-header">
                 <div class="inline-flex items-center gap-2 mb-2 sm:mb-3">
-                  <component :is="currentTab?.icon" class="w-4 h-4 text-indigo-500" stroke-width="2" />
+                  <UIcon :name="currentTab?.icon" class="w-4 h-4 text-indigo-500" />
                   <span class="text-xs font-semibold tracking-wide text-indigo-600 uppercase">{{ currentTab?.name }}</span>
                 </div>
                 <h3 class="ai-panel-title">{{ currentTab?.title }}</h3>
@@ -76,7 +76,7 @@
                 <div v-for="(f, i) in currentTab?.features" :key="i" class="ai-card">
                   <div class="ai-card-header">
                     <div class="ai-card-icon">
-                      <component :is="f.icon" class="ai-card-icon-svg" stroke-width="1.5" />
+                      <UIcon :name="f.icon" class="ai-card-icon-svg" />
                     </div>
                     <h4 class="ai-card-title">{{ f.title }}</h4>
                   </div>
@@ -87,11 +87,11 @@
               <div class="ai-actions">
                 <button class="ai-btn ai-btn--primary" @click="openQrModal('solution')">
                   了解方案详情
-                  <ArrowRightIcon class="ai-btn-icon" stroke-width="2" />
+                  <UIcon name="i-heroicons-arrow-right" class="ai-btn-icon" />
                 </button>
                 <button class="ai-btn ai-btn--secondary" @click="openQrModal('consult')">
                   联系售前咨询
-                  <ChatBubbleLeftRightIcon class="ai-btn-icon" stroke-width="1.5" />
+                  <UIcon name="i-heroicons-chat-bubble-left-right" class="ai-btn-icon" />
                 </button>
               </div>
             </section>
@@ -126,7 +126,7 @@
               <p class="text-[11px] text-neutral-400">已为 500+ 企业提供 AI 转型服务</p>
               <button class="ai-footer-link" @click="openQrModal('consult')">
                 联系商务咨询
-                <ArrowRightIcon class="w-3 h-3" stroke-width="2" />
+                <UIcon name="i-heroicons-arrow-right" class="w-3 h-3" />
               </button>
             </div>
           </div>
@@ -139,97 +139,71 @@
 
 <script setup lang="ts">
 import { dispatchQrModal } from '~/utils/qrModal'
-import { ref, computed, type Component } from 'vue'
-import {
-  SparklesIcon,
-  VideoCameraIcon,
-  ChatBubbleLeftRightIcon,
-  DocumentTextIcon,
-  CpuChipIcon,
-  PresentationChartLineIcon,
-  MicrophoneIcon,
-  PhotoIcon,
-  ShareIcon,
-  CloudArrowUpIcon,
-  ArrowPathIcon,
-  ChartBarIcon,
-  GlobeAltIcon,
-  CodeBracketIcon,
-  ChevronRightIcon,
-  ArrowRightIcon,
-  CommandLineIcon,
-  UserIcon,
-  ShoppingBagIcon,
-  FilmIcon,
-  PencilSquareIcon,
-  BookOpenIcon,
-  MusicalNoteIcon
-} from '@heroicons/vue/24/outline'
-
+import { ref, computed } from 'vue'
 const AUTOPLAY_INTERVAL = 5000
 const RESUME_DELAY = 5000
 
-interface IndustryFeature { icon: Component; title: string; desc: string }
-interface IndustryTab { name: string; title: string; icon: Component; features: IndustryFeature[] }
+interface IndustryFeature { icon: string; title: string; desc: string }
+interface IndustryTab { name: string; title: string; icon: string; features: IndustryFeature[] }
 
 const tabs: IndustryTab[] = [
   {
-    name: 'AI 视觉创作', title: 'AI 视觉与创意生成解决方案', icon: PhotoIcon,
+    name: 'AI 视觉创作', title: 'AI 视觉与创意生成解决方案', icon: 'i-heroicons-photo',
     features: [
-      { icon: VideoCameraIcon, title: 'Sora视频生成', desc: '基于开源Sora技术，一键生成电影级AI视频，支持文生视频与图生视频' },
-      { icon: PhotoIcon, title: '香蕉绘画', desc: '基于Gemini 3 Pro模型，支持文生图、图生图与多图融合，预置模板开箱即用' },
-      { icon: SparklesIcon, title: '即梦AI视频', desc: '输入文字或上传参考图，快速生成风格多样的短视频，支持720P/1080P' },
-      { icon: PhotoIcon, title: '即梦AI绘画', desc: '简单提示词快速生成高质量图像，支持1K/2K分辨率，写实卡通插画皆可' },
-      { icon: UserIcon, title: 'AI数字人', desc: '4K超清画质、5秒声音克隆、多语种合成，打造专属数字分身' },
-      { icon: ShoppingBagIcon, title: '电商试衣换装', desc: '商品一键适配模特上身，背景智能替换，提升商品主图转化率' },
-      { icon: FilmIcon, title: '视频混剪助手', desc: '自动化批量剪辑、智能转场、滤镜调色，一键生成专业级混剪视频' }
+      { icon: 'i-heroicons-video-camera', title: 'Sora视频生成', desc: '基于开源Sora技术，一键生成电影级AI视频，支持文生视频与图生视频' },
+      { icon: 'i-heroicons-photo', title: '香蕉绘画', desc: '基于Gemini 3 Pro模型，支持文生图、图生图与多图融合，预置模板开箱即用' },
+      { icon: 'i-heroicons-sparkles', title: '即梦AI视频', desc: '输入文字或上传参考图，快速生成风格多样的短视频，支持720P/1080P' },
+      { icon: 'i-heroicons-photo', title: '即梦AI绘画', desc: '简单提示词快速生成高质量图像，支持1K/2K分辨率，写实卡通插画皆可' },
+      { icon: 'i-heroicons-user', title: 'AI数字人', desc: '4K超清画质、5秒声音克隆、多语种合成，打造专属数字分身' },
+      { icon: 'i-heroicons-shopping-bag', title: '电商试衣换装', desc: '商品一键适配模特上身，背景智能替换，提升商品主图转化率' },
+      { icon: 'i-heroicons-film', title: '视频混剪助手', desc: '自动化批量剪辑、智能转场、滤镜调色，一键生成专业级混剪视频' }
     ]
   },
   {
-    name: '智能对话 Agent', title: '智能体与对话交互系统', icon: ChatBubbleLeftRightIcon,
+    name: '智能对话 Agent', title: '智能体与对话交互系统', icon: 'i-heroicons-chat-bubble-left-right',
     features: [
-      { icon: CpuChipIcon, title: '智能体', desc: '自定义专属AI智能体，满足个性化需求' },
-      { icon: ChatBubbleLeftRightIcon, title: 'AI对话', desc: '基于大语言模型的流畅自然交互体验' },
-      { icon: CodeBracketIcon, title: '对话html预览', desc: '实时预览对话中生成的HTML代码效果' },
-      { icon: CloudArrowUpIcon, title: '对话上传文件', desc: '支持在对话中直接上传并解析文件内容' },
-      { icon: CommandLineIcon, title: '智能体DSL', desc: '通过DSL灵活编排智能体工作流' },
-      { icon: SparklesIcon, title: '对话文案AI补全', desc: '智能预测并补全用户输入内容' },
-      { icon: MicrophoneIcon, title: '语音播报', desc: '将对话回复自动转换为语音播报' },
-      { icon: ShareIcon, title: '分享对话', desc: '一键生成链接，便捷分享精彩对话' }
+      { icon: 'i-heroicons-cpu-chip', title: '智能体', desc: '自定义专属AI智能体，满足个性化需求' },
+      { icon: 'i-heroicons-chat-bubble-left-right', title: 'AI对话', desc: '基于大语言模型的流畅自然交互体验' },
+      { icon: 'i-heroicons-code-bracket', title: '对话html预览', desc: '实时预览对话中生成的HTML代码效果' },
+      { icon: 'i-heroicons-cloud-arrow-up', title: '对话上传文件', desc: '支持在对话中直接上传并解析文件内容' },
+      { icon: 'i-heroicons-command-line', title: '智能体DSL', desc: '通过DSL灵活编排智能体工作流' },
+      { icon: 'i-heroicons-sparkles', title: '对话文案AI补全', desc: '智能预测并补全用户输入内容' },
+      { icon: 'i-heroicons-microphone', title: '语音播报', desc: '将对话回复自动转换为语音播报' },
+      { icon: 'i-heroicons-share', title: '分享对话', desc: '一键生成链接，便捷分享精彩对话' }
     ]
   },
   {
-    name: '内容创作工具', title: '智能内容创作与生产工具', icon: DocumentTextIcon,
+    name: '内容创作工具', title: '智能内容创作与生产工具', icon: 'i-heroicons-document-text',
     features: [
-      { icon: DocumentTextIcon, title: 'AI简历', desc: '智能问答快速生成简历，提供数十款专业模板，支持AI分析与优化' },
-      { icon: PencilSquareIcon, title: 'AI短剧小说', desc: '无限量剧本创作、角色设定、章节可视化拖拽、AI扩写润色续写' },
-      { icon: BookOpenIcon, title: '小红书助手', desc: '一键生成爆款标题与风格化文案，AI生成配图与视频封面' },
-      { icon: PresentationChartLineIcon, title: 'AI PPT', desc: '输入主题自动生成结构清晰、设计美观的PPT，内置多种模板与图表' },
-      { icon: MusicalNoteIcon, title: 'AI音乐', desc: '文本/歌词/哼唱/乐谱输入，快速生成完整歌曲、伴奏、人声或纯音乐' }
+      { icon: 'i-heroicons-document-text', title: 'AI简历', desc: '智能问答快速生成简历，提供数十款专业模板，支持AI分析与优化' },
+      { icon: 'i-heroicons-pencil-square', title: 'AI短剧小说', desc: '无限量剧本创作、角色设定、章节可视化拖拽、AI扩写润色续写' },
+      { icon: 'i-heroicons-book-open', title: '小红书助手', desc: '一键生成爆款标题与风格化文案，AI生成配图与视频封面' },
+      { icon: 'i-heroicons-presentation-chart-line', title: 'AI PPT', desc: '输入主题自动生成结构清晰、设计美观的PPT，内置多种模板与图表' },
+      { icon: 'i-heroicons-musical-note', title: 'AI音乐', desc: '文本/歌词/哼唱/乐谱输入，快速生成完整歌曲、伴奏、人声或纯音乐' }
     ]
   },
   {
-    name: '模型与数据能力', title: '多模型管理与数据解析', icon: CpuChipIcon,
+    name: '模型与数据能力', title: '多模型管理与数据解析', icon: 'i-heroicons-cpu-chip',
     features: [
-      { icon: CpuChipIcon, title: 'MCP', desc: '支持模型上下文协议，增强模型能力' },
-      { icon: CpuChipIcon, title: '模型管理', desc: '统一管理与调度各类大语言模型' },
-      { icon: PhotoIcon, title: '大模型视觉识别', desc: '赋予模型强大的图像理解与分析能力' },
-      { icon: GlobeAltIcon, title: '网页解析', desc: '智能提取网页正文与关键信息' },
-      { icon: PhotoIcon, title: '图文解析', desc: '多模态内容深度理解与结构化提取' },
-      { icon: DocumentTextIcon, title: '内容总结', desc: '快速提炼长文核心观点与摘要' },
-      { icon: ChartBarIcon, title: '图表生成', desc: '根据数据自动生成可视化图表' }
+      { icon: 'i-heroicons-cpu-chip', title: 'MCP', desc: '支持模型上下文协议，增强模型能力' },
+      { icon: 'i-heroicons-cpu-chip', title: '模型管理', desc: '统一管理与调度各类大语言模型' },
+      { icon: 'i-heroicons-photo', title: '大模型视觉识别', desc: '赋予模型强大的图像理解与分析能力' },
+      { icon: 'i-heroicons-globe-alt', title: '网页解析', desc: '智能提取网页正文与关键信息' },
+      { icon: 'i-heroicons-photo', title: '图文解析', desc: '多模态内容深度理解与结构化提取' },
+      { icon: 'i-heroicons-document-text', title: '内容总结', desc: '快速提炼长文核心观点与摘要' },
+      { icon: 'i-heroicons-chart-bar', title: '图表生成', desc: '根据数据自动生成可视化图表' }
     ]
   },
   {
-    name: '知识库与文档', title: '企业级知识库与文档处理', icon: DocumentTextIcon,
+    name: '知识库与文档', title: '企业级知识库与文档处理', icon: 'i-heroicons-document-text',
     features: [
-      { icon: DocumentTextIcon, title: '知识库', desc: '构建企业私有知识库，数据安全可控' },
-      { icon: CloudArrowUpIcon, title: '文件导入导出', desc: '支持多种格式文档的批量导入与导出' },
-      { icon: ArrowPathIcon, title: '问答对导入', desc: '快速导入QA问答对，优化模型回复' },
-      { icon: ChartBarIcon, title: '拆分问答对', desc: '智能拆分长文档为独立的问答对片段' },
-      { icon: DocumentTextIcon, title: '文档问答', desc: '基于文档内容的精准问答与检索' },
-      { icon: DocumentTextIcon, title: 'PDF解析工具', desc: '高效提取PDF文档中的文本与表格' },
-      { icon: DocumentTextIcon, title: '文件生成', desc: '自动生成报告、合同等标准化文档' }
+      { icon: 'i-heroicons-document-text', title: '知识库', desc: '构建企业私有知识库，数据安全可控' },
+      { icon: 'i-heroicons-cloud-arrow-up', title: '文件导入导出', desc: '支持多种格式文档的批量导入与导出' },
+      { icon: 'i-heroicons-arrow-path', title: '问答对导入', desc: '快速导入QA问答对，优化模型回复' },
+      { icon: 'i-heroicons-chart-bar', title: '拆分问答对', desc: '智能拆分长文档为独立的问答对片段' },
+      { icon: 'i-heroicons-document-text', title: '文档问答', desc: '基于文档内容的精准问答与检索' },
+      { icon: 'i-heroicons-document-text', title: 'PDF解析工具', desc: '高效提取PDF文档中的文本与表格' },
+      { icon: 'i-heroicons-document-text', title: '文件生成', desc: '自动生成报告、合同等标准化文档' }
     ]
   }
 ]

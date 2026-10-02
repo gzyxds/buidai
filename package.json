@@ -22,7 +22,6 @@
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
-		"@heroicons/vue": "^2.1.5",
 		"@iconify-json/heroicons": "^1.2.3",
 		"@iconify-json/lucide": "^1.2.81",
 		"@iconify-json/ph": "^1.2.2",
@@ -57,7 +56,6 @@
 		"@nuxt/content": "^3.0.0-alpha.8",
 		"@nuxt/ui": "^4.3.0",
 		"@tailwindcss/vite": "^4.1.18",
-		"lucide-vue-next": "^0.561.0",
 		"matter-js": "^0.20.0",
 		"tailwindcss": "^4.1.18",
 		"vue": "^3.4.31"

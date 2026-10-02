@@ -224,7 +224,7 @@
         >
           <div class="flex items-start gap-2.5 sm:gap-3 lg:gap-4">
             <div class="flex h-8 w-8 sm:h-9 sm:w-9 lg:h-10 lg:w-10 shrink-0 items-center justify-center rounded-md sm:rounded-lg lg:rounded-xl bg-[var(--brand-primary)]/10 text-[var(--brand-primary)] transition-all duration-200 group-hover:bg-[var(--brand-primary)] group-hover:text-white">
-              <component :is="feature.icon" class="h-3.5 w-3.5 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
+              <UIcon :name="feature.icon" class="h-3.5 w-3.5 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
             </div>
             <div class="min-w-0 flex-1">
               <h3 class="text-xs sm:text-sm font-semibold text-neutral-900 mb-0.5 sm:mb-1">{{ feature.title }}</h3>
@@ -260,9 +260,6 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, shallowRef } from 'vue'
-import type { Component } from 'vue'
-import { Zap, Shield, Layers } from 'lucide-vue-next'
-
 // ==========================================
 // 类型定义
 // ==========================================
@@ -279,7 +276,7 @@ interface TabItem {
 interface FeatureItem {
   title: string
   description: string
-  icon: Component
+  icon: string
 }
 
 // ==========================================
@@ -341,17 +338,17 @@ const features: FeatureItem[] = [
   {
     title: '本地化部署',
     description: '支持私有云和本地服务器部署，数据完全可控，满足企业安全合规要求。',
-    icon: Shield
+    icon: 'i-lucide-shield'
   },
   {
     title: '高性能架构',
     description: '采用分布式架构设计，支持高并发场景，毫秒级响应速度。',
-    icon: Zap
+    icon: 'i-lucide-zap'
   },
   {
     title: '模块化设计',
     description: '功能组件松耦合，按需启用，灵活扩展，降低系统复杂度。',
-    icon: Layers
+    icon: 'i-lucide-layers'
   }
 ]
 

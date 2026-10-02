@@ -3,7 +3,6 @@
  * FAQ 区块：左侧问题选项卡 + 右侧答案面板
  */
 import { ref } from 'vue'
-import { ArrowRightIcon, ChatBubbleLeftRightIcon, TicketIcon } from '@heroicons/vue/24/outline'
 import { dispatchQrModal } from '~/utils/qrModal'
 
 const openQrModal = (type: 'coupon' | 'wechat') => {
@@ -42,14 +41,14 @@ const activeFaq = ref<number>(0)
               class="group px-5 py-2.5 rounded-full border border-neutral-200 bg-white text-neutral-700 text-sm font-medium hover:border-neutral-300 hover:bg-neutral-50 transition-all duration-200 flex items-center gap-2"
               @click="openQrModal('coupon')"
             >
-              <TicketIcon class="w-4 h-4 text-neutral-400 group-hover:text-neutral-600 transition-colors" />
+              <UIcon name="i-heroicons-ticket" class="w-4 h-4 text-neutral-400 group-hover:text-neutral-600 transition-colors" />
               获取优惠码
             </button>
             <button
               class="group px-5 py-2.5 rounded-full border border-indigo-600 bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 transition-all duration-200 flex items-center gap-2"
               @click="openQrModal('wechat')"
             >
-              <ChatBubbleLeftRightIcon class="w-4 h-4" />
+              <UIcon name="i-heroicons-chat-bubble-left-right" class="w-4 h-4" />
               联系客服
             </button>
           </div>
@@ -101,7 +100,7 @@ const activeFaq = ref<number>(0)
             @click="openQrModal('wechat')"
           >
             联系客服团队
-            <ArrowRightIcon class="w-5 h-5 transition-transform group-hover:translate-x-1" />
+            <UIcon name="i-heroicons-arrow-right" class="w-5 h-5 transition-transform group-hover:translate-x-1" />
           </button>
         </div>
       </div>

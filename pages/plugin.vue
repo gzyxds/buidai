@@ -45,7 +45,7 @@
                   placeholder="搜索应用..."
                   class="w-full pl-11 pr-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 outline-none transition-all text-sm"
                 />
-                <MagnifyingGlassIcon class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 group-focus-within:text-indigo-500 transition-colors" />
+                <UIcon name="i-heroicons-magnifying-glass" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 group-focus-within:text-indigo-500 transition-colors" />
               </div>
 
               <!-- 分类列表 -->
@@ -80,7 +80,7 @@
               <div class="bg-white rounded-xl p-5 text-neutral-900 border border-neutral-200">
                 <div class="flex items-center gap-3 mb-3">
                   <div class="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center">
-                    <ChatBubbleLeftRightIcon class="w-5 h-5 text-indigo-500" />
+                    <UIcon name="i-heroicons-chat-bubble-left-right" class="w-5 h-5 text-indigo-500" />
                   </div>
                   <div>
                     <h4 class="font-semibold text-sm">需要帮助？</h4>
@@ -91,7 +91,7 @@
                   class="w-full py-2.5 bg-indigo-500 hover:bg-indigo-600 rounded-lg text-sm font-medium text-white transition-colors flex items-center justify-center gap-2"
                   @click="openQrModal('wechat')"
                 >
-                  <QrCodeIcon class="w-4 h-4" />
+                  <UIcon name="i-heroicons-qr-code" class="w-4 h-4" />
                   联系客服
                 </button>
               </div>
@@ -115,7 +115,7 @@ class="absolute inset-0 opacity-5 pointer-events-none"
               <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
                 <div class="space-y-3">
                   <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/20 rounded-full text-xs font-medium backdrop-blur-sm">
-                    <SparklesIcon class="w-3.5 h-3.5" />
+                    <UIcon name="i-heroicons-sparkles" class="w-3.5 h-3.5" />
                     限时特惠
                   </div>
                   <h2 class="text-xl md:text-2xl font-bold tracking-tight">智言AI 应用市场上线啦!</h2>
@@ -125,9 +125,9 @@ class="absolute inset-0 opacity-5 pointer-events-none"
                   class="shrink-0 px-6 py-3 bg-white text-indigo-500 rounded-xl font-semibold text-sm hover:bg-white/90 transition-all flex items-center gap-2 group-hover:scale-105 transform duration-200"
                   @click="openQrModal('coupon')"
                 >
-                  <TicketIcon class="w-4 h-4" />
+                  <UIcon name="i-heroicons-ticket" class="w-4 h-4" />
                   获取5折优惠码
-                  <ArrowRightIcon class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <UIcon name="i-heroicons-arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
             </div>
@@ -137,7 +137,7 @@ class="absolute inset-0 opacity-5 pointer-events-none"
               <div class="bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
                 <div class="flex items-center gap-3">
                   <div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center">
-                    <CubeIcon class="w-5 h-5 text-indigo-500" />
+                    <UIcon name="i-heroicons-cube" class="w-5 h-5 text-indigo-500" />
                   </div>
                   <div>
                     <div class="text-xl font-bold text-neutral-900 dark:text-white">{{ apps.length }}</div>
@@ -148,7 +148,7 @@ class="absolute inset-0 opacity-5 pointer-events-none"
               <div class="bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
                 <div class="flex items-center gap-3">
                   <div class="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center">
-                    <CheckCircleIcon class="w-5 h-5 text-green-500" />
+                    <UIcon name="i-heroicons-check-circle" class="w-5 h-5 text-green-500" />
                   </div>
                   <div>
                     <div class="text-xl font-bold text-neutral-900 dark:text-white">官方认证</div>
@@ -159,7 +159,7 @@ class="absolute inset-0 opacity-5 pointer-events-none"
               <div class="bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
                 <div class="flex items-center gap-3">
                   <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
-                    <ArrowPathIcon class="w-5 h-5 text-blue-500" />
+                    <UIcon name="i-heroicons-arrow-path" class="w-5 h-5 text-blue-500" />
                   </div>
                   <div>
                     <div class="text-xl font-bold text-neutral-900 dark:text-white">永久授权</div>
@@ -170,7 +170,7 @@ class="absolute inset-0 opacity-5 pointer-events-none"
               <div class="bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
                 <div class="flex items-center gap-3">
                   <div class="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center">
-                    <SparklesIcon class="w-5 h-5 text-orange-500" />
+                    <UIcon name="i-heroicons-sparkles" class="w-5 h-5 text-orange-500" />
                   </div>
                   <div>
                     <div class="text-xl font-bold text-neutral-900 dark:text-white">5折优惠</div>
@@ -183,7 +183,7 @@ class="absolute inset-0 opacity-5 pointer-events-none"
             <!-- Section Title -->
             <div class="flex items-center justify-between mb-6">
               <h2 class="text-lg font-bold text-neutral-900 dark:text-white flex items-center gap-2">
-                <component :is="getCurrentCategoryIcon" v-if="getCurrentCategoryIcon" class="w-5 h-5 text-indigo-500" />
+                <UIcon v-if="getCurrentCategoryIcon" :name="getCurrentCategoryIcon" class="w-5 h-5 text-indigo-500" />
                 {{ getCurrentCategoryName }}
                 <span class="ml-1 text-sm font-normal text-neutral-400">({{ filteredApps.length }})</span>
               </h2>
@@ -193,14 +193,14 @@ class="absolute inset-0 opacity-5 pointer-events-none"
                   :class="viewMode === 'grid' ? 'bg-indigo-500 text-white' : 'bg-white dark:bg-neutral-800 text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 border border-neutral-200 dark:border-neutral-700'"
                   @click="viewMode = 'grid'"
                 >
-                  <Squares2X2Icon class="w-4 h-4" />
+                  <UIcon name="i-heroicons-squares-2x2" class="w-4 h-4" />
                 </button>
                 <button
                   class="p-2 rounded-lg transition-colors"
                   :class="viewMode === 'list' ? 'bg-indigo-500 text-white' : 'bg-white dark:bg-neutral-800 text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 border border-neutral-200 dark:border-neutral-700'"
                   @click="viewMode = 'list'"
                 >
-                  <ListBulletIcon class="w-4 h-4" />
+                  <UIcon name="i-heroicons-list-bullet" class="w-4 h-4" />
                 </button>
               </div>
             </div>
@@ -239,7 +239,7 @@ class="absolute inset-0 opacity-5 pointer-events-none"
                 <div class="p-5 flex-1 flex flex-col">
                   <div class="flex items-center gap-3 mb-3">
                     <div class="w-9 h-9 rounded-lg bg-white dark:bg-neutral-800 border border-neutral-200/60 dark:border-neutral-700/60 text-neutral-600 dark:text-neutral-300 flex items-center justify-center shrink-0">
-                       <component :is="app.icon" class="w-4 h-4" />
+                       <UIcon :name="app.icon" class="w-4 h-4" />
                     </div>
                     <div class="flex-1 min-w-0">
                       <h3 class="font-bold text-neutral-900 dark:text-white line-clamp-1 group-hover:text-indigo-500 transition-colors">{{ app.name }}</h3>
@@ -266,11 +266,11 @@ class="absolute inset-0 opacity-5 pointer-events-none"
 
                     <div class="flex items-center justify-between text-xs text-neutral-400">
                       <div class="flex items-center gap-1">
-                        <CheckCircleIcon class="w-3.5 h-3.5 text-green-500" />
+                        <UIcon name="i-heroicons-check-circle" class="w-3.5 h-3.5 text-green-500" />
                         <span>官方认证</span>
                       </div>
                       <div class="flex items-center gap-1">
-                        <ArrowPathIcon class="w-3.5 h-3.5 text-blue-500" />
+                        <UIcon name="i-heroicons-arrow-path" class="w-3.5 h-3.5 text-blue-500" />
                         <span>永久升级</span>
                       </div>
                     </div>
@@ -302,7 +302,7 @@ class="absolute inset-0 opacity-5 pointer-events-none"
                   <div>
                     <div class="flex items-center gap-3 mb-2">
                       <div class="w-9 h-9 rounded-lg bg-white dark:bg-neutral-800 border border-neutral-200/60 dark:border-neutral-700/60 text-neutral-600 dark:text-neutral-300 flex items-center justify-center shrink-0">
-                         <component :is="app.icon" class="w-4 h-4" />
+                         <UIcon :name="app.icon" class="w-4 h-4" />
                       </div>
                       <div class="flex-1 min-w-0">
                         <div class="flex items-center gap-2 flex-wrap">
@@ -330,11 +330,11 @@ class="absolute inset-0 opacity-5 pointer-events-none"
                         购买
                       </button>
                       <div class="flex items-center gap-1 text-xs text-neutral-400">
-                        <CheckCircleIcon class="w-3.5 h-3.5 text-green-500" />
+                        <UIcon name="i-heroicons-check-circle" class="w-3.5 h-3.5 text-green-500" />
                         <span>官方认证</span>
                       </div>
                       <div class="flex items-center gap-1 text-xs text-neutral-400">
-                        <ArrowPathIcon class="w-3.5 h-3.5 text-blue-500" />
+                        <UIcon name="i-heroicons-arrow-path" class="w-3.5 h-3.5 text-blue-500" />
                         <span>永久升级</span>
                       </div>
                     </div>
@@ -346,7 +346,7 @@ class="absolute inset-0 opacity-5 pointer-events-none"
             <!-- Empty State -->
             <div v-if="filteredApps.length === 0" class="text-center py-20">
               <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-neutral-100 dark:bg-neutral-800 mb-6">
-                <InboxArrowDownIcon class="w-10 h-10 text-neutral-400" />
+                <UIcon name="i-heroicons-inbox-arrow-down" class="w-10 h-10 text-neutral-400" />
               </div>
               <h3 class="text-xl font-semibold text-neutral-900 dark:text-white mb-2">未找到相关应用</h3>
               <p class="text-neutral-500 text-sm mb-6">换个搜索词试试看吧</p>
@@ -368,28 +368,6 @@ class="absolute inset-0 opacity-5 pointer-events-none"
 <script setup lang="ts">
 import { dispatchQrModal } from '~/utils/qrModal'
 import { ref, computed } from 'vue'
-import type { Component } from 'vue'
-import {
-  MagnifyingGlassIcon,
-  ArrowRightIcon,
-  CheckCircleIcon,
-  InboxArrowDownIcon,
-  SparklesIcon,
-  ChatBubbleLeftRightIcon,
-  QrCodeIcon,
-  TicketIcon,
-  CubeIcon,
-  ArrowPathIcon,
-  Squares2X2Icon,
-  ListBulletIcon
-} from '@heroicons/vue/24/outline'
-import {
-  Video as VideoIcon,
-  GitBranch as GitBranchIcon,
-  PenTool as PenToolIcon,
-  FileSignature as FileSignatureIcon,
-  ShoppingBag as ShoppingBagIcon
-} from 'lucide-vue-next'
 import { apps, categories } from '~/utils/pluginData'
 
 /**
@@ -424,12 +402,12 @@ const activeCategory = ref('all')
 const viewMode = ref<'grid' | 'list'>('grid')
 
 // 分类图标映射
-const categoryIconMap: Record<string, Component> = {
-  all: CubeIcon,
-  video: VideoIcon,
-  writing: PenToolIcon,
-  efficiency: GitBranchIcon,
-  enterprise: FileSignatureIcon
+const categoryIconMap: Record<string, string> = {
+  all: 'i-heroicons-cube',
+  video: 'i-lucide-video',
+  writing: 'i-lucide-pen-tool',
+  efficiency: 'i-lucide-git-branch',
+  enterprise: 'i-lucide-file-signature'
 }
 
 // 分类名称映射
@@ -477,7 +455,7 @@ const getCurrentCategoryName = computed(() => {
  * 获取当前分类图标
  */
 const getCurrentCategoryIcon = computed(() => {
-  return categoryIconMap[activeCategory.value] || CubeIcon
+  return categoryIconMap[activeCategory.value] || 'i-heroicons-cube'
 })
 
 // --- 方法定义 ---

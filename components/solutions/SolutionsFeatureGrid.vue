@@ -3,8 +3,6 @@
  * 特征网格区块：功能选项卡 + 卡片网格
  */
 import { ref, computed } from 'vue'
-import { ArrowRightIcon } from '@heroicons/vue/24/outline'
-
 /**
  * 功能特性数据接口
  */
@@ -47,9 +45,9 @@ const allFeatures: FeatureItem[] = [
   // 知识库与文档
   { title: '知识库', tag: 'Knowledge', category: '知识库与文档', bgClass: 'bg-linear-to-br from-blue-50 to-purple-50', iconClass: 'i-lucide-book-open' },
   { title: '文件导入导出', tag: 'Import', category: '知识库与文档', bgClass: 'bg-linear-to-br from-indigo-50 to-blue-50', iconClass: 'i-lucide-import' },
-  { title: '问答对导入', tag: 'QA', category: '知识库与文档', bgClass: 'bg-linear-to-br from-purple-50 to-blue-50', iconClass: 'i-lucide-help-circle' },
+  { title: '问答对导入', tag: 'QA', category: '知识库与文档', bgClass: 'bg-linear-to-br from-purple-50 to-blue-50', iconClass: 'i-lucide-circle-question-mark' },
   { title: '拆分问答对', tag: 'Split', category: '知识库与文档', bgClass: 'bg-linear-to-br from-blue-50 to-indigo-50', iconClass: 'i-lucide-scissors' },
-  { title: '文档问答', tag: 'Doc QA', category: '知识库与文档', bgClass: 'bg-linear-to-br from-indigo-50 to-purple-50', iconClass: 'i-lucide-file-question' },
+  { title: '文档问答', tag: 'Doc QA', category: '知识库与文档', bgClass: 'bg-linear-to-br from-indigo-50 to-purple-50', iconClass: 'i-lucide-file-question-mark' },
   { title: 'PDF解析工具', tag: 'PDF', category: '知识库与文档', bgClass: 'bg-linear-to-br from-purple-50 to-pink-50', iconClass: 'i-lucide-file-text' },
   { title: '文件生成', tag: 'Generate', category: '知识库与文档', bgClass: 'bg-linear-to-br from-pink-50 to-purple-50', iconClass: 'i-lucide-file-plus' },
   // 模型与数据能力
@@ -130,7 +128,7 @@ const filteredFeatures = computed(() => {
               <div class="h-16 bg-white border-t border-gray-100 px-5 flex items-center justify-between">
                  <span class="font-bold text-[var(--brand-text)]">{{ item.title }}</span>
                  <span class="w-8 h-8 rounded-full bg-[#F5F6FA] flex items-center justify-center group-hover:bg-[var(--brand-primary)] group-hover:text-white transition-colors">
-                    <ArrowRightIcon class="w-4 h-4" />
+                    <UIcon name="i-heroicons-arrow-right" class="w-4 h-4" />
                  </span>
               </div>
            </div>

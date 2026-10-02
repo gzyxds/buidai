@@ -290,7 +290,7 @@ const items = computed<NavigationMenuItem[][]>(() => [
       label: '解决方案',
       icon: 'i-lucide-box',
       children: [
-        { label: '应用中心', description: '丰富的 AI 应用插件', icon: 'i-lucide-grid', to: '/plugin' },
+        { label: '应用中心', description: '丰富的 AI 应用插件', icon: 'i-lucide-grid-2x2', to: '/plugin' },
         { label: '解决方案', description: '探索 智言AI 的行业解决方案', icon: 'i-lucide-lightbulb', to: '/solutions' },
         { label: '香蕉绘画', description: '开源免费的 AI 图像生成系统', icon: 'i-lucide-palette', to: '/product/banana' },
         { label: '网文短剧', description: '开源免费的网文短剧写作系统', icon: 'i-lucide-clapperboard', to: '/product/drama' },

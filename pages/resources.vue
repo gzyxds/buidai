@@ -44,7 +44,7 @@
           class="group bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col items-start"
         >
           <div class="mb-6 p-3 rounded-xl bg-ui-primary-glow-medium text-ui-primary group-hover:bg-ui-primary-glow-strong transition-colors">
-            <component :is="resource.icon" class="w-8 h-8" />
+            <UIcon :name="resource.icon" class="w-8 h-8" />
           </div>
 
           <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-ui-primary transition-colors">
@@ -68,15 +68,6 @@
 </template>
 
 <script setup lang="ts">
-import {
-  DocumentTextIcon,
-  CodeBracketIcon,
-  VideoCameraIcon,
-  ChatBubbleLeftRightIcon,
-  NewspaperIcon,
-  CommandLineIcon
-} from '@heroicons/vue/24/outline'
-
 definePageMeta({
   layout: 'default'
 })
@@ -94,37 +85,37 @@ const resources = [
   {
     title: '文档中心',
     description: '全面的产品使用指南、API 文档和 SDK 说明，帮助您快速上手开发。',
-    icon: DocumentTextIcon,
+    icon: 'i-heroicons-document-text',
     to: '/docs'
   },
   {
     title: 'API 参考',
     description: '详细的 REST API 接口定义、参数说明及调用示例。',
-    icon: CodeBracketIcon,
+    icon: 'i-heroicons-code-bracket',
     to: '/contact'
   },
   {
     title: '视频教程',
     description: '从入门到精通的视频教学课程，直观演示操作流程。',
-    icon: VideoCameraIcon,
+    icon: 'i-heroicons-video-camera',
     to: '/contact'
   },
   {
     title: '社区论坛',
     description: '加入开发者社区，与数万名开发者交流心得，解决技术难题。',
-    icon: ChatBubbleLeftRightIcon,
+    icon: 'i-heroicons-chat-bubble-left-right',
     to: '/contact'
   },
   {
     title: '技术博客',
     description: '深度技术文章、行业洞察及最佳实践分享。',
-    icon: NewspaperIcon,
+    icon: 'i-heroicons-newspaper',
     to: '/blog'
   },
   {
     title: 'CLI 工具',
     description: '强大的命令行工具，让开发、部署和管理更加高效。',
-    icon: CommandLineIcon,
+    icon: 'i-heroicons-command-line',
     to: '/contact'
   }
 ]

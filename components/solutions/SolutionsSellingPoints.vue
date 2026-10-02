@@ -2,7 +2,6 @@
 /**
  * 卖点区块：0 门槛一站式（AI 写作 + 智能图像两特性）
  */
-import { SparklesIcon, PhotoIcon } from '@heroicons/vue/24/outline'
 </script>
 
 <template>
@@ -18,7 +17,7 @@ import { SparklesIcon, PhotoIcon } from '@heroicons/vue/24/outline'
          <div class="flex flex-col lg:flex-row items-center gap-8 md:gap-12 lg:gap-20">
             <div class="lg:w-1/2 space-y-6 order-2 lg:order-1">
                <div class="inline-flex items-center gap-2 text-[var(--brand-primary)] bg-[#F4F0FF] px-3 py-1 rounded-full text-xs font-bold">
-                  <SparklesIcon class="w-4 h-4" />
+                  <UIcon name="i-heroicons-sparkles" class="w-4 h-4" />
                   AI 辅助写作
                </div>
                <h3 class="text-2xl md:text-3xl font-bold text-[var(--brand-text)] leading-tight">和子文档 — <br class="hidden md:block"/>让创作如虎添翼</h3>
@@ -46,7 +45,7 @@ import { SparklesIcon, PhotoIcon } from '@heroicons/vue/24/outline'
          <div class="flex flex-col lg:flex-row-reverse items-center gap-8 md:gap-12 lg:gap-20">
             <div class="lg:w-1/2 space-y-6 order-2 lg:order-1">
                <div class="inline-flex items-center gap-2 text-[var(--brand-primary)] bg-[#F4F0FF] px-3 py-1 rounded-full text-xs font-bold">
-                  <PhotoIcon class="w-4 h-4" />
+                  <UIcon name="i-heroicons-photo" class="w-4 h-4" />
                   智能图像处理
                </div>
                <h3 class="text-2xl md:text-3xl font-bold text-[var(--brand-text)] leading-tight">一键生图，<br class="hidden md:block"/>创意不再受限</h3>

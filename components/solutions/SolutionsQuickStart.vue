@@ -2,8 +2,6 @@
 /**
  * 快速开始区块：左标题 + 右四卡
  */
-import { ArrowRightIcon } from '@heroicons/vue/24/outline'
-
 /**
  * 快速开始卡片接口
  */
@@ -35,7 +33,7 @@ const quickStartCards: QuickStartCard[] = [
           <p class="text-base md:text-lg text-[var(--brand-muted)] mb-6 md:mb-8">AI 职场神队友，告别无效加班！</p>
           <button class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--brand-primary)] text-white font-medium hover:bg-[#5A43FF] active:scale-95 transition-all shadow-md">
             探索更多
-            <ArrowRightIcon class="w-4 h-4" />
+            <UIcon name="i-heroicons-arrow-right" class="w-4 h-4" />
           </button>
         </div>
 
@@ -49,7 +47,7 @@ const quickStartCards: QuickStartCard[] = [
                  {{ card.desc }}
               </p>
               <button class="w-10 h-10 md:w-12 md:h-12 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 group-hover:bg-[var(--brand-primary)] group-hover:border-[var(--brand-primary)] group-hover:text-white transition-all">
-                 <ArrowRightIcon class="w-5 h-5 md:w-6 md:h-6" />
+                 <UIcon name="i-heroicons-arrow-right" class="w-5 h-5 md:w-6 md:h-6" />
               </button>
            </div>
         </div>

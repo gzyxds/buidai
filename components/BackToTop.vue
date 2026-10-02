@@ -13,14 +13,6 @@
 // 1. Imports (导入)
 // ----------------------------------------------------------------------
 import { ref, onMounted, onUnmounted } from 'vue'
-import {
-  ChevronUp as ChevronUpIcon,
-  Headphones as HeadphonesIcon,
-  Gift as GiftIcon,
-  User as UserIcon,
-  X as XIcon,
-  Megaphone as MegaphoneIcon
-} from 'lucide-vue-next'
 import { QR_MODAL_EVENT, type QrModalConfig } from '~/utils/qrModal'
 
 // ----------------------------------------------------------------------

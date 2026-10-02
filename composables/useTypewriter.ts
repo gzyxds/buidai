@@ -31,7 +31,7 @@ export function useTypewriter(texts: string[], options: Partial<TypewriterOption
 
   const tick = () => {
     const current = texts[index]
-    if (!current) return
+    if (!current) {return}
 
     if (isDeleting) {
       charIndex--

@@ -47,7 +47,7 @@
             <!-- 图标和名称 -->
             <div class="flex items-center gap-2.5 mb-2">
               <div class="w-7 h-7 rounded-lg bg-neutral-50 border border-neutral-200/60 text-neutral-600 flex items-center justify-center shrink-0">
-                <component :is="app.icon" class="w-3.5 h-3.5" />
+                <UIcon :name="app.icon" class="w-3.5 h-3.5" />
               </div>
               <h3 class="text-sm font-bold text-neutral-900 truncate group-hover:text-indigo-600 transition-colors">
                 {{ app.name }}
@@ -67,7 +67,7 @@
                   <span v-else class="text-sm font-bold text-neutral-900">¥{{ app.originalPrice.toFixed(2) }}</span>
                 </div>
                 <button class="px-2.5 py-1 bg-indigo-600 hover:bg-indigo-700 text-white text-[11px] font-medium rounded-lg flex items-center gap-1 transition-colors">
-                  <ShoppingBagIcon class="w-3 h-3" />
+                  <UIcon name="i-lucide-shopping-bag" class="w-3 h-3" />
                   购买
                 </button>
               </div>
@@ -75,11 +75,11 @@
               <!-- 认证标签 -->
               <div class="flex items-center justify-between mt-2.5">
                 <div class="flex items-center gap-1">
-                  <CheckCircleIcon class="w-3 h-3 text-green-500" />
+                  <UIcon name="i-lucide-circle-check" class="w-3 h-3 text-green-500" />
                   <span class="text-[10px] text-neutral-400">官方认证</span>
                 </div>
                 <div class="flex items-center gap-1">
-                  <RefreshCwIcon class="w-3 h-3 text-blue-500" />
+                  <UIcon name="i-lucide-refresh-cw" class="w-3 h-3 text-blue-500" />
                   <span class="text-[10px] text-neutral-400">永久升级</span>
                 </div>
               </div>
@@ -95,7 +95,7 @@
           @click="showAll = true"
         >
           查看更多
-          <ChevronDownIcon class="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
+          <UIcon name="i-lucide-chevron-down" class="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
         </button>
       </div>
 
@@ -106,7 +106,7 @@
           @click="showAll = false"
         >
           收起
-          <ChevronUpIcon class="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
+          <UIcon name="i-lucide-chevron-up" class="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
         </button>
       </div>
 
@@ -126,7 +126,7 @@
           @click="handleGoToMarket"
         >
           前往应用市场
-          <ArrowRightIcon class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          <UIcon name="i-lucide-arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </button>
       </div>
     </div>
@@ -135,14 +135,6 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import {
-  ArrowRightIcon,
-  ChevronDownIcon,
-  ChevronUpIcon,
-  ShoppingBagIcon,
-  CheckCircleIcon,
-  RefreshCwIcon
-} from 'lucide-vue-next'
 import { apps, categories, type AppData } from '~/utils/pluginData'
 
 /**
