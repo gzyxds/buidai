@@ -60,7 +60,7 @@ export default defineNuxtConfig({
         if (route.startsWith('/changelog')) {
           return { loc: route, priority: 0.6, changefreq: 'monthly' }
         }
-        if (['/pricing', '/download', '/contact'].includes(route)) {
+        if (['/pricing', '/product', '/download', '/contact'].includes(route)) {
           return { loc: route, priority: 0.9, changefreq: 'weekly' }
         }
         return { loc: route, priority: 0.7, changefreq: 'daily' }

@@ -14,7 +14,7 @@ import { productSlugs } from '../data/products'
  *
  * @example
  * // 返回示例:
- * // ['/', '/agent', '/docs', '/docs/introduction', '/product/banana', '/blog', ...]
+ * // ['/', '/agent', '/docs', '/docs/introduction', '/product', '/product/banana', '/blog', ...]
  */
 export const getSitemapRoutes = (): string[] => {
   // 定义静态路由列表
@@ -24,6 +24,7 @@ export const getSitemapRoutes = (): string[] => {
     '/buidai',        // 私有部署页面
     '/solutions',     // 解决方案页面
     '/plugin',        // 应用中心页面
+    '/product',       // 产品中心页面
     '/pricing',       // 定价方案页面
     '/changelog',     // 更新日志页面
     '/blog',          // 博客列表页面

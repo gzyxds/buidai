@@ -303,7 +303,8 @@ const items = computed<NavigationMenuItem[][]>(() => [
         { label: 'AI简历', description: '开源免费的智能简历生成与分析系统', icon: 'i-lucide-file-text', to: '/product/resume' },
         { label: 'Sora视频', description: '开源免费的 AI 视频创作系统', icon: 'i-lucide-film', to: '/product/sora' },
         { label: '视频混剪', description: '开源免费的视频剪辑软件', icon: 'i-lucide-scissors', to: '/product/videoclip' },
-        { label: '小红书助手', description: '开源免费的 AI 文案生成系统', icon: 'i-lucide-book-open', to: '/product/xhs' }
+        { label: '小红书助手', description: '开源免费的 AI 文案生成系统', icon: 'i-lucide-book-open', to: '/product/xhs' },
+        { label: '查看全部产品', description: '浏览全部开源 AI 产品', icon: 'i-lucide-arrow-right', to: '/product' }
       ]
     },
     { label: '定价方案', to: '/pricing', icon: 'i-lucide-tag' },

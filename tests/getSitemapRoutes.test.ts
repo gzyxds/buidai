@@ -7,7 +7,7 @@ vi.mock('../utils/getDocsRoutes', () => ({
 import { getSitemapRoutes } from '../utils/getSitemapRoutes'
 
 describe('getSitemapRoutes', () => {
-  it('包含全部 12 个静态路由', () => {
+  it('包含全部 13 个静态路由', () => {
     const routes = getSitemapRoutes()
     const expected = [
       '/',
@@ -15,6 +15,7 @@ describe('getSitemapRoutes', () => {
       '/buidai',
       '/solutions',
       '/plugin',
+      '/product',
       '/pricing',
       '/changelog',
       '/blog',
