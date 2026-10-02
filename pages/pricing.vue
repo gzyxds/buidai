@@ -13,22 +13,17 @@ usePageSeo({
   ogDescription: '智言AI-智言万象提供基础版、标准版、专业版及企业定制版等多种价格方案，满足个人开发者、初创团队及大型企业的不同 AI 应用开发需求。',
   ogType: 'website'
 })
-
-// 开启两侧竖带装饰层（grid-border 设计系统）
-definePageMeta({
-  frameSides: true
-})
 </script>
 
 <template>
-  <!-- 底色与 grid-border 令牌对齐（--grid-bg: 亮 #fff / 暗 #171717=neutral-900） -->
-  <section class="overflow-hidden bg-white dark:bg-neutral-900">
+  <!-- 底色沿用原版 gray-50/gray-950，并用局部令牌覆盖让分隔带/装饰行与页面同色 -->
+  <section class="overflow-hidden min-h-screen bg-gray-50 dark:bg-gray-950 [--grid-bg:#f9fafb] dark:[--grid-bg:#030712]">
     <div class="grid-border-container">
       <div class="grid-border-row" />
 
       <!-- 头部 Hero 区域 -->
       <div class="grid-border-wrapper">
-        <div class="grid-border-content px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
+        <div class="grid-border-content px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20">
           <div class="text-center">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-ui-primary/10 mb-6">
               <span class="text-xs font-medium text-ui-primary">定价方案</span>
@@ -47,7 +42,7 @@ definePageMeta({
 
       <!-- 定价方案区块 -->
       <div class="grid-border-wrapper">
-        <div class="grid-border-content px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12">
+        <div class="grid-border-content px-4 sm:px-6 lg:px-8 py-10 sm:py-10 lg:py-12">
           <PricingPlans />
         </div>
       </div>
@@ -56,7 +51,7 @@ definePageMeta({
 
       <!-- 信任背书 / 跑马灯 -->
       <div class="grid-border-wrapper">
-        <div class="grid-border-content px-4 sm:px-6 lg:px-8 py-10 lg:py-12">
+        <div class="grid-border-content px-4 sm:px-6 lg:px-8 py-12">
           <p class="text-center text-xs text-gray-400 dark:text-gray-500 mb-8">受到众多创新团队信赖</p>
           <UMarquee :overlay="false" class="opacity-40 grayscale">
             <div v-for="i in 2" :key="i" class="flex items-center">
@@ -75,7 +70,7 @@ definePageMeta({
 
       <!-- 常见问题区块 -->
       <div class="grid-border-wrapper">
-        <div class="grid-border-content px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12">
+        <div class="grid-border-content px-4 sm:px-6 lg:px-8 py-10 sm:py-10 lg:py-12">
           <PricingFaq />
         </div>
       </div>
@@ -84,7 +79,7 @@ definePageMeta({
 
       <!-- 底部品牌摘要 -->
       <div class="grid-border-wrapper">
-        <div class="grid-border-content content-footer px-4 sm:px-6 lg:px-8">
+        <div class="grid-border-content content-footer px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
           <span class="text-lg sm:text-xl font-bold text-neutral-900 tracking-tight dark:text-white">智言AI</span>
           <span class="w-8 h-px sm:w-px sm:h-6 bg-neutral-200 dark:bg-neutral-700" />
           <span class="text-base sm:text-lg text-neutral-600 font-medium dark:text-neutral-300">一站式 AI 解决方案，助力企业智能化转型</span>
