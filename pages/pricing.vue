@@ -3,39 +3,6 @@
  * 定价页面
  * 组装头部 Hero、定价方案、信任背书与 FAQ 区块
  */
-interface PricingFeature {
-  label: string
-  key: string
-  tooltip?: string
-}
-
-/**
- * 功能项定义
- * 当前使用权益分类展示，保留用于未来功能对比表扩展
- */
-const _featuresList: PricingFeature[] = [
-  { label: 'AI积分', key: 'ai_points', tooltip: '用于调用AI模型的积分消耗' },
-  { label: '自定义AI大模型', key: 'custom_model', tooltip: '支持接入私有大模型' },
-  { label: '应用', key: 'apps' },
-  { label: '知识库文件容量', key: 'kb_capacity', tooltip: '上传文件的总大小限制' },
-  { label: '知识库条数', key: 'kb_count' },
-  { label: '知识库导入限制', key: 'kb_import_limit' },
-  { label: '内置数据库行数', key: 'db_rows' },
-  { label: '远程数据库', key: 'remote_db' },
-  { label: '自定义插件', key: 'plugins' },
-  { label: '工作流', key: 'workflows' },
-  { label: '数据看板', key: 'dashboard' },
-  { label: '渠道接入', key: 'channels' },
-  { label: '客户端管理', key: 'client_mgmt' },
-  { label: '对话限流配置', key: 'rate_limit' },
-  { label: '智能转人工', key: 'human_handoff' },
-  { label: '聚合对话管理', key: 'conversation_mgmt' },
-  { label: '团队空间', key: 'team_space' },
-  { label: '开放 API', key: 'api' },
-  { label: '服务', key: 'support' }
-]
-// 使用void消除未使用变量警告
-void _featuresList
 
 // SEO 元数据配置
 useSeoMeta({
