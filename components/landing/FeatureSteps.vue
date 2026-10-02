@@ -4,8 +4,6 @@
       <div class="grid-border-row" />
       <!-- 标题区域 -->
       <div class="grid-border-wrapper">
-        <div class="grid-border-side grid-border-side-left" />
-        <div class="grid-border-side grid-border-side-right" />
 
         <!-- 标题区域内容 -->
         <div class="grid-border-content px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10 relative">
@@ -40,8 +38,6 @@
       <div class="grid-border-divider" />
       <!-- 内容区域 -->
       <div class="grid-border-wrapper">
-        <div class="grid-border-side grid-border-side-left" />
-        <div class="grid-border-side grid-border-side-right" />
         <!-- 内容区域内容 -->
         <div class="grid-border-content px-0">
           <div class="grid grid-cols-1 overflow-hidden rounded-md lg:grid-cols-2">
@@ -186,8 +182,6 @@
       <div class="grid-border-divider" />
       <!-- 内容区域 -->
       <div class="grid-border-wrapper">
-        <div class="grid-border-side grid-border-side-left" />
-        <div class="grid-border-side grid-border-side-right" />
         <!-- 内容区域内容 -->
         <div class="grid-border-content content-footer px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
           <span class="text-lg sm:text-xl font-bold text-neutral-900 tracking-tight">智言AI</span>

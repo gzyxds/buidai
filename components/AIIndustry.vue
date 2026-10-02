@@ -3,8 +3,6 @@
     <div class="grid-border-container">
       <!-- 标题区域 -->
       <div class="grid-border-wrapper">
-        <div class="grid-border-side grid-border-side-left" />
-        <div class="grid-border-side grid-border-side-right" />
         <div class="grid-border-content px-3 sm:px-4 lg:px-6 xl:px-8 py-4 sm:py-6 lg:py-8">
           <div class="mb-4 sm:mb-6">
             <div class="flex items-center gap-2 mb-2">
@@ -27,8 +25,6 @@
 
       <!-- 主体：左侧导航 + 右侧内容 -->
       <div class="grid-border-wrapper">
-        <div class="grid-border-side grid-border-side-left" />
-        <div class="grid-border-side grid-border-side-right" />
         <div class="grid-border-content px-0">
           <div class="ai-main">
             <aside class="ai-tabs" @mouseenter="pauseAutoplay" @mouseleave="resumeAutoplay">
@@ -103,8 +99,6 @@
 
       <!-- 底部 -->
       <div class="grid-border-wrapper">
-        <div class="grid-border-side grid-border-side-left" />
-        <div class="grid-border-side grid-border-side-right" />
         <div class="grid-border-content px-3 sm:px-4 lg:px-6 xl:px-8">
           <div class="ai-footer">
             <div class="ai-footer-main">

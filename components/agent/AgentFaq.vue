@@ -72,8 +72,6 @@ const { handleKeydown: handleFaqKeydown } = useListKeyboardNav(() => faqs.length
     <div class="grid-border-container">
       <!-- 标题区域 -->
       <div class="grid-border-wrapper">
-        <div class="grid-border-side grid-border-side-left" />
-        <div class="grid-border-side grid-border-side-right" />
 
         <div class="grid-border-content px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
           <div class="mb-6 sm:mb-8">
@@ -97,8 +95,6 @@ const { handleKeydown: handleFaqKeydown } = useListKeyboardNav(() => faqs.length
 
       <!-- FAQ 内容区域 -->
       <div class="grid-border-wrapper">
-        <div class="grid-border-side grid-border-side-left" />
-        <div class="grid-border-side grid-border-side-right" />
 
         <div class="grid-border-content px-4 sm:px-6 lg:px-8">
           <div class="grid grid-cols-1 gap-px overflow-hidden rounded-md bg-neutral-200/70 lg:grid-cols-[320px_1fr]">
@@ -246,8 +242,6 @@ name="i-heroicons-chevron-down"
 
       <!-- 底部信息 -->
       <div class="grid-border-wrapper">
-        <div class="grid-border-side grid-border-side-left" />
-        <div class="grid-border-side grid-border-side-right" />
 
         <div class="grid-border-content content-footer px-4 sm:px-6 lg:px-8">
           <span class="text-lg sm:text-xl font-bold text-neutral-900 tracking-tight">智言AI</span>

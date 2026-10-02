@@ -1,7 +1,49 @@
 /* ============================================
    网格边框设计系统 — Grid Border Design System
-   全局公用样式，由 FeatureSteps / OpenSourceRoadmap / agent / AIIndustry 共用
+   设计令牌 + 纹理类 + 框架结构，全局共用
+
+   令牌（:root）为唯一参数来源；任何元素挂 .gb-texture
+   即可获得全站同款斜线纹理，跨元素靠 fixed 附着自动对齐。
    ============================================ */
+
+/* ---------- 设计令牌 ---------- */
+:root {
+  --grid-ink: color-mix(in oklab, rgb(3 7 18) 5%, transparent); /* 纹理线色 */
+  --grid-line: 1px;      /* 线宽 */
+  --grid-pitch: 10px;    /* 纹理周期（间距） */
+  --grid-angle: 315deg;  /* 斜线角度 */
+  --grid-border: rgb(229 229 229 / 70%); /* 边框线色 */
+  --grid-bg: #fff;       /* 纹理底色 */
+  --grid-frame: 1536px;  /* 内容框架宽（竖带定位依据） */
+  --grid-strip: 1rem;    /* 横分隔带高 */
+  --grid-side: 1rem;     /* 竖带宽 */
+}
+
+/* 暗色模式令牌（接入暗色页面时生效，预留接口） */
+.dark {
+  --grid-ink: color-mix(in oklab, #fff 7%, transparent);
+  --grid-border: rgb(255 255 255 / 12%);
+  --grid-bg: #171717;
+}
+
+/* ---------- 纹理类：斜线纹理，全站唯一实现 ----------
+   所有带纹理的元素（分隔带/轻量条/竖带）共用这一份声明 */
+.gb-texture,
+.grid-border-divider,
+.gb-divider,
+.gb-frame-side {
+  background-image: repeating-linear-gradient(
+    var(--grid-angle),
+    var(--grid-ink) 0,
+    var(--grid-ink) var(--grid-line),
+    transparent 0,
+    transparent 50%
+  );
+  background-size: var(--grid-pitch) var(--grid-pitch);
+  background-attachment: fixed;
+}
+
+/* ---------- 框架结构（agent 页面五层布局） ---------- */
 
 /* 外层容器：三行布局（顶部边框行 → 内容区 → 底部边框行） */
 .grid-border-container {
@@ -11,7 +53,7 @@
   width: 100%;
 }
 
-/* 包裹层：相对定位，承载左右装饰边框 */
+/* 包裹层：相对定位 */
 .grid-border-wrapper {
   position: relative;
   display: flex;
@@ -23,75 +65,74 @@
 .grid-border-content {
   position: relative;
   z-index: 1;
-  max-width: 1536px;
+  max-width: var(--grid-frame);
   margin: 0 auto;
   width: 100%;
 }
 
 /* 横向分隔线：双横线 + 网格纹理 */
 .grid-border-divider {
-  height: 1rem;
-  border-top: 1px solid rgba(229, 229, 229, 0.7);
-  border-bottom: 1px solid rgba(229, 229, 229, 0.7);
-  background-color: white;
-  background-image: repeating-linear-gradient(
-    315deg,
-    color-mix(in oklab, rgb(3, 7, 18) 5%, transparent) 0,
-    color-mix(in oklab, rgb(3, 7, 18) 5%, transparent) 1px,
-    transparent 0,
-    transparent 50%
-  );
-  background-size: 10px 10px;
-  background-attachment: fixed;
+  height: var(--grid-strip);
+  border-top: 1px solid var(--grid-border);
+  border-bottom: 1px solid var(--grid-border);
+  background-color: var(--grid-bg);
   width: 100%;
   flex-shrink: 0;
 }
 
-/* 左右装饰边框 — 基础样式 */
-.grid-border-side {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: calc((100% - 1536px) / 2);
-  min-width: 0;
-  background-color: white;
-}
-
-.grid-border-side-left { left: 0; }
-.grid-border-side-right { right: 0; }
-
-/* 左右装饰边框 — 伪元素纹理 */
-.grid-border-side-left::before,
-.grid-border-side-right::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 1rem;
-  background-color: white;
-  background-image: repeating-linear-gradient(
-    315deg,
-    color-mix(in oklab, rgb(3, 7, 18) 5%, transparent) 0,
-    color-mix(in oklab, rgb(3, 7, 18) 5%, transparent) 1px,
-    transparent 0,
-    transparent 50%
-  );
-  background-size: 10px 10px;
-  background-attachment: fixed;
-}
-
-.grid-border-side-left::before  { right: 0; border-left: 1px solid rgba(229, 229, 229, 0.7); border-right: 1px solid rgba(229, 229, 229, 0.7); }
-.grid-border-side-right::before { left: 0;  border-left: 1px solid rgba(229, 229, 229, 0.7); border-right: 1px solid rgba(229, 229, 229, 0.7); }
-
 /* 顶部/底部装饰行 */
 .grid-border-row {
   min-height: 4rem;
-  border-top: 1px solid rgba(229, 229, 229, 0.7);
-  border-bottom: 1px solid rgba(229, 229, 229, 0.7);
-  background-color: white;
+  border-top: 1px solid var(--grid-border);
+  border-bottom: 1px solid var(--grid-border);
+  background-color: var(--grid-bg);
 }
 
-/* 底部品牌摘要（FeatureSteps / OpenSourceRoadmap / agent 共用） */
+/* ---------- 轻量接入：单元素分隔条（普通页面布局用） ---------- */
+.gb-divider {
+  height: var(--grid-strip);
+  border-top: 1px solid var(--grid-border);
+  border-bottom: 1px solid var(--grid-border);
+  background-color: var(--grid-bg);
+  width: 100%;
+}
+
+/* ---------- 全局竖带装饰层（超宽屏两侧，布局无关） ---------- */
+.gb-frame-side {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: var(--grid-side);
+  z-index: 0;
+  pointer-events: none;
+  background-color: var(--grid-bg);
+  border-left: 1px solid var(--grid-border);
+  border-right: 1px solid var(--grid-border);
+}
+
+.gb-frame-side-left {
+  left: calc((100vw - var(--grid-frame)) / 2 - var(--grid-side));
+}
+
+.gb-frame-side-right {
+  right: calc((100vw - var(--grid-frame)) / 2 - var(--grid-side));
+}
+
+/* 视口窄于 框架宽 + 2×竖带宽 时隐藏竖带 */
+@media (max-width: 1567.98px) {
+  .gb-frame-side {
+    display: none;
+  }
+}
+
+/* 移动端：纹理稍疏朗，避免 16px 条带内过密 */
+@media (max-width: 640px) {
+  :root {
+    --grid-pitch: 12px;
+  }
+}
+
+/* ---------- 底部品牌摘要（agent 页面共用） ---------- */
 .content-footer {
   display: flex;
   align-items: center;
