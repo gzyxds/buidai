@@ -250,7 +250,9 @@ useSeoMeta({
 })
 </script>
 
-<style lang="postcss" scoped>
+<style scoped>
+/* 引入 Tailwind + Nuxt UI 主题上下文，使 @apply 可解析（v4 中 SFC 样式独立编译） */
+@reference "../../assets/css/main.css";
 /* Custom Prose Styles for Nuxt-like feel */
 :deep(.doc-content) {
   @apply text-gray-700 dark:text-gray-300;

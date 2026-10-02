@@ -340,7 +340,9 @@ const formatDate = (dateString: string | Date) => {
 }
 </script>
 
-<style scoped lang="postcss">
+<style scoped>
+/* 引入 Tailwind + Nuxt UI 主题上下文，使 @apply 可解析（v4 中 SFC 样式独立编译） */
+@reference "../../assets/css/main.css";
 /* Custom Prose Styles for better readability */
 :deep(.prose h2) {
   @apply text-2xl font-bold text-gray-900 mt-12 mb-6 scroll-mt-32;
