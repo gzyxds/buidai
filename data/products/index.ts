@@ -8,12 +8,14 @@ import type { Product, ProductDetail } from './types'
 
 import articleImg from './article-img'
 import banana from './banana'
+import chatBot from './chat-bot'
 import contract from './contract'
 import digitalHumanSaas from './digital-human-saas'
 import drama from './drama'
 import geoRanking from './geo-ranking'
 import human from './human'
 import idPhoto from './id-photo'
+import image from './image'
 import image2 from './image-2'
 import jimeng from './jimeng'
 import jmdraw from './jmdraw'
@@ -75,7 +77,10 @@ export const products: Product[] = [
   yichuangAi,
   yichuangAigc,
   yichuangPaper,
-  zhiyanDeploy
+  zhiyanDeploy,
+  // 演示专属实体
+  chatBot,
+  image
 ]
 
 /** 按 slug 查询产品 */

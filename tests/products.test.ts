@@ -46,8 +46,8 @@ function validateProduct(product: Product) {
 }
 
 describe('products 数据', () => {
-  it('实体总数 28、详情产品 12、slug 唯一', () => {
-    expect(products).toHaveLength(28)
+  it('实体总数 30、详情产品 12、slug 唯一', () => {
+    expect(products).toHaveLength(30)
     expect(detailProducts).toHaveLength(12)
     expect(new Set(products.map(p => p.slug)).size).toBe(products.length)
   })

@@ -22,12 +22,12 @@ const product: Product = {
     description:
       '图像创作是一个综合型的AI绘画应用，对接 gpt-image-2、即梦、可灵等多家主流 AI 绘画模型。支持多参考图融合创作，自由自定义图片尺寸与分辨率；内置 AI 提示词扩写、同款生成、再次生成等实用能力，一键高清下载作品，零基础轻松创作插画、头像、壁纸等多元创意画作。',
     /** 演示视图图标 */
-    icon: 'i-heroicons-film',
+    icon: 'i-heroicons-photo',
     /** 演示视图封面 */
-    image: '/plugin/Sora2短剧视频创作.png',
+    image: '/plugin/img2.png',
     /** 演示视图标签 */
-    tags: ['短剧创作', 'AI视频', '文生视频'],
-    features: ['文字生成视频', '短剧创作', '创意转化', '高效生成', '优质输出'],
+    tags: ['AI绘画', '文生图', '多模型'],
+    features: ['文生图', '多参考图融合', '自定义尺寸分辨率', '提示词扩写', '高清下载'],
     platforms: [
       {
         title: '联系客服',
