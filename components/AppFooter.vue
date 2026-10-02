@@ -130,6 +130,7 @@
 </template>
 
 <script setup lang="ts">
+import { LAYOUT } from '~/utils/ui'
 import { ref } from 'vue'
 
 // 移动端折叠状态管理
@@ -137,7 +138,7 @@ import { ref } from 'vue'
 const activeGroups = ref<number[]>([4])
 
 const toggleGroup = (index: number) => {
-  if (window.innerWidth >= 768) {return} // Desktop: disable toggle logic
+  if (window.innerWidth >= LAYOUT.MOBILE_BREAKPOINT) {return} // Desktop: disable toggle logic
 
   const idx = activeGroups.value.indexOf(index)
   if (idx === -1) {

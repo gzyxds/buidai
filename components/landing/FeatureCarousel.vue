@@ -77,6 +77,7 @@
 </template>
 
 <script setup lang="ts">
+import { LAYOUT } from '~/utils/ui'
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 import { apps } from '~/utils/pluginData'
 
@@ -173,7 +174,7 @@ const checkInfiniteScroll = () => {
   if (!scrollContainer.value || isDragging.value) {return}
 
   const container = scrollContainer.value
-  const isMobile = window.innerWidth < 768
+  const isMobile = window.innerWidth < LAYOUT.MOBILE_BREAKPOINT
   const cardWidth = isMobile ? window.innerWidth * 0.85 : 360
   const gap = isMobile ? 16 : 24
   const itemFullWidth = cardWidth + gap
@@ -201,7 +202,7 @@ onMounted(() => {
   nextTick(() => {
     if (scrollContainer.value) {
       const container = scrollContainer.value
-      const isMobile = window.innerWidth < 768
+      const isMobile = window.innerWidth < LAYOUT.MOBILE_BREAKPOINT
       const cardWidth = isMobile ? window.innerWidth * 0.85 : 360
       const gap = isMobile ? 16 : 24
       const itemFullWidth = cardWidth + gap

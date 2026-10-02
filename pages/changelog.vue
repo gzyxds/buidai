@@ -196,64 +196,65 @@ onUnmounted(() => {
 })
 </script>
 
-<style lang="scss" scoped>
-// Using SCSS for layout specifics as requested
-// Breakpoints: Mobile < 768px, Tablet 768px-1023px, Desktop >= 1024px
+<style scoped>
+/* Breakpoints: Mobile < 768px, Tablet 768px-1023px, Desktop >= 1024px */
 
 .layout-wrapper {
   display: flex;
   flex-direction: column;
   position: relative;
+}
 
-  @media (min-width: 1024px) {
+@media (min-width: 1024px) {
+  .layout-wrapper {
     flex-direction: row;
-    gap: 3rem; // 48px
+    gap: 3rem; /* 48px */
   }
 }
 
 .sidebar {
   width: 100%;
+}
 
-  // Mobile & Tablet: Collapsible or Top
-  @media (max-width: 1023px) {
-    &.is-mobile-open {
-      position: fixed;
-      inset: 0;
-      z-index: 50;
-      background: rgba(255, 255, 255, 0.98);
-      padding: 1rem;
-      overflow-y: auto;
-
-      .sidebar-content {
-        display: block !important;
-        animation: slideIn 0.3s ease-out;
-      }
-    }
+/* Mobile & Tablet: Collapsible or Top */
+@media (max-width: 1023px) {
+  .sidebar.is-mobile-open {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.98);
+    padding: 1rem;
+    overflow-y: auto;
   }
 
-  // Desktop: Fixed Width & Sticky
-  @media (min-width: 1024px) {
-    width: 300px;
-    flex-shrink: 0;
+  .sidebar.is-mobile-open .sidebar-content {
+    display: block !important;
+    animation: slideIn 0.3s ease-out;
   }
 }
 
-.sidebar-sticky {
-  @media (min-width: 1024px) {
+/* Desktop: Fixed Width & Sticky */
+@media (min-width: 1024px) {
+  .sidebar {
+    width: 300px;
+    flex-shrink: 0;
+  }
+
+  .sidebar-sticky {
     position: sticky;
-    top: 8rem; // Adjust based on header height
+    top: 8rem; /* Adjust based on header height */
     max-height: calc(100vh - 8rem);
     overflow-y: auto;
-    padding-right: 1rem; // Scrollbar space
+    padding-right: 1rem; /* Scrollbar space */
+  }
 
-    // Custom Scrollbar
-    &::-webkit-scrollbar {
-      width: 4px;
-    }
-    &::-webkit-scrollbar-thumb {
-      background-color: #e5e7eb;
-      border-radius: 4px;
-    }
+  .sidebar-sticky::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .sidebar-sticky::-webkit-scrollbar-thumb {
+    background-color: #e5e7eb;
+    border-radius: 4px;
   }
 }
 
@@ -264,32 +265,30 @@ onUnmounted(() => {
   margin-bottom: 1.5rem;
 }
 
-.toc-nav {
-  .toc-link {
-    display: flex;
-    align-items: center;
-    padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
-    color: #4b5563; // text-gray-600
-    transition: all 0.2s ease;
-    font-size: 0.95rem;
+.toc-nav .toc-link {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  color: #4b5563; /* text-gray-600 */
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
 
-    &:hover {
-      background-color: #f3f4f6; // bg-gray-100
-      color: #111827; // text-gray-900
-    }
+.toc-nav .toc-link:hover {
+  background-color: #f3f4f6; /* bg-gray-100 */
+  color: #111827; /* text-gray-900 */
+}
 
-    &.active {
-      background-color: #eff6ff; // bg-primary-50 (assuming blue/primary)
-      color: var(--ui-primary, #0284c7); // Use CSS variable or fallback
-      font-weight: 500;
-    }
-  }
+.toc-nav .toc-link.active {
+  background-color: #eff6ff;
+  color: var(--ui-primary, #0284c7);
+  font-weight: 500;
 }
 
 .main-content {
   flex: 1;
-  min-width: 0; // Prevent flex item overflow
+  min-width: 0; /* Prevent flex item overflow */
 }
 
 @keyframes slideIn {

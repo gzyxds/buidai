@@ -30,3 +30,6 @@ lerna-debug.log*
 .备份目录
 参考设计/
 .output
+
+# 编辑器本地状态
+.vscode/cata-notes.json
