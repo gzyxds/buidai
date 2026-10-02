@@ -28,5 +28,5 @@ lerna-debug.log*
 .env.*
 .env.example
 .备份目录
-.参考设计/
+参考设计/
 .output
