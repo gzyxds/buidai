@@ -53,7 +53,7 @@
 		"vue-tsc": "^3.2.0"
 	},
 	"dependencies": {
-		"@nuxt/content": "^3.0.0-alpha.8",
+		"@nuxt/content": "^3.16.1",
 		"@nuxt/ui": "^4.3.0",
 		"@tailwindcss/vite": "^4.1.18",
 		"matter-js": "^0.20.0",

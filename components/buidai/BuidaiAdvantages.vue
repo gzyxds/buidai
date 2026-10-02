@@ -47,11 +47,9 @@ const advantages: Advantage[] = [
   <!-- 平台优势 -->
   <section class="py-16 md:py-24 bg-neutral-50">
     <div class="container mx-auto px-4">
-      <div class="text-center mb-16 max-w-3xl mx-auto">
-        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-50 text-indigo-600 border border-indigo-100 mb-4">平台优势</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 mb-6">平台核心优势</h2>
-        <p class="text-neutral-500 text-lg leading-relaxed">构建在先进架构之上的企业级 AI 解决方案，助力企业快速落地 AI 应用</p>
-      </div>
+      <SectionHeading eyebrow="平台优势" title-size="lg" description="构建在先进架构之上的企业级 AI 解决方案，助力企业快速落地 AI 应用">
+        平台核心优势
+      </SectionHeading>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <UPageCard

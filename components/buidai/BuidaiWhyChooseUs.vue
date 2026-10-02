@@ -22,11 +22,9 @@ const whyChooseUs = [
       <rect width="100%" height="100%" stroke-width="0" fill="url(#why-choose-us-grid)" />
     </svg>
     <div class="container mx-auto px-4">
-      <div class="text-center mb-16 max-w-3xl mx-auto">
-        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-50 text-indigo-600 border border-indigo-100 mb-4">为什么选择我们</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 mb-6">为什么选择 智言AI？</h2>
-        <p class="text-neutral-500 text-lg leading-relaxed">从个人开发者探索到企业级部署，智言AI 提供强大的工作流引擎与多模型集成能力</p>
-      </div>
+      <SectionHeading eyebrow="为什么选择我们" title-size="lg" description="从个人开发者探索到企业级部署，智言AI 提供强大的工作流引擎与多模型集成能力">
+        为什么选择 智言AI？
+      </SectionHeading>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <UPageCard v-for="item in whyChooseUs" :key="item.title" v-bind="item" />

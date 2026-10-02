@@ -2,18 +2,10 @@
   <section class="py-16 md:py-24 bg-gradient-to-b from-white to-neutral-50">
     <div class="container mx-auto px-4">
       <!-- 标题区域 -->
-      <div class="text-center max-w-2xl mx-auto mb-14">
-        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-50 text-indigo-600 border border-indigo-100 mb-4">
-          大模型能力
-        </span>
-        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-neutral-900 tracking-tight leading-tight">
-          智言AI内置
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">全球领先大模型</span>
-        </h2>
-        <p class="mt-4 text-neutral-500 text-sm sm:text-base leading-relaxed">
-          智言AI内置全球领先大模型，会在模型发布的第一时间即刻接入，为您节约大量开发成本
-        </p>
-      </div>
+      <SectionHeading eyebrow="大模型能力" description="智言AI内置全球领先大模型，会在模型发布的第一时间即刻接入，为您节约大量开发成本">
+        智言AI内置
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">全球领先大模型</span>
+      </SectionHeading>
 
       <!-- Logo 品牌展示区 -->
       <div class="mb-16">

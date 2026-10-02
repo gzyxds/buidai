@@ -2,17 +2,9 @@
   <section class="py-16 md:py-24 bg-white">
     <div class="container mx-auto px-4">
       <!-- 标题区域 -->
-      <div class="text-center max-w-3xl mx-auto mb-14">
-        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-50 text-indigo-600 border border-indigo-100 mb-4">
-          覆盖主流 AI 应用
-        </span>
-        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-neutral-900 leading-tight">
-          适合<span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">私有化产品交付</span>
-        </h2>
-        <p class="mt-3.5 text-sm sm:text-base text-neutral-500 leading-relaxed">
-          覆盖内容创作、客户服务、数字营销等核心场景，助力企业降本增效
-        </p>
-      </div>
+      <SectionHeading eyebrow="覆盖主流 AI 应用" description="覆盖内容创作、客户服务、数字营销等核心场景，助力企业降本增效">
+        适合<span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">私有化产品交付</span>
+      </SectionHeading>
 
       <!-- 分类导航 -->
       <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 mb-12">

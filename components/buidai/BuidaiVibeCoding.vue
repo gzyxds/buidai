@@ -25,15 +25,9 @@ const vibeTools: VibeTool[] = [
   <!-- 氛围编程（Vibe Coding） -->
   <section class="py-16 md:py-24 bg-[#f7f7f7]">
     <div class="container mx-auto px-4">
-      <div class="text-center mb-12">
-        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-50 text-indigo-600 border border-indigo-100 mb-4">Vibe Coding</span>
-        <h2 class="text-xl md:text-2xl font-bold text-neutral-900 mb-3">
-          智言AI完美支持氛围编程（Vibe Coding）的开发方式
-        </h2>
-        <p class="text-sm md:text-base text-neutral-500 max-w-2xl mx-auto">
-          最佳调优的内置提示词结合AI辅助编程，快速完成AI应用开发，一键部署到常用云平台。
-        </p>
-      </div>
+      <SectionHeading eyebrow="Vibe Coding" title-size="sm" description="最佳调优的内置提示词结合AI辅助编程，快速完成AI应用开发，一键部署到常用云平台。">
+        智言AI完美支持氛围编程（Vibe Coding）的开发方式
+      </SectionHeading>
 
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <div v-for="tool in vibeTools" :key="tool.name" class="flex items-center gap-3 px-5 py-4 bg-white rounded-xl border border-neutral-200 hover:border-indigo-200 hover:shadow-sm transition-all duration-200">
