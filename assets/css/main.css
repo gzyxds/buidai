@@ -13,9 +13,9 @@
   /* 统一圆角半径，映射 Nuxt UI 组件默认半径 */
   --ui-radius: 0.125rem;
 
-  /* 品牌色 — 统一色值（替代散落的硬编码十六进制） */
-  --brand-primary: #6E58FF;
-  --brand-primary-dark: #5d47e6;
+  /* 品牌色 — 与 Nuxt UI 主色统一（浅色下引用同一 oklch 紫） */
+  --brand-primary: var(--ui-primary);
+  --brand-primary-dark: oklch(52.5% .233 277.117);
   --brand-text: #0F0F12;
   --brand-muted: #5A5E6A;
 }
@@ -24,6 +24,8 @@
 .dark {
   /* 深色模式下的主品牌色 (白色) */
   --ui-primary: white;
+  /* 品牌色在深色下保持紫（不跟随 --ui-primary 变白） */
+  --brand-primary: oklch(58.5% .233 277.117);
 }
 
 /**
