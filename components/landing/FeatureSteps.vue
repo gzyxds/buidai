@@ -205,7 +205,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, computed } from 'vue'
 
 /**
  * 自动轮播间隔时间（毫秒）
@@ -285,52 +285,10 @@ const currentCard = computed(() => featureCards[activeCard.value]!)
 // 当前卡片序号（格式化为两位数字）
 const cardIndex = computed(() => String(activeCard.value + 1).padStart(2, '0'))
 
-// 自动轮播定时器
-let autoplayTimer: ReturnType<typeof setInterval> | null = null
-
-// 恢复自动轮播定时器
-let autoplayResumeTimer: ReturnType<typeof setTimeout> | null = null
-
-/**
- * 停止自动轮播
- */
-const stopAutoplay = () => {
-  if (autoplayTimer) {
-    clearInterval(autoplayTimer)
-    autoplayTimer = null
-  }
-}
-
-/**
- * 开始自动轮播
- */
-const startAutoplay = () => {
-  stopAutoplay()
-  autoplayTimer = setInterval(() => {
-    activeCard.value = (activeCard.value + 1) % featureCards.length
-  }, AUTOPLAY_INTERVAL)
-}
-
-/**
- * 暂停自动轮播（鼠标进入时）
- */
-const pauseAutoplay = () => {
-  stopAutoplay()
-  if (autoplayResumeTimer) {
-    clearTimeout(autoplayResumeTimer)
-    autoplayResumeTimer = null
-  }
-}
-
-/**
- * 恢复自动轮播（鼠标离开时）
- */
-const resumeAutoplay = () => {
-  if (autoplayResumeTimer) {
-    clearTimeout(autoplayResumeTimer)
-  }
-  autoplayResumeTimer = setTimeout(startAutoplay, RESUME_DELAY)
-}
+const { pause: pauseAutoplay, resume: resumeAutoplay } = useAutoPlay(
+  () => { activeCard.value = (activeCard.value + 1) % featureCards.length },
+  { interval: AUTOPLAY_INTERVAL, resumeDelay: RESUME_DELAY }
+)
 
 /**
  * 设置当前激活的功能卡片
@@ -341,37 +299,7 @@ const setActiveCard = (index: number) => {
   resumeAutoplay()
 }
 
-/**
- * 处理键盘导航事件
- * @param event - 键盘事件对象
- * @param currentIndex - 当前按钮索引
- */
-const handleKeydown = (event: KeyboardEvent, currentIndex: number) => {
-  const actions: Record<string, () => void> = {
-    ArrowDown: () => currentIndex < featureCards.length - 1 && setActiveCard(currentIndex + 1),
-    ArrowUp: () => currentIndex > 0 && setActiveCard(currentIndex - 1),
-    Home: () => setActiveCard(0),
-    End: () => setActiveCard(featureCards.length - 1)
-  }
-
-  const action = actions[event.key]
-  if (action) {
-    event.preventDefault()
-    action()
-    nextTick(() => document.getElementById(`feature-tab-${activeCard.value}`)?.focus())
-  }
-}
-
-// 组件挂载时启动自动轮播
-onMounted(startAutoplay)
-
-// 组件卸载时清理定时器
-onUnmounted(() => {
-  stopAutoplay()
-  if (autoplayResumeTimer) {
-    clearTimeout(autoplayResumeTimer)
-  }
-})
+const { handleKeydown } = useListKeyboardNav(() => featureCards.length, setActiveCard, { focusIdPrefix: 'feature-tab-' })
 </script>
 
 <style scoped>

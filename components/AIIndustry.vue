@@ -139,7 +139,7 @@
 
 <script setup lang="ts">
 import { dispatchQrModal } from '~/utils/qrModal'
-import { ref, computed, onMounted, onUnmounted, nextTick, type Component } from 'vue'
+import { ref, computed, type Component } from 'vue'
 import {
   SparklesIcon,
   VideoCameraIcon,
@@ -238,42 +238,14 @@ const isAutoplay = ref(true)
 
 const currentTab = computed(() => tabs[active.value] || tabs[0])
 
-let autoplayTimer: ReturnType<typeof setInterval> | null = null
-let autoplayResumeTimer: ReturnType<typeof setTimeout> | null = null
-
-const stopAutoplay = () => {
-  if (autoplayTimer) { clearInterval(autoplayTimer); autoplayTimer = null }
-  isAutoplay.value = false
-}
-
-const startAutoplay = () => {
-  stopAutoplay()
-  isAutoplay.value = true
-  autoplayTimer = setInterval(() => { active.value = (active.value + 1) % tabs.length }, AUTOPLAY_INTERVAL)
-}
-
-const pauseAutoplay = () => {
-  stopAutoplay()
-  if (autoplayResumeTimer) { clearTimeout(autoplayResumeTimer); autoplayResumeTimer = null }
-}
-
-const resumeAutoplay = () => {
-  if (autoplayResumeTimer) clearTimeout(autoplayResumeTimer)
-  autoplayResumeTimer = setTimeout(startAutoplay, RESUME_DELAY)
-}
+const { pause: pauseAutoplay, resume: resumeAutoplay } = useAutoPlay(
+  () => { active.value = (active.value + 1) % tabs.length },
+  { interval: AUTOPLAY_INTERVAL, resumeDelay: RESUME_DELAY, onActiveChange: (value) => { isAutoplay.value = value } }
+)
 
 const setActive = (index: number) => { active.value = index; resumeAutoplay() }
 
-const handleKeydown = (event: KeyboardEvent, currentIndex: number) => {
-  const actions: Record<string, () => void> = {
-    ArrowDown: () => currentIndex < tabs.length - 1 && setActive(currentIndex + 1),
-    ArrowUp: () => currentIndex > 0 && setActive(currentIndex - 1),
-    Home: () => setActive(0),
-    End: () => setActive(tabs.length - 1)
-  }
-  const action = actions[event.key]
-  if (action) { event.preventDefault(); action(); nextTick(() => document.getElementById(`industry-tab-${active.value}`)?.focus()) }
-}
+const { handleKeydown } = useListKeyboardNav(() => tabs.length, setActive, { focusIdPrefix: 'industry-tab-' })
 
 const openQrModal = (type: 'solution' | 'consult') => {
   const config = type === 'solution'
@@ -282,12 +254,6 @@ const openQrModal = (type: 'solution' | 'consult') => {
   dispatchQrModal(config)
 }
 
-onMounted(startAutoplay)
-
-onUnmounted(() => {
-  stopAutoplay()
-  if (autoplayResumeTimer) clearTimeout(autoplayResumeTimer)
-})
 </script>
 
 <style scoped>

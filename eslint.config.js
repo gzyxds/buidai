@@ -25,6 +25,8 @@ const nuxtGlobals = {
   useTypewriter: true,
   useScrollThreshold: true,
   useScrollProgress: true,
+  useAutoPlay: true,
+  useListKeyboardNav: true,
   clearError: true,
   createError: true,
   showError: true,

@@ -723,25 +723,7 @@ const toggleFaq = (idx: number) => {
   activeFaq.value = activeFaq.value === idx ? null : idx
 }
 
-/**
- * 处理 FAQ 键盘导航事件
- * @param event - 键盘事件对象
- * @param currentIndex - 当前按钮索引
- */
-const handleFaqKeydown = (event: KeyboardEvent, currentIndex: number) => {
-  const actions: Record<string, () => void> = {
-    ArrowDown: () => currentIndex < faqs.length - 1 && toggleFaq(currentIndex + 1),
-    ArrowUp: () => currentIndex > 0 && toggleFaq(currentIndex - 1),
-    Home: () => toggleFaq(0),
-    End: () => toggleFaq(faqs.length - 1)
-  }
-
-  const action = actions[event.key]
-  if (action) {
-    event.preventDefault()
-    action()
-  }
-}
+const { handleKeydown: handleFaqKeydown } = useListKeyboardNav(() => faqs.length, toggleFaq)
 
 // 打字机效果相关
 const texts = ['智言AI 领先的AI创作平台', '可视化 Workflow 编排', '超易用 AI 知识库', '创新 RAG 检索', '轻松构建强大 AI 应用']

@@ -362,9 +362,6 @@ const features: FeatureItem[] = [
 /** 当前激活的标签索引 - 使用 shallowRef 提升性能 */
 const activeTab = shallowRef(0)
 
-/** 自动播放计时器 */
-let autoPlayTimer: ReturnType<typeof setInterval> | null = null
-
 /** 触摸滑动相关状态 */
 let touchStartX = 0
 let touchEndX = 0
@@ -550,40 +547,13 @@ const handleImageError = (event: Event): void => {
   img.src = '/images/placeholder.webp'
 }
 
-/**
- * 启动自动播放
- */
-const startAutoPlay = (): void => {
-  stopAutoPlay()
-  autoPlayTimer = setInterval(() => {
-    nextTab()
-  }, 4000)
-}
-
-/**
- * 停止自动播放
- */
-const stopAutoPlay = (): void => {
-  if (autoPlayTimer) {
-    clearInterval(autoPlayTimer)
-    autoPlayTimer = null
-  }
-}
-
-/**
- * 重置自动播放
- */
-const resetAutoPlay = (): void => {
-  stopAutoPlay()
-  startAutoPlay()
-}
+const { start: startAutoPlay, stop: stopAutoPlay, reset: resetAutoPlay } = useAutoPlay(nextTab, { interval: 4000 })
 
 // ==========================================
 // 生命周期钩子
 // ==========================================
 
 onMounted(() => {
-  startAutoPlay()
   // 预加载第一张和相邻图片
   preloadAdjacentImages()
   // 添加键盘事件监听
@@ -593,7 +563,6 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  stopAutoPlay()
   // 移除键盘事件监听
   window.removeEventListener('keydown', handleKeydown)
   // 移除页面可见性监听
