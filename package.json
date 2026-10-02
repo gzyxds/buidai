@@ -17,7 +17,8 @@
 		"lint:fix": "eslint --ext .vue,.ts,.js . --fix",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
-		"test:sitemap": "node scripts/test-sitemap.mjs"
+		"test": "vitest run",
+		"test:watch": "vitest"
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",

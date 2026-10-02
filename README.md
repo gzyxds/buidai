@@ -39,9 +39,9 @@ npm run lint         # ESLint
 npm run lint:fix     # ESLint 自动修复
 npm run format       # Prettier 格式化
 npm run format:check # Prettier 检查
+npm run test         # vitest 单元测试（tests/）
+npm run test:watch   # vitest 监听模式
 ```
-
-> ⚠️ `npm run test:sitemap` 当前不可用——它指向 `scripts/test-sitemap.mjs`，但 `scripts/` 目录为空。仓库已安装 vitest 与 @nuxt/test-utils，但尚无任何测试文件。
 
 ## 目录结构
 
