@@ -1,0 +1,208 @@
+---
+title: "Runtime Config"
+description: "Nuxt provides a runtime config API to expose configuration and secrets within your application."
+canonical_url: "https://nuxt.com/docs/4.x/guide/going-further/runtime-config"
+---
+# Runtime Config
+
+> Nuxt provides a runtime config API to expose configuration and secrets within your application.
+
+## Exposing
+
+To expose config and environment variables to the rest of your app, you will need to define runtime configuration in your [`nuxt.config`](https://nuxt.com/docs/4.x/directory-structure/nuxt-config) file, using the [`runtimeConfig`](https://nuxt.com/docs/4.x/api/nuxt-config#runtimeconfig) option.
+
+```ts [nuxt.config.ts]
+export default defineNuxtConfig({
+  runtimeConfig: {
+    // The private keys which are only available within server-side
+    apiSecret: '123',
+    // Keys within public, will be also exposed to the client-side
+    public: {
+      apiBase: '/api',
+    },
+  },
+})
+```
+
+When adding `apiBase` to the `runtimeConfig.public`, Nuxt adds it to each page payload. We can universally access `apiBase` in both server and browser.
+
+```ts
+const runtimeConfig = useRuntimeConfig()
+
+console.log(runtimeConfig.apiSecret)
+console.log(runtimeConfig.public.apiBase)
+```
+
+::tip
+Public runtime config is accessible in Vue templates with `$config.public`.
+::
+
+### Application Secret
+
+Runtime config keys prefixed with `app` are reserved for Nuxt (currently `runtimeConfig.app` and `runtimeConfig.appSecret`). Do not use them for your own values.
+
+Nuxt provides a private `runtimeConfig.appSecret` as the application's root secret. Modules and server features derive their own secrets from it with [`deriveSecret`](https://nuxt.com/docs/4.x/guide/going-further/server-imports#deriving-secrets), and the [session helpers](https://nuxt.com/docs/4.x/guide/going-further/server-imports#sessions) seal with one by default. The value defaults to an empty string, is only available on the server, and you can set it with `NUXT_APP_SECRET` without declaring the key in `nuxt.config`.
+
+Generate a secret that contains at least 32 random bytes:
+
+```bash [Terminal]
+openssl rand -base64 32
+```
+
+::important
+Use a different value for each environment, but keep it stable across deployments and server instances within that environment. Changing the value invalidates any sessions or signatures that depend on it.
+::
+
+Nitro parses environment overrides, so a secret made only of digits or one that looks like JSON arrives as a number, boolean or object rather than a string. Wrap such a value in quotes (`NUXT_APP_SECRET='"12345..."'`) or set `runtimeConfig.appSecret` in `nuxt.config` instead.
+
+In development, Nuxt generates a random secret and stores it in `.nuxt/app-secret` only when `appSecret` is unset, so features that depend on it work without any setup. A configured value is always used as is. Nuxt logs a warning the first time a derived secret is used with the generated value. Builds never generate one: set `NUXT_APP_SECRET` in every environment you deploy to.
+
+Nuxt does not require `NUXT_APP_SECRET` unless a module or server feature uses it.
+
+### Serialization
+
+Your runtime config will be serialized before being passed to Nitro. This means that anything that cannot be serialized and then deserialized (such as functions, Sets, Maps, and so on), should not be set in your `nuxt.config`.
+
+Instead of passing non-serializable objects or functions into your application from your `nuxt.config`, you can place this code in a Nuxt or Nitro plugin or middleware.
+
+### Environment Variables
+
+The most common way to provide configuration is by using environment variables.
+
+::note
+The Nuxt CLI has built-in support for reading your `.env` file in development, build and generate. But when you run your built server, **your .env file will not be read**.
+
+:read-more{to="https://nuxt.com/docs/4.x/directory-structure/env"}
+::
+
+Runtime config values are **automatically replaced by matching environment variables at runtime**.
+
+There are two key requirements:
+
+1. Custom runtime config variables must be defined in your `nuxt.config`. This ensures that arbitrary environment variables are not exposed to your application code.
+2. Only a specially-named environment variable can override a runtime config property. That is, an uppercase environment variable starting with `NUXT_` which uses `_` to separate keys and case changes.
+
+::warning
+Setting the default of `runtimeConfig` values to *differently named environment variables* (for example setting `myVar` to `process.env.OTHER_VARIABLE`) will only work during build-time and will break on runtime.
+It is advised to use environment variables that match the structure of your `runtimeConfig` object.
+::
+
+::warning
+Environment variable values are automatically cast to their JavaScript type using [`destr`](https://github.com/unjs/destr). For example, `NUXT_MY_VAR=4848e0` becomes the number `4848`. To keep a value a string, the environment variable value itself must contain literal double quotes: in a `.env` file, write `NUXT_MY_VAR='"4848e0"'`; when setting the variable directly (in a shell, Dockerfile, or hosting dashboard), make sure the quotes are part of the value and not stripped by the shell (for example `NUXT_MY_VAR='"4848e0"' node .output/server/index.mjs`).
+::
+
+::tip{icon="i-lucide-video" target="_blank" to="https://youtu.be/_FYV5WfiWvs"}
+Watch a video from Alexander Lichter showcasing the top mistake developers make using runtimeConfig.
+::
+
+#### Example
+
+```ini [.env]
+NUXT_API_SECRET=api_secret_token
+NUXT_PUBLIC_API_BASE=https://nuxtjs.org
+```
+
+```ts [nuxt.config.ts]
+export default defineNuxtConfig({
+  runtimeConfig: {
+    apiSecret: '', // can be overridden by NUXT_API_SECRET environment variable
+    public: {
+      apiBase: '', // can be overridden by NUXT_PUBLIC_API_BASE environment variable
+    },
+  },
+})
+```
+
+## Reading
+
+### Vue App
+
+Within the Vue part of your Nuxt app, you will need to call [`useRuntimeConfig()`](https://nuxt.com/docs/4.x/api/composables/use-runtime-config) to access the runtime config.
+
+::important
+The behavior is different between the client-side and server-side:
+
+- On client-side, only keys in `runtimeConfig.public` and `runtimeConfig.app` (which is used by Nuxt internally) are available, and the object is both writable and reactive.
+- On server-side, the entire runtime config is available, but it is read-only to avoid context sharing.
+::
+
+```vue [app/pages/index.vue]
+<script setup lang="ts">
+const config = useRuntimeConfig()
+
+console.log('Runtime config:', config)
+if (import.meta.server) {
+  console.log('API secret:', config.apiSecret)
+}
+</script>
+
+<template>
+  <div>
+    <div>Check developer console!</div>
+  </div>
+</template>
+```
+
+::caution
+**Security note:** Be careful not to expose runtime config keys to the client-side by either rendering them or passing them to `useState`.
+::
+
+### Plugins
+
+If you want to use the runtime config within any (custom) plugin, you can use [`useRuntimeConfig()`](https://nuxt.com/docs/4.x/api/composables/use-runtime-config) inside of your `defineNuxtPlugin` function.
+
+```ts [app/plugins/config.ts]
+export default defineNuxtPlugin((nuxtApp) => {
+  const config = useRuntimeConfig()
+
+  console.log('API base URL:', config.public.apiBase)
+})
+```
+
+### Server Routes
+
+You can access runtime config within the server routes as well using `useRuntimeConfig`.
+
+```ts [server/api/test.ts]
+export default defineEventHandler(async (event) => {
+  const { apiSecret } = useRuntimeConfig(event)
+  const result = await $fetch('https://my.api.com/test', {
+    headers: {
+      Authorization: `Bearer ${apiSecret}`,
+    },
+  })
+  return result
+})
+```
+
+::note
+Giving the `event` as argument to `useRuntimeConfig` is optional, but it is recommended to pass it to get the runtime config overwritten by [environment variables](https://nuxt.com/docs/4.x/guide/going-further/runtime-config#environment-variables) at runtime for server routes.
+::
+
+## Typing Runtime Config
+
+Nuxt tries to automatically generate a typescript interface from provided runtime config using [unjs/untyped](https://github.com/unjs/untyped).
+
+But it is also possible to type your runtime config manually:
+
+```ts [index.d.ts]
+declare module 'nuxt/schema' {
+  interface RuntimeConfig {
+    apiSecret: string
+  }
+  interface PublicRuntimeConfig {
+    apiBase: string
+  }
+}
+// It is always important to ensure you import/export something when augmenting a type
+export {}
+```
+
+::note
+`nuxt/schema` is provided as a convenience for end-users to access the version of the schema used by Nuxt in their project. Module authors should instead augment `@nuxt/schema`.
+::
+
+
+## Sitemap
+
+See the full [sitemap](https://nuxt.com/sitemap.md) for all pages.

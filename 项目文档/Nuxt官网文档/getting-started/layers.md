@@ -1,0 +1,191 @@
+---
+title: "Layers"
+description: "Nuxt provides a powerful system that allows you to extend the default files, configs, and much more."
+canonical_url: "https://nuxt.com/docs/4.x/getting-started/layers"
+---
+# Layers
+
+> Nuxt provides a powerful system that allows you to extend the default files, configs, and much more.
+
+One of the core features of Nuxt is the layers and extending support. You can extend a default Nuxt application to reuse components, utils, and configuration. The layers structure is almost identical to a standard Nuxt application which makes them easy to author and maintain.
+
+## Use Cases
+
+- Share reusable configuration presets across projects using `nuxt.config` and `app.config`
+- Create a component library using [`app/components/`](https://nuxt.com/docs/4.x/directory-structure/app/components) directory
+- Create utility and composable library using [`app/composables/`](https://nuxt.com/docs/4.x/directory-structure/app/composables) and [`app/utils/`](https://nuxt.com/docs/4.x/directory-structure/app/utils) directories
+- Create Nuxt module presets
+- Share standard setup across projects
+- Create Nuxt themes
+- Enhance code organization by implementing a modular architecture and support Domain-Driven Design (DDD) pattern in large scale projects.
+
+## Usage
+
+By default, any layers within your project in the `~~/layers` directory will be automatically registered as layers in your project.
+
+::note
+Layer auto-registration was introduced in Nuxt v3.12.0.
+::
+
+In addition, named layer aliases to the `srcDir` of each of these layers will automatically be created. For example, you will be able to access the `~~/layers/test` layer via `#layers/test`.
+
+::note
+Named layer aliases were introduced in Nuxt v3.16.0.
+::
+
+In addition, you can extend from a layer by adding the [extends](https://nuxt.com/docs/4.x/api/nuxt-config#extends) property to your [`nuxt.config`](https://nuxt.com/docs/4.x/directory-structure/nuxt-config) file.
+
+```ts [nuxt.config.ts]
+export default defineNuxtConfig({
+  extends: [
+    // Extend from a local layer
+    '../base',
+    // Extend from an installed npm package
+    '@my-themes/awesome',
+    // Extend from a git repository
+    'github:my-themes/awesome#v1',
+  ],
+})
+```
+
+You can also pass an authentication token if you are extending from a private GitHub repository:
+
+```ts [nuxt.config.ts]
+export default defineNuxtConfig({
+  extends: [
+    // per layer configuration
+    ['github:my-themes/private-awesome', { auth: process.env.GITHUB_TOKEN }],
+  ],
+})
+```
+
+::note
+If a branch is not specified, this will clone `main`.
+::
+
+::tip
+You can override a layer's alias by specifying it in the options next to the layer source.
+
+```ts [nuxt.config.ts]
+export default defineNuxtConfig({
+  extends: [
+    [
+      'github:my-themes/awesome',
+      {
+        meta: {
+          name: 'my-awesome-theme',
+        },
+      },
+    ],
+  ],
+})
+```
+::
+
+Nuxt uses [unjs/c12](https://github.com/unjs/c12) and [unjs/giget](https://github.com/unjs/giget) for extending remote layers. Check the documentation for more information and all available options.
+
+## Layer Priority
+
+When using multiple layers, it's important to understand the override order. Layers with **higher priority** override layers with lower priority when they define the same files or components.
+
+### Priority Order
+
+From highest to lowest priority:
+
+1. **Your project files** - always have the highest priority
+2. **Auto-scanned layers** from `~~/layers` directory - sorted alphabetically (Z has higher priority than A)
+3. **Layers in extends** config - first entry has higher priority than second
+
+### Practical Example
+
+Consider multiple layers defining the same component:
+
+```bash [Directory structure]
+layers/
+  1.base/
+    app/components/Button.vue    # Base button style
+  2.theme/
+    app/components/Button.vue    # Themed button (overrides base)
+app/
+  components/Button.vue          # Project button (overrides all layers)
+```
+
+In this case:
+
+- If only layers exist, `2.theme/Button.vue` is used (higher alphabetically)
+- If `app/components/Button.vue` exists in your project, it overrides all layers
+
+### Controlling Priority
+
+You can prefix layer directories with numbers to control the order:
+
+```bash [Directory structure]
+layers/
+  1.base/        # Lowest priority
+  2.features/    # Medium priority
+  3.admin/       # Highest priority (among layers)
+```
+
+::tip
+This pattern is useful for creating base layers with defaults that can be progressively overridden by more specific layers.
+::
+
+Alternatively, you can control the order of your `~~/layers` directories from `nuxt.config` by referencing them in [`extends`](https://nuxt.com/docs/4.x/api/nuxt-config#extends), without renaming your directories. The entries are ordered like any other `extends` layer, with the **first entry having the highest priority**:
+
+```ts [nuxt.config.ts]
+export default defineNuxtConfig({
+  extends: [
+    '~~/layers/admin', // highest priority
+    '~~/layers/features',
+    '~~/layers/base', // lowest priority (among the listed layers)
+  ],
+})
+```
+
+Both `~~/...` (recommended) and `~/...` alias forms as well as relative paths (`./layers/admin`) are supported. Any layer in `~~/layers` that you do not list keeps its alphabetical auto-scan order, ranked below the layers you list in `extends`.
+
+### When to Use Each
+
+- **~~/layers directory** - Use for local layers that are part of your project
+- **extends** - Use for external dependencies (npm packages, remote repositories) or layers outside your project directory
+
+### Full Example with `extends`
+
+```ts [nuxt.config.ts]
+export default defineNuxtConfig({
+  extends: [
+    '../base', // Local layer outside project
+    '@my-themes/awesome', // NPM package
+    'github:my-themes/awesome#v1', // Remote repository
+  ],
+})
+```
+
+If you also have `~~/layers/custom`, the priority order is:
+
+- Your project files (highest)
+- `~~/layers/custom`
+- `../base`
+- `@my-themes/awesome`
+- `github:my-themes/awesome#v1` (lowest)
+
+::read-more{to="https://nuxt.com/docs/4.x/directory-structure/layers"}
+Learn about the **layers/ directory** to organize and share reusable code, components, composables, and configurations across your Nuxt application.
+::
+
+::read-more{to="https://nuxt.com/docs/4.x/guide/going-further/layers"}
+Read more about layers in the **Layer Author Guide**.
+::
+
+:video-accordion{title="Watch a video from Learn Vue about Nuxt Layers" video-id="lnFCM7c9f7I"}:video-accordion{title="Watch a video from Alexander Lichter about Nuxt Layers" video-id="fr5yo3aVkfA"}## Example
+
+::card-group
+::card{icon="i-simple-icons-github" target="_blank" title="Content Wind" to="https://github.com/Atinux/content-wind"}
+A lightweight Nuxt theme to build a Markdown driven website. Powered by Nuxt Content, TailwindCSS and Iconify.
+::
+::
+
+
+## Sitemap
+
+See the full [sitemap](https://nuxt.com/sitemap.md) for all pages.

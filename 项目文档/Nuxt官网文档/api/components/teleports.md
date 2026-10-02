@@ -1,0 +1,52 @@
+---
+title: "<Teleport>"
+description: "The <Teleport> component teleports a component to a different location in the DOM."
+canonical_url: "https://nuxt.com/docs/4.x/api/components/teleports"
+---
+# <Teleport>
+
+> The <Teleport> component teleports a component to a different location in the DOM.
+
+::warning
+The `to` target of [`<Teleport>`](https://vuejs.org/guide/built-ins/teleport) expects a CSS selector string or an actual DOM node. Nuxt currently has SSR support for teleports to `#teleports` only, with client-side support for other targets using a `<ClientOnly>` wrapper.
+::
+
+## Body Teleport
+
+```vue
+<template>
+  <button @click="open = true">
+    Open Modal
+  </button>
+  <Teleport to="#teleports">
+    <div
+      v-if="open"
+      class="modal"
+    >
+      <p>Hello from the modal!</p>
+      <button @click="open = false">
+        Close
+      </button>
+    </div>
+  </Teleport>
+</template>
+```
+
+## Client-side Teleport
+
+```vue
+<template>
+  <ClientOnly>
+    <Teleport to="#some-selector">
+      <!-- content -->
+    </Teleport>
+  </ClientOnly>
+</template>
+```
+
+:link-example{to="https://nuxt.com/docs/4.x/examples/advanced/teleport"}
+
+
+## Sitemap
+
+See the full [sitemap](https://nuxt.com/sitemap.md) for all pages.

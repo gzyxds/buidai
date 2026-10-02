@@ -1,0 +1,171 @@
+---
+title: "Vue.js Development"
+description: "Nuxt uses Vue.js and adds features such as component auto-imports, file-based routing and composables for an SSR-friendly usage."
+canonical_url: "https://nuxt.com/docs/4.x/guide/concepts/vuejs-development"
+---
+# Vue.js Development
+
+> Nuxt uses Vue.js and adds features such as component auto-imports, file-based routing and composables for an SSR-friendly usage.
+
+Nuxt integrates Vue 3, the new major release of Vue that enables new patterns for Nuxt users.
+
+::note
+While an in-depth knowledge of Vue is not required to use Nuxt, we recommend that you read the documentation and go through some of the examples on [vuejs.org](https://vuejs.org).
+::
+
+Nuxt has always used Vue as a frontend framework.
+
+We chose to build Nuxt on top of Vue for these reasons:
+
+- The reactivity model of Vue, where a change in data automatically triggers a change in the interface.
+- The component-based templating, while keeping HTML as the common language of the web, enables intuitive patterns to keep your interface consistent, yet powerful.
+- From small projects to large web applications, Vue keeps performing well at scale to ensure that your application keeps delivering value to your users.
+
+## Vue with Nuxt
+
+### Single File Components
+
+[Vue’s single-file components](https://vuejs.org/guide/scaling-up/sfc) (SFC or `*.vue` files) encapsulate the markup (`<template>`), logic (`<script>`) and styling (`<style>`) of a Vue component. Nuxt provides a zero-config experience for SFCs with [Hot Module Replacement](https://vite.dev/guide/features#hot-module-replacement) that offers a seamless developer experience.
+
+### Auto-imports
+
+Every Vue component created in the [`app/components/`](https://nuxt.com/docs/4.x/directory-structure/app/components) directory of a Nuxt project will be available in your project without having to import it. If a component is not used anywhere, your production’s code will not include it.
+
+:read-more{to="https://nuxt.com/docs/4.x/guide/concepts/auto-imports"}### Vue Router
+
+Most applications need multiple pages and a way to navigate between them. This is called **routing**. Nuxt uses an [`app/pages/`](https://nuxt.com/docs/4.x/directory-structure/app/pages) directory and naming conventions to directly create routes mapped to your files using the official [Vue Router library](https://router.vuejs.org).
+
+:read-more{to="https://nuxt.com/docs/4.x/getting-started/routing"}:link-example{to="https://nuxt.com/docs/4.x/examples/features/auto-imports"}## Vapor Mode
+
+::warning
+Vapor Mode support is experimental and requires Vue 3.6 or newer. The API may change.
+::
+
+[Vapor Mode](https://github.com/vuejs/core/releases/tag/v3.6.0-rc.1#about-vapor-mode) is an alternative compilation strategy introduced in Vue 3.6 that renders components without the Virtual DOM, lowering memory use and improving runtime performance.
+
+Nuxt supports Vapor Mode in **interop mode**: your application is still rendered with the Virtual DOM, and you opt individual components or pages into Vapor by writing them as Vapor single-file components. This lets you adopt Vapor incrementally, and the rest of Nuxt (routing, `useAsyncData`, layouts, and most built-in components) keeps working unchanged.
+
+### Enabling Vapor Mode
+
+Enable the `vue.vapor` option in your Nuxt config:
+
+```ts [nuxt.config.ts]twoslash
+export default defineNuxtConfig({
+  vue: {
+    vapor: true,
+  },
+})
+```
+
+This installs Vue's `vaporInteropPlugin`, which lets Vapor and Virtual DOM components render alongside each other. You can then mark any component or page as Vapor by adding the `vapor` attribute to `<script setup>`:
+
+```vue [app/pages/index.vue]
+<script setup vapor lang="ts">
+const count = ref(0)
+</script>
+
+<template>
+  <button @click="count++">
+    count is {{ count }}
+  </button>
+</template>
+```
+
+### Trying it out
+
+Vapor Mode needs a version of Vue that includes both Vapor and its interop fixes. While Vue 3.6 is in pre-release, install a release candidate (or newer) that contains those fixes:
+
+```json [package.json]
+{
+  "dependencies": {
+    "vue": "^3.6.0-rc.2"
+  }
+}
+```
+
+If you enable `vue.vapor` on an older version of Vue, Nuxt warns and disables it.
+
+We recommend trying Vapor Mode in a fresh project rather than adding it to an existing one. You can also explore a working setup in the [Nuxt Vapor demo](https://github.com/danielroe/nuxt-vapor-demo).
+
+### Known limitations
+
+Because Nuxt runs Vapor in interop mode, some patterns that rely on the Virtual DOM behave differently inside Vapor components:
+
+- **Full Vapor apps are not yet supported.** The application root stays Virtual DOM and you opt in per component; we may support a full Vapor app later on.
+- **Template refs** on a Vapor component do not expose `$el`.
+- **Some built-in components inspect their slot content** and cannot read Vapor slot children. `<ClientOnly>` skips its attribute-forwarding fallthrough, and `<NuxtIsland>`, server components, and the head components that read text children (such as `<Title>`, `<Style>` and `<Noscript>`) warn if you pass a Vapor slot. Pass the value directly instead (for example, a string to `<Title>`).
+- **The Options API is not supported** in Vapor components, so `asyncData` and `fetchKey` via `defineNuxtComponent` are unavailable. Use `<script setup>` with `useAsyncData` instead.
+- **Keyed onPrehydrate** falls back to the unkeyed form (and warns in development), because there is no component instance to attach the key to.
+- **Nuxt composables called after await** in a Vapor `<script setup>` may lose the Nuxt context. Call them before the first `await` where possible.
+
+Most other Nuxt composables and built-in components work unchanged, because they rely on injection rather than on a component instance.
+
+## Differences with Nuxt 2 / Vue 2
+
+Nuxt 3+ is based on Vue 3. The new major Vue version introduces several changes that Nuxt takes advantage of:
+
+- Better performance
+- Composition API
+- TypeScript support
+
+### Faster Rendering
+
+The Vue Virtual DOM (VDOM) has been rewritten from the ground up and allows for better rendering performance. On top of that, when working with compiled Single-File Components, the Vue compiler can further optimize them at build time by separating static and dynamic markup.
+
+This results in faster first rendering (component creation) and updates, and less memory usage. In Nuxt 3, it enables faster server-side rendering as well.
+
+### Smaller Bundle
+
+With Vue 3 and Nuxt 3, a focus has been put on bundle size reduction. With version 3, most of Vue’s functionality, including template directives and built-in components, is tree-shakable. Your production bundle will not include them if you don’t use them.
+
+This way, a minimal Vue 3 application can be reduced to 12 kb gzipped.
+
+### Composition API
+
+The only way to provide data and logic to components in Vue 2 was through the Options API, which allows you to return data and methods to a template with pre-defined properties like `data` and `methods`:
+
+```vuetwoslash
+<script>
+export default {
+  data () {
+    return {
+      count: 0,
+    }
+  },
+  methods: {
+    increment () {
+      this.count++
+    },
+  },
+}
+</script>
+```
+
+The [Composition API](https://vuejs.org/guide/extras/composition-api-faq) introduced in Vue 3 is not a replacement of the Options API, but it enables better logic reuse throughout an application, and is a more natural way to group code by concern in complex components.
+
+Used with the `setup` keyword in the `<script>` definition, here is the above component rewritten with Composition API and Nuxt 3’s auto-imported Reactivity APIs:
+
+```vue [components/Counter.vue]twoslash
+<script setup lang="ts">
+const count = ref(0)
+const increment = () => count.value++
+</script>
+```
+
+The goal of Nuxt is to provide a great developer experience around the Composition API.
+
+- Use auto-imported [Reactivity functions](https://vuejs.org/api/reactivity-core) from Vue and Nuxt [built-in composables](https://nuxt.com/docs/4.x/api/composables/use-async-data).
+- Write your own auto-imported reusable functions in the [`app/composables/` directory](https://nuxt.com/docs/4.x/directory-structure/app/composables).
+
+### TypeScript Support
+
+Both Vue 3 and Nuxt 3+ are written in TypeScript. A fully typed codebase prevents mistakes and documents APIs usage. This doesn’t mean that you have to write your application in TypeScript to take advantage of it. With Nuxt 3, you can opt-in by renaming your file from `.js` to `.ts` , or add `<script setup lang="ts">` in a component.
+
+::read-more{to="https://nuxt.com/docs/4.x/guide/concepts/typescript"}
+Read the details about TypeScript in Nuxt
+::
+
+
+## Sitemap
+
+See the full [sitemap](https://nuxt.com/sitemap.md) for all pages.

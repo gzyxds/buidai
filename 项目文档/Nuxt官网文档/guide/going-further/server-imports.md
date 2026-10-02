@@ -1,0 +1,497 @@
+---
+title: "Server Imports"
+description: "`nuxt/server` is the import surface for server code that isn't tied to a particular server runtime."
+canonical_url: "https://nuxt.com/docs/4.x/guide/going-further/server-imports"
+---
+# Server Imports
+
+> `nuxt/server` is the import surface for server code that isn't tied to a particular server runtime.
+
+It's possible to use different [server builders](https://nuxt.com/docs/4.x/guide/going-further/builders) with Nuxt: Nitro 2 (`nitropack`, the default in Nuxt 3 and 4), Nitro 3 (`nitro`, from Nuxt 5), or Vite directly.
+
+`nuxt/server` exists to provide agnostic utilities for server code that aren't tied to a particular server runtime. It is the second runtime surface of Nuxt, alongside `nuxt/app` (also reachable as `#app`), which is for the part of your application that also runs in the browser.
+
+```ts [server/api/hello.ts]
+import { defineEventHandler, getQuery } from 'nuxt/server'
+
+export default defineEventHandler((event) => {
+  const { name } = getQuery<{ name?: string }>(event)
+  return { message: `Hello, ${name ?? 'world'}!` }
+})
+```
+
+This code can run under `@nuxt/nitro-server` and under `@nuxt/vite-server`, and will also keep running across an h3 or Nitro major, because Nuxt absorbs those changes centrally.
+
+`nuxt/server` ships from Nuxt 4.6, so one file can serve Nuxt 4.6 running `nitropack` v2, Nuxt 5 running Nitro v3, and anything a future builder brings.
+
+::tip
+`nuxt` is installed in every Nuxt application, so `nuxt/server` resolves with no alias and no added dependency. A module importing from it needs no peer dependency on h3 or Nitro.
+::
+
+## Types and Utilities
+
+<table>
+<thead>
+  <tr>
+    <th>
+      Import
+    </th>
+    
+    <th>
+      Purpose
+    </th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr>
+    <td>
+      <code>
+        defineEventHandler
+      </code>
+    </td>
+    
+    <td>
+      Define a request handler.
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      <code>
+        createError
+      </code>
+      
+      , <code>
+        isNuxtError
+      </code>
+    </td>
+    
+    <td>
+      Construct and recognise an HTTP error.
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      <code>
+        getRequestURL
+      </code>
+    </td>
+    
+    <td>
+      The URL of the request.
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      <code>
+        getRequestHeader
+      </code>
+      
+      , <code>
+        getRequestHeaders
+      </code>
+    </td>
+    
+    <td>
+      Read request headers.
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      <code>
+        getRouterParam
+      </code>
+      
+      , <code>
+        getRouterParams
+      </code>
+    </td>
+    
+    <td>
+      Read the dynamic segments matched for the request.
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      <code>
+        getRequestIP
+      </code>
+    </td>
+    
+    <td>
+      The client IP address, with <a href="#client-ip">
+        forwarded headers trusted on request
+      </a>
+      
+      .
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      <code>
+        getQuery
+      </code>
+      
+      , <code>
+        getValidatedQuery
+      </code>
+    </td>
+    
+    <td>
+      Read the query string, optionally <a href="#validation">
+        validated
+      </a>
+      
+      .
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      <code>
+        readBody
+      </code>
+      
+      , <code>
+        readValidatedBody
+      </code>
+    </td>
+    
+    <td>
+      Read and parse the request body, optionally <a href="#validation">
+        validated
+      </a>
+      
+      .
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      <code>
+        getCookie
+      </code>
+      
+      , <code>
+        setCookie
+      </code>
+      
+      , <code>
+        deleteCookie
+      </code>
+    </td>
+    
+    <td>
+      Read and write cookies.
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      <code>
+        setResponseStatus
+      </code>
+    </td>
+    
+    <td>
+      Set the response status and reason phrase.
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      <code>
+        handleCors
+      </code>
+    </td>
+    
+    <td>
+      Apply <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS" rel="nofollow">
+        CORS
+      </a>
+      
+       headers and answer preflight requests.
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      <code>
+        sendRedirect
+      </code>
+    </td>
+    
+    <td>
+      Redirect the request.
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      <code>
+        useSession
+      </code>
+      
+      , <code>
+        getSession
+      </code>
+      
+      , <code>
+        updateSession
+      </code>
+      
+      , <code>
+        clearSession
+      </code>
+    </td>
+    
+    <td>
+      Read and write a <a href="#sessions">
+        sealed session cookie
+      </a>
+      
+      .
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      <code>
+        deriveSecret
+      </code>
+    </td>
+    
+    <td>
+      A purpose-specific secret <a href="#deriving-secrets">
+        derived from <code>
+          appSecret
+        </code>
+      </a>
+      
+      .
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      <code>
+        getRouteRules
+      </code>
+    </td>
+    
+    <td>
+      The <a href="https://nuxt.com/docs/4.x/guide/concepts/rendering#route-rules">
+        route rules
+      </a>
+      
+       matched for the request.
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      <code>
+        useRuntimeConfig
+      </code>
+    </td>
+    
+    <td>
+      The server's <a href="https://nuxt.com/docs/4.x/guide/going-further/runtime-config">
+        runtime configuration
+      </a>
+      
+      .
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      <code>
+        useAppConfig
+      </code>
+    </td>
+    
+    <td>
+      The <a href="https://nuxt.com/docs/4.x/directory-structure/app/app-config">
+        app config
+      </a>
+      
+      , as a copy per request when passed the event.
+    </td>
+  </tr>
+</tbody>
+</table>
+
+Types are exported alongside the utilities: `RequestEvent`, `RequestEventContext`, `NuxtRequestEvent`, `EventHandler`, `AppRouteRules`, `ServerRoutes`, `CorsOptions`, `ValidateResult`, `NuxtError`, `NuxtErrorDetails`, `NuxtErrorJSON`, `NuxtErrorLike`, `Session`, `SessionConfig`, `SessionData`, `SessionEvent`, `SessionManager`, `SessionPassword` and `SessionUpdate`.
+
+These names are not auto-imported from `nuxt/server`. In server code, the [auto-imported](https://nuxt.com/docs/4.x/directory-structure/server) names of the same spelling are h3's own helpers, which take the h3 event and behave differently in places (`defineEventHandler`, `handleCors`, `getRouterParams` and `readValidatedBody` among them), so import from `nuxt/server` explicitly. That includes `defineEventHandler`: the `nuxt/server` helpers read the event it hands the handler.
+
+::read-more{to="https://nuxt.com/docs/4.x/getting-started/upgrade#moving-to-nuxtserver"}
+Moving existing server code to `nuxt/server`, and how its helpers differ from h3's.
+::
+
+::tip
+`defineEventHandler` preserves your handler's return type, which is what types [`$fetch` and `useFetch`](https://nuxt.com/docs/4.x/getting-started/data-fetching) calls to the route. Annotate the value you return rather than the handler.
+::
+
+## The Event
+
+`RequestEvent` is the event that `nuxt/server` utilities operate from, including the request, its URL, the response to be sent, and the request context.
+
+```ts
+interface RequestEvent {
+  readonly req: Request
+  url: URL
+  readonly res: { status?: number, statusText?: string, readonly headers: Headers }
+  readonly context: RequestEventContext
+}
+```
+
+To set, read, append or remove a response header, use `event.res.headers` directly: it is a standard `Headers` object.
+
+Nitro adds more on top, such as `event.node` and `event.waitUntil()`, but these four core properties work in all runtimes, and need no helpers:
+
+```ts [server/api/echo.post.ts]
+export default defineEventHandler(async (event) => {
+  const { id } = await event.req.json()
+  return { id, page: event.url.searchParams.get('page') }
+})
+```
+
+`NuxtRequestEvent` is the same request in the shape the configured builder provides, which is h3 v1's `H3Event` under `@nuxt/nitro-server`.
+
+## Validation
+
+`readValidatedBody` and `getValidatedQuery` take any [Standard Schema](https://standardschema.dev) (Zod, Valibot, ArkType and others), or a function that returns the validated value, `true` to accept the input or `false` to reject it.
+
+```ts [server/api/users.post.ts]
+import { defineEventHandler, readValidatedBody } from 'nuxt/server'
+import { z } from 'zod'
+
+export default defineEventHandler(async (event) => {
+  const user = await readValidatedBody(event, z.object({ name: z.string() }))
+  return { created: user.name }
+})
+```
+
+Invalid input is rejected with a `400` whose `data.issues` lists what failed. Pass `onError` to reject it with a different error.
+
+## Client IP
+
+`getRequestIP(event)` returns the address the server runtime reports for the connection, or `undefined` if it reports none. No forwarded header is trusted by default, because a client can send any value in one.
+
+Behind a proxy you control, pass `{ xForwardedFor: true }` to read the first entry of `X-Forwarded-For` instead. Only do this when the proxy overwrites the header: a proxy that appends to it leaves a client-sent value first.
+
+## Sessions
+
+`useSession` reads the session for the request, sealing a new one into a cookie when there is none to read. The data is sealed with [iron](https://github.com/brc-dd/iron-webcrypto), so it lives in the cookie rather than in server storage, and the cookie defaults to `httpOnly`, `secure`, `sameSite: 'lax'` and `path: '/'`.
+
+```ts [server/api/visits.ts]
+import { defineEventHandler, useSession } from 'nuxt/server'
+
+export default defineEventHandler(async (event) => {
+  const session = await useSession<{ visits: number }>(event)
+  await session.update(data => ({ visits: (data.visits ?? 0) + 1 }))
+  return { visits: session.data.visits }
+})
+```
+
+With no `password`, the session is sealed with a secret derived from the application's [`appSecret`](https://nuxt.com/docs/4.x/guide/going-further/runtime-config#application-secret), so `NUXT_APP_SECRET` is the only thing to set. Pass a `password` of at least 32 characters to seal with a secret of your own instead. Set `maxAge` (in seconds) to expire both the cookie and the sealed value, `name` to change the cookie name from `nuxt-session`, and `cookie` to override any cookie attribute.
+
+The session is unsealed once per request, so `getSession` may be called from as many places as you like. `updateSession` and `clearSession` are the same operations without the manager object.
+
+### Deriving Secrets
+
+`deriveSecret(purpose)` resolves a secret for one purpose from `appSecret`: 32 bytes, hex-encoded, stable for as long as `appSecret` is unchanged, and distinct for every purpose. It is what the session helpers use, and what a module should use in place of asking for a secret of its own. Namespace the purpose to what owns it.
+
+```ts
+import { deriveSecret } from 'nuxt/server'
+
+const password = await deriveSecret('my-module:tokens')
+```
+
+It throws a `500` naming `NUXT_APP_SECRET` when `appSecret` is unset or shorter than 32 characters.
+
+::note
+h3 ships session helpers of the same names, and under `@nuxt/nitro-server` those are what the auto-imported `useSession`, `getSession`, `updateSession` and `clearSession` resolve to, so import these from `nuxt/server` explicitly. They are a separate implementation and are not interchangeable: h3 defaults to the `h3` cookie name rather than `nuxt-session`, takes its own configuration, and a session one of them issues will not unseal with the other.
+::
+
+::note
+The session API is stable, but the format of the sealed cookie may change in a minor release: Nuxt plans to move to an AES-GCM based seal once `iron-webcrypto` publishes one. When it does, existing sessions are read in the old format and resealed in the new one on their next write, so users are not signed out. Sealed values are not interchangeable with those from h3's `useSession`.
+::
+
+::warning
+The session travels in the cookie, so it is limited to what a browser will accept. Writing a session that serialises to more than 4096 bytes throws; keep large data server-side and reference it from the session by id.
+::
+
+## Reaching Past the Surface
+
+`nuxt/server` isn't a re-export of h3, so if you need something else that h3 and Nitro offer, such as the server lifecycle (`defineNitroPlugin`, `defineNitroErrorHandler` and the Nitro app hooks), you would import it directly.
+
+For a handler that needs h3's own helpers, such as `readRawBody`, `readMultipartFormData`, `assertMethod`, `proxyRequest`, `fetchWithEvent` or `writeEarlyHints`, or that reads `event.node` or `event.waitUntil()`, import `defineEventHandler` from `h3` for that handler:
+
+```ts [server/api/upload.post.ts]
+import { defineEventHandler, readMultipartFormData } from 'h3'
+
+export default defineEventHandler(async (event) => {
+  const parts = await readMultipartFormData(event)
+  return { received: parts?.length ?? 0 }
+})
+```
+
+Nitro's own APIs mostly take no event at all: `defineCachedEventHandler()`, `useStorage()`, `useDatabase()` and tasks. Import them from `nitropack/runtime`.
+
+## What Isn't Portable
+
+These areas mean reaching outside `nuxt/server`, because Nuxt can't provide them for every builder:
+
+- **Storage.** `useStorage()` comes from `nitropack/runtime`, and so does the driver configuration behind it.
+- **Caching.** `defineCachedEventHandler()` and `defineCachedFunction()` come from `nitropack/runtime`. For caching that runs anywhere, depend on a cache library directly.
+- **Server plugins and hooks.** `defineNitroPlugin()` and the runtime hooks (`useNitroApp().hooks`, including `render:html`) come from `nitropack/runtime`.
+- **App-relative fetch.** `useNitroApp().localFetch` comes from `nitropack/runtime`. It calls a route of the app without an origin, which needs the runtime's router.
+- **Lazy handlers.** `lazyEventHandler()` comes from `h3`.
+
+## Server Code Only
+
+Importing `nuxt/server` from a Vue component, a plugin or the `shared/` directory fails the build, and the error points you at `#app`, `#imports`, `$fetch` and `useFetch` instead. Its types still resolve in those contexts, which is what lets `$fetch` know what your server routes return.
+
+## Modules
+
+A module whose runtime code imports only from `nuxt/server` runs under any server builder from v4.6 onwards, with no version check and no dependency on h3 or Nitro:
+
+```ts [runtime/server/api/status.ts]
+import { defineEventHandler, useRuntimeConfig } from 'nuxt/server'
+
+export default defineEventHandler(() => ({
+  version: useRuntimeConfig().myModule.version,
+}))
+```
+
+::tip
+Leave `nuxt/server` external when you bundle; it will be resolved in the Nuxt build to the right server builder utilities.
+::
+
+Supporting Nuxt versions <4.6 takes one more step, because those projects have no `nuxt/server` to resolve. You can instead register the portable file and the one you ship today side by side, and Nuxt will pick whichever the application can run.
+
+::read-more{to="https://nuxt.com/docs/4.x/guide/modules/server-compatibility"}
+See how to register one handler per server API.
+::
+
+::read-more{to="https://nuxt.com/docs/4.x/guide/going-further/builders"}
+Learn how a server builder supplies the implementations behind `nuxt/server`.
+::
+
+---
+
+- [Source](https://github.com/nuxt/nuxt/blob/main/packages/nuxt/src/server/index.ts)
+
+
+## Sitemap
+
+See the full [sitemap](https://nuxt.com/sitemap.md) for all pages.
