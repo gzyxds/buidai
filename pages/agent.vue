@@ -14,6 +14,11 @@ usePageSeo({
     '智言AI 企业级 AI 应用构建平台。可视化 Workflow 编排 + 超易用 AI 知识库 + 创新 RAG 检索 + 模板生态 = 轻松构建强大 AI 应用。',
   ogType: 'website'
 })
+
+// 开启两侧竖带装饰层（grid-border 设计系统）
+definePageMeta({
+  frameSides: true
+})
 </script>
 
 <template>

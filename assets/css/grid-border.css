@@ -8,11 +8,11 @@
 
 /* ---------- 设计令牌 ---------- */
 :root {
-  --grid-ink: color-mix(in oklab, rgb(3 7 18) 5%, transparent); /* 纹理线色 */
+  --grid-ink: color-mix(in oklab, rgb(3 7 18) 7%, transparent); /* 纹理线色 */
   --grid-line: 1px;      /* 线宽 */
   --grid-pitch: 10px;    /* 纹理周期（间距） */
   --grid-angle: 315deg;  /* 斜线角度 */
-  --grid-border: rgb(229 229 229 / 70%); /* 边框线色 */
+  --grid-border: rgb(226 232 240 / 80%); /* 边框线色 slate-200 */
   --grid-bg: #fff;       /* 纹理底色 */
   --grid-frame: 1536px;  /* 内容框架宽（竖带定位依据） */
   --grid-strip: 1rem;    /* 横分隔带高 */
@@ -103,7 +103,8 @@
   top: 0;
   bottom: 0;
   width: var(--grid-side);
-  z-index: 0;
+  /* 高于页面根 div 的 z-auto 背景（如 agent 页 bg-white），低于导航 z-100 */
+  z-index: 10;
   pointer-events: none;
   background-color: var(--grid-bg);
   border-left: 1px solid var(--grid-border);
