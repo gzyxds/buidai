@@ -7,6 +7,12 @@
       "runtimeArgs": ["run", "dev"],
       "port": 3000,
       "autoPort": true
+    },
+    {
+      "name": "buidai-dist",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "4321", "-d", "dist"],
+      "port": 4321
     }
   ]
 }
