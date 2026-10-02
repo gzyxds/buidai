@@ -218,7 +218,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import type { NavigationMenuItem } from '@nuxt/ui'
 import { SCROLL } from '~/utils/ui'
@@ -236,7 +236,6 @@ import { SCROLL } from '~/utils/ui'
 
 const route = useRoute()
 const mobileMenuOpen = ref(false)
-const isScrolled = ref(false)
 const activeSubmenu = ref<string | null>(null)
 
 const headerRef = ref<HTMLElement | null>(null)
@@ -479,35 +478,7 @@ const getPrimaryItemClasses = (item: FlattenedNavItem): string => {
 
 // --- 滚动处理 ---
 
-let ticking = false
-
-/**
- * 滚动事件处理
- * 使用 requestAnimationFrame 节流
- */
-const onScroll = () => {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      const scrolled = window.scrollY > SCROLL.THRESHOLD
-      if (isScrolled.value !== scrolled) {
-        isScrolled.value = scrolled
-      }
-      ticking = false
-    })
-    ticking = true
-  }
-}
-
-// --- 生命周期和监听器 ---
-
-onMounted(() => {
-  window.addEventListener('scroll', onScroll, { passive: true })
-  onScroll()
-})
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', onScroll)
-})
+const isScrolled = useScrollThreshold(SCROLL.THRESHOLD)
 
 /**
  * 路由变化时关闭移动端菜单

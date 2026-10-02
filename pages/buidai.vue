@@ -418,6 +418,7 @@
 </template>
 
 <script setup lang="ts">
+import { dispatchQrModal } from '~/utils/qrModal'
 import { computed, ref } from 'vue'
 import type { Component } from 'vue'
 import {
@@ -449,7 +450,7 @@ const openQrModal = (type: 'coupon' | 'wechat') => {
   const config = type === 'coupon'
     ? { title: '获取优惠码', desc: '扫码获取专属优惠', image: '/qrcode.png' }
     : { title: '联系客服', desc: '扫码添加微信客服', image: '/wechat.png' }
-  window.dispatchEvent(new CustomEvent('showQRCodeModal', { detail: config }))
+  dispatchQrModal(config)
 }
 
 /** Vibe Coding 工具列表 */

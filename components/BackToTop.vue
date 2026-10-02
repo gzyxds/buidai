@@ -6,7 +6,7 @@
  * 1. 页面滚动超过一定距离显示返回顶部按钮
  * 2. 提供在线咨询悬浮窗（鼠标悬停显示二维码）
  * 3. 提供售后/活动入口悬浮窗
- * 4. 全局二维码弹窗模态框（支持自定义配置，监听 'showQRCodeModal' 事件）
+ * 4. 全局二维码弹窗模态框（支持自定义配置，监听 QR_MODAL_EVENT 事件）
  */
 
 // ----------------------------------------------------------------------
@@ -21,6 +21,7 @@ import {
   X as XIcon,
   Megaphone as MegaphoneIcon
 } from 'lucide-vue-next'
+import { QR_MODAL_EVENT, type QrModalConfig } from '~/utils/qrModal'
 
 // ----------------------------------------------------------------------
 // 2. Types & Interfaces (类型定义)
@@ -34,20 +35,11 @@ interface QrCodeConfig {
   image: string
 }
 
-/**
- * 自定义事件详情接口
- */
-interface CustomEventDetail {
-  title?: string
-  desc?: string
-  image?: string
-}
-
 // ----------------------------------------------------------------------
 // 3. State (状态)
 // ----------------------------------------------------------------------
 // 悬浮按钮组是否可见（滚动超过阈值）
-const isVisible = ref(false)
+const isVisible = useScrollThreshold(300)
 
 // 悬停显示的二维码状态
 const showHoverQRCode = ref(false)
@@ -70,14 +62,6 @@ const qrCodeConfig = ref<QrCodeConfig>({
 // ----------------------------------------------------------------------
 
 /**
- * 监听滚动事件，控制悬浮按钮组的显示与隐藏
- * 阈值：300px
- */
-const handleScroll = () => {
-  isVisible.value = window.scrollY > 300
-}
-
-/**
  * 滚动到页面顶部
  */
 const scrollToTop = () => {
@@ -92,7 +76,7 @@ const scrollToTop = () => {
  * @param e CustomEvent
  */
 const handleGlobalShowQRCodeModal = (e: Event) => {
-  const customEvent = e as CustomEvent<CustomEventDetail>
+  const customEvent = e as CustomEvent<QrModalConfig>
   if (customEvent.detail) {
     qrCodeConfig.value = {
       title: customEvent.detail.title || '联系客服',
@@ -137,13 +121,11 @@ const setAfterSalesMenuVisible = (val: boolean) => {
 // 5. Lifecycle (生命周期)
 // ----------------------------------------------------------------------
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
-  window.addEventListener('showQRCodeModal', handleGlobalShowQRCodeModal)
+  window.addEventListener(QR_MODAL_EVENT, handleGlobalShowQRCodeModal)
 })
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
-  window.removeEventListener('showQRCodeModal', handleGlobalShowQRCodeModal)
+  window.removeEventListener(QR_MODAL_EVENT, handleGlobalShowQRCodeModal)
 })
 </script>
 

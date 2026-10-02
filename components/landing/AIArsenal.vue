@@ -85,6 +85,7 @@ v-for="(item, index) in features" :key="`set2-${index}`"
 </template>
 
 <script setup>
+import { dispatchQrModal } from '~/utils/qrModal'
 import {
   CpuChipIcon,
   ChatBubbleBottomCenterTextIcon,
@@ -112,7 +113,7 @@ const openQrModal = (type) => {
   const config = type === 'community'
     ? { title: '加入社群', desc: '扫码加入智言AI社群', image: '/qrcode.png' }
     : { title: '联系我们', desc: '扫码添加微信客服', image: '/wechat.png' }
-  window.dispatchEvent(new CustomEvent('showQRCodeModal', { detail: config }))
+  dispatchQrModal(config)
 }
 </script>
 

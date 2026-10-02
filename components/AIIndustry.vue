@@ -138,6 +138,7 @@
 </template>
 
 <script setup lang="ts">
+import { dispatchQrModal } from '~/utils/qrModal'
 import { ref, computed, onMounted, onUnmounted, nextTick, type Component } from 'vue'
 import {
   SparklesIcon,
@@ -278,7 +279,7 @@ const openQrModal = (type: 'solution' | 'consult') => {
   const config = type === 'solution'
     ? { title: '了解方案详情', desc: '扫码获取完整方案', image: '/qrcode.png' }
     : { title: '联系售前咨询', desc: '扫码添加微信顾问', image: '/wechat.png' }
-  window.dispatchEvent(new CustomEvent('showQRCodeModal', { detail: config }))
+  dispatchQrModal(config)
 }
 
 onMounted(startAutoplay)

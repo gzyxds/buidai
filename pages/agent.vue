@@ -526,7 +526,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, type Component } from 'vue'
+import { dispatchQrModal } from '~/utils/qrModal'
+import { ref, type Component } from 'vue'
 import {
   DocumentTextIcon,
   ArrowsRightLeftIcon,
@@ -549,7 +550,7 @@ const openQrModal = (type: 'coupon' | 'wechat') => {
     type === 'coupon'
       ? { title: '获取优惠码', desc: '扫码获取专属优惠', image: '/qrcode.png' }
       : { title: '联系客服', desc: '扫码添加微信客服', image: '/wechat.png' }
-  window.dispatchEvent(new CustomEvent('showQRCodeModal', { detail: config }))
+  dispatchQrModal(config)
 }
 
 // 类型定义：核心特性
@@ -744,53 +745,8 @@ const handleFaqKeydown = (event: KeyboardEvent, currentIndex: number) => {
 
 // 打字机效果相关
 const texts = ['智言AI 领先的AI创作平台', '可视化 Workflow 编排', '超易用 AI 知识库', '创新 RAG 检索', '轻松构建强大 AI 应用']
-const displayText = ref('')
+const { text: displayText } = useTypewriter(texts, { startDelay: 1000 })
 const showCursor = ref(true)
-const currentTextIndex = ref(0)
-const currentCharIndex = ref(0)
-const isDeleting = ref(false)
-
-let typewriterTimer: ReturnType<typeof setTimeout> | null = null
-
-const typeWriter = () => {
-  const currentText = texts[currentTextIndex.value] ?? ''
-  const typingSpeed = isDeleting.value ? 30 : 75
-  const pauseDuration = 1500
-
-  if (isDeleting.value) {
-    displayText.value = currentText.substring(0, currentCharIndex.value - 1)
-    currentCharIndex.value--
-  } else {
-    displayText.value = currentText.substring(0, currentCharIndex.value + 1)
-    currentCharIndex.value++
-  }
-
-  if (!isDeleting.value && currentCharIndex.value === currentText.length) {
-    showCursor.value = true
-    typewriterTimer = setTimeout(() => {
-      isDeleting.value = true
-      typeWriter()
-    }, pauseDuration)
-  } else if (isDeleting.value && currentCharIndex.value === 0) {
-    isDeleting.value = false
-    currentTextIndex.value = (currentTextIndex.value + 1) % texts.length
-    typewriterTimer = setTimeout(typeWriter, 500)
-  } else {
-    typewriterTimer = setTimeout(typeWriter, typingSpeed)
-  }
-}
-
-onMounted(() => {
-  // 启动打字机效果
-  typewriterTimer = setTimeout(typeWriter, 1000)
-})
-
-onUnmounted(() => {
-  if (typewriterTimer) {
-    clearTimeout(typewriterTimer)
-    typewriterTimer = null
-  }
-})
 </script>
 
 <style scoped>

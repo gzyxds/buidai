@@ -451,6 +451,7 @@
 </template>
 
 <script setup lang="ts">
+import { dispatchQrModal } from '~/utils/qrModal'
 import { ref, computed } from 'vue'
 import {
   ArrowRightIcon,
@@ -466,7 +467,7 @@ const openQrModal = (type: 'coupon' | 'wechat') => {
   const config = type === 'coupon'
     ? { title: '获取优惠码', desc: '扫码获取专属优惠', image: '/qrcode.png' }
     : { title: '联系客服', desc: '扫码添加微信客服', image: '/wechat.png' }
-  window.dispatchEvent(new CustomEvent('showQRCodeModal', { detail: config }))
+  dispatchQrModal(config)
 }
 
 // 设置页面布局

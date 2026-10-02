@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { dispatchQrModal } from '~/utils/qrModal'
 /**
  * 定价页面组件
  * 展示不同等级的订阅计划及其功能对比，包含计费周期切换、FAQ 等模块。
@@ -12,7 +13,7 @@ const openQrModal = (type: 'coupon' | 'wechat') => {
   const config = type === 'coupon'
     ? { title: '获取优惠码', desc: '扫码获取专属优惠', image: '/qrcode.png' }
     : { title: '联系技术专家', desc: '扫码添加微信顾问', image: '/wechat.png' }
-  window.dispatchEvent(new CustomEvent('showQRCodeModal', { detail: config }))
+  dispatchQrModal(config)
 }
 
 // 类型定义

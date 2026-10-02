@@ -259,7 +259,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import { apps } from '~/utils/pluginData'
-import { LAYOUT, ANIMATION, MARQUEE } from '~/utils/ui'
+import { LAYOUT, MARQUEE } from '~/utils/ui'
 
 const marqueeImages = apps.map(app => app.image)
 
@@ -290,45 +290,13 @@ const props = withDefaults(defineProps<HeroSectionProps>(), {
 const isMobile = ref(false)
 
 // ── 打字机效果 ──
-const typeWriterText = ref('')
 const sentences = [
   '它能够助您快速开发AI应用，缩短80%项目交付周期',
   '它拥有开箱即用的丰富AI应用',
   '它正在努力成为AI应用落地的首选方案',
   '它能够助您快速落地MVP，验证AI应用商业价值'
 ]
-let sentenceIndex = 0
-let charIndex = 0
-let isDeleting = false
-let typeTimeout: ReturnType<typeof setTimeout> | null = null
-
-const typeWriter = () => {
-  const currentSentence = sentences[sentenceIndex]
-  if (!currentSentence) return
-
-  if (isDeleting) {
-    typeWriterText.value = currentSentence.substring(0, charIndex - 1)
-    charIndex--
-  } else {
-    typeWriterText.value = currentSentence.substring(0, charIndex + 1)
-    charIndex++
-  }
-
-  let typeSpeed: number = isDeleting
-    ? ANIMATION.TYPEWRITER_DELETING_SPEED
-    : ANIMATION.TYPEWRITER_TYPING_SPEED
-
-  if (!isDeleting && charIndex === currentSentence.length) {
-    typeSpeed = ANIMATION.TYPEWRITER_PAUSE_AFTER_COMPLETE
-    isDeleting = true
-  } else if (isDeleting && charIndex === 0) {
-    isDeleting = false
-    sentenceIndex = (sentenceIndex + 1) % sentences.length
-    typeSpeed = ANIMATION.TYPEWRITER_PAUSE_BEFORE_NEW
-  }
-
-  typeTimeout = setTimeout(typeWriter, typeSpeed)
-}
+const { text: typeWriterText } = useTypewriter(sentences)
 
 // ── 跑马灯图片分组 ──
 const shuffleArray = (array: string[]) => {
@@ -380,16 +348,13 @@ const throttledCheckDevice = () => {
 }
 
 onMounted(() => {
-  if (typeTimeout) clearTimeout(typeTimeout)
   checkDevice()
   generateMarqueeGroups()
   window.addEventListener('resize', throttledCheckDevice)
-  typeWriter()
 })
 
 onUnmounted(() => {
   window.removeEventListener('resize', throttledCheckDevice)
-  if (typeTimeout) clearTimeout(typeTimeout)
 })
 </script>
 

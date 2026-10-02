@@ -8,20 +8,17 @@ import {
   CubeTransparentIcon,
   BoltIcon
 } from '@heroicons/vue/24/outline'
+import { dispatchQrModal } from '~/utils/qrModal'
 
 /**
  * 处理 CTA 按钮点击事件
  * 触发全局二维码弹窗，用于咨询私有化部署
  */
 const handleCTAClick = () => {
-  if (typeof window !== 'undefined') {
-    window.dispatchEvent(new CustomEvent('showQRCodeModal', {
-      detail: {
-        title: '咨询私有化部署',
-        desc: '请扫描二维码添加客服微信，咨询私有化部署详情'
-      }
-    }))
-  }
+  dispatchQrModal({
+    title: '咨询私有化部署',
+    desc: '请扫描二维码添加客服微信，咨询私有化部署详情'
+  })
 }
 </script>
 

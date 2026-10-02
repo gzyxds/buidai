@@ -325,19 +325,9 @@ const readingTime = computed(() => {
 })
 
 // Scroll Progress
-const scrollProgress = ref(0)
-const updateScroll = () => {
-  const winScroll = document.body.scrollTop || document.documentElement.scrollTop
-  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight
-  scrollProgress.value = (winScroll / height) * 100
-}
-
-onMounted(() => {
-  window.addEventListener('scroll', updateScroll, { passive: true })
-})
+const scrollProgress = useScrollProgress()
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', updateScroll)
   tocObserver?.disconnect()
   tocObserver = null
 })
