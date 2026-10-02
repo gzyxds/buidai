@@ -82,6 +82,20 @@ describe('products 数据', () => {
 })
 
 describe('products 数据完整性（统一数据层）', () => {
+  it('目录中的实体文件全部已注册（防漏登记）', () => {
+    const entityDirs = ['detail', 'market', 'demo']
+    const files = entityDirs.flatMap(dir =>
+      fs
+        .readdirSync(`data/products/${dir}`)
+        .filter(f => f.endsWith('.ts'))
+        .map(f => `${dir}/${f}`)
+    )
+    expect(
+      products.length,
+      `目录实体 ${files.length} 个，注册 ${products.length} 个`
+    ).toBe(files.length)
+  })
+
   it('所有实体的 icon 均为合法的 iconify 图标名', () => {
     const heroicons = new Set(
       Object.keys(
