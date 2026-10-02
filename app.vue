@@ -1,7 +1,8 @@
 <template>
   <UApp>
     <NuxtLayout>
-      <NuxtPage />
+      <!-- page-key 按完整路径区分：同一路由记录不同参数间跳转（如 /product/a → /product/b）时重建组件，避免复用旧的 setup 状态 -->
+      <NuxtPage :page-key="(route) => route.fullPath" />
     </NuxtLayout>
   </UApp>
 </template>
@@ -70,13 +71,6 @@ useHead({
           '@type': 'Offer',
           price: '0',
           priceCurrency: 'CNY'
-        },
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue: '4.9',
-          ratingCount: '1000',
-          bestRating: '5',
-          worstRating: '1'
         }
       })
     }
