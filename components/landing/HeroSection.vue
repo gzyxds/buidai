@@ -22,21 +22,45 @@
       <div class="ai-aurora ai-aurora-1" />
       <div class="ai-aurora ai-aurora-2" />
 
-      <!-- 电路走线 SVG（静态装饰） -->
-      <svg class="circuit-lines absolute inset-0 w-full h-full" aria-hidden="true">
-        <g fill="none" stroke-width="1" stroke-linecap="round" opacity="0.6">
-          <path d="M0,35% H12% L15%,32% H28%" stroke="rgba(99,102,241,.12)" />
-          <circle cx="28%" cy="32%" r="2.5" fill="rgba(99,102,241,.2)" class="ai-dot-pulse" />
-          <path d="M0,55% H8% L10%,52% H22% L24%,55% H32%" stroke="rgba(139,92,246,.1)" />
-          <circle cx="32%" cy="55%" r="2" fill="rgba(139,92,246,.15)" class="ai-dot-pulse" style="animation-delay:1s" />
-          <path d="M100%,42% H88% L85%,45% H72%" stroke="rgba(99,102,241,.12)" />
-          <circle cx="72%" cy="45%" r="2.5" fill="rgba(99,102,241,.2)" class="ai-dot-pulse" style="animation-delay:.5s" />
-          <path d="M100%,68% H90% L88%,65% H78% L76%,68% H68%" stroke="rgba(6,182,212,.1)" />
-          <circle cx="68%" cy="68%" r="2" fill="rgba(6,182,212,.15)" class="ai-dot-pulse" style="animation-delay:1.5s" />
-          <path d="M45%,0 V12% L48%,15% V25%" stroke="rgba(99,102,241,.1)" />
-          <circle cx="48%" cy="25%" r="2" fill="rgba(99,102,241,.15)" class="ai-dot-pulse" style="animation-delay:2s" />
-        </g>
-      </svg>
+      <!-- 电路走线 SVG（静态装饰，viewBox 百分比坐标系） -->
+      <div class="circuit-lines absolute inset-0" aria-hidden="true">
+        <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <g
+            fill="none"
+            stroke-width="1"
+            stroke-linecap="round"
+            opacity="0.6"
+            vector-effect="non-scaling-stroke"
+          >
+            <path d="M0,35 H12 L15,32 H28" stroke="rgba(99,102,241,.12)" />
+            <path d="M0,55 H8 L10,52 H22 L24,55 H32" stroke="rgba(139,92,246,.1)" />
+            <path d="M100,42 H88 L85,45 H72" stroke="rgba(99,102,241,.12)" />
+            <path d="M100,68 H90 L88,65 H78 L76,68 H68" stroke="rgba(6,182,212,.1)" />
+            <path d="M45,0 V12 L48,15 V25" stroke="rgba(99,102,241,.1)" />
+          </g>
+        </svg>
+        <!-- 电路节点：CSS 定位保证任意宽高比下均为正圆 -->
+        <span
+          class="ai-dot-pulse absolute w-1.5 h-1.5 rounded-full -translate-x-1/2 -translate-y-1/2"
+          style="left: 28%; top: 32%; background: rgba(99, 102, 241, 0.2)"
+        />
+        <span
+          class="ai-dot-pulse absolute w-1.5 h-1.5 rounded-full -translate-x-1/2 -translate-y-1/2"
+          style="left: 32%; top: 55%; background: rgba(139, 92, 246, 0.15); animation-delay: 1s"
+        />
+        <span
+          class="ai-dot-pulse absolute w-1.5 h-1.5 rounded-full -translate-x-1/2 -translate-y-1/2"
+          style="left: 72%; top: 45%; background: rgba(99, 102, 241, 0.2); animation-delay: 0.5s"
+        />
+        <span
+          class="ai-dot-pulse absolute w-1.5 h-1.5 rounded-full -translate-x-1/2 -translate-y-1/2"
+          style="left: 68%; top: 68%; background: rgba(6, 182, 212, 0.15); animation-delay: 1.5s"
+        />
+        <span
+          class="ai-dot-pulse absolute w-1.5 h-1.5 rounded-full -translate-x-1/2 -translate-y-1/2"
+          style="left: 48%; top: 25%; background: rgba(99, 102, 241, 0.15); animation-delay: 2s"
+        />
+      </div>
 
       <!-- 扩散波纹环 -->
       <div class="ai-ripple ai-ripple-1" />
