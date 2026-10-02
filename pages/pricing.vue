@@ -13,11 +13,16 @@ usePageSeo({
   ogDescription: '智言AI-智言万象提供基础版、标准版、专业版及企业定制版等多种价格方案，满足个人开发者、初创团队及大型企业的不同 AI 应用开发需求。',
   ogType: 'website'
 })
+
+// 开启两侧竖带装饰层（grid-border 设计系统）
+definePageMeta({
+  frameSides: true
+})
 </script>
 
 <template>
-  <!-- 底色沿用原版 gray-50/gray-950，并用局部令牌覆盖让分隔带/装饰行与页面同色 -->
-  <section class="overflow-hidden min-h-screen bg-gray-50 dark:bg-gray-950 [--grid-bg:#f9fafb] dark:[--grid-bg:#030712]">
+  <!-- 底色与 grid-border 令牌对齐（--grid-bg: 亮 #fff / 暗 #171717=neutral-900） -->
+  <section class="overflow-hidden min-h-screen bg-white dark:bg-neutral-900">
     <div class="grid-border-container">
       <div class="grid-border-row" />
 
@@ -92,3 +97,12 @@ usePageSeo({
   <!-- CTA 底部行动召唤区域 -->
   <LandingCtaSection />
 </template>
+
+<style scoped>
+/* 移动端适配：1fr 网格轨道默认不小于内容的 min-content 宽度，
+   页面内跑马灯的 min-w 定宽组会把整页轨道撑到 1536px 导致窄屏裁切，
+   改为 minmax(0, 1fr) 允许轨道收缩到视口宽度 */
+.grid-border-container {
+  grid-template-columns: minmax(0, 1fr);
+}
+</style>
