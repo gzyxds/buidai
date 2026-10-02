@@ -4,15 +4,14 @@ import path from 'node:path'
 /**
  * 遍历 content/docs 目录生成文档路由列表
  *
- * @description
- * 递归扫描 `content/docs` 目录，解析 Markdown 文件并生成对应的路由路径。
+ * 文件名即最终 slug（排序由 frontmatter 的 order 字段控制，见 components/docs/Sidebar.vue），
  * 用于 Nitro 预渲染配置，确保所有文档页面都能被静态生成。
  *
  * @returns {string[]} 返回包含所有文档页面路径的字符串数组
  *
  * @example
- * // 目录结构: content/docs/1.intro/index.md
- * // 返回: ['/docs', '/docs/intro']
+ * // 目录结构: content/docs/introduction/index.md
+ * // 返回: ['/docs', '/docs/introduction']
  */
 export const getDocsRoutes = () => {
   const routes: string[] = []
@@ -31,13 +30,11 @@ export const getDocsRoutes = () => {
 
     for (const entry of entries) {
       if (entry.isDirectory()) {
-        // 去除目录名前的数字前缀 (如 "1.introduction" -> "introduction")
-        const cleanName = entry.name.replace(/^\d+\./, '')
         // 递归处理子目录
-        traverse(path.join(dir, entry.name), `${urlPrefix}/${cleanName}`)
+        traverse(path.join(dir, entry.name), `${urlPrefix}/${entry.name}`)
       } else if (entry.name.endsWith('.md')) {
-        // 处理 Markdown 文件，去除数字前缀和 .md 后缀
-        const cleanName = entry.name.replace(/^\d+\./, '').replace(/\.md$/, '')
+        // 处理 Markdown 文件，去除 .md 后缀
+        const cleanName = entry.name.replace(/\.md$/, '')
 
         // 如果文件名是 index，则路由为当前目录路径
         if (cleanName === 'index') {

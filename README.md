@@ -75,19 +75,18 @@ npm run test:watch   # vitest 监听模式
 
 预渲染路由由 `nuxt.config.ts` 的 `nitro.prerender.routes` 注入，其余路由通过链接爬取（`crawlLinks`）发现。
 
-> ⚠️ `nitro.prerender.failOnError` 当前为 `false`，意味着预渲染失败的页面会被**静默跳过**而不中断构建。排查缺失页面时需查看构建日志中的 `[404]` 行。
+> ⚠️ 构建已启用 `nitro.prerender.failOnError: true`：预渲染失败的页面会**中断构建**（不会静默发布坏页面）。新增内容若引用不存在的链接会直接让构建失败。
 
-### 文档路由机制（重要）
+### 文档路由机制
 
-文档的文件名遵循 `{序号}.{slug}.md` 约定，例如 `content/docs/introduction/1.start.md`：
+文档的**文件名即最终 slug**（无数字前缀），例如 `content/docs/introduction/start.md` 对应的 URL 是 `/docs/introduction/start`：
 
-- **数字前缀仅用于排序，不会出现在 URL 中**——`getDocsRoutes()` 会剥离 `^\d+\.`，该文件对外的 URL 是 `/docs/introduction/start`
-- Nuxt Content 内部存储的 `path` **保留**数字前缀，因此 `pages/docs/[...slug].vue` 内含一层「精确匹配失败则清洗路径后回退匹配」的逻辑来弥合差异
-- 修改数字前缀不会改变公开 URL，但**同一目录下的序号必须唯一**，重复会导致排序不确定
+- `getDocsRoutes()` 直接遍历文件名生成预渲染路由
+- `pages/docs/[...slug].vue` 按 Content 的 `path` 精确匹配，无运行期兜底
 
 ### 文档排序（重要）
 
-文档侧边栏（`components/docs/Sidebar.vue`）与文档索引页（`pages/docs/index.vue`）的排序**由 frontmatter 的 `order` 字段决定**，而非文件名序号：
+文档侧边栏（`components/docs/Sidebar.vue`）与文档索引页（`pages/docs/index.vue`）的排序**由 frontmatter 的 `order` 字段决定**，与文件名无关：
 
 - `order` 控制**同一 `category` 分组内**的先后
 - 分组之间的顺序由两个文件里硬编码的 `categoryOrder` 数组决定，当前为 `['入门指南', '进阶教程', '未分类']`

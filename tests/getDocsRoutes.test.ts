@@ -32,30 +32,29 @@ describe('getDocsRoutes', () => {
     expect(getDocsRoutes()).toEqual([])
   })
 
-  it('剥离文件名数字前缀并生成路由（1.start.md -> /docs/introduction/start）', () => {
-    seed({ introduction: ['1.start.md', '2.docker-installation.md'] })
+  it('文件名即 slug（start.md -> /docs/introduction/start）', () => {
+    seed({ introduction: ['start.md', 'docker-installation.md'] })
     expect(getDocsRoutes().sort()).toEqual(['/docs', '/docs/introduction/docker-installation', '/docs/introduction/start'])
   })
 
   it('index.md 映射为父目录路由', () => {
-    seed({ '1.introduction': ['index.md'] })
+    seed({ introduction: ['index.md'] })
     expect(getDocsRoutes().sort()).toEqual(['/docs', '/docs/introduction'])
   })
 
-  it('剥离目录名数字前缀', () => {
-    seed({ '1.introduction': ['2.docker-installation.md'] })
-    expect(getDocsRoutes()).toContain('/docs/introduction/docker-installation')
-    expect(getDocsRoutes()).not.toContain('/docs/1.introduction/docker-installation')
+  it('目录名原样保留（不做任何前缀剥离）', () => {
+    seed({ introduction: ['start.md'] })
+    expect(getDocsRoutes()).toContain('/docs/introduction/start')
   })
 
   it('忽略非 Markdown 文件', () => {
-    seed({ introduction: ['note.txt', '1.start.md'] })
+    seed({ introduction: ['note.txt', 'start.md'] })
     expect(getDocsRoutes()).not.toContain('/docs/introduction/note')
   })
 
   it('递归处理嵌套目录', () => {
     seed({
-      introduction: ['1.start.md'],
+      introduction: ['start.md'],
       'framework/advanced': ['define.md']
     })
     expect(getDocsRoutes().sort()).toEqual([
@@ -66,7 +65,7 @@ describe('getDocsRoutes', () => {
   })
 
   it('始终包含 /docs 索引路由', () => {
-    seed({ introduction: ['1.start.md'] })
+    seed({ introduction: ['start.md'] })
     expect(getDocsRoutes()).toContain('/docs')
   })
 })
