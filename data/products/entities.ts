@@ -26,7 +26,10 @@ const ENTITY_DIRS = ['detail', 'market', 'demo']
  * jiti 环境（nuxt.config 加载期，无 import.meta.glob）用 fs + require 兜底。
  */
 function collectEntities(): EntityModules {
-  if (typeof require === 'function') {
+  // __dirname 守卫：jiti 环境（nuxt.config 加载期）有 require + __dirname；
+  // 打包后的 nitro/预渲染产物只有 __require 而没有 __dirname（ESM 作用域），
+  // 此时应走下方 Vite 静态替换好的 glob 分支。
+  if (typeof require === 'function' && typeof __dirname === 'string') {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const fs = require('node:fs')
     // eslint-disable-next-line @typescript-eslint/no-require-imports

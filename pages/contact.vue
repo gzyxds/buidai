@@ -122,10 +122,10 @@ definePageMeta({
   layout: 'default'
 })
 
-useSeoMeta({
+usePageSeo({
   title: '联系我们 - 智言AI | 官方客服与商务合作渠道',
   description: '获取 智言AI 官方支持与服务。提供微信客服即时沟通、产品演示预约、QQ技术交流群及商务合作热线。无论您是寻求技术协助还是企业定制方案，智言AI 团队随时竭诚为您服务。',
-  keywords: '智言AI联系方式, 智言AI客服, 商务合作, 技术支持, 产品演示, AI平台咨询, 智言AI电话, 智言AI邮箱, 智言AI地址, 企业级AI解决方案'
+  keywords: '智言AI联系方式, 智言AI客服, 商务合作, 技术支持, 产品演示, AI平台咨询, 智言AI电话, 智言AI邮箱, 智言AI地址, 企业级AI解决方案',
 })
 
 const faqs = ref([

@@ -109,7 +109,7 @@ definePageMeta({
   layout: 'default'
 })
 
-useSeoMeta({
+usePageSeo({
   title: '智言AI - 更新日志 - 智言万象 | 产品迭代历史与新功能发布',
   description: '查看 智言万象 的最新版本更新记录，包括新功能上线、性能优化、Bug 修复及未来规划。保持关注，获取第一手产品动态。',
   keywords: '智言AI更新日志, 版本记录, 产品动态, 新功能发布, 迭代历史, 软件更新, AI平台更新',

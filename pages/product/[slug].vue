@@ -16,7 +16,7 @@ if (!product) {
 }
 
 // SEO 元数据
-useSeoMeta({
+usePageSeo({
   title: product.seo.title,
   description: product.seo.description,
   keywords: product.seo.keywords,

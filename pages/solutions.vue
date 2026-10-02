@@ -9,7 +9,7 @@ definePageMeta({
 })
 
 // SEO 元数据配置
-useSeoMeta({
+usePageSeo({
   title: '智言AI - 全能AI办公空间 | AI PPT、AI写作、AI设计、AI编程',
   description: '智言AI旗下新一代AI办公平台，集成AI PPT生成、深度写作、智能设计、AI编程及数据分析等功能。让创作与协作更高效，释放你的职场生产力。',
   keywords: '智言AI, AI办公, AI PPT, AI写作, AI设计, AI编程, 智能办公, 自动化办公, AI工具, 效率工具',

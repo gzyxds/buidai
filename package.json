@@ -28,6 +28,7 @@
 		"@iconify-json/simple-icons": "^1.2.63",
 		"@nuxt/devtools": "^1.0.8",
 		"@nuxt/fonts": "^0.12.1",
+		"@nuxt/schema": "^4.5.2",
 		"@nuxt/test-utils": "^3.21.0",
 		"@nuxtjs/sitemap": "^7.5.0",
 		"@tailwindcss/typography": "^0.5.19",
@@ -41,13 +42,13 @@
 		"globals": "^17.4.0",
 		"happy-dom": "^20.0.11",
 		"jsdom": "^27.3.0",
-		"nuxt": "^4.2.2",
+		"nuxt": "^4.5.2",
 		"prettier": "^3.8.1",
-		"typescript": "^5.5.4",
+		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.57.2",
 		"vitest": "^3.0.0",
 		"vue-eslint-parser": "^10.4.0",
-		"vue-tsc": "^3.2.0"
+		"vue-tsc": "^3.3.0"
 	},
 	"dependencies": {
 		"@nuxt/content": "^3.16.1",

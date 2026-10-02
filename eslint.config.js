@@ -27,6 +27,7 @@ const nuxtGlobals = {
   useScrollProgress: true,
   useAutoPlay: true,
   useListKeyboardNav: true,
+  usePageSeo: true,
   clearError: true,
   createError: true,
   showError: true,
