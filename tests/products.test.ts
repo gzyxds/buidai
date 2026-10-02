@@ -115,10 +115,12 @@ describe('products 数据完整性（统一数据层）', () => {
     }
   })
 
-  it('市场实体的图片文件均存在', () => {
+  it('市场实体具备图标与封面图且图片文件存在', () => {
     for (const p of products) {
-      if (!p.market || !p.image) continue
-      const path = 'public' + p.image
+      if (!p.market) continue
+      expect(p.icon, `${p.slug} 的市场图标不应为空`).toBeTruthy()
+      expect(p.image, `${p.slug} 的市场封面图不应为空`).toBeTruthy()
+      const path = 'public' + (p.image as string)
       expect(fs.existsSync(path), `${p.slug} 的市场图片 ${p.image} 缺失`).toBe(true)
     }
   })

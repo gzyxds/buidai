@@ -10,6 +10,10 @@ const product: Product = {
   /** 通用短描述（阶段 3 合并市场/演示视图时再行精简） */
   description:
     '智言万象 Nanobanana 香蕉绘画平台提供一站式 AI 图像创作解决方案。基于 Gemini 3 Pro Image Preview 模型,支持高质量文生图、图生图及多图融合。预置多个模板开箱即用,保持角色一致性,支持文本渲染,生成速度极快。提供完整源码与私有化部署支持,助力企业低成本打造专属 AI 绘画应用。',
+  /** 图标名 */
+  icon: 'i-lucide-palette',
+  /** 封面图 */
+  image: '/plugin/Nanobanana.png',
   seo: {
     title: 'Nanobanana 香蕉绘画 - 开源免费的 AI 图像生成系统 | 智言万象',
     description:

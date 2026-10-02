@@ -10,6 +10,10 @@ const product: Product = {
   /** 通用短描述（阶段 3 合并市场/演示视图时再行精简） */
   description:
     '智言AI-智言万象 数字人平台提供一站式 AI 虚拟形象解决方案。支持 4K 超清画质、5 秒声音克隆、多语种合成及 SSML 语音标记。基于开源技术构建，私有化部署首选，助力企业低成本打造专属数字分身。',
+  /** 图标名 */
+  icon: 'i-lucide-tv',
+  /** 封面图 */
+  image: '/plugin/AI直播短视频数字人.webp',
   seo: {
     title: 'AI数字人系统 - 开源免费的虚拟形象克隆系统 | 智言AI',
     description:
