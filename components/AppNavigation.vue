@@ -29,31 +29,20 @@
               :ui="navigationMenuUi"
               class="justify-center data-[orientation=horizontal]:border-b border-transparent"
             >
-              <!-- 产品中心：分组 Mega Menu 面板 -->
+              <!--
+                产品中心：分组 Mega Menu 面板
+                两个面板统一 760px 宽：产品中心贴导航左缘、资源中心贴右缘（对称满幅）
+              -->
               <template #products-content>
-                <div class="sm:w-[760px] p-2">
+                <div class="sm:w-[760px]">
                   <div class="grid grid-cols-4 gap-1">
                     <div v-for="group in productMenuGroups" :key="group.label" class="min-w-0">
-                      <p class="px-3 pt-1.5 pb-2 text-xs font-semibold uppercase tracking-wider text-dimmed">
+                      <p class="px-3 pt-1.5 pb-2 text-xs font-medium text-dimmed">
                         {{ group.label }}
                       </p>
                       <ul class="space-y-1">
-                        <li v-for="product in group.children" :key="product.to as string">
-                          <NuxtLink
-                            :to="product.to!"
-                            class="group/child flex items-start gap-2.5 rounded-lg p-2.5 hover:bg-elevated transition-colors duration-150"
-                          >
-                            <UIcon
-                              :name="product.icon!"
-                              class="size-5 mt-px shrink-0 text-dimmed group-hover/child:text-muted transition-colors duration-150"
-                            />
-                            <span class="min-w-0">
-                              <span class="block text-sm font-semibold text-highlighted group-hover/child:text-primary transition-colors duration-150">
-                                {{ product.label }}
-                              </span>
-                              <span class="block text-xs text-muted leading-relaxed line-clamp-1">{{ product.description }}</span>
-                            </span>
-                          </NuxtLink>
+                        <li v-for="item in group.children" :key="item.to as string">
+                          <AppNavPanelItem :item="item" />
                         </li>
                       </ul>
                     </div>
@@ -61,23 +50,30 @@
 
                   <!-- 底部入口：查看全部产品 / 应用中心 -->
                   <div class="mt-2 flex items-center gap-1 border-t border-default pt-2">
-                    <NuxtLink
+                    <AppNavPanelItem
                       v-for="link in productMenuFooter"
                       :key="link.to as string"
-                      :to="link.to!"
-                      class="group/child flex flex-1 items-center gap-2.5 rounded-lg p-2.5 hover:bg-elevated transition-colors duration-150"
-                    >
-                      <UIcon
-                        :name="link.icon!"
-                        class="size-5 shrink-0 text-dimmed group-hover/child:text-muted transition-colors duration-150"
-                      />
-                      <span class="min-w-0">
-                        <span class="block text-sm font-semibold text-highlighted group-hover/child:text-primary transition-colors duration-150">
-                          {{ link.label }}
-                        </span>
-                        <span class="block text-xs text-muted leading-relaxed line-clamp-1">{{ link.description }}</span>
-                      </span>
-                    </NuxtLink>
+                      :item="link"
+                      class="flex-1"
+                    />
+                  </div>
+                </div>
+              </template>
+
+              <!-- 资源中心：与产品中心同一外壳、同一卡片、同一宽度 -->
+              <template #resources-content>
+                <div class="sm:w-[760px]">
+                  <div class="grid grid-cols-2 gap-1">
+                    <div v-for="group in resourceMenuGroups" :key="group.label" class="min-w-0">
+                      <p class="px-3 pt-1.5 pb-2 text-xs font-medium text-dimmed">
+                        {{ group.label }}
+                      </p>
+                      <ul class="space-y-1">
+                        <li v-for="item in group.children" :key="item.to as string">
+                          <AppNavPanelItem :item="item" />
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </template>
@@ -289,7 +285,8 @@ import { SCROLL, LAYOUT } from '~/utils/ui'
  *
  * 应用主导航组件，支持响应式设计
  * 特性：
- * - 桌面端：水平导航菜单，产品中心为分组 Mega Menu（4 组能力分类），资源中心为常规下拉
+ * - 桌面端：产品中心与资源中心两个下拉统一为 760px 分组面板（同一外壳、同一 AppNavPanelItem 卡片、
+ *   同一分组标题样式），均按 Reka 规则居中于各自触发器；产品中心为 4 组 Mega Menu + 底部入口行
  * - 移动端：宫格布局，支持子菜单展开与分组标题
  * - 滚动时背景变化
  * - 当前页面高亮
@@ -392,6 +389,29 @@ const productMenuFooter: NavigationMenuItem[] = [
 ]
 
 /**
+ * 资源中心分组（与产品中心共用同一套面板卡片与分组标题样式）
+ */
+const resourceMenuGroups: NavigationMenuItem[] = [
+  {
+    label: '内容与文档',
+    icon: 'i-lucide-library',
+    children: [
+      { label: '更新日志', description: '查看产品最新动态', icon: 'i-lucide-history', to: '/changelog' },
+      { label: '技术博客', description: '深入了解 AI 技术与实践', icon: 'i-lucide-newspaper', to: '/blog' },
+      { label: '文档中心', description: '详细的使用指南和开发文档', icon: 'i-lucide-book-open', to: '/docs' }
+    ]
+  },
+  {
+    label: '体验与下载',
+    icon: 'i-lucide-download',
+    children: [
+      { label: '产品演示', description: '在线体验各产品功能', icon: 'i-lucide-monitor-play', to: '/demo' },
+      { label: '资源下载', description: '获取设计资源和开发工具', icon: 'i-lucide-download', to: '/resources' }
+    ]
+  }
+]
+
+/**
  * 导航项配置
  * 结构：品牌（首页/智言AI）→ 产品（产品中心）→ 商业（解决方案/定价/私有部署）→ 内容（资源中心）→ 生态（优刻云计算）
  */
@@ -411,13 +431,8 @@ const items = computed<NavigationMenuItem[][]>(() => [
     {
       label: '资源中心',
       icon: 'i-lucide-library',
-      children: [
-        { label: '更新日志', description: '查看产品最新动态', icon: 'i-lucide-history', to: '/changelog' },
-        { label: '技术博客', description: '深入了解 AI 技术与实践', icon: 'i-lucide-newspaper', to: '/blog' },
-        { label: '文档中心', description: '详细的使用指南和开发文档', icon: 'i-lucide-book-open', to: '/docs' },
-        { label: '产品演示', description: '在线体验各产品功能', icon: 'i-lucide-monitor-play', to: '/demo' },
-        { label: '资源下载', description: '获取设计资源和开发工具', icon: 'i-lucide-download', to: '/resources' }
-      ]
+      slot: 'resources' as const,
+      children: resourceMenuGroups
     },
     { label: '优刻云计算', icon: 'i-lucide-cloud', to: 'https://www.cloudcvm.com', target: '_blank' },
   ]
@@ -455,14 +470,9 @@ const navigationMenuUi = computed(() => ({
     ? 'text-white/60 group-hover:text-white'
     : 'text-dimmed group-hover:text-muted group-[.router-link-active]:text-primary',
   content: 'sm:w-auto bg-default rounded-xl shadow-xl ring-1 ring-default p-2',
-  viewport: 'sm:w-(--reka-navigation-menu-viewport-width) overflow-hidden',
-  childList: 'sm:w-72 space-y-1',
-  childItem: '',
-  childLink: 'flex flex-wrap items-center gap-x-2 gap-y-1 p-3 rounded-lg hover:bg-elevated transition-colors duration-150 group/child',
-  childLinkWrapper: 'contents',
-  childLinkIcon: 'size-5 text-dimmed group-hover/child:text-muted shrink-0 transition-colors duration-150',
-  childLinkLabel: 'font-semibold text-highlighted group-hover/child:text-primary transition-colors duration-150',
-  childLinkDescription: 'w-full text-sm text-muted leading-relaxed'
+  // justify-start 覆盖主题默认的 justify-center：Reka 的 left 变量以根元素为基准定位，flex 居中会叠加偏移
+  viewportWrapper: 'absolute top-full start-0 flex w-full justify-start',
+  viewport: 'sm:w-(--reka-navigation-menu-viewport-width) left-(--reka-navigation-menu-viewport-left) rtl:left-auto rtl:right-[calc(100%-var(--reka-navigation-menu-viewport-left)-var(--reka-navigation-menu-viewport-width))] overflow-hidden'
 }))
 
 /**
