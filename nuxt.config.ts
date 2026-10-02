@@ -91,6 +91,17 @@ export default defineNuxtConfig({
     }
   },
 
+  // 开发环境覆盖：dev 模式下输出目录回到默认位置，
+  // 避免 nuxt dev 启动时清空 dist/（generate 的静态产物），
+  // 同时消除 Vite 监视器对 dist 下 html 文件删除事件的 page reload 噪音日志
+  $development: {
+    nitro: {
+      output: {
+        publicDir: '.output/public'
+      }
+    }
+  },
+
   // 颜色模式配置
   colorMode: {
     classSuffix: '' // 移除类名后缀 (即使用 'dark' 而不是 'dark-mode')
