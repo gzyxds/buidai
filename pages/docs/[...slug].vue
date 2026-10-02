@@ -124,9 +124,9 @@ name="i-heroicons-chevron-down"
 
 <script setup lang="ts">
 // 页面级 meta 占位：需要两侧竖带装饰的页面可声明 frameSides: true（见 layouts/default.vue）
-definePageMeta({})
-
 import { normalizePath } from '~/utils/normalizePath'
+
+definePageMeta({})
 
 const route = useRoute()
 // URL 解码 + 去尾斜杠（逻辑收敛至 utils/normalizePath，与 blog 详情页共用）
@@ -148,8 +148,10 @@ const [{ data: page }, { data: surround }] = await Promise.all([
 ])
 
 // Handle 404：交由 Nuxt 错误页处理，避免返回 200 + 空内容（软 404）
+// fatal: true 使客户端路由跳转到失效 slug 时也渲染全屏错误页（create-error.md）
+// 用 message 而非 statusMessage：后者仅限 ASCII（error-handling.md）
 if (!page.value) {
-  throw createError({ statusCode: 404, statusMessage: '文档不存在' })
+  throw createError({ status: 404, message: '文档不存在', fatal: true })
 }
 
 const isTocOpen = ref(false)

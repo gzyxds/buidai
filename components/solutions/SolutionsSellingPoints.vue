@@ -36,7 +36,7 @@
             <div class="lg:w-1/2 relative order-1 lg:order-2 w-full">
                <div class="absolute -inset-4 bg-linear-to-r from-purple-100 to-blue-50 rounded-3xl -z-10 blur-xl opacity-60"/>
                <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-2 overflow-hidden">
-                  <img src="/sell-point-1.png" alt="AI Writing" loading="lazy" class="rounded-xl w-full h-auto" width="1483" height="852" />
+                  <img src="/sell-point-1.webp" alt="AI Writing" loading="lazy" class="rounded-xl w-full h-auto" width="1483" height="852" />
                </div>
             </div>
          </div>
@@ -59,7 +59,7 @@
             <div class="lg:w-1/2 relative order-1 lg:order-2 w-full">
                <div class="absolute -inset-4 bg-linear-to-l from-pink-100 to-purple-50 rounded-3xl -z-10 blur-xl opacity-60"/>
                <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-2 overflow-hidden">
-                  <img src="/sell-point-2.png" alt="Image Gen" loading="lazy" class="rounded-xl w-full h-auto" width="1484" height="852" />
+                  <img src="/sell-point-2.webp" alt="Image Gen" loading="lazy" class="rounded-xl w-full h-auto" width="1484" height="852" />
                </div>
             </div>
          </div>

@@ -19,13 +19,13 @@ const product: Product = {
     ogTitle: 'Sora 视频生成引擎 - 打造您的专属 AI 视频创作平台 | 智言万象',
     ogDescription:
       '一键生成电影级 AI 视频，支持文生视频与图生视频。基于开源 Sora 技术构建的新一代 AI 视频生成平台，提供完整源码，让创意无限延伸。',
-    ogImage: '/product/sora.png',
+    ogImage: '/product/sora.webp',
     ogType: 'website',
     twitterCard: 'summary_large_image',
     twitterTitle: 'Sora 视频生成引擎 - 打造您的专属 AI 视频创作平台 | 智言万象',
     twitterDescription:
       '一键生成电影级 AI 视频，支持文生视频与图生视频。基于开源 Sora 技术构建的新一代 AI 视频生成平台。',
-    twitterImage: '/product/sora.png'
+    twitterImage: '/product/sora.webp'
   },
   hero: {
     badge: 'Sora 视频生成引擎 2.0 发布',
@@ -35,7 +35,7 @@ const product: Product = {
       '新一代 Sora 视频生成平台，一键生成电影级视频。<br class="hidden sm:block" />让创意无限延伸，让画面栩栩如生，开启智能视频创作新时代。',
     primaryBtn: '开始构建',
     secondaryBtn: '查看案例',
-    demoImage: '/plugin/Sora2短剧视频创作.png',
+    demoImage: '/plugin/sora2-drama.png',
     demoAlt: '知识库展示'
   },
   featuresGrid: {
@@ -121,7 +121,7 @@ const product: Product = {
           desc: '将已有 KV、海报和 IP 角色在 Sora 中扩展为系列短视频内容。'
         }
       ],
-      image: '/product/sora-2.png'
+      image: '/product/sora-2.webp'
     },
     {
       title: 'Sora 视频增强与编辑：从出片到成片一站打通',
@@ -145,7 +145,7 @@ const product: Product = {
           desc: '按平台比例与时长导出多版本视频，覆盖短视频平台、官网与线下大屏等多种发布场景。'
         }
       ],
-      image: '/product/sora-3.png'
+      image: '/product/sora-3.webp'
     }
   ],
   cta: {

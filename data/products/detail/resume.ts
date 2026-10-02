@@ -13,7 +13,7 @@ const product: Product = {
   /** 图标名 */
   icon: 'i-lucide-file-text',
   /** 封面图 */
-  image: '/plugin/AI简历.png',
+  image: '/plugin/ai-resume.webp',
   seo: {
     title: 'AI简历 - 开源免费的智能简历生成与分析系统 | 智言AI-智言万象',
     description:
@@ -96,7 +96,7 @@ const product: Product = {
         { title: '内容优化', desc: '基于AI算法，自动优化简历内容，确保语言表达专业、逻辑清晰。' },
         { title: '多格式导出', desc: '支持多种格式导出，如 PDF、Word 等，满足不同投递需求。' }
       ],
-      image: '/plugin/AI简历.png'
+      image: '/plugin/ai-resume.webp'
     },
     {
       title: '简历模板，专业设计',
@@ -114,7 +114,7 @@ const product: Product = {
           desc: '支持自定义简历样式，包括字体、颜色、布局等，打造个性化简历。'
         }
       ],
-      image: '/plugin/AI简历.png'
+      image: '/plugin/ai-resume.webp'
     },
     {
       title: 'AI分析，深度优化',
@@ -126,7 +126,7 @@ const product: Product = {
         { title: '自定义配置', desc: '支持自定义积分消耗和基础问题配置，灵活适配不同业务场景。' },
         { title: '数据统计', desc: '后台可查看生成记录和积分消耗情况，全面掌握使用情况。' }
       ],
-      image: '/product/resume-3.png'
+      image: '/product/resume-3.webp'
     }
   ],
   cta: {
@@ -159,7 +159,7 @@ const product: Product = {
     /** 演示视图图标 */
     icon: 'i-heroicons-document-text',
     /** 演示视图封面 */
-    image: '/plugin/AI简历.png',
+    image: '/plugin/ai-resume.webp',
     /** 演示视图标签 */
     tags: ['智能问答', '简历模板', 'AI分析'],
     features: ['智能问答', '简历模板', '在线编辑', '模块管理', 'AI分析'],

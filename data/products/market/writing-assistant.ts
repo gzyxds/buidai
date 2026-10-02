@@ -13,7 +13,7 @@ const product: Product = {
   /** 图标名 */
   icon: 'i-lucide-pen-tool',
   /** 封面图 */
-  image: '/plugin/写作助手.png',
+  image: '/plugin/writing-assistant.webp',
   /** 市场视图（原 pluginData 数字 id: 7） */
   market: {
     id: 7,

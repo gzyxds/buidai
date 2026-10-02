@@ -91,7 +91,6 @@ const effectStarted = ref(false)
 // Matter.js 相关引用
 let engine: MatterType.Engine | null = null
 let render: MatterType.Render | null = null
-let runner: MatterType.Runner | null = null
 let wordBodies: { elem: Element; body: MatterType.Body }[] = []
 let animationFrameId: number | null = null
 let observer: IntersectionObserver | null = null
@@ -194,7 +193,7 @@ const initPhysics = () => {
   }
   const MatterLib = Matter
 
-  const { Engine, Render, World, Bodies, Runner, Mouse, MouseConstraint } = MatterLib
+  const { Engine, Render, World, Bodies, Mouse, MouseConstraint } = MatterLib
 
   const containerRect = containerRef.value.getBoundingClientRect()
   const width = containerRect.width
@@ -256,13 +255,13 @@ const initPhysics = () => {
     return { elem, body }
   })
 
-  // 将单词元素设置为绝对定位
+  // 将单词元素切换为 transform 定位（与 updateLoop 的单次 transform 写入一致）
   wordBodies.forEach(({ elem, body }) => {
     const htmlElem = elem as HTMLElement
     htmlElem.style.position = 'absolute'
-    htmlElem.style.left = `${body.position.x}px`
-    htmlElem.style.top = `${body.position.y}px`
-    htmlElem.style.transform = 'translate(-50%, -50%)'
+    htmlElem.style.left = '0'
+    htmlElem.style.top = '0'
+    htmlElem.style.transform = `translate3d(${body.position.x}px, ${body.position.y}px, 0) translate(-50%, -50%)`
   })
 
   // 创建鼠标约束
@@ -291,33 +290,34 @@ const initPhysics = () => {
     ...wordBodies.map((wb) => wb.body),
   ])
 
-  // 运行引擎和渲染器
-  runner = Runner.create()
-  if (runner && engine) {
-    Runner.run(runner, engine)
-  }
   if (render) {
     Render.run(render)
   }
 
-  // 更新循环：同步 DOM 元素位置与物理体位置
-  const updateLoop = () => {
+  // 单一 rAF 循环驱动物理步进与 DOM 同步。
+  // 不用 Matter.Runner：它会与本循环各自独立 rAF 步进 Engine.update，
+  // 导致物理速率翻倍且帧序不同步。
+  let lastTime = performance.now()
+  const updateLoop = (now: number) => {
     if (!engine || !engine.world) {
       return
     }
 
+    // 按实际帧间隔步进（上限 2 帧时长），任意刷新率下都保持设计速度
+    const delta = Math.min(now - lastTime, 33.33)
+    lastTime = now
+    MatterLib.Engine.update(engine, delta)
+
+    // 单次 transform 写入（translate3d 定位 + 居中 + 旋转），避免 left/top 每帧强制 layout
     wordBodies.forEach(({ body, elem }) => {
       const { x, y } = body.position
       const htmlElem = elem as HTMLElement
-      htmlElem.style.left = `${x}px`
-      htmlElem.style.top = `${y}px`
-      htmlElem.style.transform = `translate(-50%, -50%) rotate(${body.angle}rad)`
+      htmlElem.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) rotate(${body.angle}rad)`
     })
 
-    MatterLib.Engine.update(engine)
     animationFrameId = requestAnimationFrame(updateLoop)
   }
-  updateLoop()
+  animationFrameId = requestAnimationFrame(updateLoop)
 }
 
 /**
@@ -337,11 +337,6 @@ const cleanup = () => {
       canvasContainerRef.value.removeChild(render.canvas)
     }
     render = null
-  }
-
-  if (runner && MatterLib) {
-    MatterLib.Runner.stop(runner)
-    runner = null
   }
 
   if (engine && MatterLib) {
@@ -386,5 +381,9 @@ watch(() => props.text, () => {
 
 .falling-text-canvas canvas {
   display: block;
+}
+
+.falling-word {
+  will-change: transform;
 }
 </style>

@@ -13,7 +13,7 @@ const product: Product = {
   /** 图标名 */
   icon: 'i-lucide-image-plus',
   /** 封面图 */
-  image: '/plugin/wanxiang.png',
+  image: '/plugin/wanxiang.webp',
   /** 市场视图（原 pluginData 数字 id: 5） */
   market: {
     id: 5,

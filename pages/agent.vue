@@ -5,7 +5,7 @@
  */
 // SEO 元数据配置
 usePageSeo({
-  title: '智言AI - 企业级 AI Agent 智能体构建平台',
+  title: '企业级 AI Agent 智能体构建平台',
   description:
     '智言AI 企业级 AI 应用构建平台。可视化 Workflow 编排 + 超易用 AI 知识库 + 创新 RAG 检索 + 模板生态 = 轻松构建强大 AI 应用。全方位赋能企业 AI 转型，打造智能高效的业务闭环。',
   keywords: 'AI Agent, 智能体, 企业级AI, AI应用平台, 智言AI, Workflow, RAG',

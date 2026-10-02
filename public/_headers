@@ -1,0 +1,8 @@
+# 静态托管缓存策略（P2#21）
+# 默认：HTML/sitemap/payload 等构建期可变内容走协商缓存，保证发布即时生效；
+# /_nuxt/* 文件名带内容 hash，可永久缓存（immutable）。规则自上而下，后者覆盖前者。
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/_nuxt/*
+  Cache-Control: public, max-age=31536000, immutable

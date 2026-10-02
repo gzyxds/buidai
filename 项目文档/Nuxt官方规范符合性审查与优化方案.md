@@ -8,6 +8,20 @@
 
 ---
 
+## 实施状态（2026-10-03 更新）
+
+以下 44 项已于当日全部实施完毕并逐阶段验证（typecheck / lint / 41 单测 / `nuxt generate` 全量构建 + dist 抽查），「顺延/保留」项为文档自身建议的决策项：
+
+| 状态 | 条目 |
+| --- | --- |
+| ✅ 已实施 | #1-#23（除 #9）、#25-#30、#34-#39、#41-#43 全部 P1/P2 与可行 P3；每项均含 dist 产物级验证 |
+| ⏭️ 顺延（需升级 Nuxt ≥ 4.5.2 之后的版本） | #9 `experimental.prerenderErrorPages`——官方文档主分支已有，安装的 4.5.2 schema 无此键，typecheck 阻断，待升级后一行启用 |
+| 🔒 按文档建议保留现状 | #24 app/ 目录迁移（官方允许根级结构，无 server/ 场景收益仅 dev 启动速度，建议下个大版本节点与 #14/#15 联动）、#31 单 layout 并入 app.vue（docs 独立布局是合理预期）、#32 JSON-LD plugin 化（现状符合官方语义）、#33 Lazy Hydration / FallingText SSR 文本层（涉及首屏行为与视觉，需单独评估）、#44 AppBanner localStorage（无 mismatch，待「N 天隐藏」需求出现时迁 useCookie） |
+| 📌 遗留产品决策（非规范问题） | BuidaiHero / SolutionsHero / CtaSection / AppNavigation 的「打开应用」CTA 指向 `https://www.buidai.com` 本站——真实应用域名确定后统一替换（utils/link.ts 的 'AI绘画' 无 www 外链重复项同理） |
+| 🧹 实施附带产出 | public/ 95MB→9.8MB（sharp 批量转 WebP + 引用替换 + 14 个中文文件名 ASCII 化 + agent.svg svgo 1.37MB→472KB）；`scripts/optimize-images.mjs` 保留为图片资产再优化工具；新增 `build/`（构建期工具）、`page-meta.d.ts`（PageMeta 增强）、`public/_headers`（托管缓存策略）、`public/ogImage.png`（1200×630 位图兜底图）；@nuxt/eslint 迁移顺带修复 4 文件 import 顺序与 demo/pricing 两页违反 Nuxt 单根规则的多根模板 |
+
+---
+
 ## 一、结论总览
 
 **项目整体规范符合度较高**：数据获取选型、SSR 安全、预渲染链路、TypeScript 姿势、SEO 基础设施均与官方推荐一致。共发现 **6 个 P1、12 个 P2、15 个 P3** 问题，无 P0（无阻断构建/部署的违规）。

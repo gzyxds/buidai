@@ -1,9 +1,12 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+// @vitest-environment happy-dom
+// DOM 型单测使用 happy-dom（getting-started/testing.md 官方轻量路径）：
+// window/document/history 均为真实实现， spies 断言调用，无需手工桩
+import { describe, it, expect, vi, beforeEach, afterEach, type MockInstance } from 'vitest'
 
 /**
  * useToc 的生命周期钩子以静态 import 方式使用，
- * 此处 mock 掉 vue 的 onMounted / onUnmounted 以捕获注册并手动触发，
- * 使纯逻辑 composable 无需 DOM 环境即可测试。
+ * 此处 mock 掉 vue 的 onMounted / onUnmounted 以捕获注册并手动触发——
+ * 单测无组件实例，钩子不会真正挂载（组件级测试需 @nuxt/test-utils mountSuspended）。
  */
 const mountHooks: Array<() => void> = []
 const unmountHooks: Array<() => void> = []
@@ -42,27 +45,23 @@ class IntersectionObserverStub {
   takeRecords() { return [] }
 }
 
-let scrollToMock: ReturnType<typeof vi.fn>
-let pushStateMock: ReturnType<typeof vi.fn>
-let targetElements: Map<string, HTMLElement>
+let scrollToMock: MockInstance
+let pushStateMock: MockInstance
 
 beforeEach(() => {
   mountHooks.length = 0
   unmountHooks.length = 0
   observedElements.length = 0
   observerCallback = () => {}
-  targetElements = new Map()
-  scrollToMock = vi.fn()
-  pushStateMock = vi.fn()
-
+  scrollToMock = vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
+  pushStateMock = vi.spyOn(history, 'pushState').mockImplementation(() => {})
   vi.stubGlobal('IntersectionObserver', IntersectionObserverStub)
-  vi.stubGlobal('window', { innerWidth: 1280, scrollTo: scrollToMock })
-  vi.stubGlobal('history', { pushState: pushStateMock })
-  vi.stubGlobal('document', {
-    getElementById: (id: string) => targetElements.get(id) ?? null,
-    body: { getBoundingClientRect: () => ({ top: 0 }) },
-    querySelectorAll: () => []
-  })
+})
+
+afterEach(() => {
+  document.body.innerHTML = ''
+  vi.unstubAllGlobals()
+  vi.restoreAllMocks()
 })
 
 /** 触发 mount 钩子 */
@@ -75,17 +74,18 @@ function unmount(): void {
   unmountHooks.forEach(fn => fn())
 }
 
-/** 创建带指定 id 与 top 位置的元素桩 */
+/** 创建真实 DOM 元素（挂入 body 供 getElementById 查询）并桩定其 top 位置 */
 function createHeading(id: string, top: number): HTMLElement {
-  return {
-    id,
-    getBoundingClientRect: () => ({ top })
-  } as unknown as HTMLElement
+  const el = document.createElement('div')
+  el.id = id
+  el.getBoundingClientRect = () => ({ top } as DOMRect)
+  document.body.appendChild(el)
+  return el
 }
 
 describe('useToc', () => {
   it('scrollToId 按偏移量计算位置并平滑滚动，同时写入 hash', () => {
-    targetElements.set('h-1', createHeading('h-1', 500))
+    createHeading('h-1', 500)
 
     const { scrollToId, activeId } = useToc({ resolveTargets: () => [], headingOffset: 100 })
     scrollToId('h-1')
@@ -96,7 +96,7 @@ describe('useToc', () => {
   })
 
   it('syncHash 为 false 时不写 hash（更新日志页行为）', () => {
-    targetElements.set('v-0', createHeading('v-0', 300))
+    createHeading('v-0', 300)
 
     const { scrollToId } = useToc({ resolveTargets: () => [], headingOffset: 100, syncHash: false })
     scrollToId('v-0')
@@ -106,7 +106,7 @@ describe('useToc', () => {
   })
 
   it('headingOffset 传函数时按调用时的值计算（响应式断点偏移）', () => {
-    targetElements.set('x', createHeading('x', 400))
+    createHeading('x', 400)
 
     const { scrollToId } = useToc({ resolveTargets: () => [], headingOffset: () => 120 })
     scrollToId('x')
@@ -124,7 +124,7 @@ describe('useToc', () => {
   })
 
   it('onBeforeNavigate 在滚动之前触发（移动端收起目录）', () => {
-    targetElements.set('h-2', createHeading('h-2', 200))
+    createHeading('h-2', 200)
     const order: string[] = []
 
     const { scrollToId } = useToc({

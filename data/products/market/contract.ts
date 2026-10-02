@@ -13,7 +13,7 @@ const product: Product = {
   /** 图标名 */
   icon: 'i-lucide-signature',
   /** 封面图 */
-  image: '/plugin/AI合同.png',
+  image: '/plugin/ai-contract.webp',
   /** 市场视图（原 pluginData 数字 id: 9） */
   market: {
     id: 9,

@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-white pb-24">
-    <!-- 进度条 -->
-    <div class="fixed top-0 left-0 h-1 bg-primary-600 z-50 transition-all duration-300" :style="{ width: `${scrollProgress}%` }"/>
+    <!-- 进度条：scaleX 渲染（scrollProgress 为 0-1），避免 width 每帧触发 layout -->
+    <div class="fixed top-0 left-0 h-1 w-full origin-left bg-primary-600 z-50 transition-transform duration-300" :style="{ transform: `scaleX(${scrollProgress})` }"/>
 
     <div class="container mx-auto px-4 pt-24">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
@@ -186,21 +186,21 @@
                   <!-- 微信公众号二维码 -->
                   <div class="flex flex-col items-center">
                     <div class="w-20 h-20 bg-white rounded-lg border border-gray-200 overflow-hidden mb-2">
-                      <img src="/wechat.png" alt="微信公众号" class="w-full h-full object-cover" width="500" height="500" />
+                      <img src="/wechat.png" alt="微信公众号" class="w-full h-full object-cover" loading="lazy" decoding="async" width="500" height="500" />
                     </div>
                     <span class="text-xs text-gray-500 text-center leading-tight">微信公众号</span>
                   </div>
                   <!-- 微信客服二维码 -->
                   <div class="flex flex-col items-center">
                     <div class="w-20 h-20 bg-white rounded-lg border border-gray-200 overflow-hidden mb-2">
-                      <img src="/qrcode.png" alt="微信客服" class="w-full h-full object-cover" width="400" height="400" />
+                      <img src="/qrcode.png" alt="微信客服" class="w-full h-full object-cover" loading="lazy" decoding="async" width="400" height="400" />
                     </div>
                     <span class="text-xs text-gray-500 text-center leading-tight">微信客服</span>
                   </div>
                   <!-- 微信交流群二维码 -->
                   <div class="flex flex-col items-center">
                     <div class="w-20 h-20 bg-white rounded-lg border border-gray-200 overflow-hidden mb-2">
-                      <img src="/qrcode.png" alt="微信交流群" class="w-full h-full object-cover" width="400" height="400" />
+                      <img src="/qrcode.png" alt="微信交流群" class="w-full h-full object-cover" loading="lazy" decoding="async" width="400" height="400" />
                     </div>
                     <span class="text-xs text-gray-500 text-center leading-tight">微信交流群</span>
                   </div>
@@ -217,9 +217,9 @@
 
 <script setup lang="ts">
 // 页面级 meta 占位：需要两侧竖带装饰的页面可声明 frameSides: true（见 layouts/default.vue）
-definePageMeta({})
-
 import { normalizePath } from '~/utils/normalizePath'
+
+definePageMeta({})
 
 const route = useRoute()
 // URL 解码 + 去尾斜杠：中文 slug 经浏览器编码后需还原，content 查询才能命中
@@ -232,8 +232,9 @@ const { data: post } = await useAsyncData(route.path, () => {
 })
 
 // 文章不存在时交由 Nuxt 错误页处理，避免返回 200 + 空内容（软 404）
+// fatal: true 使客户端路由跳转到失效 slug 时也渲染全屏错误页（create-error.md）
 if (!post.value) {
-  throw createError({ statusCode: 404, statusMessage: '文章不存在' })
+  throw createError({ status: 404, message: '文章不存在', fatal: true })
 }
 
 // Fetch Surround (Older/Newer posts)
@@ -295,7 +296,7 @@ const scrollProgress = useScrollProgress()
 // article 类型（详情页）；ogTitle 与 title 不同，故显式传入ogImage
 if (post.value) {
   usePageSeo({
-    title: `${post.value.title} - 智言万象 博客`,
+    title: post.value.title,
     description: post.value.description,
     ogType: 'article',
     ogTitle: post.value.title,
@@ -307,7 +308,10 @@ const formatDate = (dateString: string | Date) => {
   return new Date(dateString).toLocaleDateString('zh-CN', {
     year: 'numeric',
     month: 'long',
-    day: 'numeric'
+    day: 'numeric',
+    // date-only 字符串按 UTC 零点解析，格式化必须同为 UTC，
+    // 否则 SSR（服务器时区）与客户端水合可能相差一天 → hydration mismatch
+    timeZone: 'UTC'
   })
 }
 </script>

@@ -77,7 +77,8 @@ const props = defineProps({
 // 判断是否为开发环境
 const isDev = import.meta.dev
 
-const statusCode = computed(() => props.error?.statusCode || 500)
+// status 是 NuxtError 的新字段（statusCode 为 deprecated 兼容别名），二者兼容读取
+const statusCode = computed(() => props.error?.status || props.error?.statusCode || 500)
 
 const isNotFound = computed(() => statusCode.value === 404)
 

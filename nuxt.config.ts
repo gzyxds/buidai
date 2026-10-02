@@ -1,8 +1,8 @@
 import { defineNuxtConfig } from 'nuxt/config'
 import { SITE_TITLE, SITE_DESCRIPTION, SITE_URL } from './data/site'
 import type { SitemapUrl } from '@nuxtjs/sitemap'
-import { getDocsRoutes } from './utils/getDocsRoutes'
-import { getSitemapRoutes } from './utils/getSitemapRoutes'
+import { getDocsRoutes } from './build/getDocsRoutes'
+import { getSitemapRoutes } from './build/getSitemapRoutes'
 
 export default defineNuxtConfig({
   // Nuxt 兼容性日期，用于锁定默认行为
@@ -18,23 +18,22 @@ export default defineNuxtConfig({
   },
 
   // Nuxt 实验性功能
-  experimental: {
-    payloadExtraction: true
-  },
+  // payloadExtraction 在 Nuxt 4 默认即为 true（@nuxt/schema @default 注释），
+  // 显式声明已删除。官方文档的 experimental.prerenderErrorPages（预渲染 404.html）
+  // 需要高于本项目的 Nuxt 4.5.2 才可用，待升级后再启用
 
   // 启用的 Nuxt 模块
   modules: [
     '@nuxt/ui',       // UI 组件库 (基于 Tailwind CSS)
     '@nuxt/content',  // 内容管理模块 (Markdown 支持)
-    '@nuxtjs/sitemap' // 网站地图生成模块
+    '@nuxtjs/sitemap', // 网站地图生成模块
+    '@nuxt/eslint'    // 项目感知的 ESLint 集成（生成 .nuxt/eslint.config.mjs，code-style.md 官方推荐）
   ],
 
-  // @nuxt/fonts（由 @nuxt/ui 注册）— 关闭 Google 字体源，避免构建期访问 fonts.google.com
-  fonts: {
-    providers: {
-      google: false,
-      googleicons: false
-    }
+  // 站点只使用系统字体。@nuxt/ui 默认会自动注册 @nuxt/fonts（启动时联网拉取
+  // 字体元数据库），显式关闭以消除该网络依赖；本项目不加载任何远程/网页字体
+  ui: {
+    fonts: false
   },
 
   // Sitemap 网站地图配置
@@ -113,7 +112,11 @@ export default defineNuxtConfig({
   app: {
     // HTML Head 配置
     head: {
-      title: SITE_TITLE,
+      // 全站 title 由 app.vue 的 titleTemplate 统一管理（页面短标题 + 品牌后缀），
+      // 此处不再设置全局 title，避免与模板叠加
+      // 页面语言：官方 seo-meta.md 建议将不变的站点级标签（标题/语言/图标）静态声明于此，
+      // 同时是 WCAG 3.1.1（Language of Page）硬性要求
+      htmlAttrs: { lang: 'zh-CN' },
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -135,11 +138,6 @@ export default defineNuxtConfig({
         { rel: 'apple-touch-icon', href: '/icon.png' }
         // canonical 不在全局声明：各页面由 usePageSeo 按 route.path 派生各自页面 URL，
         // 全局硬编码会让所有内页继承首页 canonical（SEO 错误）
-
-        // 字体使用系统默认，不加载远程 Google Fonts
-        // { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        // { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        // { href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap', rel: 'stylesheet' }
       ]
     }
   },

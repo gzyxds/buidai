@@ -6,16 +6,11 @@
  * 1. 页面滚动超过一定距离显示返回顶部按钮
  * 2. 提供在线咨询悬浮窗（鼠标悬停显示二维码）
  * 3. 提供售后/活动入口悬浮窗
- * 4. 全局二维码弹窗模态框（支持自定义配置，监听 QR_MODAL_EVENT 事件）
+ * 4. 全局二维码弹窗模态框（消费 useQrModalState 共享状态）
  */
 
 // ----------------------------------------------------------------------
-// 1. Imports (导入)
-// ----------------------------------------------------------------------
-import { QR_MODAL_EVENT, type QrModalConfig } from '~/utils/qrModal'
-
-// ----------------------------------------------------------------------
-// 2. Types & Interfaces (类型定义)
+// 1. Types & Interfaces (类型定义)
 // ----------------------------------------------------------------------
 /**
  * 二维码弹窗配置接口
@@ -27,7 +22,7 @@ interface QrCodeConfig {
 }
 
 // ----------------------------------------------------------------------
-// 3. State (状态)
+// 2. State (状态)
 // ----------------------------------------------------------------------
 // 悬浮按钮组是否可见（滚动超过阈值）
 const isVisible = useScrollThreshold(300)
@@ -49,7 +44,7 @@ const qrCodeConfig = ref<QrCodeConfig>({
 })
 
 // ----------------------------------------------------------------------
-// 4. Methods (方法)
+// 3. Methods (方法)
 // ----------------------------------------------------------------------
 
 /**
@@ -63,20 +58,22 @@ const scrollToTop = () => {
 }
 
 /**
- * 监听全局自定义事件，触发二维码模态框
- * @param e CustomEvent
+ * 消费全局二维码弹窗请求状态（useQrModalState）：
+ * 各页面/组件经 useQrModal 写入请求，此处响应打开弹窗。
  */
-const handleGlobalShowQRCodeModal = (e: Event) => {
-  const customEvent = e as CustomEvent<QrModalConfig>
-  if (customEvent.detail) {
-    qrCodeConfig.value = {
-      title: customEvent.detail.title || '联系客服',
-      desc: customEvent.detail.desc || '扫描二维码添加客服微信',
-      image: customEvent.detail.image || '/qrcode.png'
-    }
+const qrModalRequest = useQrModalState()
+
+watch(qrModalRequest, (config) => {
+  if (!config) {return}
+  qrCodeConfig.value = {
+    title: config.title || '联系客服',
+    desc: config.desc || '扫描二维码添加客服微信',
+    image: config.image || '/qrcode.png'
   }
   showModalQRCode.value = true
-}
+  // 消费后清空，使相同配置可再次触发
+  qrModalRequest.value = null
+})
 
 /**
  * 打开二维码模态框（点击在线咨询按钮）
@@ -107,17 +104,6 @@ const setHoverQRCodeVisible = (val: boolean) => {
 const setAfterSalesMenuVisible = (val: boolean) => {
   showAfterSalesMenu.value = val
 }
-
-// ----------------------------------------------------------------------
-// 5. Lifecycle (生命周期)
-// ----------------------------------------------------------------------
-onMounted(() => {
-  window.addEventListener(QR_MODAL_EVENT, handleGlobalShowQRCodeModal)
-})
-
-onUnmounted(() => {
-  window.removeEventListener(QR_MODAL_EVENT, handleGlobalShowQRCodeModal)
-})
 </script>
 
 <template>
@@ -174,7 +160,7 @@ onUnmounted(() => {
                     <img
                       src="/qrcode.png"
                       alt="客服二维码"
-                      class="w-28 h-28 sm:w-36 sm:h-36 object-contain border border-gray-200" width="400" height="400" />
+                      class="w-28 h-28 sm:w-36 sm:h-36 object-contain border border-gray-200" loading="lazy" decoding="async" width="400" height="400" />
                   </div>
                 </div>
               </div>
@@ -331,7 +317,7 @@ onUnmounted(() => {
                     <img
                       src="/qrcode.png"
                       :alt="qrCodeConfig.title"
-                      class="w-full aspect-square sm:w-48 sm:h-48 object-contain mix-blend-multiply sm:mix-blend-normal" width="400" height="400" />
+                      class="w-full aspect-square sm:w-48 sm:h-48 object-contain mix-blend-multiply sm:mix-blend-normal" loading="lazy" decoding="async" width="400" height="400" />
                     <!-- 装饰角标 -->
                     <div class="absolute -top-1.5 -right-1.5 sm:-top-2 sm:-right-2 w-5 h-5 sm:w-6 sm:h-6 bg-blue-500 rounded-full flex items-center justify-center text-white shadow-md scale-100 sm:scale-0 sm:group-hover:scale-100 transition-transform duration-300 delay-75 ring-2 ring-white">
                         <UIcon name="i-lucide-user" class="w-3 h-3 sm:w-3.5 sm:h-3.5" />
@@ -347,7 +333,7 @@ onUnmounted(() => {
                     <img
                       src="/wechat.png"
                       alt="关注公众号"
-                      class="w-full aspect-square sm:w-48 sm:h-48 object-contain mix-blend-multiply sm:mix-blend-normal" width="500" height="500" />
+                      class="w-full aspect-square sm:w-48 sm:h-48 object-contain mix-blend-multiply sm:mix-blend-normal" loading="lazy" decoding="async" width="500" height="500" />
                     <!-- 装饰角标 -->
                     <div class="absolute -top-1.5 -right-1.5 sm:-top-2 sm:-right-2 w-5 h-5 sm:w-6 sm:h-6 bg-green-500 rounded-full flex items-center justify-center text-white shadow-md scale-100 sm:scale-0 sm:group-hover:scale-100 transition-transform duration-300 delay-75 ring-2 ring-white">
                         <UIcon name="i-lucide-gift" class="w-3 h-3 sm:w-3.5 sm:h-3.5" />

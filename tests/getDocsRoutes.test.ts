@@ -2,7 +2,7 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { getDocsRoutes } from '../utils/getDocsRoutes'
+import { getDocsRoutes } from '../build/getDocsRoutes'
 
 let cwdSpy: ReturnType<typeof vi.spyOn>
 let tmp: string

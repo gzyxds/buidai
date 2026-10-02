@@ -24,7 +24,7 @@ const product: Product = {
     /** 演示视图图标 */
     icon: 'i-heroicons-chat-bubble-left-right',
     /** 演示视图封面 */
-    image: '/plugin/Nanobanana.png',
+    image: '/plugin/Nanobanana.webp',
     /** 演示视图标签 */
     tags: ['大语言模型', '智能客服', '多轮对话'],
     features: ['多轮对话', '上下文理解', '意图识别', '知识库集成', '数据分析'],

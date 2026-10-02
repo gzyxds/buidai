@@ -13,7 +13,7 @@ const product: Product = {
   /** 图标名 */
   icon: 'i-lucide-shopping-bag',
   /** 封面图 */
-  image: '/plugin/fashion-ai.png',
+  image: '/plugin/fashion-ai.webp',
   seo: {
     title: '电商试衣换装 - 开源免费的AI模特换装系统 | 智言AI-智言万象',
     description:
@@ -39,7 +39,7 @@ const product: Product = {
       '专为电商卖家打造的AI视觉优化解决方案，提升商品主图的吸引力与转化率。<br class="hidden sm:block" />无需复杂拍摄与高昂成本，通过AI技术实现商品一键适配模特上身与背景智能替换。',
     primaryBtn: '开始试衣',
     secondaryBtn: '查看示例',
-    demoImage: '/plugin/fashion-ai.png',
+    demoImage: '/plugin/fashion-ai.webp',
     demoAlt: '电商试衣换装展示'
   },
   featuresGrid: {
@@ -123,7 +123,7 @@ const product: Product = {
         },
         { title: '高清输出', desc: '支持高清图片输出，确保商品细节清晰可见，满足电商平台要求。' }
       ],
-      image: '/product/model-2.png'
+      image: '/product/model-2.webp'
     },
     {
       title: '简洁易用，高效便捷',

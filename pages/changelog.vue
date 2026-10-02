@@ -91,7 +91,7 @@
               单实例渲染全部版本（组件内部 v-for），避免 v-for 内逐版本实例化组件
               造成 N 份实例与重复渲染；锚点 id 由组件按 idPrefix 生成
             -->
-            <UChangelogVersions id-prefix="version" :versions="changelogVersions" />
+            <AppChangelogVersions id-prefix="version" :versions="changelogVersions" />
           </div>
         </main>
       </div>
@@ -104,7 +104,7 @@
 definePageMeta({})
 
 usePageSeo({
-  title: '智言AI - 更新日志 - 智言万象 | 产品迭代历史与新功能发布',
+  title: '更新日志 | 产品迭代历史与新功能发布',
   description: '查看 智言万象 的最新版本更新记录，包括新功能上线、性能优化、Bug 修复及未来规划。保持关注，获取第一手产品动态。',
   keywords: '智言AI更新日志, 版本记录, 产品动态, 新功能发布, 迭代历史, 软件更新, AI平台更新',
   ogTitle: '智言AI - 更新日志 - 智言万象 | 产品迭代历史与新功能发布',
@@ -112,9 +112,13 @@ usePageSeo({
   ogType: 'website'
 })
 
- 
+// 仅取列表与版本卡所需字段（data-fetching.md「Minimize payload size」），
+// 不带 select 会把整份 markdown body AST 拉进 _payload.json
 const { data: versions } = await useAsyncData('changelog-updates', () => {
-  return queryCollection('update').order('date', 'DESC').all()
+  return queryCollection('update')
+    .select('title', 'description', 'date', 'image', 'to', 'target', 'isMajor', 'authors')
+    .order('date', 'DESC')
+    .all()
 })
 
 // async data 在挂载前可能为undefined，统一兜底为空数组供模板遍历

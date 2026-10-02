@@ -13,7 +13,7 @@ const product: Product = {
   /** 图标名 */
   icon: 'i-lucide-book-open',
   /** 封面图 */
-  image: '/plugin/AI短剧小说创作.png',
+  image: '/plugin/ai-drama-novel.webp',
   seo: {
     title: 'AI短剧小说创作 - 开源免费的网文短剧写作系统 | 智言AI-智言万象',
     description:
@@ -23,13 +23,13 @@ const product: Product = {
     ogTitle: 'AI 短剧小说创作 - 打造爆款短剧的神器 | 智言AI-智言万象',
     ogDescription:
       '专为自媒体创作者、编剧、网络作家打造,支持创建无限量剧本、角色设定、章节可视化拖拽、AI 扩写润色改写续写。让短剧创作更高效、更系统。',
-    ogImage: '/product/drama-1.png',
+    ogImage: '/product/drama-1.webp',
     ogType: 'website',
     twitterCard: 'summary_large_image',
     twitterTitle: 'AI 短剧小说创作 - 打造爆款短剧的神器 | 智言AI-智言万象',
     twitterDescription:
       '专为自媒体创作者、编剧、网络作家打造,支持创建无限量剧本、角色设定、章节可视化拖拽、AI 扩写润色改写续写。',
-    twitterImage: '/product/drama-1.png'
+    twitterImage: '/product/drama-1.webp'
   },
   hero: {
     badge: 'AI 短剧小说创作 2.0 发布',
@@ -39,7 +39,7 @@ const product: Product = {
       '专为自媒体创作者、编剧、网络作家打造的 AI 写作工具,支持无限量剧本创作。<br class="hidden sm:block" />AI 扩写润色改写续写,章节可视化拖拽,开启智能创作新时代。',
     primaryBtn: '开始构建',
     secondaryBtn: '查看案例',
-    demoImage: '/plugin/AI短剧小说创作.png',
+    demoImage: '/plugin/ai-drama-novel.webp',
     demoAlt: 'AI短剧小说创作'
   },
   featuresGrid: {
@@ -101,7 +101,7 @@ const product: Product = {
           desc: '支持创建无限量剧本和小说,满足自媒体创作者、编剧、网络作家的多样化创作需求。'
         }
       ],
-      image: '/product/drama-1.png'
+      image: '/product/drama-1.webp'
     },
     {
       title: '章节可视化拖拽与大纲管理,系统化创作流程',
@@ -122,7 +122,7 @@ const product: Product = {
           desc: '随时调整章节顺序和内容结构,支持草稿编辑与复用,方便内容迭代与优化。'
         }
       ],
-      image: '/product/drama-2.png'
+      image: '/product/drama-2.webp'
     },
     {
       title: 'AI 智能辅助写作,提升创作效率与质量',
@@ -146,7 +146,7 @@ const product: Product = {
           desc: '正文一键排版、复制全文,可调节字号大小,提供舒适的写作和阅读体验。'
         }
       ],
-      image: '/product/drama-3.png'
+      image: '/product/drama-3.webp'
     }
   ],
   cta: {
@@ -179,7 +179,7 @@ const product: Product = {
     /** 演示视图图标 */
     icon: 'i-heroicons-pencil-square',
     /** 演示视图封面 */
-    image: '/plugin/AI短剧小说创作.png',
+    image: '/plugin/ai-drama-novel.webp',
     /** 演示视图标签 */
     tags: ['剧本创作', '角色设定', 'AI扩写'],
     features: ['无限量剧本', '角色设定', '章节拖拽', 'AI扩写润色', '大纲管理'],

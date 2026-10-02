@@ -2,10 +2,10 @@
 	"name": "buidai",
 	"version": "1.0.0",
 	"type": "module",
-	"description": "Modern buidai Pages template built with Nuxt.js",
+	"description": "Modern buidai marketing site built with Nuxt",
 	"private": true,
 	"engines": {
-		"node": ">=20.19.0"
+		"node": ">=22.0.0"
 	},
 	"allowScripts": [
 		"better-sqlite3",
@@ -13,7 +13,8 @@
 		"vue-demi"
 	],
 	"scripts": {
-		"build": "nuxt generate",
+		"postinstall": "nuxt prepare",
+		"build": "npm run generate",
 		"generate": "nuxt generate",
 		"dev": "nuxt dev",
 		"preview": "nuxt preview",
@@ -23,14 +24,16 @@
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
 		"test": "vitest run",
-		"test:watch": "vitest"
+		"test:watch": "vitest",
+		"clean": "nuxt cleanup",
+		"analyze": "nuxt analyze"
 	},
 	"devDependencies": {
-		"@eslint/js": "^10.0.1",
 		"@iconify-json/heroicons": "^1.2.3",
 		"@iconify-json/lucide": "^1.2.81",
 		"@iconify-json/ph": "^1.2.2",
 		"@iconify-json/simple-icons": "^1.2.63",
+		"@nuxt/eslint": "^1.17.0",
 		"@nuxtjs/sitemap": "^7.5.0",
 		"@tailwindcss/typography": "^0.5.19",
 		"@tailwindcss/vite": "^4.3.3",
@@ -39,22 +42,19 @@
 		"better-sqlite3": "^12.10.0",
 		"eslint": "^10.1.0",
 		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-vue": "^10.8.0",
-		"globals": "^17.4.0",
-		"nuxt": "^4.5.2",
+		"happy-dom": "^20.14.5",
 		"prettier": "^3.8.1",
+		"sharp": "^0.35.5",
 		"tailwindcss": "^4.3.3",
 		"typescript": "^5.9.3",
-		"typescript-eslint": "^8.57.2",
 		"vitest": "^3.0.0",
-		"vue-eslint-parser": "^10.4.0",
 		"vue-tsc": "^3.3.0"
 	},
 	"dependencies": {
 		"@nuxt/content": "^3.16.1",
-		"@nuxt/fonts": "^0.14.0",
 		"@nuxt/ui": "^4.11.3",
 		"matter-js": "^0.20.0",
+		"nuxt": "^4.5.2",
 		"vue": "^3.4.31",
 		"vue-router": "^5.3.1"
 	}

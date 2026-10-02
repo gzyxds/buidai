@@ -24,7 +24,7 @@ const product: Product = {
     /** 演示视图图标 */
     icon: 'i-heroicons-photo',
     /** 演示视图封面 */
-    image: '/plugin/img2.png',
+    image: '/plugin/img2.webp',
     /** 演示视图标签 */
     tags: ['AI绘画', '文生图', '多模型'],
     features: ['文生图', '多参考图融合', '自定义尺寸分辨率', '提示词扩写', '高清下载'],

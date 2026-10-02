@@ -1,5 +1,7 @@
 <template>
   <UApp>
+    <!-- 路由切换播报：客户端导航后向屏幕阅读器宣布新页面标题（accessibility.md） -->
+    <NuxtRouteAnnouncer />
     <NuxtLayout>
       <!--
         page-key 用 route.path 而非 route.fullPath：
@@ -22,10 +24,13 @@
  * - 作为应用的根组件
  * - 添加 JSON-LD 结构化数据
  */
-import { SITE_URL } from '~/data/site'
+import { SITE_TITLE, SITE_URL } from '~/data/site'
 
-// JSON-LD 结构化数据
+// JSON-LD 结构化数据 + 全站标题模板
 useHead({
+  // 全站标题模板（seo-meta.md 官方推荐放 app.vue）：各页只写短标题，
+  // 品牌后缀统一由模板追加；首页等未设 title 的页面回退完整站点标题
+  titleTemplate: title => (title ? `${title} - 智言AI` : SITE_TITLE),
   script: [
     // Organization 结构化数据
     {

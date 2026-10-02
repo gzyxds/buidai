@@ -8,13 +8,15 @@ const slug = route.params.slug as string
 const product = getProductDetailBySlug(slug)
 
 // 404 if slug not found
+// fatal: true 使客户端路由跳转到失效 slug 时也渲染全屏错误页（create-error.md）
 if (!product) {
-  throw createError({ statusCode: 404, statusMessage: '产品页面未找到' })
+  throw createError({ status: 404, message: '产品页面未找到', fatal: true })
 }
 
 // SEO 元数据
 usePageSeo({
-  title: product.seo.title,
+  // 去掉数据源固化的品牌尾缀（如「| 智言万象」），品牌统一由 titleTemplate 追加
+  title: product.seo.title.replace(/\s*\|[^|]*$/, ''),
   description: product.seo.description,
   keywords: product.seo.keywords,
   ogTitle: product.seo.ogTitle,

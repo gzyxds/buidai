@@ -7,46 +7,26 @@
  * 新增实体即自动注册，无需手工登记（防漏登记回归）。
  *
  * 实体目录约定：
- * - detail/  产品中心：三视图齐全的 12 个实体
- * - market/  应用中心：16 个市场专属实体
+ * - detail/  产品中心：三视图齐全的 16 个实体
+ * - market/  应用中心：12 个市场专属实体
  * - demo/    演示中心：2 个演示专属实体
+ *
+ * 本文件属应用侧代码，只走 Vite 的 import.meta.glob 静态收集。
+ * 构建期（nuxt.config → sitemap）需要的产品 slug 由 build/getSitemapRoutes.ts
+ * 以 fs 扫描 detail/ 文件名独立提供，两侧不共享运行时代码（shared.md 边界）。
  */
 import type { Product, ProductDetail } from './types'
 
 type EntityModules = Record<string, { default: Product }>
 
-/** 实体子目录（新增分组目录时在此登记） */
-const ENTITY_DIRS = ['detail', 'market', 'demo']
-
 /**
- * 收集全部实体文件。
+ * 收集全部实体。
  *
- * Vite 环境（dev/build/测试）走 import.meta.glob 静态字面量调用
- * （Vite 在转换期静态替换该调用，必须保持完整调用形式，不能经变量/类型断言间接引用）。
- * jiti 环境（nuxt.config 加载期，无 import.meta.glob）用 fs + require 兜底。
+ * import.meta.glob 是 Vite 的静态字面量调用：
+ * Vite 在转换期静态替换该调用，必须保持完整调用形式，
+ * 不能经变量/类型断言间接引用。
  */
 function collectEntities(): EntityModules {
-  // __dirname 守卫：jiti 环境（nuxt.config 加载期）有 require + __dirname；
-  // 打包后的 nitro/预渲染产物只有 __require 而没有 __dirname（ESM 作用域），
-  // 此时应走下方 Vite 静态替换好的 glob 分支。
-  if (typeof require === 'function' && typeof __dirname === 'string') {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const fs = require('node:fs')
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const path = require('node:path')
-    const baseDir = path.join(__dirname, '.')
-    const out: EntityModules = {}
-    for (const dir of ENTITY_DIRS) {
-      for (const file of fs.readdirSync(path.join(baseDir, dir))) {
-        if (!file.endsWith('.ts')) {
-          continue
-        }
-        // eslint-disable-next-line @typescript-eslint/no-require-imports
-        out[`./${dir}/${file}`] = require(path.join(baseDir, dir, file))
-      }
-    }
-    return out
-  }
   return import.meta.glob('./*/*.ts', { eager: true }) as unknown as EntityModules
 }
 

@@ -65,7 +65,7 @@
 | **构建失败零容忍** | `nuxt.config.ts:89` `prerender.failOnError: true` |
 | **内容驱动 + 类型安全** | `content.config.ts` 三个集合全部使用 Zod 校验 |
 | **UI 库优先，自定义 CSS 兜底** | `nuxt.config.ts:27-31` 引入 `@nuxt/ui`；`assets/css/` 仅 2 个文件 |
-| **构建期不联网** | `nuxt.config.ts:34-39` 关闭 Google Fonts provider，字体统一走系统默认栈 |
+| **构建期不联网** | `ui.fonts: false` 关闭 @nuxt/ui 自动注册的 @nuxt/fonts（其启动时会联网拉取字体元数据库），站点仅用 `assets/css/main.css` 手写的系统字体栈 |
 | **无 Store / 无 Server** | 全仓无 Pinia、无 `server/`、`middleware/`、`plugins/` 目录 |
 
 ---
@@ -77,7 +77,6 @@
 | 包 | 声明版本 | 实际锁定版本 | 用途 |
 |---|---|---|---|
 | `@nuxt/content` | `^3.16.1` | **3.16.1** | 基于文件的内容管理（Markdown + SQLite 索引） |
-| `@nuxt/fonts` | `^0.14.0` | **0.14.0** | 字体模块（由 `@nuxt/ui` 注册，顶层声明用于锁定版本并关闭 Google 源） |
 | `@nuxt/ui` | `^4.11.3` | **4.11.3** | 企业级 UI 组件库（内置 Tailwind 与 `UIcon`） |
 | `matter-js` | `^0.20.0` | **0.20.0** | 2D 物理引擎，仅用于 `FallingText` 文字坠落效果 |
 | `vue` | `^3.4.31` | **3.5.43** | 前端框架（实际安装高于声明下界） |
@@ -124,7 +123,7 @@
   ],
 ```
 
-> `@nuxt/fonts` 与 color-mode 能力并非直接注册，而是由 `@nuxt/ui` 4.x 内部注册，因此 `fonts` / `colorMode` 两个配置节依然生效。
+> color-mode 能力并非直接注册，而是由 `@nuxt/ui` 4.x 内部注册，`colorMode` 配置节依然生效。字体方面：`@nuxt/ui` 默认会自动注册 `@nuxt/fonts`（启动时联网拉取字体元数据库），本项目已通过 `ui.fonts: false` 显式关闭，仅使用系统字体栈；`@nuxt/fonts` 包本身只作为 `@nuxt/ui` 的传递依赖存在，不在顶层声明。
 
 ### 2.4 与旧版说明文档的依赖差异
 
@@ -136,19 +135,19 @@
 
 ### 3.1 Node.js 版本
 
-- `package.json` **未声明 `engines` 字段**（无硬性约束声明）
-- CI 明确使用 **Node 22**：`.github/workflows/ci.yml:16-19` → `actions/setup-node@v4` + `node-version: 22`
-- `@types/node` 锁定 **25.0.3**，要求运行时 Node ≥ 22
-- 本机开发实测 Node **v26.3.0**（`node -v`），CI 为 22
+- `package.json` 声明 `engines.node: ">=22.0.0"`（与官方「Node.js 22.x or newer」对齐）
+- CI 通过 `.github/workflows/ci.yml` → `node-version-file: .nvmrc` 读取版本（`.nvmrc` = 22），单一事实来源
+- `@types/node` 锁定 **25.x**，要求运行时 Node ≥ 22
+- 本机开发实测 Node v26.x，CI 为 22
 
-**结论：推荐以 Node 22 LTS 作为标准运行环境（与 CI 对齐）；Node 18/20 未经 CI 验证。**
+**结论：Node 22 LTS 为标准运行环境（engines/.nvmrc/CI 三处一致）。**
 
 ### 3.2 包管理器
 
-- 仓库根目录**存在 `package-lock.json`**，CI 使用 `npm ci`（`.github/workflows/ci.yml:22`）
+- 仓库根目录**存在 `package-lock.json`**，CI 使用 `npm ci`
 - **必须使用 npm** 以保证与 CI 一致的依赖树；`pnpm` / `yarn` 会忽略 npm 锁文件，不建议混用
 - 历史上曾启用 `--legacy-peer-deps`，已于提交 `e6ceb5f`（`chore: 移除 legacy-peer-deps 开关`）移除
-- **当前无 `.npmrc`，安装无需任何额外开关**
+- **`.npmrc` 已存在**，锁定 `registry=npmmirror`，消除锁文件混用官方源与镜像源导致的解析漂移
 
 ### 3.3 原生模块构建
 
@@ -579,7 +578,7 @@ app.vue
 | `typescript.typeCheck` | `false` | 构建期关闭类型检查以提速，由 `npm run typecheck` 补位 |
 | `experimental.payloadExtraction` | `true` | 预渲染时抽取 payload 为独立 `_payload.json`，减小 HTML 体积 |
 | `experimental.renderJsonPayloads` | `true` | payload 使用 JSON 而非 JS 字面量，可被 CDN 安全缓存 |
-| `fonts.providers.google / googleicons` | `false` / `false` | **构建期离线保障**：禁止拉取 Google Fonts |
+| `ui.fonts` | `false` | **构建期离线保障**：关闭 @nuxt/ui 自动注册的 @nuxt/fonts，杜绝启动时的字体元数据网络请求，站点仅用系统字体 |
 | `colorMode.classSuffix` | `''` | 深色模式类名为 `.dark`（而非 `dark-mode`） |
 | `site.url` | `https://www.buidai.com` | sitemap 绝对地址基准 |
 | `nitro.preset` | `'static'` | **强制通用静态输出，禁用 Vercel preset 自动检测** |
@@ -1198,13 +1197,13 @@ colors: {
 
 ```css
 body {
-  font-family: var(--font-sans);              /* @nuxt/fonts 提供的系统字体栈 */
+  font-family: var(--font-sans);              /* 系统字体栈（main.css 手写定义，无远程字体） */
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   @apply bg-white text-gray-900;
 }
 ```
 
-- **不加载任何远程字体**（`nuxt.config.ts:34-39` 已关闭 Google provider），仅使用系统无衬线字体栈
+- **不加载任何远程字体**（`ui.fonts: false` 已关闭 @nuxt/ui 的字体集成），仅使用系统无衬线字体栈
 - `html { scroll-behavior: smooth }` —— 全局启用平滑滚动
 
 **③ 圆角**：`--ui-radius: 0.125rem`（2px，偏硬朗的科技风），贯穿所有 Nuxt UI 组件

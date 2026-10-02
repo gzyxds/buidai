@@ -8,7 +8,11 @@
  * 2. 派生 og/twitter 字段 —— 多数页面只需写 title 与 description，
  *    社交分享所需的 ogTitle/ogDescription/twitterTitle/twitterDescription
  *    语义相同，逐处手写造成字符串重复。此处自动补全，
- *    调用方显式传入的值优先。
+ *    调用方显式传入的值优先。ogImage / twitterImage 统一归一化为绝对 URL
+ *    （OG 协议要求，社交抓取器忽略相对路径），未传入时回退全站兜底图，
+ *    避免分享到社交平台无图（兜底放此处而非全局 head：og:image 允许多条，
+ *    全局与页面级并存会让爬虫优先取到全局兜底图，覆盖页面自己的图）。
+ *    twitterCard 缺省派生为 summary_large_image，ogUrl 与 canonical 同源。
  * 3. 派生 canonical —— 全局 head 里硬编码 canonical 会让所有内页指向首页。
  *    此处按 route.path 派生各页面自己的 canonical URL（尾斜杠与 URL 编码已规范化），
  *    调用方可通过 canonicalUrl 显式覆盖。
@@ -32,6 +36,21 @@ export type PageSeoInput = Parameters<typeof useSeoMeta>[0] & {
   canonicalUrl?: string
 }
 
+/** 全站兜底分享图（1200×630 PNG；页面未传 ogImage 时使用。位图格式：主流社交平台不渲染 SVG） */
+const DEFAULT_OG_IMAGE = `${SITE_URL}/ogImage.png`
+
+/**
+ * og:image / twitter:image 协议要求绝对 URL，社交抓取器对相对路径直接忽略
+ * （use-seo-meta.md 官方示例 ogImage 即全 URL）。
+ * 仅归一化字符串入参；getter/Ref 等响应式入参原样透传。
+ */
+const toAbsoluteUrl = (value: PageSeoInput['ogImage']): PageSeoInput['ogImage'] => {
+  if (typeof value !== 'string' || !value) {
+    return value
+  }
+  return /^https?:\/\//.test(value) ? value : new URL(value, SITE_URL).href
+}
+
 export function usePageSeo(input: PageSeoInput) {
   const { keywords, canonicalUrl, ...rest } = input
 
@@ -50,6 +69,8 @@ export function usePageSeo(input: PageSeoInput) {
   const ogDescription = (rest.ogDescription ?? rest.description) as ResolvableMetaValue
   const twitterTitle = (rest.twitterTitle ?? rest.title) as ResolvableMetaValue
   const twitterDescription = (rest.twitterDescription ?? rest.description) as ResolvableMetaValue
+  const ogImage = toAbsoluteUrl(rest.ogImage) ?? DEFAULT_OG_IMAGE
+  const twitterImage = toAbsoluteUrl(rest.twitterImage) ?? ogImage
 
   return useSeoMeta({
     ...rest,
@@ -57,6 +78,12 @@ export function usePageSeo(input: PageSeoInput) {
     ogDescription,
     twitterTitle,
     twitterDescription,
+    ogImage,
+    twitterImage,
+    // 缺 twitter:card 时 X 平台降级为无大图 summary，派生的 twitterImage 形同虚设
+    // （seo-meta.md 官方示例即 summary_large_image）；ogUrl 与 canonical 同源
+    twitterCard: rest.twitterCard ?? 'summary_large_image',
+    ogUrl: rest.ogUrl ?? resolvedCanonical,
     ...(keywords ? { keywords } : {})
   })
 }

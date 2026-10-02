@@ -12,7 +12,7 @@ const product: Product = {
   /** 图标名 */
   icon: 'i-lucide-map-pin',
   /** 封面图 */
-  image: '/plugin/GEO优化排名工具.png',
+  image: '/plugin/geo-rank-tool.webp',
   /** 市场视图（原 pluginData 数字 id: 13） */
   market: {
     id: 13,

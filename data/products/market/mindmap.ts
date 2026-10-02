@@ -12,7 +12,7 @@ const product: Product = {
   /** 图标名 */
   icon: 'i-lucide-git-branch',
   /** 封面图 */
-  image: '/plugin/AI思维导图.png',
+  image: '/plugin/ai-mindmap.webp',
   /** 市场视图（原 pluginData 数字 id: 4） */
   market: {
     id: 4,

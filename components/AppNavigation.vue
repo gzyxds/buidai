@@ -31,12 +31,13 @@
             >
               <!--
                 产品中心：分组 Mega Menu 面板
-                两个面板统一 760px 宽：产品中心贴导航左缘、资源中心贴右缘（对称满幅）
+                5 列分组独立加宽，资源中心维持 760px（两面板风格一致，仅列数不同）
               -->
               <template #products-content>
                 <NavPanelGroup
                   :groups="productMenuGroups"
-                  :columns="4"
+                  :columns="5"
+                  panel-width="sm:w-[900px]"
                   :footer="productMenuFooter"
                 />
               </template>
@@ -303,7 +304,8 @@ const isCurrentRoute = (path?: string): boolean => {
 
 /**
  * 产品中心分组（桌面端 Mega Menu 与移动端子菜单共用的单一数据源）
- * 12 个产品按能力维度分为 4 组，避免平铺列表难以扫描
+ * 16 个产品按能力维度分为 5 组，避免平铺列表难以扫描；
+ * "独立系统"为可私有化部署的源码交付系统，来自应用市场
  */
 const productMenuGroups: NavigationMenuItem[] = [
   {
@@ -340,6 +342,16 @@ const productMenuGroups: NavigationMenuItem[] = [
     children: [
       { label: 'AI PPT', description: '开源免费的智能演示文稿制作工具', icon: 'i-lucide-presentation', to: '/product/ppt' },
       { label: 'AI音乐', description: '开源免费的 AI 音乐生成系统', icon: 'i-lucide-music', to: '/product/music' }
+    ]
+  },
+  {
+    label: '独立系统',
+    icon: 'i-lucide-layout-grid',
+    children: [
+      { label: '企业全能AI知识库', description: '智能文档问答与知识管理系统', icon: 'i-lucide-book-open', to: '/product/knowledge-base' },
+      { label: '超级IP数字人SaaS', description: '真人克隆数字人短视频系统', icon: 'i-lucide-tv', to: '/product/digital-human-saas' },
+      { label: '艺创AI聊天绘画', description: 'AI 对话与 AI 绘画融合系统', icon: 'i-lucide-palette', to: '/product/yichuang-ai' },
+      { label: '艺创AI论文写作', description: '10 分钟生成万字长文系统', icon: 'i-lucide-pen-tool', to: '/product/yichuang-paper' }
     ]
   }
 ]

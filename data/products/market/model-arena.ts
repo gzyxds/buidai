@@ -13,7 +13,7 @@ const product: Product = {
   /** 图标名 */
   icon: 'i-lucide-trophy',
   /** 封面图 */
-  image: '/plugin/arena-model.png',
+  image: '/plugin/arena-model.webp',
   /** 市场视图（原 pluginData 数字 id: 16） */
   market: {
     id: 16,

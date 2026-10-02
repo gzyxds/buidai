@@ -13,7 +13,7 @@ const product: Product = {
   /** 图标名 */
   icon: 'i-lucide-monitor-play',
   /** 封面图 */
-  image: '/plugin/aippt.png',
+  image: '/plugin/aippt.webp',
   seo: {
     title: 'AI PPT - 开源免费的智能演示文稿制作工具 | 智言AI-智言万象',
     description:
@@ -23,13 +23,13 @@ const product: Product = {
     ogTitle: 'AI PPT - 一键直出幻灯片 | 智言AI-智言万象',
     ogDescription:
       '智能演示文稿制作工具，能够根据用户输入的主题或大纲，自动生成结构清晰、设计美观的PPT页面。内置多种模板与图表，支持智能配色、字体搭配与动画效果优化。',
-    ogImage: '/plugin/aippt.png',
+    ogImage: '/plugin/aippt.webp',
     ogType: 'website',
     twitterCard: 'summary_large_image',
     twitterTitle: 'AI PPT - 一键直出幻灯片 | 智言AI-智言万象',
     twitterDescription:
       '智能演示文稿制作工具，能够根据用户输入的主题或大纲，自动生成结构清晰、设计美观的PPT页面，显著提升制作效率与视觉表现力。',
-    twitterImage: '/plugin/aippt.png'
+    twitterImage: '/plugin/aippt.webp'
   },
   hero: {
     badge: 'AI PPT 2.0 发布',
@@ -39,7 +39,7 @@ const product: Product = {
       '智能演示文稿制作工具，根据主题或大纲自动生成 PPT。<br class="hidden sm:block" />内置多种模板与图表，支持智能配色、字体搭配与动画效果优化。',
     primaryBtn: '开始制作',
     secondaryBtn: '查看示例',
-    demoImage: '/plugin/aippt.png',
+    demoImage: '/plugin/aippt.webp',
     demoAlt: 'AI PPT展示'
   },
   featuresGrid: {
@@ -96,7 +96,7 @@ const product: Product = {
         { title: '快速导出', desc: '支持快速导出多种格式，大幅缩短等待时间，提升创作效率。' },
         { title: '高质量输出', desc: '生成的 PPT 质量高，设计美观，结构清晰，满足专业级创作需求。' }
       ],
-      image: '/plugin/aippt.png'
+      image: '/plugin/aippt.webp'
     },
     {
       title: '模板图表，专业设计',
@@ -111,7 +111,7 @@ const product: Product = {
         { title: '字体搭配', desc: '智能推荐字体搭配方案，确保排版美观专业，提升阅读体验。' },
         { title: '动画效果', desc: '支持动画效果优化，让演示更加生动有趣，增强观众参与感。' }
       ],
-      image: '/plugin/aippt.png'
+      image: '/plugin/aippt.webp'
     },
     {
       title: '演讲备注，掌控全场',
@@ -126,7 +126,7 @@ const product: Product = {
         { title: '实时预览', desc: '支持实时预览功能，随时查看演示效果，及时调整优化。' },
         { title: '云端存储', desc: '支持云端存储，随时随地访问和编辑您的演示文稿。' }
       ],
-      image: '/plugin/aippt.png'
+      image: '/plugin/aippt.webp'
     }
   ],
   cta: {
@@ -159,7 +159,7 @@ const product: Product = {
     /** 演示视图图标 */
     icon: 'i-heroicons-clipboard-document',
     /** 演示视图封面 */
-    image: '/plugin/aippt.png',
+    image: '/plugin/aippt.webp',
     /** 演示视图标签 */
     tags: ['智能生成', '模板图表', '智能配色'],
     features: ['智能生成', '模板图表', '智能配色', '字体搭配', '动画效果'],

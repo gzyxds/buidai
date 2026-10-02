@@ -22,7 +22,7 @@ const scenarios: Scenario[] = [
   {
     title: 'Nanobanana',
     items: ['基于 Gemini 3 Pro Image Preview 模型，支持文生图、图生图及多图融合', '保持角色一致性，支持文本渲染，生成速度极快', '预置多个模板开箱即用，后台可自由配置提示词和参考图'],
-    icon: 'i-heroicons-chat-bubble-left-right', iconBg: 'bg-blue-50 text-blue-600', image: '/plugin/Nanobanana.png', index: '01',
+    icon: 'i-heroicons-chat-bubble-left-right', iconBg: 'bg-blue-50 text-blue-600', image: '/plugin/Nanobanana.webp', index: '01',
   },
   {
     title: '企业智能体系统',
@@ -37,17 +37,17 @@ const scenarios: Scenario[] = [
   {
     title: 'AI 漫剧创意系统',
     items: ['快速搭建支持剧本智能创作、角色形象生成、漫剧素材库管理的系统', '适配分镜设计与台词优化，显著降低漫剧创作门槛', '支持创建无限量剧本和小说，提供丰富的剧情模板和冲突框架'],
-    icon: 'i-heroicons-sparkles', iconBg: 'bg-purple-50 text-purple-600', image: '/plugin/wanxiang.png', index: '04',
+    icon: 'i-heroicons-sparkles', iconBg: 'bg-purple-50 text-purple-600', image: '/plugin/wanxiang.webp', index: '04',
   },
   {
     title: 'AI 数字人系统',
     items: ['上传视频即可克隆专属形象，1:1 还原真人表情与动作，支持 4K 超清画质', '仅需一段语音即可克隆声音音色，支持多语种合成及 SSML 语音标记', '用于直播带货、企业代言、教育培训等场景，打造逼真数字形象'],
-    icon: 'i-heroicons-user-group', iconBg: 'bg-rose-50 text-rose-600', image: '/product/human-1.png', index: '05',
+    icon: 'i-heroicons-user-group', iconBg: 'bg-rose-50 text-rose-600', image: '/product/human-1.webp', index: '05',
   },
   {
     title: 'AI 视频剪辑系统',
     items: ['支持自动化批量剪辑、智能转场、滤镜调色，大幅提升视频制作效率', '智能字幕添加与背景音乐匹配，一键生成节奏感强的混剪视频', '提供海量模板与素材库，轻松制作门店营销、产品带货等专业级视频内容'],
-    icon: 'i-heroicons-sparkles', iconBg: 'bg-amber-50 text-amber-600', image: '/plugin/video-mix.png', index: '06',
+    icon: 'i-heroicons-sparkles', iconBg: 'bg-amber-50 text-amber-600', image: '/plugin/video-mix.webp', index: '06',
   },
   {
     title: 'AI 简历生成系统',
@@ -57,12 +57,12 @@ const scenarios: Scenario[] = [
   {
     title: 'AI PPT 演示系统',
     items: ['根据主题或大纲自动生成结构清晰、设计美观的 PPT 演示文稿', '内置多种模板与图表，支持智能配色、字体搭配与动画效果优化', '一键生成演讲备注，支持实时预览与云端存储，满足各类展示需求'],
-    icon: 'i-heroicons-command-line', iconBg: 'bg-cyan-50 text-cyan-600', image: '/plugin/aippt.png', index: '08',
+    icon: 'i-heroicons-command-line', iconBg: 'bg-cyan-50 text-cyan-600', image: '/plugin/aippt.webp', index: '08',
   },
   {
     title: 'AI音乐创作系统',
     items: ['以文本/歌词/哼唱/乐谱为输入，快速生成完整歌曲、伴奏、人声或纯音乐', '降低音乐创作门槛，支持个人娱乐与商用配乐，提供完整商用授权'],
-    icon: 'i-heroicons-sparkles', iconBg: 'bg-violet-50 text-violet-600', image: '/plugin/AI音乐.png', index: '09',
+    icon: 'i-heroicons-sparkles', iconBg: 'bg-violet-50 text-violet-600', image: '/plugin/ai-music.webp', index: '09',
   },
 ]
 </script>

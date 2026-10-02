@@ -1,10 +1,10 @@
 import { describe, expect, it, vi } from 'vitest'
 
-vi.mock('../utils/getDocsRoutes', () => ({
+import { getSitemapRoutes } from '../build/getSitemapRoutes'
+
+vi.mock('../build/getDocsRoutes', () => ({
   getDocsRoutes: () => ['/docs', '/docs/introduction/start', '/agent']
 }))
-
-import { getSitemapRoutes } from '../utils/getSitemapRoutes'
 
 describe('getSitemapRoutes', () => {
   it('包含全部 13 个静态路由', () => {
@@ -33,7 +33,11 @@ describe('getSitemapRoutes', () => {
     const routes = getSitemapRoutes()
     expect(routes).toContain('/product/banana')
     expect(routes).toContain('/product/ppt')
-    expect(routes.filter(r => r.startsWith('/product/'))).toHaveLength(12)
+    expect(routes).toContain('/product/knowledge-base')
+    expect(routes).toContain('/product/digital-human-saas')
+    expect(routes).toContain('/product/yichuang-ai')
+    expect(routes).toContain('/product/yichuang-paper')
+    expect(routes.filter(r => r.startsWith('/product/'))).toHaveLength(16)
   })
 
   it('合并文档路由', () => {

@@ -13,7 +13,7 @@ const product: Product = {
   /** 图标名 */
   icon: 'i-lucide-copy',
   /** 封面图 */
-  image: '/plugin/xiaohongshu.png',
+  image: '/plugin/xiaohongshu.webp',
   seo: {
     title: '小红书热门内容创作助手 - 开源免费的 AI 文案生成系统 | 智言万象',
     description:
@@ -125,7 +125,7 @@ const product: Product = {
           desc: '支持制作视频封面,适配小红书视频笔记格式,提升视频内容的点击率。'
         }
       ],
-      image: '/product/xhs-2.png'
+      image: '/product/xhs-2.webp'
     },
     {
       title: '智能标签与历史管理,提升运营效率',
@@ -146,7 +146,7 @@ const product: Product = {
           desc: '后台自定义设置模型计费,灵活配置价格策略,满足不同商业需求。'
         }
       ],
-      image: '/product/xhs-3.png'
+      image: '/product/xhs-3.webp'
     }
   ],
   cta: {
@@ -179,7 +179,7 @@ const product: Product = {
     /** 演示视图图标 */
     icon: 'i-heroicons-hashtag',
     /** 演示视图封面 */
-    image: '/plugin/xiaohongshu.png',
+    image: '/plugin/xiaohongshu.webp',
     /** 演示视图标签 */
     tags: ['文案生成', 'AI配图', '标签推荐'],
     features: ['一键提取', '智能仿写', '爆款文案', '流量密码', '快速产出'],

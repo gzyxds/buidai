@@ -13,7 +13,7 @@ const product: Product = {
   /** 图标名 */
   icon: 'i-lucide-palette',
   /** 封面图 */
-  image: '/plugin/AI音乐.png',
+  image: '/plugin/ai-music.webp',
   seo: {
     title: 'AI音乐 - 开源免费的 AI 音乐生成系统 | 智言AI-智言万象',
     description:
@@ -23,13 +23,13 @@ const product: Product = {
     ogTitle: 'AI音乐 - 一键生成 AI 音乐 | 智言AI-智言万象',
     ogDescription:
       '以文本/歌词/哼唱/乐谱为输入,快速生成完整歌曲、伴奏、人声或纯音乐。降低门槛、提升效率,支持个人娱乐与商用配乐。',
-    ogImage: '/product/AI音乐.png',
+    ogImage: '/product/ai-music.webp',
     ogType: 'website',
     twitterCard: 'summary_large_image',
     twitterTitle: 'AI音乐 - 一键生成 AI 音乐 | 智言AI-智言万象',
     twitterDescription:
       '以文本/歌词/哼唱/乐谱为输入,快速生成完整歌曲、伴奏、人声或纯音乐,降低门槛、提升效率。',
-    twitterImage: '/product/AI音乐.png'
+    twitterImage: '/product/ai-music.webp'
   },
   hero: {
     badge: 'AI音乐 发布',
@@ -39,7 +39,7 @@ const product: Product = {
       '新一代 AI 音乐生成工具,以文本/歌词/哼唱/乐谱为输入,快速生成完整歌曲。<br class="hidden sm:block" />降低门槛、提升效率,支持个人娱乐与商用配乐的"人机协同"。',
     primaryBtn: '开始创作',
     secondaryBtn: '查看示例',
-    demoImage: '/product/AI音乐.png',
+    demoImage: '/product/ai-music.webp',
     demoAlt: 'AI音乐生成展示'
   },
   featuresGrid: {
@@ -92,7 +92,7 @@ const product: Product = {
         { title: '快速生成', desc: '生成速度非常快,大幅缩短创作时间,提升创作效率。' },
         { title: '高质量输出', desc: '生成的音乐质量高,音质清晰,旋律优美,满足专业级创作需求。' }
       ],
-      image: '/product/AI音乐.png'
+      image: '/product/ai-music.webp'
     },
     {
       title: '哼唱生成,旋律即刻成曲',
@@ -107,7 +107,7 @@ const product: Product = {
           desc: '支持文本、歌词、哼唱、乐谱多种方式,满足不同用户的创作习惯。'
         }
       ],
-      image: '/product/AI音乐.png'
+      image: '/product/ai-music.webp'
     },
     {
       title: '多种输出,满足不同场景',
@@ -119,7 +119,7 @@ const product: Product = {
         { title: '人声输出', desc: '支持生成纯人声,方便用户进行混音和后期处理。' },
         { title: '商用授权', desc: '提供完整的商用授权支持,支持个人娱乐与商用配乐,满足商业需求。' }
       ],
-      image: '/product/AI音乐.png'
+      image: '/product/ai-music.webp'
     }
   ],
   cta: {
@@ -152,7 +152,7 @@ const product: Product = {
     /** 演示视图图标 */
     icon: 'i-heroicons-musical-note',
     /** 演示视图封面 */
-    image: '/plugin/AI音乐.png',
+    image: '/plugin/ai-music.webp',
     /** 演示视图标签 */
     tags: ['文本生成', '哼唱生成', '乐谱生成'],
     features: ['文本生成', '哼唱生成', '乐谱生成', '多种输出', '商用授权'],

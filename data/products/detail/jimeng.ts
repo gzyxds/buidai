@@ -13,7 +13,7 @@ const product: Product = {
   /** 图标名 */
   icon: 'i-lucide-film',
   /** 封面图 */
-  image: '/plugin/即梦AI视频.png',
+  image: '/plugin/jimeng-video.webp',
   seo: {
     title: '即梦AI - 开源免费的 AI 视频生成系统 | 智言AI-智言万象',
     description:
@@ -23,13 +23,13 @@ const product: Product = {
     ogTitle: '即梦AI - 一键生成 AI 视频 | 智言AI-智言万象',
     ogDescription:
       '输入文字描述或上传参考图,即可快速生成风格多样的短视频。支持纯文本提示词、多种视频比例和分辨率,让创作更简单。',
-    ogImage: '/product/jimeng-4.png',
+    ogImage: '/product/jimeng-4.webp',
     ogType: 'website',
     twitterCard: 'summary_large_image',
     twitterTitle: '即梦AI - 一键生成 AI 视频 | 智言AI-智言万象',
     twitterDescription:
       '输入文字描述或上传参考图,即可快速生成风格多样的短视频,支持纯文本提示词和多种视频比例。',
-    twitterImage: '/product/jimeng-4.png'
+    twitterImage: '/product/jimeng-4.webp'
   },
   hero: {
     badge: '即梦AI 2.0 发布',
@@ -39,7 +39,7 @@ const product: Product = {
       '新一代 AI 视频生成工具,输入文字描述或上传参考图即可快速生成视频。<br class="hidden sm:block" />支持多种视频比例和分辨率,让创作更简单,开启智能视频创作新时代。',
     primaryBtn: '开始创作',
     secondaryBtn: '查看示例',
-    demoImage: '/plugin/即梦AI视频.png',
+    demoImage: '/plugin/jimeng-video.webp',
     demoAlt: '即梦AI视频生成展示'
   },
   featuresGrid: {
@@ -148,7 +148,7 @@ const product: Product = {
           desc: '后台可自由修改应用在前台显示的名称,打造品牌专属体验,满足个性化需求。'
         }
       ],
-      image: '/product/jimeng-4.png'
+      image: '/product/jimeng-4.webp'
     }
   ],
   cta: {
@@ -181,7 +181,7 @@ const product: Product = {
     /** 演示视图图标 */
     icon: 'i-heroicons-video-camera',
     /** 演示视图封面 */
-    image: '/plugin/即梦AI视频.png',
+    image: '/plugin/jimeng-video.webp',
     /** 演示视图标签 */
     tags: ['文生视频', '图生视频', '多分辨率'],
     features: ['文生视频', '图生视频', '多种分辨率', '视频下载', '灵感广场'],

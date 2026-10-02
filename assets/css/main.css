@@ -13,6 +13,12 @@
   /* 统一圆角半径，映射 Nuxt UI 组件默认半径 */
   --ui-radius: 0.125rem;
 
+  /* 系统字体栈（覆盖 Tailwind 默认，不加载任何远程字体）：
+     拉丁字体在前保证西文渲染，显式声明 CJK 字体避免中文回退到宋体 */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
   /* 品牌色 — 与 Nuxt UI 主色统一（浅色下引用同一 oklch 紫） */
   --brand-primary: var(--ui-primary);
   --brand-primary-dark: oklch(52.5% .233 277.117);
@@ -33,16 +39,16 @@
  * 针对 HTML 元素和全局行为的设置
  */
 @layer base {
-  html {
-    /* 启用平滑滚动 */
-    scroll-behavior: smooth;
+  /* 平滑滚动需尊重用户「减弱动态效果」偏好（accessibility.md Scroll Behavior） */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
 
   body {
-    /* 使用无衬线字体 */
+    /* 使用无衬线字体（系统字体栈，定义见上方 :root） */
     font-family: var(--font-sans);
-    /* 优化字体特性设置 */
-    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     /* 默认背景色和文字颜色 */
     @apply bg-white text-gray-900;
   }

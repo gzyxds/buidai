@@ -9,7 +9,9 @@ export default defineContentConfig({
       schema: z.object({
         tags: z.array(z.string()), // 标签数组
         category: z.string(), // 分类名称
-        date: z.date(), // 发布日期
+        // ISO 字符串（YYYY-MM-DD）：与 update 集合一致，order('date') 按字典序
+        // 即时间序；避免 z.date()/z.string() 两种类型并存依赖格式纪律
+        date: z.string(), // 发布日期
         image: z.string().optional() // 封面图片（可选）
       })
     }),

@@ -55,7 +55,7 @@
           <!-- Visual Content -->
           <div class="lg:w-1/2 w-full">
             <div class="aspect-4/3 rounded-2xl overflow-hidden relative">
-              <img src="/images/Basicmodel.svg" alt="About 智言万象" class="w-full h-full object-cover" width="628" height="521" />
+              <img src="/images/Basicmodel.svg" alt="About 智言万象" class="w-full h-full object-cover" loading="lazy" decoding="async" width="628" height="521" />
             </div>
           </div>
         </div>
@@ -215,7 +215,7 @@
 definePageMeta({})
 
 usePageSeo({
-  title: '关于我们 - 智言AI - 智言万象 | 赋能企业构建智能未来',
+  title: '关于我们 - 赋能企业构建智能未来',
   description: '智言AI 致力于为企业提供安全、可控、高效的 AI 应用开发基础设施。我们坚持私有化部署优先，降低 AI 应用门槛，帮助企业快速构建、部署和管理 AI 应用，实现数字化转型。',
   keywords: '智言AI, 关于我们, 企业级AI, 私有化部署, AI基础设施, AI应用开发, 数字化转型, 智能办公',
   ogTitle: '关于我们 - 智言AI - 智言万象 | 赋能企业构建智能未来',

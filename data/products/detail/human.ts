@@ -13,7 +13,7 @@ const product: Product = {
   /** 图标名 */
   icon: 'i-lucide-tv',
   /** 封面图 */
-  image: '/plugin/AI直播短视频数字人.webp',
+  image: '/plugin/ai-digital-human-live.webp',
   seo: {
     title: 'AI数字人系统 - 开源免费的虚拟形象克隆系统 | 智言AI',
     description:
@@ -23,13 +23,13 @@ const product: Product = {
     ogTitle: 'AI 数字人生成引擎 - 打造您的专属数字分身 | 智言AI',
     ogDescription:
       '一键克隆形象与声音，支持 4K 画质与多语种合成。基于开源生态构建的新一代 AI 数字人生成平台，让创作更简单，让表达更生动。',
-    ogImage: '/product/human.png',
+    ogImage: '/product/human.webp',
     ogType: 'website',
     twitterCard: 'summary_large_image',
     twitterTitle: 'AI 数字人生成引擎 - 打造您的专属数字分身 | 智言万象',
     twitterDescription:
       '一键克隆形象与声音，支持 4K 画质与多语种合成。基于开源生态构建的新一代 AI 数字人生成平台。',
-    twitterImage: '/product/human.png'
+    twitterImage: '/product/human.webp'
   },
   hero: {
     badge: '数字人生成引擎 2.0 发布',
@@ -39,7 +39,7 @@ const product: Product = {
       '新一代 AI 数字人生成平台，一键克隆形象与声音。<br class="hidden sm:block" />让创作更简单，让表达更生动，开启智能交互新体验。',
     primaryBtn: '开始构建',
     secondaryBtn: '查看案例',
-    demoImage: '/product/human.png',
+    demoImage: '/product/human.webp',
     demoAlt: '知识库展示'
   },
   featuresGrid: {
@@ -101,7 +101,7 @@ const product: Product = {
           desc: '内置海量服装库，支持一键换装，满足商务、休闲、国潮等多种场景需求，打造百变形象。'
         }
       ],
-      image: '/product/human-1.png'
+      image: '/product/human-1.webp'
     },
     {
       title: '声音克隆，复刻完美声线',
@@ -125,7 +125,7 @@ const product: Product = {
           desc: '即使跨越不同语言，也能完美保留说话人的原始音色特征，实现"原声"外语播报，亲切感不打折。'
         }
       ],
-      image: '/product/human-2.png'
+      image: '/product/human-2.webp'
     },
     {
       title: '声音合成，文字即刻发声',
@@ -149,7 +149,7 @@ const product: Product = {
           desc: '完整支持 SSML 语音合成标记语言，通过代码精确控制发音、重音和韵律，实现专业级语音合成效果。'
         }
       ],
-      image: '/product/human-3.png'
+      image: '/product/human-3.webp'
     }
   ],
   cta: {
@@ -182,7 +182,7 @@ const product: Product = {
     /** 演示视图图标 */
     icon: 'i-heroicons-user',
     /** 演示视图封面 */
-    image: '/plugin/AI直播短视频数字人.webp',
+    image: '/plugin/ai-digital-human-live.webp',
     /** 演示视图标签 */
     tags: ['数字人', '无人直播', '短视频'],
     features: ['7x24小时直播', '数字人带货', '低成本', '高回报', '超级主播'],

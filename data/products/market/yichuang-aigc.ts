@@ -13,7 +13,7 @@ const product: Product = {
   /** 图标名 */
   icon: 'i-lucide-palette',
   /** 封面图 */
-  image: '/plugin/艺创aigc.png',
+  image: '/plugin/yichuang-aigc.webp',
   /** 市场视图（原 pluginData 数字 id: 22） */
   market: {
     id: 22,

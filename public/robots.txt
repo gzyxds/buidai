@@ -9,6 +9,7 @@ Allow: /
 Disallow: /api/
 Disallow: /admin/
 Disallow: /_nuxt/
+Disallow: /demo
 
 # 允许爬取重要页面
 Allow: /docs

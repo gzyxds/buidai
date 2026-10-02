@@ -13,7 +13,7 @@ const product: Product = {
   /** 图标名 */
   icon: 'i-lucide-palette',
   /** 封面图 */
-  image: '/plugin/Nanobanana.png',
+  image: '/plugin/Nanobanana.webp',
   seo: {
     title: 'Nanobanana 香蕉绘画 - 开源免费的 AI 图像生成系统 | 智言万象',
     description:
@@ -23,13 +23,13 @@ const product: Product = {
     ogTitle: 'Nanobanana 香蕉绘画 - 打造您的专属 AI 绘画平台 | 智言万象',
     ogDescription:
       '基于 Gemini 3 Pro Image Preview 的新一代 AI 绘画平台,支持文生图、图生图与多图融合。预置模板开箱即用,保持角色一致性,生成速度极快,提供完整源码。',
-    ogImage: '/product/human-1.png',
+    ogImage: '/product/human-1.webp',
     ogType: 'website',
     twitterCard: 'summary_large_image',
     twitterTitle: 'Nanobanana 香蕉绘画 - 打造您的专属 AI 绘画平台 | 智言万象',
     twitterDescription:
       '基于 Gemini 3 Pro Image Preview 的新一代 AI 绘画平台,支持文生图、图生图与多图融合,预置模板开箱即用。',
-    twitterImage: '/product/human-1.png'
+    twitterImage: '/product/human-1.webp'
   },
   hero: {
     badge: 'Nanobanana 香蕉绘画 2.0 发布',
@@ -39,7 +39,7 @@ const product: Product = {
       '基于 Gemini 3 Pro Image Preview 的新一代 AI 绘画平台,一键生成高质量图像。<br class="hidden sm:block" />预置模板开箱即用,保持角色一致性,开启智能绘画创作新时代。',
     primaryBtn: '开始构建',
     secondaryBtn: '查看案例',
-    demoImage: '/plugin/Nanobanana.png',
+    demoImage: '/plugin/Nanobanana.webp',
     demoAlt: '香蕉绘画展示'
   },
   featuresGrid: {
@@ -170,7 +170,7 @@ const product: Product = {
     /** 演示视图图标 */
     icon: 'i-heroicons-swatch',
     /** 演示视图封面 */
-    image: '/plugin/Nanobanana.png',
+    image: '/plugin/Nanobanana.webp',
     /** 演示视图标签 */
     tags: ['Gemini 3 Pro', '角色一致', '文生图'],
     features: ['预置模版', '开箱即用', '角色一致性', '文生图', '图生图'],

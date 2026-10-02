@@ -13,7 +13,7 @@ const product: Product = {
   /** 图标名 */
   icon: 'i-lucide-scissors',
   /** 封面图 */
-  image: '/plugin/video-mix.png',
+  image: '/plugin/video-mix.webp',
   seo: {
     title: '视频混剪助手 - 开源免费的视频剪辑软件 | 智言AI-智言万象',
     description:
@@ -39,7 +39,7 @@ const product: Product = {
       '高效易用的视频剪辑软件,支持自动化批量剪辑、智能转场、滤镜调色、字幕添加和背景音乐匹配。<br class="hidden sm:block" />一键生成节奏感强、视觉冲击力大的混剪视频,大幅降低剪辑门槛与时间成本。',
     primaryBtn: '开始创作',
     secondaryBtn: '查看示例',
-    demoImage: '/plugin/video-mix.png',
+    demoImage: '/plugin/video-mix.webp',
     demoAlt: '视频混剪助手展示'
   },
   featuresGrid: {
@@ -160,7 +160,7 @@ const product: Product = {
     /** 演示视图图标 */
     icon: 'i-heroicons-play',
     /** 演示视图封面 */
-    image: '/plugin/video-mix.png',
+    image: '/plugin/video-mix.webp',
     /** 演示视图标签 */
     tags: ['批量剪辑', '智能转场', '热门素材'],
     features: ['智能抓取', '自动混剪', '热门素材', '快速生成', '爆款视频'],

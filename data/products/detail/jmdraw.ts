@@ -13,7 +13,7 @@ const product: Product = {
   /** 图标名 */
   icon: 'i-lucide-image',
   /** 封面图 */
-  image: '/plugin/即梦AI绘画.png',
+  image: '/plugin/jimeng-draw.webp',
   seo: {
     title: '即梦AI绘画 - AI绘画系统,AI系统源码,AI绘画生成系统 | 智言AI-智言万象',
     description:
@@ -39,7 +39,7 @@ const product: Product = {
       '新一代 AI 绘画生成工具,输入文字描述或上传参考图即可快速生成高质量图像。<br class="hidden sm:block" />风格覆盖广泛,写实、卡通、插画等皆可驾驭,充分释放您的创作潜能。',
     primaryBtn: '开始创作',
     secondaryBtn: '查看示例',
-    demoImage: '/plugin/即梦AI绘画.png',
+    demoImage: '/plugin/jimeng-draw.webp',
     demoAlt: '即梦AI绘画生成展示'
   },
   featuresGrid: {
@@ -98,7 +98,7 @@ const product: Product = {
         },
         { title: '高质量输出', desc: '生成的图片质量高,细节丰富,色彩饱满,满足专业级创作需求。' }
       ],
-      image: '/plugin/即梦AI绘画.png'
+      image: '/plugin/jimeng-draw.webp'
     },
     {
       title: '图生图,参考图智能融合',
@@ -179,7 +179,7 @@ const product: Product = {
     /** 演示视图图标 */
     icon: 'i-heroicons-photo',
     /** 演示视图封面 */
-    image: '/plugin/即梦AI绘画.png',
+    image: '/plugin/jimeng-draw.webp',
     /** 演示视图标签 */
     tags: ['文生图', '图生图', '多分辨率'],
     features: ['文生图', '图生图', '多种分辨率', '批量生成', '灵感广场'],

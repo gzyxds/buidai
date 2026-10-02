@@ -107,7 +107,7 @@ definePageMeta({})
 
 // SEO
 usePageSeo({
-  title: '智言AI - 智言万象 | 技术博客、AI技术洞察、教程与最佳实践',
+  title: '技术博客 | AI技术洞察、教程与最佳实践',
   description: '浏览 智言万象 技术博客，获取最新的 AI 技术见解、深度开发教程、行业动态分析及企业级应用最佳实践。与我们一起探索人工智能的无限可能。',
   keywords: '智言AI博客, AI技术博客, 人工智能教程, AI开发实践, 机器学习, 大模型应用, 技术洞察, 行业动态',
 })
@@ -117,10 +117,13 @@ const searchQuery = ref('')
 const selectedCategory = ref('全部')
 
 // Fetch Posts
- 
+// 仅取列表所需字段（data-fetching.md「Minimize payload size」），
+// 不带 select 会把整份 markdown body AST 拉进 _payload.json
 const { data: posts } = await useAsyncData('blog-list', () => {
-   
-  return queryCollection('blog').order('date', 'DESC').all()
+  return queryCollection('blog')
+    .select('title', 'description', 'category', 'date', 'image', 'tags', 'path')
+    .order('date', 'DESC')
+    .all()
 })
 
 // Categories
@@ -147,7 +150,10 @@ const formatDate = (dateString: string | Date) => {
   return new Date(dateString).toLocaleDateString('zh-CN', {
     year: 'numeric',
     month: 'long',
-    day: 'numeric'
+    day: 'numeric',
+    // date-only 字符串按 UTC 零点解析，格式化必须同为 UTC，
+    // 否则 SSR（服务器时区）与客户端水合可能相差一天 → hydration mismatch
+    timeZone: 'UTC'
   })
 }
 </script>

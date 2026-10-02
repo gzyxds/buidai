@@ -10,7 +10,7 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'select-category', categoryId: string): void
+  'select-category': [categoryId: string]
 }>()
 </script>
 

@@ -9,6 +9,8 @@
  *
  * 各页差异通过参数注入：目标来源、id 解析方式、观察器边距、是否写 hash。
  */
+// 显式 import 不能删：tests/useToc.test.ts 在 vitest（node 环境）直连本文件，
+// 不经过 Nuxt 的 auto-import 转换，缺少导入会直接 ReferenceError
 import { onMounted, onUnmounted, ref, type Ref } from 'vue'
 import { SCROLL } from '~/utils/ui'
 

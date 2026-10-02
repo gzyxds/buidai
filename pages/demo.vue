@@ -1,13 +1,13 @@
 <script setup lang="ts">
 // 页面级 meta 占位：需要两侧竖带装饰的页面可声明 frameSides: true（见 layouts/default.vue）
-definePageMeta({})
-
 /**
  * 产品演示中心页面
  * 状态中枢：维护选中产品/分类状态，组装 Hero、移动标签栏、侧栏与详情组件
  */
 import { demoCategories as categories, type ProductDemo } from '~/data/products'
 import { SITE_URL } from '~/data/site'
+
+definePageMeta({})
 
 /**
  * 当前选中的产品
@@ -88,36 +88,27 @@ onErrorCaptured(() => {
 /**
  * SEO 配置常量
  */
-const siteName = '智言万象'
 // 统一用 SITE_URL（原写死 https://buidai.com 少 www，与站点基准域名不一致）
 const baseUrl = SITE_URL
-const pageTitle = '产品演示中心 - 智言万象 | 在线体验AI产品'
-const pageDescription = '智言万象产品演示中心，在线体验智言AI智能客服、企业知识库、AI绘画、AI视频、AI数字人等AI产品。支持PC端、移动端、后台管理等多平台演示。'
+const pageTitle = '产品演示中心 | 在线体验AI产品'
+const pageDescription =
+  '智言万象产品演示中心，在线体验智言AI智能客服、企业知识库、AI绘画、AI视频、AI数字人等AI产品。支持PC端、移动端、后台管理等多平台演示。'
 const canonicalUrl = `${baseUrl}/demo`
-const ogImage = `${baseUrl}/images/og-demo.png`
 
 /**
- * SEO 元数据配置
+ * SEO 元数据：统一走 usePageSeo（og/twitter/canonical 派生逻辑与全站一致）。
+ * noindex 与 nuxt.config sitemap.exclude: ['/demo'] 口径一致——演示页不对外分发
  */
-useHead({
+usePageSeo({
   title: pageTitle,
-  meta: [
-    { name: 'description', content: pageDescription },
-    { property: 'og:title', content: pageTitle },
-    { property: 'og:description', content: pageDescription },
-    { property: 'og:url', content: canonicalUrl },
-    { property: 'og:type', content: 'website' },
-    { property: 'og:image', content: ogImage },
-    { property: 'og:site_name', content: siteName },
-    { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: pageTitle },
-    { name: 'twitter:description', content: pageDescription },
-    { name: 'twitter:image', content: ogImage },
-    { name: 'robots', content: 'index, follow' }
-  ],
-  link: [
-    { rel: 'canonical', href: canonicalUrl }
-  ],
+  description: pageDescription,
+  ogType: 'website',
+  canonicalUrl,
+  robots: 'noindex, nofollow'
+})
+
+// WebPage 结构化数据（useHead script 注入为官方安全用法，内容为静态常量）
+useHead({
   script: [
     {
       type: 'application/ld+json',
@@ -141,44 +132,48 @@ useHead({
 </script>
 
 <template>
-  <div class="min-h-screen bg-white py-8 lg:pb-8 pb-20">
-    <!-- 背景装饰 -->
-    <div class="absolute top-0 left-0 w-full h-[400px] md:h-[500px] bg-[url('/agent.svg')] pointer-events-none mask-[linear-gradient(to_bottom,white,transparent)] z-0"/>
+  <div>
+    <!-- Nuxt 要求 pages/layouts 单根节点（@nuxt/eslint nuxt/vue/single-root，页面过渡等特性依赖） -->
+    <div class="min-h-screen bg-white py-8 lg:pb-8 pb-20">
+      <!-- 背景装饰 -->
+      <div
+        class="absolute top-0 left-0 w-full h-[400px] md:h-[500px] bg-[url('/agent.svg')] pointer-events-none mask-[linear-gradient(to_bottom,white,transparent)] z-0"
+      />
 
-    <!-- 移动端底部标签栏 - 切换产品分类 (悬浮胶囊风) -->
-    <DemoMobileTabs
-      :categories="categories"
-      :selected-category-id="selectedCategoryId"
-      @select-category="handleSelectCategory"
-    />
+      <!-- 移动端底部标签栏 - 切换产品分类 (悬浮胶囊风) -->
+      <DemoMobileTabs
+        :categories="categories"
+        :selected-category-id="selectedCategoryId"
+        @select-category="handleSelectCategory"
+      />
 
-    <!-- 顶部 Hero 区域 -->
-    <DemoHero
-      :current-category-products="currentCategoryProducts"
-      :selected-category-id="selectedCategoryId"
-      :selected-product="selectedProduct"
-      @select="selectProduct"
-    />
+      <!-- 顶部 Hero 区域 -->
+      <DemoHero
+        :current-category-products="currentCategoryProducts"
+        :selected-category-id="selectedCategoryId"
+        :selected-product="selectedProduct"
+        @select="selectProduct"
+      />
 
-    <!-- 主体内容区域 - 使用 container 包裹左右布局 -->
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="flex gap-6 lg:gap-8">
-        <!-- 左侧产品导航栏 -->
-        <DemoSidebar
-          :categories="categories"
-          :selected-category-id="selectedCategoryId"
-          :selected-product="selectedProduct"
-          :expanded-categories="expandedCategories"
-          @toggle-category="toggleCategory"
-          @select="selectProduct"
-        />
+      <!-- 主体内容区域 - 使用 container 包裹左右布局 -->
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="flex gap-6 lg:gap-8">
+          <!-- 左侧产品导航栏 -->
+          <DemoSidebar
+            :categories="categories"
+            :selected-category-id="selectedCategoryId"
+            :selected-product="selectedProduct"
+            :expanded-categories="expandedCategories"
+            @toggle-category="toggleCategory"
+            @select="selectProduct"
+          />
 
-        <!-- 右侧产品详情 -->
-        <DemoProductDetail v-if="selectedProduct" :selected-product="selectedProduct" />
+          <!-- 右侧产品详情 -->
+          <DemoProductDetail v-if="selectedProduct" :selected-product="selectedProduct" />
+        </div>
       </div>
     </div>
+    <!-- CTA 底部行动召唤区域 -->
+    <LandingCtaSection />
   </div>
-<!-- CTA 底部行动召唤区域 -->
-<LandingCtaSection />
-
 </template>

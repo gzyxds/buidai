@@ -3,7 +3,7 @@
   <section class="relative bg-[#121318] overflow-hidden">
      <!-- 全宽底部图片 -->
      <div class="absolute inset-x-0 bottom-0 z-0 opacity-50 md:opacity-100">
-        <img src="/images/foot.png" alt="" loading="lazy" class="w-full h-[200px] md:h-auto object-cover md:object-contain object-bottom" width="2880" height="776" />
+        <img src="/images/foot.webp" alt="" loading="lazy" class="w-full h-[200px] md:h-auto object-cover md:object-contain object-bottom" width="2880" height="776" />
      </div>
 
      <div class="relative z-10 container mx-auto px-4 py-12 md:py-24">
