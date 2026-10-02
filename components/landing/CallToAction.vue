@@ -31,8 +31,7 @@ const handleCTAClick = () => {
         alt="" 
         class="w-full h-full object-cover object-center blur-[2px] scale-100"
         loading="lazy"
-        decoding="async"
-      />
+        decoding="async" width="1600" height="893" />
       <!-- 叠加一层白色遮罩，确保内容可读性 -->
       <div class="absolute inset-0 bg-white/80"/>
     </div>

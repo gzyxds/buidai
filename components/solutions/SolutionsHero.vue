@@ -38,7 +38,7 @@
               <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-t border-l border-gray-100"/>
               <div class="w-full aspect-square bg-gray-100 rounded-lg mb-2 overflow-hidden relative">
                  <!-- 二维码占位符 -->
-                 <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Example" alt="QR" loading="lazy" class="w-full h-full object-cover mix-blend-multiply" />
+                 <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Example" alt="QR" loading="lazy" width="150" height="150" class="w-full h-full object-cover mix-blend-multiply" />
               </div>
               <div class="text-[10px] text-center text-gray-500">扫码下载 App</div>
            </div>

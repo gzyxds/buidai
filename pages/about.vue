@@ -55,7 +55,7 @@
           <!-- Visual Content -->
           <div class="lg:w-1/2 w-full">
             <div class="aspect-4/3 rounded-2xl overflow-hidden relative">
-              <img src="/images/Basicmodel.svg" alt="About 智言万象" class="w-full h-full object-cover" />
+              <img src="/images/Basicmodel.svg" alt="About 智言万象" class="w-full h-full object-cover" width="628" height="521" />
             </div>
           </div>
         </div>

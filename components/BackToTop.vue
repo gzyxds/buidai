@@ -183,8 +183,7 @@ onUnmounted(() => {
                     <img
                       src="/qrcode.png"
                       alt="客服二维码"
-                      class="w-28 h-28 sm:w-36 sm:h-36 object-contain border border-gray-200"
-                    />
+                      class="w-28 h-28 sm:w-36 sm:h-36 object-contain border border-gray-200" width="400" height="400" />
                   </div>
                 </div>
               </div>
@@ -341,8 +340,7 @@ onUnmounted(() => {
                     <img
                       src="/qrcode.png"
                       :alt="qrCodeConfig.title"
-                      class="w-full aspect-square sm:w-48 sm:h-48 object-contain mix-blend-multiply sm:mix-blend-normal"
-                    />
+                      class="w-full aspect-square sm:w-48 sm:h-48 object-contain mix-blend-multiply sm:mix-blend-normal" width="400" height="400" />
                     <!-- 装饰角标 -->
                     <div class="absolute -top-1.5 -right-1.5 sm:-top-2 sm:-right-2 w-5 h-5 sm:w-6 sm:h-6 bg-blue-500 rounded-full flex items-center justify-center text-white shadow-md scale-100 sm:scale-0 sm:group-hover:scale-100 transition-transform duration-300 delay-75 ring-2 ring-white">
                         <UserIcon class="w-3 h-3 sm:w-3.5 sm:h-3.5" />
@@ -358,8 +356,7 @@ onUnmounted(() => {
                     <img
                       src="/wechat.png"
                       alt="关注公众号"
-                      class="w-full aspect-square sm:w-48 sm:h-48 object-contain mix-blend-multiply sm:mix-blend-normal"
-                    />
+                      class="w-full aspect-square sm:w-48 sm:h-48 object-contain mix-blend-multiply sm:mix-blend-normal" width="500" height="500" />
                     <!-- 装饰角标 -->
                     <div class="absolute -top-1.5 -right-1.5 sm:-top-2 sm:-right-2 w-5 h-5 sm:w-6 sm:h-6 bg-green-500 rounded-full flex items-center justify-center text-white shadow-md scale-100 sm:scale-0 sm:group-hover:scale-100 transition-transform duration-300 delay-75 ring-2 ring-white">
                         <GiftIcon class="w-3 h-3 sm:w-3.5 sm:h-3.5" />

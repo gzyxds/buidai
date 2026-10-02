@@ -57,8 +57,7 @@
                     alt=""
                     class="w-full h-full object-cover"
                     loading="lazy"
-                    decoding="async"
-                  />
+                    decoding="async" width="1243" height="700" />
                 </div>
                 <Transition name="slide-in" mode="out-in">
                   <img

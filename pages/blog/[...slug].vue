@@ -186,21 +186,21 @@
                   <!-- 微信公众号二维码 -->
                   <div class="flex flex-col items-center">
                     <div class="w-20 h-20 bg-white rounded-lg border border-gray-200 overflow-hidden mb-2">
-                      <img src="/wechat.png" alt="微信公众号" class="w-full h-full object-cover" />
+                      <img src="/wechat.png" alt="微信公众号" class="w-full h-full object-cover" width="500" height="500" />
                     </div>
                     <span class="text-xs text-gray-500 text-center leading-tight">微信公众号</span>
                   </div>
                   <!-- 微信客服二维码 -->
                   <div class="flex flex-col items-center">
                     <div class="w-20 h-20 bg-white rounded-lg border border-gray-200 overflow-hidden mb-2">
-                      <img src="/qrcode.png" alt="微信客服" class="w-full h-full object-cover" />
+                      <img src="/qrcode.png" alt="微信客服" class="w-full h-full object-cover" width="400" height="400" />
                     </div>
                     <span class="text-xs text-gray-500 text-center leading-tight">微信客服</span>
                   </div>
                   <!-- 微信交流群二维码 -->
                   <div class="flex flex-col items-center">
                     <div class="w-20 h-20 bg-white rounded-lg border border-gray-200 overflow-hidden mb-2">
-                      <img src="/qrcode.png" alt="微信交流群" class="w-full h-full object-cover" />
+                      <img src="/qrcode.png" alt="微信交流群" class="w-full h-full object-cover" width="400" height="400" />
                     </div>
                     <span class="text-xs text-gray-500 text-center leading-tight">微信交流群</span>
                   </div>
