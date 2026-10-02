@@ -47,6 +47,7 @@ export default tseslint.config(
       '.nuxt/',
       'coverage/',
       '.vscode/',
+      'scripts/',
       '.idea/',
       '.vercel/',
       '参考设计/'

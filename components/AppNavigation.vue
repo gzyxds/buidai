@@ -239,7 +239,7 @@ const mobileMenuOpen = ref(false)
 const activeSubmenu = ref<string | null>(null)
 
 const headerRef = ref<HTMLElement | null>(null)
-const menuTop = ref(LAYOUT.HEADER_HEIGHT)
+const menuTop = ref<number>(LAYOUT.HEADER_HEIGHT)
 const menuHeight = ref(`calc(100svh - ${LAYOUT.HEADER_HEIGHT}px)`)
 
 const updateMenuPosition = () => {
