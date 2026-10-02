@@ -11,7 +11,7 @@ const product: Product = {
   description:
     '智能合同审查与生成，降低法律风险，提高签约效率。专业的法律助手，为您的商业合作保驾护航。',
   /** 图标名 */
-  icon: 'i-lucide-file-signature',
+  icon: 'i-lucide-signature',
   /** 封面图 */
   image: '/plugin/AI合同.png',
   /** 市场视图（原 pluginData 数字 id: 9） */

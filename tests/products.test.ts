@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import fs from 'node:fs'
 import {
   getProductBySlug,
   productSlugs,
@@ -76,6 +77,49 @@ describe('products 数据', () => {
           0
         )
       }
+    }
+  })
+})
+
+describe('products 数据完整性（统一数据层）', () => {
+  it('所有实体的 icon 均为合法的 iconify 图标名', () => {
+    const heroicons = new Set(
+      Object.keys(
+        JSON.parse(
+          fs.readFileSync('node_modules/@iconify-json/heroicons/icons.json', 'utf8')
+        ).icons
+      )
+    )
+    const lucide = new Set(
+      Object.keys(
+        JSON.parse(
+          fs.readFileSync('node_modules/@iconify-json/lucide/icons.json', 'utf8')
+        ).icons
+      )
+    )
+    for (const p of products) {
+      for (const raw of [p.icon, p.market?.description, p.demo?.icon]) {
+        if (!raw || !raw.startsWith('i-')) continue
+        const m = raw.match(/^i-(heroicons-solid|heroicons|lucide)-(.+)$/)
+        if (!m) continue
+        const [, prefix, name] = m
+        if (!prefix || !name) continue
+        const valid =
+          prefix === 'lucide'
+            ? lucide.has(name)
+            : prefix === 'heroicons'
+              ? heroicons.has(name)
+              : heroicons.has(name + '-20-solid')
+        expect(valid, `${p.slug} 的图标名 ${raw} 不合法`).toBe(true)
+      }
+    }
+  })
+
+  it('市场实体的图片文件均存在', () => {
+    for (const p of products) {
+      if (!p.market || !p.image) continue
+      const path = 'public' + p.image
+      expect(fs.existsSync(path), `${p.slug} 的市场图片 ${p.image} 缺失`).toBe(true)
     }
   })
 })
