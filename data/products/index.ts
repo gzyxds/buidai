@@ -6,18 +6,34 @@
  */
 import type { Product, ProductDetail } from './types'
 
+import articleImg from './article-img'
 import banana from './banana'
+import contract from './contract'
+import digitalHumanSaas from './digital-human-saas'
 import drama from './drama'
+import geoRanking from './geo-ranking'
 import human from './human'
+import idPhoto from './id-photo'
+import image2 from './image-2'
 import jimeng from './jimeng'
 import jmdraw from './jmdraw'
+import knowledgeBase from './knowledge-base'
+import mindmap from './mindmap'
 import model from './model'
+import modelArena from './model-arena'
+import moyi from './moyi'
 import music from './music'
 import ppt from './ppt'
 import resume from './resume'
 import sora from './sora'
 import videoclip from './videoclip'
+import wanxiang from './wanxiang'
+import writingAssistant from './writing-assistant'
 import xhs from './xhs'
+import yichuangAi from './yichuang-ai'
+import yichuangAigc from './yichuang-aigc'
+import yichuangPaper from './yichuang-paper'
+import zhiyanDeploy from './zhiyan-ai-deploy'
 
 export type {
   Product,
@@ -42,7 +58,24 @@ export const products: Product[] = [
   resume,
   sora,
   videoclip,
-  xhs
+  xhs,
+  // 市场专属实体
+  articleImg,
+  contract,
+  digitalHumanSaas,
+  geoRanking,
+  idPhoto,
+  image2,
+  knowledgeBase,
+  mindmap,
+  modelArena,
+  moyi,
+  wanxiang,
+  writingAssistant,
+  yichuangAi,
+  yichuangAigc,
+  yichuangPaper,
+  zhiyanDeploy
 ]
 
 /** 按 slug 查询产品 */
@@ -67,5 +100,48 @@ export function getProductDetailBySlug(slug: string): ProductDetail | undefined 
   return product as ProductDetail
 }
 
-/** 所有产品 slug 列表（站点地图与路由用） */
-export const productSlugs = products.map(p => p.slug)
+/** 具备详情页的产品 slug 列表（站点地图与路由用，市场专属实体无详情页不在此列） */
+export const productSlugs = products.filter(p => p.seo && p.hero).map(p => p.slug)
+
+// ============ 市场视图派生层（兼容旧 utils/pluginData 的消费方） ============
+
+/** 市场应用（形状兼容旧 AppData） */
+export interface MarketApp {
+  id: number
+  name: string
+  description: string
+  icon: string
+  image: string
+  category: string
+  originalPrice: number
+  discountPrice: number
+  date: string
+}
+
+/** 市场分类（原 pluginData categories） */
+export const marketCategories = [
+  { id: 'all', name: '全部应用' },
+  { id: 'recommend', name: '官方推荐' },
+  { id: 'independent', name: '独立系统' },
+  { id: 'extension', name: '扩展应用' },
+  { id: 'video', name: '图像视频' },
+  { id: 'writing', name: '智能写作' },
+  { id: 'enterprise', name: '企业工具' },
+  { id: 'efficiency', name: '效率工具' }
+]
+
+/** 市场应用列表（按原数字 id 排序，id >= 50 为 PHP 源码系统） */
+export const marketApps: MarketApp[] = products
+  .filter(p => p.market && p.market.id !== undefined)
+  .sort((a, b) => (a.market!.id ?? 0) - (b.market!.id ?? 0))
+  .map(p => ({
+    id: p.market!.id!,
+    name: p.name,
+    description: p.market!.description ?? p.description,
+    icon: p.icon ?? '',
+    image: p.image ?? '',
+    category: p.market!.category,
+    originalPrice: p.market!.originalPrice,
+    discountPrice: p.market!.discountPrice,
+    date: p.market!.date ?? ''
+  }))

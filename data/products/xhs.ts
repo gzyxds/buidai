@@ -149,6 +149,17 @@ const product: Product = {
     title: '准备好开始创作了吗？',
     description:
       '立即加入 智言万象，体验前沿 AI 技术带来的无限可能。无需复杂的配置，快速构建您的数字人应用。'
+  },
+  /** 市场视图（原 pluginData 数字 id: 17） */
+  market: {
+    id: 17,
+    /** 市场视图专属文案（营销口吻） */
+    description:
+      '一键提取爆款笔记文案，智能仿写，快速产出高质量内容。轻松掌握流量密码，打造爆款账号。',
+    category: 'writing',
+    originalPrice: 1398,
+    discountPrice: 1398,
+    date: '2025/11/15'
   }
 }
 

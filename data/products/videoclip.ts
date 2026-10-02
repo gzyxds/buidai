@@ -132,6 +132,16 @@ const product: Product = {
     title: '准备好开始创作混剪视频了吗？',
     description:
       '立即加入 智言万象，体验前沿视频混剪技术带来的无限可能。支持自动化批量剪辑、智能转场、滤镜调色、字幕添加和背景音乐匹配，大幅降低剪辑门槛与时间成本。'
+  },
+  /** 市场视图（原 pluginData 数字 id: 19） */
+  market: {
+    id: 19,
+    /** 市场视图专属文案（营销口吻） */
+    description: '智能抓取热门素材，自动混剪，快速生成短视频。紧跟热点趋势，轻松制作出爆款短视频。',
+    category: 'video',
+    originalPrice: 1399,
+    discountPrice: 1399,
+    date: '2025/11/15'
   }
 }
 

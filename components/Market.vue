@@ -135,7 +135,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { apps, categories, type AppData } from '~/utils/pluginData'
+import { marketApps as apps, marketCategories as categories, type MarketApp as AppData } from '~/data/products'
 
 /**
  * 市场组件 Props 定义

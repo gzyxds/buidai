@@ -149,6 +149,17 @@ const product: Product = {
     title: '准备好开始创作了吗？',
     description:
       '立即加入 智言万象，体验前沿 AI 技术带来的无限可能。无需复杂的配置，快速构建您的数字人应用。'
+  },
+  /** 市场视图（原 pluginData 数字 id: 12） */
+  market: {
+    id: 12,
+    /** 市场视图专属文案（营销口吻） */
+    description:
+      '辅助短剧剧本创作，小说续写，激发创作灵感。从灵感到剧本，AI全程陪伴，让创作变得简单有趣。',
+    category: 'writing',
+    originalPrice: 1598,
+    discountPrice: 1198,
+    date: '2025/11/15'
   }
 }
 

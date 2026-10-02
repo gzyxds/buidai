@@ -149,6 +149,17 @@ const product: Product = {
     title: '准备好开始创作 AI 绘画了吗？',
     description:
       '立即加入 智言万象，体验前沿 AI 绘画生成技术带来的无限可能。无需复杂的配置，快速生成高质量图像。'
+  },
+  /** 市场视图（原 pluginData 数字 id: 14） */
+  market: {
+    id: 14,
+    /** 市场视图专属文案（营销口吻） */
+    description:
+      '文本生成图片，艺术创作，风格迁移，释放你的想象力。无论是二次元还是写实风，都能轻松驾驭。',
+    category: 'video',
+    originalPrice: 999,
+    discountPrice: 999,
+    date: '2025/11/15'
   }
 }
 

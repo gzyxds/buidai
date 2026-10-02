@@ -151,6 +151,17 @@ const product: Product = {
     title: '准备好开始创作 AI 视频了吗？',
     description:
       '立即加入 智言万象，体验前沿 AI 视频生成技术带来的无限可能。无需复杂的配置，快速生成风格多样的短视频。'
+  },
+  /** 市场视图（原 pluginData 数字 id: 15） */
+  market: {
+    id: 15,
+    /** 市场视图专属文案（营销口吻） */
+    description:
+      '文本生成视频，静态图转视频，轻松制作创意短片。让静态的画面动起来，讲述更生动的故事。',
+    category: 'video',
+    originalPrice: 999,
+    discountPrice: 999,
+    date: '2025/11/15'
   }
 }
 

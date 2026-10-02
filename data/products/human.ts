@@ -152,6 +152,17 @@ const product: Product = {
     title: '准备好开始创作了吗？',
     description:
       '立即加入 智言万象，体验前沿 AI 技术带来的无限可能。无需复杂的配置，快速构建您的数字人应用。'
+  },
+  /** 市场视图（原 pluginData 数字 id: 11） */
+  market: {
+    id: 11,
+    /** 市场视图专属文案（营销口吻） */
+    description:
+      '7x24小时无人直播，数字人带货，低成本高回报。打造永不休息的超级主播，抢占直播红利。',
+    category: 'video',
+    originalPrice: 1999,
+    discountPrice: 1999,
+    date: '2025/11/15'
   }
 }
 

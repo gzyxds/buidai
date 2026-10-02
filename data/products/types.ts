@@ -77,6 +77,10 @@ export interface SeoData {
 
 /** 市场视图（应用中心/首页跑马灯） */
 export interface MarketView {
+  /** 旧 pluginData 数字 id（兼容引用处排序与筛选） */
+  id?: number
+  /** 市场视图专属文案（营销口吻，缺省回退通用 description） */
+  description?: string
   category: string
   originalPrice: number
   discountPrice: number

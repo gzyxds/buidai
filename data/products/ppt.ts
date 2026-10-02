@@ -129,6 +129,17 @@ const product: Product = {
     title: '准备好开始制作 PPT 了吗？',
     description:
       '立即加入 智言万象，体验前沿 AI PPT 技术带来的无限可能。根据主题或大纲自动生成 PPT，内置多种模板与图表，支持智能配色、字体搭配与动画效果优化。'
+  },
+  /** 市场视图（原 pluginData 数字 id: 8） */
+  market: {
+    id: 8,
+    /** 市场视图专属文案（营销口吻） */
+    description:
+      '智能生成PPT，一键排版，海量模板，让演示更出彩。告别繁琐的排版工作，专注于内容创作。',
+    category: 'efficiency',
+    originalPrice: 1299,
+    discountPrice: 1299,
+    date: '2025/11/15'
   }
 }
 

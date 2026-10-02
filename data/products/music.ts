@@ -122,6 +122,17 @@ const product: Product = {
     title: '准备好开始创作 AI 音乐了吗？',
     description:
       '立即加入 智言万象，体验前沿 AI 音乐生成技术带来的无限可能。降低门槛、提升效率，支持个人娱乐与商用配乐。'
+  },
+  /** 市场视图（原 pluginData 数字 id: 21） */
+  market: {
+    id: 21,
+    /** 市场视图专属文案（营销口吻） */
+    description:
+      'AI音乐是一款以文本/歌词/哼唱/乐谱为输入，快速生成完整歌曲、伴奏、人声或纯音乐的创作与生产工具，旨在降低门槛、提升效率，支持个人娱乐与商用配乐的“人机协同”',
+    category: 'video',
+    originalPrice: 1399,
+    discountPrice: 1399,
+    date: '2025/12/27'
   }
 }
 

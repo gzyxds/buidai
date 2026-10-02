@@ -258,7 +258,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { apps } from '~/utils/pluginData'
+import { marketApps as apps } from '~/data/products'
 import { LAYOUT, MARQUEE } from '~/utils/ui'
 
 const marqueeImages = apps.map(app => app.image)

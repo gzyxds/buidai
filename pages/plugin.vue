@@ -368,7 +368,7 @@ class="absolute inset-0 opacity-5 pointer-events-none"
 <script setup lang="ts">
 import { dispatchQrModal } from '~/utils/qrModal'
 import { ref, computed } from 'vue'
-import { apps, categories } from '~/utils/pluginData'
+import { marketApps as apps, marketCategories as categories } from '~/data/products'
 
 /**
  * 二维码弹窗触发函数

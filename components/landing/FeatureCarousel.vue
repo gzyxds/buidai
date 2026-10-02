@@ -79,7 +79,7 @@
 <script setup lang="ts">
 import { LAYOUT } from '~/utils/ui'
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
-import { apps } from '~/utils/pluginData'
+import { marketApps as apps } from '~/data/products'
 
 const gradients = [
   'from-[#E0F2FE] to-[#BAE6FD]', 'from-[#F3E8FF] to-[#E9D5FF]',

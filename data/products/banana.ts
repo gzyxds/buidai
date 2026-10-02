@@ -140,6 +140,17 @@ const product: Product = {
     title: '准备好开始创作了吗？',
     description:
       '立即加入 智言万象，体验前沿 AI 技术带来的无限可能。无需复杂的配置，快速构建您的数字人应用。'
+  },
+  /** 市场视图（原 pluginData 数字 id: 2） */
+  market: {
+    id: 2,
+    /** 市场视图专属文案（营销口吻） */
+    description:
+      '香蕉绘画预置多个模版，开箱即用。结合gemini-3-pro-image-preview的生图能力，能够有效保持角色一致性。',
+    category: 'video',
+    originalPrice: 1398,
+    discountPrice: 1398,
+    date: '2025/11/14'
   }
 }
 

@@ -129,6 +129,17 @@ const product: Product = {
     title: '准备好开始制作简历了吗？',
     description:
       '立即加入 智言万象，体验前沿 AI 简历技术带来的无限可能。通过简单的基本信息输入，即可快速生成结构完整的个人简历，显著提升简历质量与影响力。'
+  },
+  /** 市场视图（原 pluginData 数字 id: 3） */
+  market: {
+    id: 3,
+    /** 市场视图专属文案（营销口吻） */
+    description:
+      'AI简历致力于高效生成与深度优化您的个人简历，帮助您节省时间的同时，显著提升简历质量与影响力。',
+    category: 'efficiency',
+    originalPrice: 1298,
+    discountPrice: 1298,
+    date: '2025/11/14'
   }
 }
 
