@@ -1,25 +1,33 @@
 import { describe, expect, it } from 'vitest'
-import { getProductBySlug, productSlugs, products, type ProductPageData } from '../data/products'
+import { getProductBySlug, productSlugs, products, type Product, type ProductDetail } from '../data/products'
 
 function expectNonEmptyString(value: unknown, label: string) {
   expect(typeof value, `${label} 应为字符串`).toBe('string')
   expect((value as string).trim().length, `${label} 不应为空`).toBeGreaterThan(0)
 }
 
-function validateProduct(product: ProductPageData) {
+function validateProduct(product: Product) {
   expectNonEmptyString(product.slug, `${product.slug}.slug`)
-  expectNonEmptyString(product.seo.title, `${product.slug}.seo.title`)
-  expectNonEmptyString(product.seo.description, `${product.slug}.seo.description`)
-  expectNonEmptyString(product.hero.h1Leading + product.hero.h1Highlight, `${product.slug}.hero 标题`)
-  expectNonEmptyString(product.hero.demoImage, `${product.slug}.hero.demoImage`)
+  // 详情视图字段必须齐全
+  expect(product.seo, `${product.slug}.seo 应存在`).toBeDefined()
+  expect(product.hero, `${product.slug}.hero 应存在`).toBeDefined()
+  expect(product.features, `${product.slug}.features 应存在`).toBeDefined()
+  expect(product.featureDetails, `${product.slug}.featureDetails 应存在`).toBeDefined()
+  expect(product.cta, `${product.slug}.cta 应存在`).toBeDefined()
+
+  const p = product as ProductDetail
+  expectNonEmptyString(p.seo.title, `${p.slug}.seo.title`)
+  expectNonEmptyString(p.seo.description, `${p.slug}.seo.description`)
+  expectNonEmptyString(p.hero.h1Leading + p.hero.h1Highlight, `${p.slug}.hero 标题`)
+  expectNonEmptyString(p.hero.demoImage, `${p.slug}.hero.demoImage`)
 
   // 回归防护：demoImage 曾误写为 /public/plugin/... 导致 404
-  expect(product.hero.demoImage.startsWith('/public/'), `${product.slug}.hero.demoImage 不应含 /public/ 前缀`).toBe(false)
-  expect(product.seo.ogImage.startsWith('/public/'), `${product.slug}.seo.ogImage 不应含 /public/ 前缀`).toBe(false)
+  expect(p.hero.demoImage.startsWith('/public/'), `${p.slug}.hero.demoImage 不应含 /public/ 前缀`).toBe(false)
+  expect(p.seo.ogImage.startsWith('/public/'), `${p.slug}.seo.ogImage 不应含 /public/ 前缀`).toBe(false)
 
-  expect(product.features.length, `${product.slug}.features 不应为空`).toBeGreaterThan(0)
-  expect(product.featureDetails.length, `${product.slug}.featureDetails 不应为空`).toBeGreaterThan(0)
-  expectNonEmptyString(product.cta.title, `${product.slug}.cta.title`)
+  expect(p.features.length, `${p.slug}.features 不应为空`).toBeGreaterThan(0)
+  expect(p.featureDetails.length, `${p.slug}.featureDetails 不应为空`).toBeGreaterThan(0)
+  expectNonEmptyString(p.cta.title, `${p.slug}.cta.title`)
 }
 
 describe('products 数据', () => {
@@ -48,8 +56,9 @@ describe('products 数据', () => {
 
   it('featureDetails 的 activePoint 初值合法', () => {
     for (const product of products) {
-      for (const detail of product.featureDetails) {
-        expect(detail.points.length, `${product.slug} 的 featureDetails.points 不应为空`).toBeGreaterThan(0)
+      const p = product as ProductDetail
+      for (const detail of p.featureDetails) {
+        expect(detail.points.length, `${p.slug} 的 featureDetails.points 不应为空`).toBeGreaterThan(0)
       }
     }
   })

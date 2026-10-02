@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import ProductFeatures from '~/components/landing/ProductFeatures.vue'
-import { getProductBySlug, type ProductPageData } from '~/data/products'
+import { getProductDetailBySlug } from '~/data/products'
 
 definePageMeta({
   layout: 'default'
@@ -8,7 +8,7 @@ definePageMeta({
 
 const route = useRoute()
 const slug = route.params.slug as string
-const product = getProductBySlug(slug) as ProductPageData | undefined
+const product = getProductDetailBySlug(slug)
 
 // 404 if slug not found
 if (!product) {
