@@ -9,6 +9,7 @@ interface Feature {
   desc: string
   icon: string
   image: string
+  video?: string
   points: { title: string; desc: string }[]
   activePoint: number
 }
@@ -23,6 +24,7 @@ const features = ref<Feature[]>([
     desc: '最新的大模型，丰富的资源库，提供 AI Agent 开发所需的全部核心技术。',
     icon: 'i-heroicons-cube',
     image: '/images/agent/Fullstack.png',
+    video: 'https://imagine.animagic.art/imagine-one/home/spotlight-cards/videos/apps.mp4',
     points: [
       { title: '多模型接入', desc: '支持 GPT-4、Claude、Gemini 等全球主流大模型' },
       { title: '知识库管理', desc: '强大的 RAG 检索增强，支持多种文档格式' },
@@ -35,6 +37,7 @@ const features = ref<Feature[]>([
     desc: '健全的应用模板和编排框架，用最低的成本开发最专业的 AI Agent。',
     icon: 'i-heroicons-wrench-screwdriver',
     image: '/images/agent/Outofthebox.png',
+    video: 'https://imagine.animagic.art/imagine-one/home/spotlight-cards/videos/team_banner.mp4',
     points: [
       { title: '丰富模板', desc: '预置 50+ 行业场景模板，一键快速部署' },
       { title: '智能体市场', desc: '海量优质 Agent 应用，即装即用' },
@@ -47,6 +50,7 @@ const features = ref<Feature[]>([
     desc: '覆盖 Agent 开发全生命周期安全保障，满足企业级安全需求。',
     icon: 'i-heroicons-puzzle-piece',
     image: '/images/agent/privatization.png',
+    video: 'https://imagine.animagic.art/imagine-one/home/campaigns/assist.mp4',
     points: [
       { title: '私有化部署', desc: '数据本地化存储，完全自主可控' },
       { title: '权限管理', desc: '细粒度访问控制，保障数据安全' },
@@ -59,6 +63,7 @@ const features = ref<Feature[]>([
     desc: '点击一下，全平台上线！APP、网页、小程序统统搞定。',
     icon: 'i-heroicons-rocket-launch',
     image: '/images/agent/Network-wide.png',
+    video: 'https://imagine.animagic.art/imagine-one/home/campaigns/kling30.mp4',
     points: [
       { title: '多端适配', desc: '一次开发，自动适配 Web、iOS、Android' },
       { title: '一键发布', desc: '无需配置服务器，快速上线运营' },
@@ -75,8 +80,6 @@ const features = ref<Feature[]>([
     <div class="grid-border-container">
       <!-- 标题区域 -->
       <div class="grid-border-wrapper">
-        <div class="grid-border-side grid-border-side-left" />
-        <div class="grid-border-side grid-border-side-right" />
 
         <div class="grid-border-content px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
           <div class="mb-6 sm:mb-8">
@@ -100,8 +103,6 @@ const features = ref<Feature[]>([
 
       <!-- 功能展示区域 -->
       <div class="grid-border-wrapper">
-        <div class="grid-border-side grid-border-side-left" />
-        <div class="grid-border-side grid-border-side-right" />
 
         <div class="grid-border-content px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12">
           <div class="flex flex-col gap-16 md:gap-24">
@@ -213,7 +214,19 @@ const features = ref<Feature[]>([
             <div class="relative h-full">
               <div class="relative p-2 rounded-3xl bg-neutral-50/50 backdrop-blur-sm border border-neutral-100 h-full">
                 <div class="relative rounded-2xl overflow-hidden border border-neutral-100 shadow-sm bg-white aspect-video">
+                  <video
+                    v-if="feature.video"
+                    :src="feature.video"
+                    :poster="feature.image"
+                    class="w-full h-full object-cover"
+                    controls
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                  />
                   <img
+                    v-else
                     :src="feature.image"
                     :alt="feature.title"
                     class="w-full h-full object-cover"
@@ -233,8 +246,6 @@ const features = ref<Feature[]>([
 
       <!-- 底部信息 -->
       <div class="grid-border-wrapper">
-        <div class="grid-border-side grid-border-side-left" />
-        <div class="grid-border-side grid-border-side-right" />
 
         <div class="grid-border-content content-footer px-4 sm:px-6 lg:px-8">
           <span class="text-lg sm:text-xl font-bold text-neutral-900 tracking-tight">智言AI</span>
