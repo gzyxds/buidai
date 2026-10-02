@@ -45,7 +45,7 @@
     <!-- 4. QQ客服 -->
     <div class="group bg-white rounded-xl p-3 md:p-6 border border-neutral-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:border-transparent transition-all duration-300 flex flex-col items-center text-center">
       <div class="w-10 h-10 md:w-14 md:h-14 rounded-lg bg-neutral-100 text-neutral-900 flex items-center justify-center mb-3 md:mb-5 group-hover:scale-105 transition-transform duration-300">
-        <UIcon name="i-simple-icons-tencentqq" class="w-5 h-5 md:w-7 md:h-7" />
+        <UIcon name="i-lucide-message-circle" class="w-5 h-5 md:w-7 md:h-7" />
       </div>
       <h3 class="text-sm md:text-base font-bold text-neutral-900 mb-1">QQ 客服</h3>
       <p class="text-[10px] md:text-xs text-neutral-400 mb-3 md:mb-5">在线即时沟通</p>

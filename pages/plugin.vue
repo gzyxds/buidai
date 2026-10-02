@@ -407,7 +407,7 @@ const categoryIconMap: Record<string, string> = {
   video: 'i-lucide-video',
   writing: 'i-lucide-pen-tool',
   efficiency: 'i-lucide-git-branch',
-  enterprise: 'i-lucide-file-signature'
+  enterprise: 'i-lucide-signature'
 }
 
 // 分类名称映射
