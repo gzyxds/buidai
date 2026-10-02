@@ -745,7 +745,11 @@ const handleFaqKeydown = (event: KeyboardEvent, currentIndex: number) => {
 
 // 打字机效果相关
 const texts = ['智言AI 领先的AI创作平台', '可视化 Workflow 编排', '超易用 AI 知识库', '创新 RAG 检索', '轻松构建强大 AI 应用']
-const { text: displayText } = useTypewriter(texts, { startDelay: 1000 })
+const { text: displayText } = useTypewriter(texts, {
+  typingSpeed: 75,
+  pauseAfterComplete: 1500,
+  startDelay: 1000
+})
 const showCursor = ref(true)
 </script>
 

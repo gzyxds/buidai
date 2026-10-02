@@ -194,9 +194,10 @@ const displayApps = computed<AppData[]>(() => {
 
 /**
  * 处理"我要上架应用"按钮点击
+ * 上架应用需商务对接，跳转联系页
  */
 const handlePublishApp = () => {
-  window.dispatchEvent(new CustomEvent('showPublishAppModal'))
+  navigateTo('/contact')
 }
 
 /**
