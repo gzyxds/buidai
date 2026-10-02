@@ -160,6 +160,41 @@ const product: Product = {
     originalPrice: 1598,
     discountPrice: 1198,
     date: '2025/11/15'
+  },
+  /** 演示视图（原 demoProducts id: drama） */
+  demo: {
+    status: 'online',
+    category: 'extension',
+    /** 演示视图显示名 */
+    title: 'AI短剧小说创作',
+    /** 演示视图副标题 */
+    subtitle: '网文短剧写作系统',
+    /** 演示视图专属描述 */
+    description:
+      '专注于短剧本和网络小说创作的辅助工具，提供丰富的剧情模板、角色设定和冲突框架，支持 AI 扩写润色改写续写。',
+    /** 演示视图图标 */
+    icon: 'i-heroicons-pencil-square',
+    /** 演示视图封面 */
+    image: '/plugin/AI短剧小说创作.png',
+    /** 演示视图标签 */
+    tags: ['剧本创作', '角色设定', 'AI扩写'],
+    features: ['无限量剧本', '角色设定', '章节拖拽', 'AI扩写润色', '大纲管理'],
+    platforms: [
+      {
+        title: 'PC演示',
+        icon: 'i-heroicons-computer-desktop',
+        url: 'https://www.gmlart.cn',
+        account: '自行注册',
+        password: '自行注册'
+      },
+      {
+        title: '管理后台',
+        icon: 'i-heroicons-cog-6-tooth',
+        url: 'https://www.gmlart.cn/',
+        account: 'admin',
+        password: '123456'
+      }
+    ]
   }
 }
 

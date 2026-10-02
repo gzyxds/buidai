@@ -142,6 +142,40 @@ const product: Product = {
     originalPrice: 1399,
     discountPrice: 1399,
     date: '2025/11/15'
+  },
+  /** 演示视图（原 demoProducts id: videoclip） */
+  demo: {
+    status: 'online',
+    category: 'extension',
+    /** 演示视图显示名 */
+    title: '热门视频混剪',
+    /** 演示视图副标题 */
+    subtitle: '智能视频剪辑软件',
+    /** 演示视图专属描述 */
+    description: '智能抓取热门素材，自动混剪，快速生成短视频。紧跟热点趋势，轻松制作出爆款短视频。',
+    /** 演示视图图标 */
+    icon: 'i-heroicons-play',
+    /** 演示视图封面 */
+    image: '/plugin/video-mix.png',
+    /** 演示视图标签 */
+    tags: ['批量剪辑', '智能转场', '热门素材'],
+    features: ['智能抓取', '自动混剪', '热门素材', '快速生成', '爆款视频'],
+    platforms: [
+      {
+        title: 'PC演示',
+        icon: 'i-heroicons-computer-desktop',
+        url: 'https://www.gmlart.cn',
+        account: '自行注册',
+        password: '自行注册'
+      },
+      {
+        title: '管理后台',
+        icon: 'i-heroicons-cog-6-tooth',
+        url: 'https://www.gmlart.cn/',
+        account: 'admin',
+        password: '123456'
+      }
+    ]
   }
 }
 

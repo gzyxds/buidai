@@ -160,6 +160,48 @@ const product: Product = {
     originalPrice: 999,
     discountPrice: 999,
     date: '2025/11/15'
+  },
+  /** 演示视图（原 demoProducts id: jmdraw） */
+  demo: {
+    status: 'online',
+    category: 'extension',
+    /** 演示视图显示名 */
+    title: '即梦AI绘画',
+    /** 演示视图副标题 */
+    subtitle: '高质量AI图像生成',
+    /** 演示视图专属描述 */
+    description:
+      '基于即梦AI绘画的快速绘图工具，能够通过简单提示词快速生成高质量图像，风格覆盖广泛，写实、卡通、插画等皆可驾驭。',
+    /** 演示视图图标 */
+    icon: 'i-heroicons-photo',
+    /** 演示视图封面 */
+    image: '/plugin/即梦AI绘画.png',
+    /** 演示视图标签 */
+    tags: ['文生图', '图生图', '多分辨率'],
+    features: ['文生图', '图生图', '多种分辨率', '批量生成', '灵感广场'],
+    platforms: [
+      {
+        title: 'PC演示',
+        icon: 'i-heroicons-computer-desktop',
+        url: 'https://www.gmlart.cn',
+        account: '自行注册',
+        password: '自行注册'
+      },
+      {
+        title: '管理后台',
+        icon: 'i-heroicons-cog-6-tooth',
+        url: 'https://www.gmlart.cn/',
+        account: 'admin',
+        password: '123456'
+      },
+      {
+        title: 'H5演示',
+        icon: 'i-heroicons-device-phone-mobile',
+        url: 'https://www.gmlart.cn/',
+        account: '自行注册',
+        password: '自行注册'
+      }
+    ]
   }
 }
 

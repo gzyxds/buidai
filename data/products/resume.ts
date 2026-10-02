@@ -140,6 +140,41 @@ const product: Product = {
     originalPrice: 1298,
     discountPrice: 1298,
     date: '2025/11/14'
+  },
+  /** 演示视图（原 demoProducts id: resume） */
+  demo: {
+    status: 'online',
+    category: 'extension',
+    /** 演示视图显示名 */
+    title: 'AI简历',
+    /** 演示视图副标题 */
+    subtitle: '智能简历生成系统',
+    /** 演示视图专属描述 */
+    description:
+      '致力于高效生成与深度优化个人简历，通过简单的基本信息输入，即可快速生成结构完整的个人简历，并提供专业优化建议。',
+    /** 演示视图图标 */
+    icon: 'i-heroicons-document-text',
+    /** 演示视图封面 */
+    image: '/plugin/AI简历.png',
+    /** 演示视图标签 */
+    tags: ['智能问答', '简历模板', 'AI分析'],
+    features: ['智能问答', '简历模板', '在线编辑', '模块管理', 'AI分析'],
+    platforms: [
+      {
+        title: 'PC演示',
+        icon: 'i-heroicons-computer-desktop',
+        url: 'https://www.gmlart.cn',
+        account: '自行注册',
+        password: '自行注册'
+      },
+      {
+        title: '管理后台',
+        icon: 'i-heroicons-cog-6-tooth',
+        url: 'https://www.gmlart.cn/',
+        account: 'admin',
+        password: '123456'
+      }
+    ]
   }
 }
 

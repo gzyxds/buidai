@@ -133,6 +133,41 @@ const product: Product = {
     originalPrice: 1399,
     discountPrice: 1399,
     date: '2025/12/27'
+  },
+  /** 演示视图（原 demoProducts id: music） */
+  demo: {
+    status: 'online',
+    category: 'extension',
+    /** 演示视图显示名 */
+    title: 'AI音乐',
+    /** 演示视图副标题 */
+    subtitle: 'AI音乐生成系统',
+    /** 演示视图专属描述 */
+    description:
+      '以文本/歌词/哼唱/乐谱为输入，快速生成完整歌曲、伴奏、人声或纯音乐的创作与生产工具，降低门槛、提升效率。',
+    /** 演示视图图标 */
+    icon: 'i-heroicons-musical-note',
+    /** 演示视图封面 */
+    image: '/plugin/AI音乐.png',
+    /** 演示视图标签 */
+    tags: ['文本生成', '哼唱生成', '乐谱生成'],
+    features: ['文本生成', '哼唱生成', '乐谱生成', '多种输出', '商用授权'],
+    platforms: [
+      {
+        title: 'PC演示',
+        icon: 'i-heroicons-computer-desktop',
+        url: 'https://www.gmlart.cn',
+        account: '自行注册',
+        password: '自行注册'
+      },
+      {
+        title: '管理后台',
+        icon: 'i-heroicons-cog-6-tooth',
+        url: 'https://www.gmlart.cn/',
+        account: 'admin',
+        password: '123456'
+      }
+    ]
   }
 }
 

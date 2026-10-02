@@ -162,6 +162,41 @@ const product: Product = {
     originalPrice: 999,
     discountPrice: 999,
     date: '2025/11/15'
+  },
+  /** 演示视图（原 demoProducts id: jimeng） */
+  demo: {
+    status: 'online',
+    category: 'extension',
+    /** 演示视图显示名 */
+    title: '即梦AI视频',
+    /** 演示视图副标题 */
+    subtitle: 'AI视频生成工具',
+    /** 演示视图专属描述 */
+    description:
+      '快速生成视频的工具，用户只需输入文字描述或上传参考图，即可快速生成风格多样的短视频，支持多种视频比例和分辨率。',
+    /** 演示视图图标 */
+    icon: 'i-heroicons-video-camera',
+    /** 演示视图封面 */
+    image: '/plugin/即梦AI视频.png',
+    /** 演示视图标签 */
+    tags: ['文生视频', '图生视频', '多分辨率'],
+    features: ['文生视频', '图生视频', '多种分辨率', '视频下载', '灵感广场'],
+    platforms: [
+      {
+        title: 'PC演示',
+        icon: 'i-heroicons-computer-desktop',
+        url: 'https://www.gmlart.cn',
+        account: '自行注册',
+        password: '自行注册'
+      },
+      {
+        title: '管理后台',
+        icon: 'i-heroicons-cog-6-tooth',
+        url: 'https://www.gmlart.cn/',
+        account: 'admin',
+        password: '123456'
+      }
+    ]
   }
 }
 

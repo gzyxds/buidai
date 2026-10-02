@@ -160,6 +160,41 @@ const product: Product = {
     originalPrice: 1398,
     discountPrice: 1398,
     date: '2025/11/15'
+  },
+  /** 演示视图（原 demoProducts id: xhs） */
+  demo: {
+    status: 'online',
+    category: 'extension',
+    /** 演示视图显示名 */
+    title: '小红书内容复刻',
+    /** 演示视图副标题 */
+    subtitle: '热门内容创作工具',
+    /** 演示视图专属描述 */
+    description:
+      '一键提取爆款笔记文案，智能仿写，快速产出高质量内容。轻松掌握流量密码，打造爆款账号。',
+    /** 演示视图图标 */
+    icon: 'i-heroicons-hashtag',
+    /** 演示视图封面 */
+    image: '/plugin/xiaohongshu.png',
+    /** 演示视图标签 */
+    tags: ['文案生成', 'AI配图', '标签推荐'],
+    features: ['一键提取', '智能仿写', '爆款文案', '流量密码', '快速产出'],
+    platforms: [
+      {
+        title: 'PC演示',
+        icon: 'i-heroicons-computer-desktop',
+        url: 'https://www.gmlart.cn',
+        account: '自行注册',
+        password: '自行注册'
+      },
+      {
+        title: '管理后台',
+        icon: 'i-heroicons-cog-6-tooth',
+        url: 'https://www.gmlart.cn/',
+        account: 'admin',
+        password: '123456'
+      }
+    ]
   }
 }
 

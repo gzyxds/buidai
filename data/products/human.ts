@@ -163,6 +163,48 @@ const product: Product = {
     originalPrice: 1999,
     discountPrice: 1999,
     date: '2025/11/15'
+  },
+  /** 演示视图（原 demoProducts id: human） */
+  demo: {
+    status: 'online',
+    category: 'extension',
+    /** 演示视图显示名 */
+    title: 'AI直播短视频数字人',
+    /** 演示视图副标题 */
+    subtitle: '7x24小时无人直播',
+    /** 演示视图专属描述 */
+    description:
+      '7x24小时无人直播，数字人带货，低成本高回报。打造永不休息的超级主播，抢占直播红利。',
+    /** 演示视图图标 */
+    icon: 'i-heroicons-user',
+    /** 演示视图封面 */
+    image: '/plugin/AI直播短视频数字人.webp',
+    /** 演示视图标签 */
+    tags: ['数字人', '无人直播', '短视频'],
+    features: ['7x24小时直播', '数字人带货', '低成本', '高回报', '超级主播'],
+    platforms: [
+      {
+        title: 'PC演示',
+        icon: 'i-heroicons-computer-desktop',
+        url: 'https://www.gmlart.cn',
+        account: '自行注册',
+        password: '自行注册'
+      },
+      {
+        title: '管理后台',
+        icon: 'i-heroicons-cog-6-tooth',
+        url: 'https://www.gmlart.cn/',
+        account: 'admin',
+        password: '123456'
+      },
+      {
+        title: 'H5演示',
+        icon: 'i-heroicons-device-phone-mobile',
+        url: 'https://www.gmlart.cn/',
+        account: '自行注册',
+        password: '自行注册'
+      }
+    ]
   }
 }
 

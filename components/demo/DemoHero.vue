@@ -2,7 +2,7 @@
 /**
  * 演示页 Hero 区块：徽章 + 标题 + 移动端产品选择器
  */
-import type { ProductDemo } from '~/data/demoProducts'
+import type { ProductDemo } from '~/data/products'
 
 const props = defineProps<{
   currentCategoryProducts: ProductDemo[]

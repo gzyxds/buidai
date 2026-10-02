@@ -2,7 +2,7 @@
 /**
  * 演示页产品详情卡：封面 + 标签 + 描述 + 核心功能 + 演示平台 + CTA
  */
-import { getProductImageUrl, getStatusClass, getStatusText, handleImageError, type ProductDemo } from '~/data/demoProducts'
+import { getProductImageUrl, getStatusClass, getStatusText, handleImageError, type ProductDemo } from '~/data/products'
 
 const props = defineProps<{
   selectedProduct: ProductDemo

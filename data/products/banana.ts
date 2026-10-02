@@ -151,6 +151,41 @@ const product: Product = {
     originalPrice: 1398,
     discountPrice: 1398,
     date: '2025/11/14'
+  },
+  /** 演示视图（原 demoProducts id: nanobanana） */
+  demo: {
+    status: 'online',
+    category: 'extension',
+    /** 演示视图显示名 */
+    title: 'Nanobanana',
+    /** 演示视图副标题 */
+    subtitle: '香蕉绘画平台',
+    /** 演示视图专属描述 */
+    description:
+      '香蕉绘画预置多个模版，开箱即用。结合gemini-3-pro-image-preview的生图能力，能够有效保持角色一致性。',
+    /** 演示视图图标 */
+    icon: 'i-heroicons-swatch',
+    /** 演示视图封面 */
+    image: '/plugin/Nanobanana.png',
+    /** 演示视图标签 */
+    tags: ['Gemini 3 Pro', '角色一致', '文生图'],
+    features: ['预置模版', '开箱即用', '角色一致性', '文生图', '图生图'],
+    platforms: [
+      {
+        title: 'PC演示',
+        icon: 'i-heroicons-computer-desktop',
+        url: 'https://www.gmlart.cn',
+        account: '自行注册',
+        password: '自行注册'
+      },
+      {
+        title: '管理后台',
+        icon: 'i-heroicons-cog-6-tooth',
+        url: 'https://www.gmlart.cn',
+        account: 'admin',
+        password: '123456'
+      }
+    ]
   }
 }
 

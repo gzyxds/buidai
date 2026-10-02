@@ -2,7 +2,7 @@
 /**
  * 演示页桌面侧栏：可展开折叠的产品分类导航
  */
-import type { ProductCategory, ProductDemo } from '~/data/demoProducts'
+import type { ProductCategory, ProductDemo } from '~/data/products'
 
 const props = defineProps<{
   categories: ProductCategory[]

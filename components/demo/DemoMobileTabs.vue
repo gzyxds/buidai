@@ -2,7 +2,7 @@
 /**
  * 演示页移动端底部标签栏：悬浮胶囊风分类切换
  */
-import type { ProductCategory } from '~/data/demoProducts'
+import type { ProductCategory } from '~/data/products'
 
 const props = defineProps<{
   categories: ProductCategory[]

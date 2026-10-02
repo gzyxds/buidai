@@ -4,7 +4,7 @@
  * 状态中枢：维护选中产品/分类状态，组装 Hero、移动标签栏、侧栏与详情组件
  */
 import { computed, onErrorCaptured, ref } from 'vue'
-import { categories, type ProductDemo } from '~/data/demoProducts'
+import { demoCategories as categories, type ProductDemo } from '~/data/products'
 
 /**
  * 当前选中的产品

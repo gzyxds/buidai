@@ -140,6 +140,41 @@ const product: Product = {
     originalPrice: 1299,
     discountPrice: 1299,
     date: '2025/11/15'
+  },
+  /** 演示视图（原 demoProducts id: ppt） */
+  demo: {
+    status: 'online',
+    category: 'extension',
+    /** 演示视图显示名 */
+    title: 'AI PPT',
+    /** 演示视图副标题 */
+    subtitle: '智能演示文稿制作',
+    /** 演示视图专属描述 */
+    description:
+      '智能演示文稿制作工具，能够根据用户输入的主题或大纲，自动生成结构清晰、设计美观的PPT页面，一键生成演讲备注。',
+    /** 演示视图图标 */
+    icon: 'i-heroicons-clipboard-document',
+    /** 演示视图封面 */
+    image: '/plugin/aippt.png',
+    /** 演示视图标签 */
+    tags: ['智能生成', '模板图表', '智能配色'],
+    features: ['智能生成', '模板图表', '智能配色', '字体搭配', '动画效果'],
+    platforms: [
+      {
+        title: 'PC演示',
+        icon: 'i-heroicons-computer-desktop',
+        url: 'https://www.gmlart.cn',
+        account: '自行注册',
+        password: '自行注册'
+      },
+      {
+        title: '管理后台',
+        icon: 'i-heroicons-cog-6-tooth',
+        url: 'https://www.gmlart.cn/',
+        account: 'admin',
+        password: '123456'
+      }
+    ]
   }
 }
 

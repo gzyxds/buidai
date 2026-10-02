@@ -93,7 +93,18 @@ export interface MarketView {
 export interface DemoView {
   status: 'online' | 'beta' | 'coming'
   category: string
+  /** 演示视图显示名 */
+  title?: string
+  /** 演示视图副标题 */
   subtitle?: string
+  /** 演示视图专属描述 */
+  description?: string
+  /** 演示视图图标 */
+  icon?: string
+  /** 演示视图封面 */
+  image?: string
+  /** 演示视图标签 */
+  tags?: string[]
   features: string[]
   platforms: {
     title: string
