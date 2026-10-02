@@ -259,7 +259,7 @@ class="absolute inset-0 opacity-5 pointer-events-none"
                         <span v-else class="text-xl font-bold text-neutral-900 dark:text-white">¥{{ app.originalPrice.toFixed(2) }}</span>
                       </div>
                       <button class="px-3 py-1.5 bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-medium rounded-lg flex items-center gap-1 transition-colors">
-                        <ShoppingBagIcon class="w-3.5 h-3.5" />
+                        <UIcon name="i-lucide-shopping-bag" class="w-3.5 h-3.5" />
                         购买
                       </button>
                     </div>
@@ -326,7 +326,7 @@ class="absolute inset-0 opacity-5 pointer-events-none"
                     </div>
                     <div class="flex items-center gap-3">
                       <button class="px-3 py-1.5 bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-medium rounded-lg flex items-center gap-1 transition-colors">
-                        <ShoppingBagIcon class="w-3.5 h-3.5" />
+                        <UIcon name="i-lucide-shopping-bag" class="w-3.5 h-3.5" />
                         购买
                       </button>
                       <div class="flex items-center gap-1 text-xs text-neutral-400">

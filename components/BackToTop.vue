@@ -147,7 +147,7 @@ onUnmounted(() => {
             aria-label="在线咨询"
             @click="openModalQRCode"
           >
-            <HeadphonesIcon class="h-4 w-4 sm:h-6 sm:w-6 mb-1 sm:mb-2" />
+            <UIcon name="i-lucide-headphones" class="h-4 w-4 sm:h-6 sm:w-6 mb-1 sm:mb-2" />
             <div class="text-xs font-medium leading-tight">
               <div>在线</div>
               <div>咨询</div>
@@ -207,13 +207,13 @@ onUnmounted(() => {
           <div class="w-10 h-20 sm:w-12 sm:h-28 bg-white shadow-lg border border-gray-200/50 flex flex-col overflow-hidden">
             <!-- 上半部分：售后 -->
             <button class="flex-1 flex flex-col items-center justify-center text-gray-700 hover:bg-gray-50 transition-colors border-b border-gray-100 cursor-pointer">
-              <UserIcon class="h-3 w-3 sm:h-4 sm:w-4 mb-0.5 sm:mb-1" />
+              <UIcon name="i-lucide-user" class="h-3 w-3 sm:h-4 sm:w-4 mb-0.5 sm:mb-1" />
               <span class="text-xs font-medium">售后</span>
             </button>
 
             <!-- 下半部分：活动 -->
             <button class="flex-1 flex flex-col items-center justify-center text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer">
-              <GiftIcon class="h-3 w-3 sm:h-4 sm:w-4 mb-0.5 sm:mb-1" />
+              <UIcon name="i-lucide-gift" class="h-3 w-3 sm:h-4 sm:w-4 mb-0.5 sm:mb-1" />
               <span class="text-xs font-medium">活动</span>
             </button>
           </div>
@@ -260,7 +260,7 @@ onUnmounted(() => {
           aria-label="返回顶部"
           @click="scrollToTop"
         >
-          <ChevronUpIcon class="h-4 w-4 sm:h-5 sm:w-5" />
+          <UIcon name="i-lucide-chevron-up" class="h-4 w-4 sm:h-5 sm:w-5" />
         </button>
       </Transition>
     </div>
@@ -299,7 +299,7 @@ onUnmounted(() => {
             <!-- 顶部公告栏 -->
             <div class="relative bg-blue-50/80 backdrop-blur-sm px-3 py-2.5 sm:px-6 sm:py-3 flex items-center justify-center border-b border-blue-100/50 shrink-0">
               <div class="flex items-center gap-2 text-xs sm:text-sm text-blue-700 w-full pr-6 sm:pr-0 justify-center sm:justify-start">
-                <MegaphoneIcon class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 text-blue-500" />
+                <UIcon name="i-lucide-megaphone" class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 text-blue-500" />
                 <p class="truncate sm:overflow-visible leading-tight">
                   公告：<span class="font-semibold cursor-pointer hover:underline hover:text-blue-800">联系客服</span> 体验产品，关注公众号了解动态
                 </p>
@@ -309,7 +309,7 @@ onUnmounted(() => {
                 aria-label="关闭"
                 @click="closeModalQRCode"
               >
-                <XIcon class="w-4 h-4 sm:w-5 sm:h-5" />
+                <UIcon name="i-lucide-x" class="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
 
@@ -335,7 +335,7 @@ onUnmounted(() => {
                       class="w-full aspect-square sm:w-48 sm:h-48 object-contain mix-blend-multiply sm:mix-blend-normal" width="400" height="400" />
                     <!-- 装饰角标 -->
                     <div class="absolute -top-1.5 -right-1.5 sm:-top-2 sm:-right-2 w-5 h-5 sm:w-6 sm:h-6 bg-blue-500 rounded-full flex items-center justify-center text-white shadow-md scale-100 sm:scale-0 sm:group-hover:scale-100 transition-transform duration-300 delay-75 ring-2 ring-white">
-                        <UserIcon class="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                        <UIcon name="i-lucide-user" class="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                     </div>
                   </div>
                   <h4 class="text-xs sm:text-lg font-bold text-gray-900 mb-0.5 sm:mb-1 group-hover:text-blue-600 transition-colors text-center">添加客服微信</h4>
@@ -351,7 +351,7 @@ onUnmounted(() => {
                       class="w-full aspect-square sm:w-48 sm:h-48 object-contain mix-blend-multiply sm:mix-blend-normal" width="500" height="500" />
                     <!-- 装饰角标 -->
                     <div class="absolute -top-1.5 -right-1.5 sm:-top-2 sm:-right-2 w-5 h-5 sm:w-6 sm:h-6 bg-green-500 rounded-full flex items-center justify-center text-white shadow-md scale-100 sm:scale-0 sm:group-hover:scale-100 transition-transform duration-300 delay-75 ring-2 ring-white">
-                        <GiftIcon class="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                        <UIcon name="i-lucide-gift" class="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                     </div>
                   </div>
                   <h4 class="text-xs sm:text-lg font-bold text-gray-900 mb-0.5 sm:mb-1 group-hover:text-blue-600 transition-colors text-center">关注公众号</h4>
