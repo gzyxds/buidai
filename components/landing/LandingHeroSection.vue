@@ -10,7 +10,7 @@
       <!-- 落霞天幕：紫 / 橙 / 青三团渐变自顶部洒下，向下淡出 -->
       <div class="sky absolute inset-0" />
 
-      <!-- agent.svg 点阵波纹插画：替换网格，铺在画面中下部 -->
+      <!-- agent.svg 点阵波纹插画：替换网格，贴顶部靠头部展示 -->
       <div class="agent-art" />
 
       <!-- 星点闪烁 -->
@@ -354,15 +354,16 @@ onUnmounted(() => {
     );
 }
 
-/* ── agent.svg 点阵波纹：宽幅插画铺在画面中下部，multiply 让白底消隐、深点融入渐变 ── */
+/* ── agent.svg 点阵波纹：铺满宽度贴顶部靠头部展示，multiply 让白底消隐、深点融入渐变 ──
+   1400px 原始尺寸平铺（repeat-x）：点阵为原生密度；裁掉插画顶部留白，贴紧头部 ── */
 .agent-art {
   position: absolute;
   left: 50%;
-  bottom: 6%;
+  top: 0;
   transform: translateX(-50%);
-  width: max(1600px, 105vw);
-  aspect-ratio: 1400 / 366;
-  background: url("/agent.svg") center / contain no-repeat;
+  width: 100vw;
+  height: 278px;
+  background: url("/agent.svg") center -88px / 1400px auto repeat-x;
   mix-blend-mode: multiply;
   opacity: 0.9;
 }
@@ -393,9 +394,8 @@ onUnmounted(() => {
   50% { opacity: 0; }
 }
 
-/* ── 移动端：插画放大铺满宽度、星点缩小 ── */
+/* ── 移动端：星点缩小（agent.svg 点阵铺满宽度规则已统一，无需覆盖） ── */
 @media (max-width: 767px) {
-  .agent-art { width: 170vw; bottom: 2%; }
   .sky-star { width: 3px; height: 3px; }
 }
 
